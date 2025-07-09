@@ -1,0 +1,98 @@
+.ctaSection {
+    background-color: #5b48e3; /* This purple looks accurate */
+    color: #fff;
+    padding: 60px 0; /* Reduced from 70px to 60px for a more compact vertical space */
+    text-align: center;
+}
+
+.sectionTitle {
+    font-size: 2.22rem; /* Reduced from 38px to 34px, closer to the image */
+    font-weight: 700;
+    margin-bottom: 12px; /* Reduced from 15px to 12px */
+    color: #fff;
+}
+
+.sectionDescription {
+  font-size: 1.3rem;
+  color: white;
+  margin-bottom: 3rem;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+
+}
+
+.ctaButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Reduced from 20px to 15px for tighter button grouping */
+    flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+    font-size: 17px; /* Increased from 16px */
+    padding: 18px 34px; /* Increased from 12px 28px */
+    border-radius: 8px; /* Slightly larger rounding for better aesthetics */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    font-weight: 600;
+}
+
+
+.primaryButton {
+    background-color: #ffffff;
+    color: #5b48e3;
+    border: 2px solid #ffffff;
+}
+
+.primaryButton:hover {
+    background-color: #f0f0f0;
+}
+
+.secondaryButton {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.secondaryButton:hover {
+    background-color: #ffffff;
+    color: #5b48e3;
+    border-color: #ffffff;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ctaSection {
+        padding: 40px 15px; /* Adjusted padding for smaller screens */
+    }
+
+    .sectionTitle {
+        font-size: 28px; /* Further reduced font size for mobile title */
+    }
+
+  @media (max-width: 768px) {
+  .sectionDescription {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-overflow: unset;
+    padding: 0 1rem;
+  }
+}
+
+    .ctaButtons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px; /* Reduced gap when stacked */
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        width: 90%; /* Slightly increased width */
+        max-width: 300px;
+        padding: 14px 28px; /* Adjusted for larger touch area */
+        font-size: 16px;
+    }
+}

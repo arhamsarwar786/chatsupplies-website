@@ -1,0 +1,157 @@
+/* ShopByCategory.module.css */
+
+.categorySection {
+    padding: 4rem 0;
+    background-color: #f8f9fa; /* Light background for the section */
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    max-width: 1230px; /* Increased from 1200px */
+    margin: 0 auto;
+    padding: 0 0.5rem; /* Reduced from 1rem to allow more content width */
+    text-align: center;
+}
+
+
+.sectionTitle {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #1f2937; /* Dark gray text */
+    margin-bottom: 0.75rem;
+}
+
+.sectionDescription {
+    font-size: 1.3rem;
+    color: #4b5563; /* Medium gray text */
+    margin-bottom: 3rem;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 0.95rem; /* Space between cards */
+    justify-items: center; /* Center cards in their grid areas */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.categoryCard {
+    background-color: #ffffff;
+    border-radius: 12px; /* More rounded corners */
+    padding: 2rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Stronger, softer shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure cards take full width of their grid column */
+    max-width: 350px; /* Max width for individual cards */
+}
+
+.categoryCard:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+.iconCircle {
+    width: 64px; /* Larger circle */
+    height: 64px; /* Larger circle */
+    border-radius: 50%; /* Perfect circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for the circle */
+}
+
+.categoryIcon {
+    color: #ffffff; /* White icon color */
+    font-size: 2rem; /* Larger icon size */
+}
+
+/* Background colors for the circles */
+.lightBlue {
+    background-color: #e0f2fe; /* Light blue background */
+    color: #2196f3; /* Blue icon color (though icon is overridden to white) */
+}
+.lightBlue .categoryIcon {
+    color: #2196f3; /* Specific icon color for blue background */
+}
+
+.lightGreen {
+    background-color: #e8f5e9; /* Light green background */
+    color: #4caf50; /* Green icon color (though icon is overridden to white) */
+}
+.lightGreen .categoryIcon {
+    color: #4caf50; /* Specific icon color for green background */
+}
+
+.lightPurple {
+    background-color: #ede7f6; /* Light purple background */
+    color: #673ab7; /* Purple icon color (though icon is overridden to white) */
+}
+.lightPurple .categoryIcon {
+    color: #673ab7; /* Specific icon color for purple background */
+}
+
+.lightOrange {
+    background-color: #fff3e0; /* Light orange background */
+    color: #ff9800; /* Orange icon color (though icon is overridden to white) */
+}
+.lightOrange .categoryIcon {
+    color: #ff9800; /* Specific icon color for orange background */
+}
+
+
+.cardTitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+}
+
+.cardDescription {
+    font-size: 0.95rem;
+    color: #6b7280; /* Darker gray for description */
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sectionTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionDescription {
+        font-size: 1rem;
+    }
+
+    .categories {
+        grid-template-columns: 1fr;
+    }
+
+    .categoryCard {
+        padding: 1.5rem 1rem;
+        margin: 0 0.75rem; /* ✅ Add horizontal margin for space on left and right */
+    }
+
+    .iconCircle {
+        width: 56px;
+        height: 56px;
+        margin-bottom: 1rem;
+    }
+
+    .categoryIcon {
+        font-size: 1.8rem;
+    }
+
+    .cardTitle {
+        font-size: 1.2rem;
+    }
+
+    .cardDescription {
+        font-size: 0.9rem;
+    }
+}

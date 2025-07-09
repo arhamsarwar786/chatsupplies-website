@@ -1,0 +1,172 @@
+/* Container for the whole section */
+.section {
+  padding: 4rem 1rem; /* Adjust padding as needed for the overall section */
+  background-color: #f8fafc; /* Example background if desired for the section */
+}
+
+.container {
+  max-width: 1200px; /* Max width for your content container */
+  margin: 0 auto;
+  padding: 0 1rem; /* Horizontal padding for the container */
+}
+
+.title {
+  font-size: 2.3rem; /* Example: adjust as needed */
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 3rem;
+  color: #6b7280;
+}
+
+/* --- GRID LAYOUT FOR CARDS --- */
+.grid {
+  display: grid;
+  /* Default: 1 column on small screens */
+  grid-template-columns: 1fr;
+  gap: 2rem; /* Equivalent to gap-8 in Tailwind */
+  justify-items: center; /* Center items in the grid */
+}
+
+/* Responsive adjustments for the grid */
+@media (min-width: 640px) { /* sm breakpoint */
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small screens and up */
+  }
+}
+
+@media (min-width: 1024px) { /* lg breakpoint */
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens and up */
+  }
+}
+
+/* If you need more columns on very large screens, e.g., 4 columns from md */
+/* @media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+} */
+
+
+/* --- CARD STYLING --- */
+.card {
+  /* Mimics bg-white rounded-2xl shadow-lg border */
+  background-color: #ffffff;
+  border-radius: 1rem; /* rounded-2xl */
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-lg */
+  border: 1px solid #e5e7eb; /* border */
+  
+  /* Mimics flex-direction: column and equal height for grid */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Important for equal height in the grid */
+
+  /* Mimics hover:shadow-xl transition */
+  transition: all 0.3s ease-in-out; /* Tailwind's default transition */
+}
+
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* shadow-xl on hover */
+  transform: translateY(-2px); /* Optional: slight lift on hover, common with hover:shadow */
+}
+
+
+/* --- IMAGE STYLING --- */
+.imageWrapper {
+  position: relative;     /* REQUIRED for fill to work */
+  width: 100%;
+  height: 13rem;          /* REQUIRED or image will collapse */
+  overflow: hidden;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.productImage {
+  /* objectFit="cover" is applied via prop, not CSS */
+  /* Ensure image also gets the top-left/right border-radius if it's not inherited well */
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+/* --- CONTENT AREA (p-6) --- */
+.cardContent { /* NEW CLASS for the div with p-6 */
+    padding: 1.5rem; /* p-6 */
+    display: flex; /* Make content a flex container */
+    flex-direction: column; /* Stack title, desc, footer vertically */
+    flex-grow: 1; /* Allows it to expand and push footer down */
+}
+
+/* If you don't want to add an extra div for cardContent, you can apply padding directly
+   to the text elements like:
+.productTitle,
+.productDesc,
+.cardFooter {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+*/
+
+/* --- PRODUCT TITLE (h3) --- */
+.productTitle {
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 700; /* font-bold */
+  color: #111827; /* text-gray-900 (used in your original card) */
+  margin-bottom: 0.5rem; /* mb-2 */
+}
+
+/* --- PRODUCT DESCRIPTION (p) --- */
+.productDesc {
+  font-size: 1rem; /* Base paragraph size (standard) */
+  color: #4b5563; /* text-gray-600 */
+  margin-bottom: 1rem; /* mb-4 */
+  flex-grow: 1; /* Key for equal card heights: pushes the footer down */
+}
+
+/* --- CARD FOOTER (flex items-center justify-between) --- */
+.cardFooter {
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  justify-content: space-between; /* justify-between */
+  margin-top: auto; /* Key for equal card heights: pushes footer to bottom */
+}
+
+/* --- PRODUCT PRICE (span) --- */
+.productPrice {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 700; /* font-bold */
+  /* Assuming your "text-primary" is a shade of blue, like Tailwind's default */
+  color: #3b82f6; /* Example: Tailwind's default blue-500, often primary */
+  /* If your primary is different, use that HEX code */
+}
+
+/* --- ADD TO CART BUTTON --- */
+.addToCart {
+  /* Mimics bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition */
+  background-color: #3b82f6; /* bg-primary */
+  color: white; /* text-white */
+  padding: 0.5rem 1.5rem; /* px-6 py-2 (1.5rem for 24px horiz, 0.5rem for 8px vert) */
+  border-radius: 0.5rem; /* rounded-lg */
+  border: none; /* remove default button border */
+  cursor: pointer;
+  font-weight: 600; /* Optional: font-semibold if desired */
+  font-size: 1rem; /* Standard button text size */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* transition for hover */
+}
+
+.addToCart:hover {
+  background-color: #2563eb; /* hover:bg-blue-700 */
+  transform: translateY(-1px); /* Small lift on hover, common with buttons */
+}

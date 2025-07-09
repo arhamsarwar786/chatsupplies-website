@@ -1,0 +1,175 @@
+/* WhyChooseUs.module.css */
+
+.whyChooseSection {
+    padding: 60px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #f3f4f6;
+}
+
+.whyChooseContainer {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 12px; /* Existing default padding */
+}
+
+.contentWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 32px;
+}
+
+.textContent {
+    flex: 0.9;
+    min-width: 300px;
+    padding-right: 0;
+    margin-right: 0;
+    text-align: left; /* Base alignment for text content (for large screens) */
+    padding-left: 20px; /* Added: Base consistent left padding for text content */
+}
+
+.sectionTitle {
+    font-size: 36px;
+    font-weight: 750; /* A very bold weight */
+    color: #111827;
+    margin-bottom: 30px;
+}
+
+.featureItem {
+    display: flex; /* Makes icon and text content side-by-side */
+    align-items: flex-start; /* Aligns items to the top (icon and text's first line) */
+    margin-bottom: 16px; /* Space between each feature item */
+}
+
+.checkmarkIcon {
+    margin-right: 12px; /* Space between icon and text */
+    color: #8b5cf6; /* Consistent purple color, like Tailwind's purple-500 */
+    font-size: 35px; /* Consistent with your inline style from component */
+    width: 32px; /* Fixed width */
+    height: 32px; /* Fixed height */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    line-height: 1; /* For better vertical alignment of icon */
+    vertical-align: middle; /* Helps with positioning */
+}
+
+.featureTitle {
+    font-size: 18.5px;
+    font-weight: 550; /* Bold weight */
+    color: #111827;
+    margin-bottom: 4px; /* Small space between heading and description */
+}
+
+.featureDescription {
+    font-size: 17px;
+    color: #6B7280;
+    line-height: 1.8;
+}
+
+.imageContent {
+    flex: 1.1;
+    max-width: 600px;
+    text-align: right; /* Aligns content inside imageContent to the right */
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.teamImage {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensures image is responsive within its container */
+    height: auto; /* Maintains aspect ratio */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .contentWrapper {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center wrapper items horizontally */
+        text-align: left; /* Center text within contentWrapper itself (if any) */
+        padding-left: 30px;
+    }
+
+    .whyChooseContainer {
+        padding-left: 24px; /* Added: Adjust padding for smaller screens */
+        padding-right: 24px; /* Added: Adjust padding for smaller screens */
+    }
+
+    .textContent,
+    .imageContent {
+        width: 100%;
+        max-width: 600px;
+        text-align: center; /* This will center text within textContent and imageContent by default on small screens */
+    }
+
+    .textContent {
+        padding-left: 20px; /* Added: Ensure this padding is applied on small screens too */
+        margin-left: 0; /* Added: To counteract any centering of the block itself if contentWrapper aligns-items: center */
+        margin-right: auto; /* Added: To counteract any centering of the block itself if contentWrapper aligns-items: center */
+    }
+
+    .sectionTitle {
+        font-size: 28px; /* Adjust font size for smaller screens */
+        text-align: left; /* CRITICAL FIX: Explicitly overrides text-align: center from parent */
+    }
+}
+
+@media (max-width: 768px) {
+    .sectionTitle {
+        font-size: 24px;
+       
+    }
+
+    .featureTitle {
+        font-size: 16px;
+    }
+
+    .featureDescription {
+        font-size: 14px;
+    }
+
+    .whyChooseContainer {
+        padding-left: 16px; /* Added: Example adjustment for smaller screens */
+        padding-right: 16px; /* Added: Example adjustment for smaller screens */
+    }
+    .textContent {
+        padding-left: 16px; /* Added: Match container padding */
+    }
+}
+
+@media (max-width: 480px) {
+    .sectionTitle {
+        font-size: 20px;
+    }
+
+    .checkmarkIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .featureItem {
+        margin-bottom: 14px;
+    }
+
+    .whyChooseContainer {
+        padding-left: 12px; /* Added: Example adjustment for very small screens */
+        padding-right: 12px; /* Added: Example adjustment for very small screens */
+    }
+    .textContent {
+        padding-left: 12px; /* Added: Match container padding */
+    }
+}
+
+/* Adjustments for large screens (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .whyChooseContainer {
+        padding-left: 0; /* Reset default padding on large screens */
+    }
+
+    .textContent {
+        padding-left: 0; /* Reset padding to 0 if not needed on very large screens */
+        margin-left: 0;
+        text-align: left;
+        padding-left: 68px; /* Ensure left alignment on larger screens */
+    }
+}

@@ -1,0 +1,178 @@
+/* Navbar.module.css */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    padding: 0.8rem; /* Increased vertical and horizontal padding for a larger navbar */
+    position: sticky; /* Sticky header */
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.container {
+    max-width: 1300px; /* Slightly increased max width for the container */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem; /* Increased horizontal padding within the container */
+}
+
+/* Logo Section */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Increased space between logo and text */ 
+    margin-left: 18px;
+}
+
+.chatSuppliesLogoWrapper {
+    /* This creates the blue square background for the icon */
+    background-color: #6a4ffc; 
+    width: 38px; /* Increased size for the logo wrapper */
+    height: 38px; /* Increased size for the logo wrapper */
+    border-radius: 8px; /* Slightly more rounded corners for larger size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.1rem; /* Increased gap between the square and "ChatSupplies" text */
+    ;
+}
+
+/* The FontAwesomeIcon itself should be white and centered */
+.chatSuppliesLogoWrapper .chatSuppliesLogoIcon {
+    color: white; /* Ensure the icon itself is white */
+    font-size: 1.5rem; /* Increased icon size within the square */
+}
+
+.logoText {
+    font-size: 1.55rem; /* Increased font size for the logo text */
+    font-weight: 790;
+    color: #1f2937; /* gray-800 */
+}
+
+/* Nav Links */
+.navLinks {
+    display: none; /* Hidden on small screens */
+}
+
+@media (min-width: 768px) {
+    .navLinks {
+        display: flex;
+        gap: 2.2rem; /* Increased gap between links */
+    }
+
+    .navLinks a {
+        color: #4b5563; /* gray-600 */
+        font-weight: 550;
+        text-decoration: none;
+        transition: color 0.2s ease;
+        font-size: 1rem; /* Increased font size for links */
+    }
+
+    .navLinks a:hover {
+        color: #4f46e5; /* indigo-600 */
+    }
+}
+
+/* Right Actions */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.01rem; /* Increased gap between icons/button */
+
+  
+}
+
+.iconButton {
+    background: none;
+    border: none;
+    color: #4b5563;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    padding: 0.6rem; /* Increased padding for easier clicking */
+    border-radius: 50%; /* Make them circular */
+    position: relative; /* Kept for badge positioning */
+}
+
+.iconButton:hover {
+    color: #4f46e5;
+    background-color: #f0f4f8; /* Light background on hover */
+}
+
+.icon {
+    height: 1.5rem; /* Increased icon size */
+    width: 1.5rem; /* Increased icon size */
+}
+
+/* Cart Badge */
+.cartButton {
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -6px; /* Adjusted position for larger badge */
+    right: -6px; /* Adjusted position for larger badge */
+    background: #ef4444; /* red-500 */
+    color: white;
+    font-size: 0.75rem; /* Increased badge font size */
+    font-weight: bold;
+    border-radius: 9999px;
+    height: 1.1rem; /* Increased badge size */
+    width: 1.1rem; /* Increased badge size */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white; /* Small white border around badge */
+}
+
+/* Sign In Button */
+.signInButton {
+    background-color: #4f46e5;
+    color: white;
+    padding: 0.7rem 1.4rem; /* Increased padding for the button */
+    border-radius: 0.5rem; /* Slightly larger border radius */
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem; /* Increased font size for the button text */
+}
+
+.signInButton:hover {
+    background-color: #4338ca;
+}
+
+/* Responsive Adjustments for Navbar */
+@media (max-width: 767px) {
+    .actions {
+        gap: 0.8rem; /* Tighter gap on smaller screens */
+    }
+
+    .iconButton {
+        padding: 0.5rem; /* Adjusted for mobile */
+    }
+
+    .icon {
+        height: 1.5rem; /* Adjusted for mobile */
+        width: 1.5rem; /* Adjusted for mobile */
+    }
+
+    .signInButton {
+        padding: 0.5rem 1rem; /* Adjusted for mobile */
+        font-size: 0.9rem; /* Adjusted for mobile */
+    }
+
+    .chatSuppliesLogoWrapper {
+        width: 34px; /* Slightly smaller on mobile */
+        height: 34px; /* Slightly smaller on mobile */
+    }
+
+    .chatSuppliesLogoWrapper .chatSuppliesLogoIcon {
+        font-size: 1.3rem; /* Slightly smaller on mobile */
+    }
+
+    .logoText {
+        font-size: 1.25rem; /* Slightly smaller on mobile */
+    }
+}

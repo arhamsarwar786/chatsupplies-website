@@ -8,21 +8,21 @@ const products = [
     name: 'AI ChatBot Pro',
     description: 'Advanced AI-powered chatbot with natural language processing and machine learning capabilities.',
     price: '$299',
-    image: '/images/AI Robot.png',
+    image: '/Images/AI Robot.png',
   },
   {
     id: 2,
     name: 'LiveChat Suite',
     description: 'Complete live chat solution with real-time messaging, file sharing, and team collaboration.',
     price: '$199',
-    image: '/images/Chat.png',
+    image: '/Images/Chat.png',
   },
   {
     id: 3,
     name: 'Chat Analytics Pro',
     description: 'Comprehensive analytics platform for monitoring chat performance and customer insights.',
     price: '$149',
-    image: '/images/Analytics.png',
+    image: '/Images/Analytics.png',
   },
 ];
 

@@ -1,110 +1,113 @@
 .ctaSection {
-    background-color: #5b48e3;
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
+  background-color: #5b48e3;
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
 }
 
 .sectionTitle {
-    font-size: clamp(1.8rem, 4vw, 2.5rem); /* ✅ Fluid sizing */
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #fff;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
 }
 
 .sectionDescription {
-    font-size: clamp(1rem, 2.2vw, 1.3rem); /* ✅ Responsive size */
-    color: white;
-    margin-bottom: 3rem;
-    font-family: 'Inter', sans-serif;
-    text-align: center;
-    padding: 0 2rem;
+  font-size: clamp(1rem, 2.2vw, 1.3rem);
+  color: white;
+  margin-bottom: 3rem;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  padding: 0 2rem;
 }
 
+/* --- CTA Buttons Container --- */
 .ctaButtons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .primaryButton,
 .secondaryButton {
-    all: unset;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: clamp(1rem, 2.5vw, 1.25rem); /* ✅ 16px - 20px max */
-    padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(2rem, 5vw, 2.8rem); /* ✅ height max ~22px, width max ~45px */
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    border: 2px solid #ffffff;
-    white-space: nowrap;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-    text-align: center;
-    text-decoration: none;
-    width: auto;
-    max-width: 100%;
-    color: inherit;
-    background-color: transparent;
-    line-height: 1.4;
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(2rem, 5vw, 2.8rem);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  white-space: nowrap;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  max-width: 100%;
+  color: inherit;
+  background-color: transparent;
+  line-height: 1.4;
 }
 
-
-
-
+/* --- Primary Button --- */
 .primaryButton {
-    background-color: #ffffff;
-    color: #5b48e3;
-    border: 2px solid #ffffff;
+  background-color: #ffffff;
+  color: #5b48e3;
+  border: 2px solid #ffffff;
 }
 
 .primaryButton:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
+/* --- Secondary Button --- */
 .secondaryButton {
-    background-color: transparent;
-    color: #ffffff;
-    border: 2px solid #ffffff;
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 .secondaryButton:hover {
-    background-color: #ffffff;
-    color: #5b48e3;
-    border-color: #ffffff;
+  background-color: #ffffff;
+  color: #5b48e3;
+  border-color: #ffffff;
 }
 
-/* ✅ Responsive Fix for Tablets & Below */
+/* ✅ Mobile Responsive Behavior */
 @media (max-width: 768px) {
-    .ctaSection {
-        padding: 40px 15px;
-    }
+  .ctaSection {
+    padding: 40px 15px;
+  }
 
-    .ctaButtons {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
+  .ctaButtons {
+    flex-direction: column;         /* Stack vertically */
+    align-items: center;            /* Center horizontally */
+    gap: 12px;                      /* Spacing between stacked buttons */
+  }
 
-    .primaryButton,
-    .secondaryButton {
-        width: 90%;
-        max-width: 300px;
-    }
+  .primaryButton,
+  .secondaryButton {
+    width: 90%;                     /* Stretch to 90% width */
+    max-width: 300px;               /* Don’t exceed */
+    margin: 0 auto;                 /* Center inside flex column */
+    font-size: 1.1rem;
+    padding: 1.2rem 2rem;
+  }
 
-    .sectionDescription {
-        padding: 0 1rem;
-    }
+  .sectionDescription {
+    padding: 0 1rem;
+  }
 }
 
-/* ✅ Optional: Better control on very large screens */
+/* Optional: enhance buttons on large screens */
 @media (min-width: 1200px) {
-    .primaryButton,
-    .secondaryButton {
-        padding: 20px 42px;
-        font-size: 18px;
-    }
+  .primaryButton,
+  .secondaryButton {
+    padding: 20px 42px;
+    font-size: 18px;
+  }
 }

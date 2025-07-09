@@ -24,12 +24,12 @@ const HeroSection = () => {
         </div>
         <div className={styles.imageContainer}>
           <Image
-            src="/Images/Dashboard.png"   // Make sure this path is correct for your image
+            src="/Images/Dashboard.png"   
             alt="Dashboard Mockup"
-            width={700} // Adjust width as needed for your image aspect ratio
-            height={450} // Adjust height as needed
+            width={700} 
+            height={450} 
             className={styles.heroImage}
-            priority // For LCP optimization
+            priority 
           />
         </div>
       </div>

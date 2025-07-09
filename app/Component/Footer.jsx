@@ -21,12 +21,12 @@ const Footer = () => {
                 <div className={styles.footerContent}>
                     <div className={styles.footerBrand}>
                         <div className={styles.logoName}>
-                            {/* Wrap the Font Awesome icon in a div for the background */}
+                           
                             <div className={styles.chatSuppliesLogoWrapper}>
                                 <FontAwesomeIcon
-                                    icon={faComments} // The two-speech-bubble icon
-                                    size="lg" // Adjust this size for the bubbles within the square
-                                    // The color of the icon itself (the bubbles) should be white
+                                    icon={faComments} 
+                                    size="lg" 
+
                                     style={{ color: 'white' }}
                                 />
                             </div>

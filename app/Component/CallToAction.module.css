@@ -1,14 +1,14 @@
 .ctaSection {
-    background-color: #5b48e3; /* This purple looks accurate */
+    background-color: #5b48e3;
     color: #fff;
-    padding: 60px 0; /* Reduced from 70px to 60px for a more compact vertical space */
+    padding: 60px 0; 
     text-align: center;
 }
 
 .sectionTitle {
-    font-size: 2.22rem; /* Reduced from 38px to 34px, closer to the image */
+    font-size: 2.22rem; 
     font-weight: 700;
-    margin-bottom: 12px; /* Reduced from 15px to 12px */
+    margin-bottom: 12px; 
     color: #fff;
 }
 
@@ -24,15 +24,15 @@
 .ctaButtons {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Reduced from 20px to 15px for tighter button grouping */
+    gap: 15px; 
     flex-wrap: wrap;
 }
 
 .primaryButton,
 .secondaryButton {
-    font-size: 17px; /* Increased from 16px */
-    padding: 18px 34px; /* Increased from 12px 28px */
-    border-radius: 8px; /* Slightly larger rounding for better aesthetics */
+    font-size: 17px; 
+    padding: 18px 34px; 
+    border-radius: 8px; 
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     font-weight: 600;
@@ -62,14 +62,14 @@
 }
 
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
     .ctaSection {
-        padding: 40px 15px; /* Adjusted padding for smaller screens */
+        padding: 40px 15px;
     }
 
     .sectionTitle {
-        font-size: 28px; /* Further reduced font size for mobile title */
+        font-size: 28px; 
     }
 
   @media (max-width: 768px) {
@@ -85,14 +85,14 @@
     .ctaButtons {
         flex-direction: column;
         align-items: center;
-        gap: 10px; /* Reduced gap when stacked */
+        gap: 10px; 
     }
 
     .primaryButton,
     .secondaryButton {
-        width: 90%; /* Slightly increased width */
+        width: 90%; 
         max-width: 300px;
-        padding: 14px 28px; /* Adjusted for larger touch area */
+        padding: 14px 28px; 
         font-size: 16px;
     }
 }

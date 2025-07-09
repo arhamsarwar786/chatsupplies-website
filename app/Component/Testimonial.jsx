@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'; // Import useState and useEffect
+import React, { useState, useEffect } from 'react'; 
 import Image from 'next/image';
 import styles from './Testimonials.module.css';
 
@@ -24,7 +24,7 @@ const Testimonials = () => {
         },
     ];
 
-    // State to hold the testimonials with fetched avatars
+   
     const [testimonials, setTestimonials] = useState(staticTestimonialData);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -40,10 +40,9 @@ const Testimonials = () => {
                 const data = await response.json();
                 const randomAvatars = data.results.map(user => user.picture.large);
 
-                // Combine static testimonial data with random avatars
                 const updatedTestimonials = staticTestimonialData.map((testimonial, index) => ({
                     ...testimonial,
-                    avatar: randomAvatars[index] || '/images/default-avatar.png', // Fallback avatar if fetching fails
+                    avatar: randomAvatars[index] || '/Images/default-avatar.png', 
                 }));
 
                 setTestimonials(updatedTestimonials);
@@ -52,13 +51,13 @@ const Testimonials = () => {
                 console.error("Failed to fetch random users:", err);
                 setError(err);
                 setLoading(false);
-                // If fetching fails, still display testimonials with static/default avatars
+               
                 setTestimonials(staticTestimonialData.map(t => ({ ...t, avatar: '/images/default-avatar.png' })));
             }
         };
 
         fetchRandomUsers();
-    }, []); // Empty dependency array means this effect runs once on mount
+    }, []);
 
     const renderStars = () => {
         return (
@@ -84,22 +83,23 @@ const Testimonials = () => {
     }
 
     if (error) {
-        // You might want a more sophisticated error display
+       
         return (
             <section className={styles.testimonialsSection}>
                 <div className="container">
                     <h2 className={styles.sectionTitle}>What Our Customers Say</h2>
                     <p>Failed to load images, displaying defaults. Please check your internet connection.</p>
-                    {/* Render testimonials with default avatars even on error */}
+                   
                      <div className={styles.testimonialsGrid}>
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className={styles.testimonialCard}>
                                 <div className={styles.customerInfo}>
                                     <Image
-                                        src={testimonial.avatar} // Will be default if fetch failed
+                                        src={testimonial.avatar}
                                         alt={testimonial.name}
                                         width={60}
                                         height={60}
+                                        unoptimized
                                         className={styles.customerAvatar}
                                     />
                                     <div>
@@ -127,7 +127,7 @@ const Testimonials = () => {
                         <div key={index} className={styles.testimonialCard}>
                             <div className={styles.customerInfo}>
                                 <Image
-                                    src={testimonial.avatar} // This will now be the fetched random user image URL
+                                    src={testimonial.avatar} 
                                     alt={testimonial.name}
                                     width={60}
                                     height={60}

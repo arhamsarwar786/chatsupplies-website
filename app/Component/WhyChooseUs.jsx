@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
                     </div>
                     <div className={styles.imageContent}>
                         <Image
-                            src="/images/TeamMeeting.jpeg"
+                            src="/Images/TeamMeeting.jpeg"
                             alt="Team working"
                             width={550}
                             height={380}

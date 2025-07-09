@@ -13,7 +13,7 @@
     padding: 0 1.5rem;
 }
 
-/* === Main Footer Layout as 5 Equal Grid Columns === */
+/* === Main Footer Layout as 4 Equal Grid Columns === */
 .footerContent {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -27,9 +27,9 @@
     max-width: 350px;
 }
 
-/* Place Products, Support, Company in columns 2-4 */
+
 .footerLinks {
-    display: contents; /* Let individual link groups flow into grid columns */
+    display: contents; 
 }
 
 .linkGroup:nth-child(1) { grid-column: 2; } /* Products */

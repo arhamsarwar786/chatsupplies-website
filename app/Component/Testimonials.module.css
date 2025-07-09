@@ -110,11 +110,12 @@
         margin-bottom: 30px;
     }
 
-    .testimonialsGrid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 20px;
-    }
+      .testimonialsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+    transform: none;
+  }
 
     .testimonialCard {
         padding: 16px;

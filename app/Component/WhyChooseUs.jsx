@@ -30,7 +30,7 @@ const WhyChooseUs = () => {
                                 <FontAwesomeIcon
                                     icon={faCircleCheck}
                                     className={styles.checkmarkIcon}
-                                    style={{ fontSize: '28px' }} // 👈 Adjust size here
+                                    style={{ fontSize: '28px' }} 
                                 />
                                 <div>
                                     <h3 className={styles.featureTitle}>{feature.title}</h3>

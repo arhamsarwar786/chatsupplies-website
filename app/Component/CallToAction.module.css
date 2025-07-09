@@ -1,42 +1,58 @@
 .ctaSection {
     background-color: #5b48e3;
     color: #fff;
-    padding: 60px 0; 
+    padding: 60px 0;
     text-align: center;
 }
 
 .sectionTitle {
-    font-size: 2.22rem; 
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* ✅ Fluid sizing */
     font-weight: 700;
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
     color: #fff;
 }
 
 .sectionDescription {
-  font-size: 1.3rem;
-  color: white;
-  margin-bottom: 3rem;
-  font-family: 'Inter', sans-serif;
-  text-align: center;
-
+    font-size: clamp(1rem, 2.2vw, 1.3rem); /* ✅ Responsive size */
+    color: white;
+    margin-bottom: 3rem;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    padding: 0 2rem;
 }
 
 .ctaButtons {
     display: flex;
     justify-content: center;
-    gap: 15px; 
     flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .primaryButton,
 .secondaryButton {
-    font-size: 17px; 
-    padding: 18px 34px; 
-    border-radius: 8px; 
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 2.5vw, 1.25rem); /* ✅ 16px - 20px max */
+    padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(2rem, 5vw, 2.8rem); /* ✅ height max ~22px, width max ~45px */
+    border-radius: 10px;
     font-weight: 600;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    text-align: center;
+    text-decoration: none;
+    width: auto;
+    max-width: 100%;
+    color: inherit;
+    background-color: transparent;
+    line-height: 1.4;
 }
+
+
 
 
 .primaryButton {
@@ -61,38 +77,34 @@
     border-color: #ffffff;
 }
 
-
-
+/* ✅ Responsive Fix for Tablets & Below */
 @media (max-width: 768px) {
     .ctaSection {
         padding: 40px 15px;
     }
 
-    .sectionTitle {
-        font-size: 28px; 
-    }
-
-  @media (max-width: 768px) {
-  .sectionDescription {
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    text-overflow: unset;
-    padding: 0 1rem;
-  }
-}
-
     .ctaButtons {
         flex-direction: column;
         align-items: center;
-        gap: 10px; 
+        gap: 10px;
     }
 
     .primaryButton,
     .secondaryButton {
-        width: 90%; 
+        width: 90%;
         max-width: 300px;
-        padding: 14px 28px; 
-        font-size: 16px;
+    }
+
+    .sectionDescription {
+        padding: 0 1rem;
+    }
+}
+
+/* ✅ Optional: Better control on very large screens */
+@media (min-width: 1200px) {
+    .primaryButton,
+    .secondaryButton {
+        padding: 20px 42px;
+        font-size: 18px;
     }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './Testimonials.module.css';
 
@@ -24,7 +24,7 @@ const Testimonials = () => {
         },
     ];
 
-   
+
     const [testimonials, setTestimonials] = useState(staticTestimonialData);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -42,7 +42,7 @@ const Testimonials = () => {
 
                 const updatedTestimonials = staticTestimonialData.map((testimonial, index) => ({
                     ...testimonial,
-                    avatar: randomAvatars[index] || '/Images/default-avatar.png', 
+                    avatar: randomAvatars[index] || '/Images/default-avatar.png',
                 }));
 
                 setTestimonials(updatedTestimonials);
@@ -51,8 +51,8 @@ const Testimonials = () => {
                 console.error("Failed to fetch random users:", err);
                 setError(err);
                 setLoading(false);
-               
-                setTestimonials(staticTestimonialData.map(t => ({ ...t, avatar: '/images/default-avatar.png' })));
+
+                setTestimonials(staticTestimonialData.map(t => ({ ...t, avatar: '/Images/default-avatar.png' })));
             }
         };
 
@@ -83,14 +83,14 @@ const Testimonials = () => {
     }
 
     if (error) {
-       
+
         return (
             <section className={styles.testimonialsSection}>
                 <div className="container">
                     <h2 className={styles.sectionTitle}>What Our Customers Say</h2>
                     <p>Failed to load images, displaying defaults. Please check your internet connection.</p>
-                   
-                     <div className={styles.testimonialsGrid}>
+
+                    <div className={styles.testimonialsGrid}>
                         {testimonials.map((testimonial, index) => (
                             <div key={index} className={styles.testimonialCard}>
                                 <div className={styles.customerInfo}>
@@ -127,12 +127,14 @@ const Testimonials = () => {
                         <div key={index} className={styles.testimonialCard}>
                             <div className={styles.customerInfo}>
                                 <Image
-                                    src={testimonial.avatar} 
+                                    src={testimonial.avatar}
                                     alt={testimonial.name}
                                     width={60}
                                     height={60}
+                                    unoptimized
                                     className={styles.customerAvatar}
                                 />
+
                                 <div>
                                     <h4 className={styles.customerName}>{testimonial.name}</h4>
                                     <p className={styles.customerRole}>{testimonial.role}</p>

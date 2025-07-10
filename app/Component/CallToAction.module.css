@@ -24,20 +24,26 @@
 /* --- CTA Buttons Container --- */
 .ctaButtons {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
   margin-top: 20px;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
+/* --- Responsive Buttons --- */
+.CallToAction_primaryButton__ODHQB,
+.CallToAction_secondaryButton__coGDV,
 .primaryButton,
 .secondaryButton {
   all: unset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  padding: clamp(0.9rem, 2.5vw, 1.4rem) clamp(2rem, 5vw, 2.8rem);
+  font-size: clamp(0.9rem, 2.8vw, 1.2rem); /* ✅ Fluid size */
+  padding: clamp(0.8rem, 2.5vw, 1.2rem) clamp(1.6rem, 6vw, 2.5rem); /* ✅ Fluid padding */
   border-radius: 10px;
   font-weight: 600;
   cursor: pointer;
@@ -46,56 +52,55 @@
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   text-align: center;
   text-decoration: none;
-  width: auto;
-  max-width: 100%;
-  color: inherit;
-  background-color: transparent;
+  width: 100%;
+  max-width: 320px;
   line-height: 1.4;
+  box-sizing: border-box;
 }
 
-/* --- Primary Button --- */
-.primaryButton {
+/* --- Primary Button Style --- */
+.primaryButton,
+.CallToAction_primaryButton__ODHQB {
   background-color: #ffffff;
   color: #5b48e3;
-  border: 2px solid #ffffff;
 }
 
-.primaryButton:hover {
+.primaryButton:hover,
+.CallToAction_primaryButton__ODHQB:hover {
   background-color: #f0f0f0;
 }
 
-/* --- Secondary Button --- */
-.secondaryButton {
+/* --- Secondary Button Style --- */
+.secondaryButton,
+.CallToAction_secondaryButton__coGDV {
   background-color: transparent;
   color: #ffffff;
-  border: 2px solid #ffffff;
 }
 
-.secondaryButton:hover {
+.secondaryButton:hover,
+.CallToAction_secondaryButton__coGDV:hover {
   background-color: #ffffff;
   color: #5b48e3;
-  border-color: #ffffff;
 }
 
-/* ✅ Mobile Responsive Behavior */
+/* --- Mobile/Tablet Responsive Adjustments --- */
 @media (max-width: 768px) {
   .ctaSection {
     padding: 40px 15px;
   }
 
   .ctaButtons {
-    flex-direction: column;         /* Stack vertically */
-    align-items: center;            /* Center horizontally */
-    gap: 12px;                      /* Spacing between stacked buttons */
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
   }
 
   .primaryButton,
-  .secondaryButton {
-    width: 90%;                     /* Stretch to 90% width */
-    max-width: 300px;               /* Don’t exceed */
-    margin: 0 auto;                 /* Center inside flex column */
-    font-size: 1.1rem;
-    padding: 1.2rem 2rem;
+  .secondaryButton,
+  .CallToAction_primaryButton__ODHQB,
+  .CallToAction_secondaryButton__coGDV {
+    width: 90%;
+    margin: 0 auto;
   }
 
   .sectionDescription {
@@ -103,11 +108,13 @@
   }
 }
 
-/* Optional: enhance buttons on large screens */
+/* --- Optional: Large Screen Refinement --- */
 @media (min-width: 1200px) {
   .primaryButton,
-  .secondaryButton {
-    padding: 20px 42px;
-    font-size: 18px;
+  .secondaryButton,
+  .CallToAction_primaryButton__ODHQB,
+  .CallToAction_secondaryButton__coGDV {
+    font-size: 1.2rem;
+    padding: 1.2rem 2.8rem;
   }
 }

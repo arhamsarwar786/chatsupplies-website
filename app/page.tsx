@@ -10,18 +10,24 @@ import WhyChooseUs from './Component/WhyChooseUs'; // This is from Pic 3, below 
 import Testimonials from './Component/Testimonial'; // This is from Pic 4
 import CallToAction from './Component/CallToAction'; // This is from Pic 4, below Testimonials
 import Footer from './Component/Footer'; // This is from Pic 5
+import ContactsPage from './Pages/ContactsPage'
+import AboutPage from './Pages/AboutPage';
+import ProductsPage from './Pages/ProductsPage';
 
 
 export default function Home() {
   return (
     <>
-      <HeroSection />          {/* Corresponds to Pic 1 */}
-      <FeaturedProducts />     {/* Corresponds to Pic 2 */}
-      <ShopByCategory />       {/* Corresponds to Pic 3 (top half) */}
-      <WhyChooseUs />          {/* Corresponds to Pic 3 (bottom half) */}
-      <Testimonials />         {/* Corresponds to Pic 4 (top half) */}
-      <CallToAction />         {/* Corresponds to Pic 4 (bottom half - "Ready to Transform Your Business?") */}
-      <Footer />               {/* Corresponds to Pic 5 */}
+      <HeroSection />
+      <FeaturedProducts />
+      <ShopByCategory />
+      <WhyChooseUs />
+      <Testimonials />
+      <CallToAction />
+      <Footer />
+     <ContactsPage />         
+     <ProductsPage /> 
+      <AboutPage />            
     </>
   );
 }

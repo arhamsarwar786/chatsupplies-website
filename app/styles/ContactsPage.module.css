@@ -2,284 +2,304 @@
 
 /* Overall Page Container */
 .container {
-  min-height: 100vh;
-  background-color: #ffffff;
-  font-family: 'Inter', sans-serif;
-  color: #1f2937;
-  display: flex;
-  flex-direction: column;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styles */
 .header {
-  background-color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .headerLogo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  display: flex;
-  align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    display: flex;
+    align-items: center;
 }
 
 .headerLogo svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  color: #4f46e5;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    color: #4f46e5;
 }
 
 .headerNav {
-  display: none;
-  gap: 2.75rem;
-  margin-left: auto;
-  align-items: center;
+    display: none;
+    gap: 2.75rem;
+    margin-left: auto;
+    align-items: center;
 }
 
 .headerNavLink {
-  color: #4b5563;
-  font-weight: 500;
-  transition: color 200ms ease-in-out;
-  text-decoration: none;
+    color: #4b5563;
+    font-weight: 500;
+    transition: color 200ms ease-in-out;
+    text-decoration: none;
 }
 
 .headerNavLink:hover {
-  color: #4f46e5;
+    color: #4f46e5;
 }
 
 .headerButton {
-  background-color: #4f46e5;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.6rem 1.8rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 200ms ease-in-out;
-  border: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 1rem;
+    background-color: #4f46e5;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.6rem 1.8rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 200ms ease-in-out;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
 }
 
 .headerButton:hover {
-  background-color: #4338ca;
-  transform: translateY(-1px);
+    background-color: #4338ca;
+    transform: translateY(-1px);
 }
 
 .mobileMenuIcon {
-  display: block;
+    display: block;
 }
 
 /* Hero Section */
 .heroSection {
-  text-align: center;
-  background: linear-gradient(to bottom right, #6366F1, #8B5CF6);
-  color: #ffffff;
-  padding: 3rem 1.5rem;
-  width: 100%;
+    text-align: center;
+    background: linear-gradient(to bottom right, #6366F1, #8B5CF6);
+    color: #ffffff;
+    padding: 3rem 1.5rem;
+    width: 100%;
 }
 
 .heroContentWrapper {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .heroTitle {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 1rem;
-  line-height: 1.25;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    line-height: 1.25;
 }
 
 .heroSubtitle {
-  font-size: 1.25rem;
-  color: #e0e7ff;
-  max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
+    font-size: 1.25rem;
+    color: #e0e7ff;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .heroFeatures {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .heroFeatureItem {
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  font-weight: 600;
-  white-space: nowrap;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .heroIcon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-  color: #ffffff;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+    color: #ffffff;
 }
 
 /* Main Content */
 .mainContent {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  flex-grow: 1;
+    max-width: 1280px; /* Default max-width for main content on smaller screens */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 1.5rem; /* Base padding */
+    padding-right: 1.5rem; /* Base padding */
+    flex-grow: 1;
 }
 
 /* Contact Grid Layout */
 .contactGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column for mobile */
+    gap: 1.5rem;
+    margin-bottom: 6rem; 
+    padding: 5rem;/* Increased space below the contact grid to separate from FAQ */
 }
 
 /* Card Styles - General */
 .formCard,
 .infoCard,
-.businessHoursCard, /* New card */
-.followUsCard {     /* New card */
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+.businessHoursCard,
+.followUsCard {
+    background-color: #ffffff;
+    padding: 1.5rem; /* Consistent padding for all cards */
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
 
 /* Form Card Specifics */
 .formTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .formRow {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
 .formGroup {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .formLabel {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 0.25rem;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
 }
 
 .formInput,
 .formTextarea {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  font-size: 0.875rem;
-  color: #1f2937;
-  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    color: #1f2937;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .formInput:focus,
 .formTextarea:focus {
-  outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 1px #6366f1, 0 0 0 3px rgba(99, 102, 241, 0.2);
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 1px #6366f1, 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .submitButton {
-  width: 100%;
-  background-color: #4f46e5;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease-in-out;
-  border: none;
-  cursor: pointer;
+    width: 100%;
+    background-color: #4f46e5;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
 }
 
 .submitButton:hover {
-  background-color: #4338ca;
-  transform: translateY(-1px);
+    background-color: #4338ca;
+    transform: translateY(-1px);
 }
 
 /* Info Card Specifics */
 .infoTitle {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
 }
 
+/* Each info group */
 .infoGroup {
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.infoGroup > p {
+    margin-bottom: 1rem;
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
     gap: 0.75rem;
-    color: #4b5563;
 }
 
+/* Icon styles */
 .infoIcon {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
     color: #4f46e5;
+    background-color: #eef2ff;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    margin-top: 0.1rem;
 }
 
+/* Text container beside the icon */
+.infoContent {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Heading beside icon */
 .infoSubtitle {
-  font-weight: 600;
-  font-size: 1.125rem;
-  color: #374151;
-  margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
 }
 
+/* Smaller details under heading */
 .infoText {
-  color: #4b5563;
+    font-size: 0.8125rem;
+    color: #4b5563;
+    line-height: 1.4;
+    margin: 0;
 }
+
 
 /* Business Hours Card Specifics */
-.hoursTitle { /* Renamed for clarity */
+.hoursTitle {
     font-size: 1.5rem;
     font-weight: 700;
     color: #1f2937;
@@ -287,20 +307,21 @@
 }
 
 .hoursRow {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  color: #4b5563;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+    align-items: baseline;
 }
 .hoursDay {
     font-weight: 500;
 }
 .hoursTime {
-    font-weight: 400;
+    font-weight: 550;
 }
 
 /* Follow Us Card Specifics */
-.socialTitle { /* Renamed for clarity */
+.socialTitle {
     font-size: 1.5rem;
     font-weight: 700;
     color: #1f2937;
@@ -308,258 +329,304 @@
 }
 
 .socialIcons {
-  display: flex;
-  gap: 15px;
-  margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
 .socialIconLink {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  background-color: #f0f0f5;
-  border-radius: 10px;
-  transition: background-color 0.2s ease-in-out;
-  flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease-in-out;
+    flex-shrink: 0;
 }
 
 .socialIconLink:hover {
-  background-color: #e0e0e5;
+    background-color: #e0e0e5;
 }
 
 .socialIcon {
-  width: 24px;
-  height: 24px;
-  color: #333333;
-  filter: brightness(0.4) saturate(1.5) hue-rotate(240deg);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #4b5563;
+    filter: none;
 }
 
-/* FAQ Section */
+/* FAQ Section Specifics */
 .faqSection {
-  margin-bottom: 4rem;
+    background-color: #f9fafb !important;
+    width: 100%;
+    padding: 8rem 0;
+    margin-bottom: 6rem;
+}
+
+.faqContentWrapper {
+    background-color: #f9fafb;
+    width: 100%;
+    max-width: 1600px; /* Explicitly match contact grid width */
+    margin: 0 auto;
+    padding: 0 8rem; /* Match contact grid padding */
 }
 
 .faqTitle {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #1f2937;
-  text-align: center;
-  margin-bottom: 2.5rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.faqSubtitle {
+    font-size: 1.125rem;
+    color: #4b5563;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
 }
 
 .faqContainer {
-  max-width: 64rem;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-width: 100%; /* Take full width of wrapper */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
-
 .faqItem {
-  border-bottom: 1px solid #e5e7eb;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+    background-color: #ffffff; /* White background for each individual FAQ card */
+    padding: 1rem 1.5rem; /* Padding inside each card */
+    border-radius: 0.75rem; /* Rounded corners for each card */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow for each card */
+    
+    border-bottom: none; /* No border-bottom needed as cards are separate */
+    margin: 0 !important; /* Crucial: Resets all default margins for the FAQ item itself */
+    display: block; /* Ensures it behaves as a block element */
 }
 
 .faqItem:last-child {
-  border-bottom: none;
+    border-bottom: none; /* Already handled by .faqItem, but good for redundancy */
+}
+
+.faqItem > *:first-child { /* Target the first child inside faqItem (usually the button) */
+    margin-top: 0 !important;
+}
+
+.faqItem > *:last-child { /* Target the last child inside faqItem (answer or button) */
+    margin-bottom: 0 !important;
 }
 
 .faqQuestionButton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  text-align: left;
-  font-weight: 600;
-  font-size: 1.125rem;
-  color: #1f2937;
-  transition: color 200ms ease-in-out;
-  background: none;
-  border: none;
-  cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: #1f2937;
+    transition: color 200ms ease-in-out;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 !important; /* Crucial: Resets default button margins */
+    padding: 0 !important; /* Crucial: Resets default button padding */
+    line-height: normal; /* Ensure consistent line height */
 }
 
 .faqQuestionButton:hover {
-  color: #4f46e5;
+    color: #4f46e5;
 }
 
 .faqArrowIcon {
-  width: 1.25rem;
-  height: 1.25rem;
-  transform: rotate(0deg);
-  transition: transform 200ms ease-in-out;
-  color: #4b5563;
+    width: 1.25rem;
+    height: 1.25rem;
+    transform: rotate(0deg);
+    transition: transform 200ms ease-in-out;
+    color: #4b5563;
 }
 
 .faqArrowOpen {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .faqAnswer {
-  margin-top: 0.5rem;
-  color: #4b5563;
-  line-height: 1.625;
+    margin-top: 0.5rem; /* This is for internal spacing of the answer when open */
+    color: #4b5563;
+    line-height: 1.625;
 }
+
 
 /* Footer */
 .footer {
-  background-color: #1f2937;
-  color: #ffffff;
-  padding: 3rem 1.5rem;
-  margin-top: auto;
+    background-color: #1f2937;
+    color: #ffffff;
+    padding: 3rem 1.5rem;
+    margin-top: auto;
 }
 
 .footerContent {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
 }
 
 .footerBrand {
-  grid-column: span 1;
+    grid-column: span 1;
 }
 
 .footerBrandTitle {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .footerBrandText {
-  color: #9ca3af;
-  font-size: 0.875rem;
+    color: #9ca3af;
+    font-size: 0.875rem;
 }
 
 .footerSectionTitle {
-  font-weight: 600;
-  font-size: 1.125rem;
-  margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
 }
 
 .footerList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .footerLink {
-  color: #9ca3af;
-  font-size: 0.875rem;
-  transition: color 200ms ease-in-out;
-  text-decoration: none;
+    color: #9ca3af;
+    font-size: 0.875rem;
+    transition: color 200ms ease-in-out;
+    text-decoration: none;
 }
 
 .footerLink:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .footerCopyright {
-  text-align: center;
-  color: #6b7280;
-  font-size: 0.875rem;
-  margin-top: 3rem;
-  border-top: 1px solid #374151;
-  padding-top: 2rem;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-top: 3rem;
+    border-top: 1px solid #374151;
+    padding-top: 2rem;
 }
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
-  .header {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+    .header {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 
-  .headerNav {
-    display: flex;
-  }
+    .headerNav {
+        display: flex;
+    }
 
-  .mobileMenuIcon {
-    display: none;
-  }
+    .mobileMenuIcon {
+        display: none;
+    }
 
-  .heroContentWrapper {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+    .heroContentWrapper {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 
-  .mainContent {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+    .mainContent {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 
-  .contactGrid {
-    grid-template-columns: 1fr 1fr; /* Two columns for tablet */
-    /* Adjust grid-template-rows if needed for more precise vertical alignment on tablet */
-  }
+    .contactGrid {
+        grid-template-columns: 1fr 1fr; /* Two columns for tablet */
+        gap: 1.5rem;
+    }
 
-  .formRow {
-    grid-template-columns: 1fr 1fr;
-  }
+    .formRow {
+        grid-template-columns: 1fr 1fr;
+    }
 
-  .footer {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
+    .footer {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 
-  .footerContent {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+    .footerContent {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
 
 @media (min-width: 1024px) {
-  .header {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+    .header {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
 
-  .heroContentWrapper {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+    .heroContentWrapper {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
 
-  .mainContent {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+    .mainContent {
+        /* Critical change: allow mainContent to take more width */
+        max-width: none; /* Allows mainContent to expand to viewport edges */
+        padding-left: 4rem; /* Reduced padding on mainContent to give more space for the grid */
+        padding-right: 4rem; /* Reduced padding on mainContent to give more space for the grid */
+    }
 
-  .contactGrid {
-    /* Define grid with 2 columns, and now 3 rows (form spans 2 rows) */
-    grid-template-columns: 2fr 1fr; /* Form is wider, right column is narrower */
-    grid-template-rows: auto auto auto; /* Explicitly define 3 rows for vertical control */
-  }
+    .contactGrid {
+        /* Set column widths for equal card width and overall wider appearance */
+        grid-template-columns: minmax(500px, 1fr) minmax(500px, 1fr); /* Each column will be at least 500px and grow equally */
+        grid-template-rows: auto auto auto; /* Essential for stacking cards in the second column */
+        gap: 2rem; /* Gap between the two main columns */
+        max-width: 1200px; /* Overall max width of the contact section. Adjust this to make it even wider. */
+        margin-left: auto; /* Center the grid within mainContent */
+        margin-right: auto; /* Center the grid within mainContent */
+    }
 
-  .formCard {
-    grid-column: 1; /* Place in the first column */
-    grid-row: 1 / span 3; /* Make it span all three rows */
-  }
+    /* Card placement within the grid */
+    .formCard {
+        grid-column: 1; /* First column */
+        grid-row: 1 / span 3; /* Spans all three rows in the first column */
+    }
 
-  .infoCard {
-    grid-column: 2; /* Place in the second column */
-    grid-row: 1; /* Place in the first row of the second column */
-  }
+    .infoCard {
+        grid-column: 2; /* Second column */
+        grid-row: 1; /* First row of second column */
+    }
 
-  .businessHoursCard {
-    grid-column: 2; /* Place in the second column */
-    grid-row: 2; /* Place in the second row of the second column */
-  }
+    .businessHoursCard {
+        grid-column: 2; /* Second column */
+        grid-row: 2; /* Second row of second column */
+    }
 
-  .followUsCard {
-    grid-column: 2; /* Place in the second column */
-    grid-row: 3; /* Place in the third row of the second column */
-  }
+    .followUsCard {
+        grid-column: 2; /* Second column */
+        grid-row: 3; /* Third row of second column */
+    }
 
-  .footer {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+    /* Ensure these cards are visible */
+    .businessHoursCard,
+    .followUsCard {
+        display: block;
+    }
+
+    .footer {
+        padding-left: 6rem;
+        padding-right: 6rem;
+    }
 }

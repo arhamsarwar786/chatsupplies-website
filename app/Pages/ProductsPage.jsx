@@ -1,19 +1,20 @@
 "use client"; // This directive is important for Next.js App Router, or can be removed if using Pages Router exclusively.
 
-import React, { useState } from 'react';
-// Correct path assuming 'products.jsx' is in 'pages/' and 'ProductsPage.module.css' is in 'styles/'
+import React, { useState } from 'react'; // Consolidated and corrected useState import
 import styles from '../styles/ProductsPage.module.css';
+// If Header and Footer were in their own files, you would import them like this:
+// import Header from '../components/Header';
+// import Footer from '../components/Footer';
+// import ProductCard from '../components/ProductCard';
 
-// Header Component (ideally, this would be in components/layout/Header.jsx and imported)
+
+// Header Component - Moved outside the main ProductsPage component
+// (Ideally, this would be in components/layout/Header.jsx and imported)
 const Header = () => {
   return (
-    // Note: Using styles from ProductsPage.module.css for simplicity here.
-    // In a shared component scenario, Header would have its own CSS module (e.g., Header.module.css)
-    // or use styles from Layout.module.css as suggested in the previous comprehensive structure.
     <header className={styles.header}>
       <div className={styles.headerLogo}>AI Chat Supplies</div>
       <nav className={styles.headerNav}>
-        {/* Using <a> tags for direct links. For client-side navigation in Next.js, use the <Link> component. */}
         <a key="home" href="/" className={styles.headerNavLink}>Home</a>
         <a key="products" href="/products" className={styles.headerNavLink}>Products</a>
         <a key="about" href="/about" className={styles.headerNavLink}>About</a>
@@ -23,7 +24,6 @@ const Header = () => {
         Get Started
       </button>
       <div className={styles.mobileMenuIcon}>
-        {/* Mobile menu icon - placeholder for now */}
         <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
@@ -32,19 +32,16 @@ const Header = () => {
   );
 };
 
-// Footer Component (ideally, this would be in components/layout/Footer.jsx and imported)
+// Footer Component - Moved outside the main ProductsPage component
+// (Ideally, this would be in components/layout/Footer.jsx and imported)
 const Footer = () => {
   return (
-    // Note: Using styles from ProductsPage.module.css for simplicity here.
-    // In a shared component scenario, Footer would have its own CSS module (e.g., Footer.module.css)
-    // or use styles from Layout.module.css as suggested in the previous comprehensive structure.
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerBrand}>
           <h3 className={styles.footerBrandTitle}>AI Chat Supplies</h3>
           <p className={styles.footerBrandText}>Transforming customer communication with intelligent AI chat solutions.</p>
         </div>
-
         <div>
           <h4 className={styles.footerSectionTitle}>Product</h4>
           <ul className={styles.footerList}>
@@ -53,7 +50,6 @@ const Footer = () => {
             <li><a href="#" className={styles.footerLink}>Integrations</a></li>
           </ul>
         </div>
-
         <div>
           <h4 className={styles.footerSectionTitle}>Company</h4>
           <ul className={styles.footerList}>
@@ -62,7 +58,6 @@ const Footer = () => {
             <li><a href="#" className={styles.footerLink}>Contact</a></li>
           </ul>
         </div>
-
         <div>
           <h4 className={styles.footerSectionTitle}>Support</h4>
           <ul className={styles.footerList}>
@@ -79,12 +74,12 @@ const Footer = () => {
   );
 };
 
-// Product Card Component (can remain local or be moved to components/ if reused)
+// Product Card Component - Moved outside the main ProductsPage component
+// (Can remain local or be moved to components/ if reused)
 const ProductCard = ({ icon, title, price, features, rating, reviews }) => {
   return (
     <div className={styles.productCard}>
       <div className={styles.productIconContainer}>
-        {/* Placeholder for product icon */}
         {icon || (
           <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7"></path>
@@ -111,7 +106,7 @@ const ProductCard = ({ icon, title, price, features, rating, reviews }) => {
   );
 };
 
-// Mock Product Data
+// Mock Product Data - Kept outside the component to avoid re-creation on every render
 const products = [
   {
     icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>,
@@ -163,8 +158,9 @@ const products = [
   },
 ];
 
+
 // Main Products Page Component
-const ProductsPage = () => {
+const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6; // As per PDF layout
 
@@ -174,30 +170,30 @@ const ProductsPage = () => {
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber); // This was missing from the second ProductsPage declaration
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
   return (
-    // The outermost div with .productsContainer, Header, and Footer are removed
-    // from here if you are using the shared Layout component in _app.jsx.
-    // If not using the shared Layout, keep the div and the Header/Footer components.
-    <div className={styles.productsContainer}> {/* This div is only needed if NOT using shared Layout in _app.jsx */}
-      <Header /> {/* Only include if NOT using shared Layout in _app.jsx */}
+    <div className={styles.productsContainer}>
+      <Header /> {/* Your Header component */}
 
-      <main className={styles.productsMainContent}>
-        <section className={styles.productsHeroSection}>
-          <h1 className={styles.productsHeroTitle}>Our AI Products</h1>
-          <p className={styles.productsHeroSubtitle}>
-            Discover our comprehensive suite of AI-powered chat solutions designed to transform your customer experience.
-          </p>
-          <div className={styles.productsHeroFeatures}>
-            <div className={styles.productsHeroFeatureItem}>
-              <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 3 0 00-3 3v5m6 4v3m-3 0h6M7 10h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
-              Smart AI
-            </div>
-            <div className={styles.productsHeroFeatureItem}>
-              <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>
+      {/* THIS IS THE CRUCIAL STRUCTURAL CHANGE FOR FULL WIDTH:
+          Move productsHeroSection OUTSIDE of productsMainContent
+          It should be a direct sibling of Header and productsMainContent
+      */}
+      <section className={styles.productsHeroSection}>
+        <h1 className={styles.productsHeroTitle}>Our AI Products</h1>
+        <p className={styles.productsHeroSubtitle}>
+          Discover our comprehensive suite of AI-powered chat solutions designed to transform your customer experience.
+        </p>
+        <div className={styles.productsHeroFeatures}>
+          <div className={styles.productsHeroFeatureItem}>
+            <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 3 0 00-3 3v5m6 4v3m-3 0h6M7 10h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+            Smart AI
+          </div>
+          <div className={styles.productsHeroFeatureItem}>
+            <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>
             Secure
           </div>
           <div className={styles.productsHeroFeatureItem}>
@@ -207,62 +203,66 @@ const ProductsPage = () => {
         </div>
       </section>
 
-      <section className={styles.filterSortBar}>
-        <div className={styles.filterGroup}>
-          <label htmlFor="category" className={styles.filterLabel}>Filter by:</label>
-          <select id="category" className={styles.filterSelect}>
-            <option>All Categories</option>
-            {/* Add more categories based on PDF if available */}
-          </select>
-        </div>
-        <div className={styles.filterGroup}>
-          <label htmlFor="pricing" className={styles.filterLabel}>All Pricing</label>
-          <select id="pricing" className={styles.filterSelect}>
-            <option>All Pricing</option>
-            {/* Add more pricing options */}
-          </select>
-        </div>
-        <div className={styles.sortGroup}>
-          <label htmlFor="sort" className={styles.sortLabel}>Sort by:</label>
-          <select id="sort" className={styles.sortSelect}>
-            <option>Popular</option>
-            {/* Add more sort options */}
-          </select>
-        </div>
-      </section>
+      {/* This main tag will now only wrap the content that needs to be width-constrained and centered */}
+      <main className={styles.productsMainContent}>
+        <section className={styles.filterSortBar}>
+          <div className={styles.filterGroup}>
+            <label htmlFor="category" className={styles.filterLabel}>Filter by:</label>
+            <select id="category" className={styles.filterSelect}>
+              <option>All Categories</option>
+              {/* Add more categories based on PDF if available */}
+            </select>
+          </div>
+          <div className={styles.filterGroup}>
+            <label htmlFor="pricing" className={styles.filterLabel}>All Pricing</label>
+            <select id="pricing" className={styles.filterSelect}>
+              <option>All Pricing</option>
+              {/* Add more pricing options */}
+            </select>
+          </div>
+          <div className={styles.sortGroup}>
+            <label htmlFor="sort" className={styles.sortLabel}>Sort by:</label>
+            <select id="sort" className={styles.sortSelect}>
+              <option>Popular</option>
+              {/* Add more sort options */}
+            </select>
+          </div>
+        </section>
 
-      <section className={styles.productGrid}>
-        {currentProducts.map((product, index) => (
-          <ProductCard key={index} {...product} />
-        ))}
-      </section>
+        <section className={styles.productGrid}>
+          {currentProducts.map((product, index) => (
+            <ProductCard key={index} {...product} />
+          ))}
+        </section>
 
-      <section className={styles.paginationContainer}>
-        <button
-          className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
-          onClick={() => paginate(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          &lt;
-        </button>
-        {[...Array(totalPages)].map((_, index) => (
+        <section className={styles.paginationContainer}>
           <button
-            key={index}
-            className={`${styles.paginationButton} ${currentPage === index + 1 ? styles.paginationButtonActive : ''}`}
-            onClick={() => paginate(index + 1)}
+            className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
           >
-            {index + 1}
+            &lt;
           </button>
-        ))}
-        <button
-          className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
-          onClick={() => paginate(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          &gt;
-        </button>
-      </section>
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              className={`${styles.paginationButton} ${currentPage === index + 1 ? styles.paginationButtonActive : ''}`}
+              onClick={() => paginate(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            &gt;
+          </button>
+        </section>
+      </main>
 
+      {/* Move the CTA section here if it's meant to be full-width as well */}
       <section className={styles.ctaSection}>
         <h2 className={styles.ctaTitle}>Ready to Transform Your Customer Experience?</h2>
         <p className={styles.ctaSubtitle}>
@@ -273,9 +273,8 @@ const ProductsPage = () => {
           <button className={styles.ctaButtonSecondary}>Schedule Demo</button>
         </div>
       </section>
-      </main>
 
-      <Footer /> {/* Only include if NOT using shared Layout in _app.jsx */}
+      <Footer /> {/* Your Footer component */}
     </div>
   );
 };

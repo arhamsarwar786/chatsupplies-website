@@ -2,8 +2,8 @@
 
 /* Base Styles (will be overridden by Layout.module.css if Layout is used) */
 /* If you are using the shared Layout component in _app.jsx,
-   the .productsContainer styles below are redundant and can be removed.
-   The Layout component's .appContainer will provide the base styling. */
+    the .productsContainer styles below are redundant and can be removed.
+    The Layout component's .appContainer will provide the base styling. */
 .productsContainer {
   min-height: 100vh;
   background-color: #f9fafb; /* bg-gray-50 */
@@ -39,7 +39,7 @@
 .headerLogo {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #4f46e5; /* Changed to match the purple in the image */
 }
 
 .headerNav {
@@ -48,7 +48,7 @@
 }
 
 .headerNavLink {
-  color: #4b5563;
+  color: #1f2937; /* Changed to a dark gray/black to match the image */
   font-weight: 500;
   transition-property: color;
   transition-duration: 200ms;
@@ -93,19 +93,22 @@
 .productsHeroSection {
   text-align: center;
   margin-bottom: 4rem;
+  background-color: #6633ff; /* FIXED: Added the purple color here */
+  padding-top: 4rem; /* Added padding to match the visual spacing in the image */
+  padding-bottom: 4rem; /* Added padding to match the visual spacing in the image */
 }
 
 .productsHeroTitle {
   font-size: 3rem;
   font-weight: 800;
-  color: #1f2937;
+  color: #ffffff; /* Changed title color to white for better contrast on purple background */
   margin-bottom: 1rem;
   line-height: 1.25;
 }
 
 .productsHeroSubtitle {
   font-size: 1.25rem;
-  color: #4b5563;
+  color: #e0e7ff; /* Changed subtitle color to a lighter shade for better contrast */
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
@@ -122,7 +125,7 @@
 .productsHeroFeatureItem {
   display: flex;
   align-items: center;
-  color: #4f46e5;
+  color: #ffffff; /* Changed feature text color to white for better contrast */
   font-weight: 600;
   white-space: nowrap;
 }

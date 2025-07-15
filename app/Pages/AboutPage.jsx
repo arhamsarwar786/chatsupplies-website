@@ -1,74 +1,11 @@
+"use client";
+
 import React from 'react';
+import Header from '../Component/NavBarPages'; // Import NavBar component
+import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
 import styles from '../styles/AboutPage.module.css'; // Import CSS Module
 
-// Header Component (re-used, ideally a shared component)
-const Header = () => {
-  return (
-    <header className={styles.header}>
-      <div className={styles.headerLogo}>AI Chat Supplies</div>
-      <nav className={styles.headerNav}>
-        {['Home', 'Products', 'About', 'Contact'].map((item) => (
-          <a key={item} href="#" className={styles.headerNavLink}>
-            {item}
-          </a>
-        ))}
-      </nav>
-      <button className={styles.headerButton}>
-        Get Started
-      </button>
-      <div className={styles.mobileMenuIcon}>
-        {/* Mobile menu icon - placeholder for now */}
-        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </div>
-    </header>
-  );
-};
-
-// Footer Component (re-used, ideally a shared component)
-const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContent}>
-        <div className={styles.footerBrand}>
-          <h3 className={styles.footerBrandTitle}>AI Chat Supplies</h3>
-          <p className={styles.footerBrandText}>Transforming customer communication with intelligent AI chat solutions.</p>
-        </div>
-
-        <div>
-          <h4 className={styles.footerSectionTitle}>Product</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>Features</a></li>
-            <li><a href="#" className={styles.footerLink}>Pricing</a></li>
-            <li><a href="#" className={styles.footerLink}>Integrations</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className={styles.footerSectionTitle}>Company</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>About</a></li>
-            <li><a href="#" className={styles.footerLink}>Careers</a></li>
-            <li><a href="#" className={styles.footerLink}>Contact</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className={styles.footerSectionTitle}>Support</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>Documentation</a></li>
-            <li><a href="#" className={styles.footerLink}>Help Center</a></li>
-            <li><a href="#" className={styles.footerLink}>Status</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className={styles.footerCopyright}>
-        © 2024 AI Chat Supplies. All rights reserved.
-      </div>
-    </footer>
-  );
-};
+<Header />
 
 // Team Member Card Component
 const TeamMemberCard = ({ imageSrc, name, title, description }) => {
@@ -88,53 +25,67 @@ const TeamMemberCard = ({ imageSrc, name, title, description }) => {
 const AboutPage = () => {
   return (
     <div className={styles.aboutContainer}>
-      <Header />
+      <Header /> {/* Header component is used here */}
 
       <main className={styles.aboutMainContent}>
-        {/* Hero Section */}
+        {/* Hero Section - About AI Chat Supplies */}
         <section className={styles.aboutHeroSection}>
-          <div className={styles.aboutHeroText}>
+          <div className={styles.aboutHeroInner}>
             <h1 className={styles.aboutHeroTitle}>About AI Chat Supplies</h1>
             <p className={styles.aboutHeroSubtitle}>
               We're revolutionizing customer communication with intelligent AI chat solutions that transform how businesses connect with their customers.
             </p>
             <div className={styles.aboutHeroFeatures}>
-              <span className={styles.aboutHeroFeatureItem}>Innovation First</span>
-              <span className={styles.aboutHeroFeatureItem}>Customer Focused</span>
-              <span className={styles.aboutHeroFeatureItem}>Industry Leading</span>
+              <div className={styles.aboutHeroFeatureItem}>
+                {/* Replaced lightbulb with rocket icon */}
+                <span role="img" aria-label="Innovation First">🚀</span> Innovation First
+              </div>
+              <div className={styles.aboutHeroFeatureItem}>
+                {/* Replaced heart with people icon */}
+                <span role="img" aria-label="Customer Focused">👥</span> Customer Focused
+              </div>
+              <div className={styles.aboutHeroFeatureItem}>
+                {/* Replaced trophy with location pin icon */}
+                <span role="img" aria-label="Industry Leading">📍</span> Industry Leading
+              </div>
             </div>
-          </div>
-          <div className={styles.aboutHeroImageContainer}>
-            {/* Placeholder for the main image */}
-            <img
-              src="https://placehold.co/600x400/E0E7FF/4F46E5?text=AI+Chat+Supplies"
-              alt="AI Chat Supplies Team"
-              className={styles.aboutHeroImage}
-            />
           </div>
         </section>
 
-        {/* Our Story Section */}
+
+        {/* Our Story Section - Text on left, Image on right */}
         <section className={styles.storySection}>
-          <h2 className={styles.sectionTitle}>Our Story</h2>
-          <p className={styles.storyText}>
-            Founded in 2020, AI Chat Supplies emerged from a simple observation: businesses were struggling to provide instant, personalized customer support at scale. Our founders, experienced in AI and customer service, saw an opportunity to bridge this gap.
-          </p>
-          <p className={styles.storyText}>
-            What started as a small team of passionate engineers has grown into a leading provider of AI chat solutions, serving thousands of businesses worldwide. We believe that every customer interaction should be meaningful, efficient, and human-like.
-          </p>
-          <div className={styles.storyStats}>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>10K+</div>
-              <div className={styles.statLabel}>Happy Clients</div>
+          <div className={styles.storyContentWrapper}>
+            <div className={styles.storyTextContainer}>
+              <h2 className={styles.sectionTitle}>Our Story</h2>
+              <p className={styles.storyText}>
+                Founded in 2020, AI Chat Supplies emerged from a simple observation: businesses were struggling to provide instant, personalized customer support at scale. Our founders, experienced in AI and customer service, saw an opportunity to bridge this gap.
+              </p>
+              <p className={styles.storyText}>
+                What started as a small team of passionate engineers has grown into a leading provider of AI chat solutions, serving thousands of businesses worldwide. We believe that every customer interaction should be meaningful, efficient, and human-like.
+              </p>
+              <div className={styles.storyStats}>
+                <div className={styles.statItem}>
+                  <div className={styles.statNumber}>10K+</div>
+                  <div className={styles.statLabel}>Happy Clients</div>
+                </div>
+                <div className={styles.statItem}>
+                  <div className={styles.statNumber}>50M+</div>
+                  <div className={styles.statLabel}>Conversations</div>
+                </div>
+                <div className={styles.statItem}>
+                  <div className={styles.statNumber}>99.9%</div>
+                  <div className={styles.statLabel}>Uptime</div>
+                </div>
+              </div>
             </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>50M+</div>
-              <div className={styles.statLabel}>Conversations</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>99.9%</div>
-              <div className={styles.statLabel}>Uptime</div>
+            <div className={styles.storyImageContainer}>
+              {/* Image for the Our Story section, matching p12.jpg */}
+              <img
+                src="/Images/Our Story.PNG"
+                alt="Our Story Image"
+                className={styles.storyImage}
+              />
             </div>
           </div>
         </section>
@@ -229,7 +180,7 @@ const AboutPage = () => {
         </section>
       </main>
 
-      <Footer />
+      <Footer /> {/* Footer component is used here */}
     </div>
   );
 };

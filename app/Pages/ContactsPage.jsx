@@ -1,76 +1,11 @@
 "use client";
 
+import Header from '../Component/NavBarPages'; // Import NavBar component
+import Footer from '../Component/Footer'; 
 import React, { useState } from 'react';
 import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
 
 // Header Component (Included for self-containment to match P1.PNG exactly)
-const Header = () => {
-    return (
-        <header className={styles.header}>
-            <div className={styles.headerLogo}>AI Chat Supplies</div>
-            <nav className={styles.headerNav}>
-                {/* Using <a> tags for direct links. For client-side navigation in Next.js, use the <Link> component. */}
-                <a key="home" href="#" className={styles.headerNavLink}>Home</a>
-                <a key="products" href="#" className={styles.headerNavLink}>Products</a>
-                <a key="about" href="#" className={styles.headerNavLink}>About</a>
-                <a key="contact" href="#" className={styles.headerNavLink}>Contact</a>
-            </nav>
-            <button className={styles.headerButton}>
-                Get Started
-            </button>
-            <div className={styles.mobileMenuIcon}>
-                {/* Mobile menu icon - placeholder for now */}
-                <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </div>
-        </header>
-    );
-};
-
-// Footer Component (Included for self-containment to match P1.PNG exactly)
-const Footer = () => {
-    return (
-        <footer className={styles.footer}>
-            <div className={styles.footerContent}>
-                <div className={styles.footerBrand}>
-                    <h3 className={styles.footerBrandTitle}>AI Chat Supplies</h3>
-                    <p className={styles.footerBrandText}>Transforming customer communication with intelligent AI chat solutions.</p>
-                </div>
-
-                <div>
-                    <h4 className={styles.footerSectionTitle}>Product</h4>
-                    <ul className={styles.footerList}>
-                        <li><a href="#" className={styles.footerLink}>Features</a></li>
-                        <li><a href="#" className={styles.footerLink}>Pricing</a></li>
-                        <li><a href="#" className={styles.footerLink}>Integrations</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 className={styles.footerSectionTitle}>Company</h4>
-                    <ul className={styles.footerList}>
-                        <li><a href="#" className={styles.footerLink}>About</a></li>
-                        <li><a href="#" className={styles.footerLink}>Careers</a></li>
-                        <li><a href="#" className={styles.footerLink}>Contact</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 className={styles.footerSectionTitle}>Support</h4>
-                    <ul className={styles.footerList}>
-                        <li><a href="#" className={styles.footerLink}>Documentation</a></li>
-                        <li><a href="#" className={styles.footerLink}>Help Center</a></li>
-                        <li><a href="#" className={styles.footerLink}>Status</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div className={styles.footerCopyright}>
-                © 2024 AI Chat Supplies. All rights reserved.
-            </div>
-        </footer>
-    );
-};
 
 
 // FAQ Item Component

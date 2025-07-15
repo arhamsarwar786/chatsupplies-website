@@ -1,156 +1,103 @@
-"use client"; // This directive is important for Next.js App Router, or can be removed if using Pages Router exclusively.
-
-import React, { useState } from 'react'; // Consolidated and corrected useState import
+"use client";
+import Header from '../Component/NavBarPages'; // Import NavBar component
+import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
+import React, { useState, useEffect } from 'react';
 import styles from '../styles/ProductsPage.module.css';
-// If Header and Footer were in their own files, you would import them like this:
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-// import ProductCard from '../components/ProductCard';
 
+<Header />
+// Product Card Component - Now uses Font Awesome icons and dynamic background colors
+const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, price, features, rating, reviews }) => {
+  console.log(`ProductCard: ${title}, iconBgClass: ${iconBgClass}, Resolved Class: ${styles[iconBgClass]}`);
 
-// Header Component - Moved outside the main ProductsPage component
-// (Ideally, this would be in components/layout/Header.jsx and imported)
-const Header = () => {
-  return (
-    <header className={styles.header}>
-      <div className={styles.headerLogo}>AI Chat Supplies</div>
-      <nav className={styles.headerNav}>
-        <a key="home" href="/" className={styles.headerNavLink}>Home</a>
-        <a key="products" href="/products" className={styles.headerNavLink}>Products</a>
-        <a key="about" href="/about" className={styles.headerNavLink}>About</a>
-        <a key="contact" href="/contact" className={styles.headerNavLink}>Contact</a>
-      </nav>
-      <button className={styles.headerButton}>
-        Get Started
-      </button>
-      <div className={styles.mobileMenuIcon}>
-        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </div>
-    </header>
-  );
-};
-
-// Footer Component - Moved outside the main ProductsPage component
-// (Ideally, this would be in components/layout/Footer.jsx and imported)
-const Footer = () => {
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContent}>
-        <div className={styles.footerBrand}>
-          <h3 className={styles.footerBrandTitle}>AI Chat Supplies</h3>
-          <p className={styles.footerBrandText}>Transforming customer communication with intelligent AI chat solutions.</p>
-        </div>
-        <div>
-          <h4 className={styles.footerSectionTitle}>Product</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>Features</a></li>
-            <li><a href="#" className={styles.footerLink}>Pricing</a></li>
-            <li><a href="#" className={styles.footerLink}>Integrations</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className={styles.footerSectionTitle}>Company</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>About</a></li>
-            <li><a href="#" className={styles.footerLink}>Careers</a></li>
-            <li><a href="#" className={styles.footerLink}>Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className={styles.footerSectionTitle}>Support</h4>
-          <ul className={styles.footerList}>
-            <li><a href="#" className={styles.footerLink}>Documentation</a></li>
-            <li><a href="#" className={styles.footerLink}>Help Center</a></li>
-            <li><a href="#" className={styles.footerLink}>Status</a></li>
-          </ul>
-        </div>
-      </div>
-      <div className={styles.footerCopyright}>
-        © 2024 AI Chat Supplies. All rights reserved.
-      </div>
-    </footer>
-  );
-};
-
-// Product Card Component - Moved outside the main ProductsPage component
-// (Can remain local or be moved to components/ if reused)
-const ProductCard = ({ icon, title, price, features, rating, reviews }) => {
   return (
     <div className={styles.productCard}>
-      <div className={styles.productIconContainer}>
-        {icon || (
-          <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        )}
+      <div className={`${styles.productIconContainer} ${styles[iconBgClass] || ''}`}>
+        <i className={`${iconClass} ${styles.productFaIcon}`}></i>
       </div>
       <h3 className={styles.productTitle}>{title}</h3>
-      <p className={styles.productPrice}>{price}</p>
+      {/* Added description paragraph */}
+      <p className={styles.productDescription}>{description}</p>
+
+      {/* ✅ Price and rating row */}
+      <div className={styles.productPriceRatingRow}>
+        <p className={styles.productPrice}>{price}</p>
+        <div className={styles.productRating}>
+          <span className={styles.starIcon}>★</span> {rating} ({reviews})
+        </div>
+      </div>
+
       <ul className={styles.productFeaturesList}>
         {features.map((feature, index) => (
           <li key={index} className={styles.productFeatureItem}>
-            <svg className={styles.checkIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-            </svg>
+            <i className={`fas fa-check ${styles.checkIcon}`}></i>
             {feature}
           </li>
         ))}
       </ul>
-      <div className={styles.productRating}>
-        <span className={styles.starIcon}>★</span> {rating} ({reviews})
-      </div>
+
       <button className={styles.productLearnMoreButton}>Learn More</button>
     </div>
   );
 };
 
-// Mock Product Data - Kept outside the component to avoid re-creation on every render
+
+// Mock Product Data - Updated with Font Awesome icon classes and descriptions
 const products = [
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>,
+    iconClass: 'fas fa-robot',
+    iconBgClass: 'purpleBg',
     title: 'Smart Chatbot Pro',
+    description: 'Advanced AI chatbot with natural language processing and machine learning capabilities.',
     price: '$99/mo',
     features: ['Unlimited conversations', 'Multi-language support', 'Advanced analytics'],
     rating: 4.9,
     reviews: 120,
   },
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v2a3 3 0 01-3 3z"></path></svg>,
+    iconClass: 'fas fa-microphone-alt',
+    iconBgClass: 'orangeBg',
     title: 'Voice AI Assistant',
+    description: 'Intelligent voice recognition system with real-time speech processing and response.',
     price: '$149/mo',
     features: ['Voice recognition', 'Text-to-speech', 'Custom voice models'],
     rating: 4.8,
     reviews: 89,
   },
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 12l3-3m0 0l3 3m-3-3v4m0 0h-3m3 0h3m-3 0V9a2 2 0 012-2h6a2 2 0 012 2v2m0 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2"></path></svg>,
+    iconClass: 'fas fa-chart-line',
+    iconBgClass: 'greenBg',
     title: 'Analytics Dashboard',
+    description: 'Comprehensive analytics and insights for your AI chat performance and customer interactions.',
     price: '$79/mo',
     features: ['Real-time metrics', 'Custom reports', 'Data export'],
     rating: 4.7,
     reviews: 156,
   },
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>,
+    iconClass: 'fas fa-puzzle-piece',
+    iconBgClass: 'pinkBg',
     title: 'Integration Suite',
+    description: 'Seamlessly connect your AI chat solutions with popular business tools and platforms.',
     price: '$59/mo',
     features: ['100+ integrations', 'API access', 'Custom webhooks'],
     rating: 4.6,
     reviews: 94,
   },
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>,
+    iconClass: 'fas fa-shield-alt',
+    iconBgClass: 'redBg',
     title: 'Security Pro',
+    description: 'Enterprise-grade security features to protect your conversations and customer data.',
     price: '$199/mo',
     features: ['End-to-end encryption', 'GDPR compliance', 'Audit logs'],
     rating: 4.9,
     reviews: 67,
   },
   {
-    icon: <svg className={styles.productIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>,
+    iconClass: 'fas fa-mobile-alt',
+    iconBgClass: 'blueBg',
     title: 'Mobile SDK',
+    description: 'Native mobile SDK for iOS and Android to integrate AI chat into your mobile applications.',
     price: '$129/mo',
     features: ['iOS & Android', 'Native performance', 'Easy integration'],
     rating: 4.8,
@@ -160,28 +107,83 @@ const products = [
 
 
 // Main Products Page Component
-const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
+const ProductsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6; // As per PDF layout
+  const productsPerPage = 6;
 
-  // Calculate products to display for the current page
+  // Effect to load Font Awesome script
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
+    // Clean up the link when the component unmounts
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []); // Empty dependency array ensures this runs once on mount
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-  // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber); // This was missing from the second ProductsPage declaration
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const totalPages = Math.ceil(products.length / productsPerPage);
 
+  // Function to generate page numbers to display (e.g., 1, 2, ..., 5, 6, 7, ..., 10)
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxPagesToShow = 5; // Max number of visible page buttons (excluding prev/next)
+
+    if (totalPages <= maxPagesToShow) {
+      // If total pages are few, show all
+      for (let i = 1; i <= totalPages; i++) {
+        pageNumbers.push(i);
+      }
+    } else {
+      // Always show first page
+      pageNumbers.push(1);
+
+      // Determine start and end of the middle range
+      let startMiddle = Math.max(2, currentPage - Math.floor((maxPagesToShow - 3) / 2));
+      let endMiddle = Math.min(totalPages - 1, currentPage + Math.ceil((maxPagesToShow - 3) / 2));
+
+      // Adjust start/end if near boundaries
+      if (currentPage < 3) {
+        endMiddle = Math.min(totalPages - 1, maxPagesToShow - 1);
+      } else if (currentPage > totalPages - 2) {
+        startMiddle = Math.max(2, totalPages - (maxPagesToShow - 2));
+      }
+
+      // Add ellipsis at the beginning if needed
+      if (startMiddle > 2) {
+        pageNumbers.push('...');
+      }
+
+      // Add middle pages
+      for (let i = startMiddle; i <= endMiddle; i++) {
+        pageNumbers.push(i);
+      }
+
+      // Add ellipsis at the end if needed
+      if (endMiddle < totalPages - 1) {
+        pageNumbers.push('...');
+      }
+
+      // Always show last page
+      if (totalPages > 1 && !pageNumbers.includes(totalPages)) {
+        pageNumbers.push(totalPages);
+      }
+    }
+    return pageNumbers;
+  };
+
   return (
     <div className={styles.productsContainer}>
-      <Header /> {/* Your Header component */}
+      <Header />
 
-      {/* THIS IS THE CRUCIAL STRUCTURAL CHANGE FOR FULL WIDTH:
-          Move productsHeroSection OUTSIDE of productsMainContent
-          It should be a direct sibling of Header and productsMainContent
-      */}
       <section className={styles.productsHeroSection}>
         <h1 className={styles.productsHeroTitle}>Our AI Products</h1>
         <p className={styles.productsHeroSubtitle}>
@@ -203,32 +205,34 @@ const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
         </div>
       </section>
 
-      {/* This main tag will now only wrap the content that needs to be width-constrained and centered */}
-      <main className={styles.productsMainContent}>
-        <section className={styles.filterSortBar}>
+      <section className={styles.filterSortBar}>
+        <div className={styles.filterGroupLeft}>
           <div className={styles.filterGroup}>
-            <label htmlFor="category" className={styles.filterLabel}>Filter by:</label>
-            <select id="category" className={styles.filterSelect}>
+            <span className={styles.filterLabel}>Filter by:</span>
+            <select className={styles.filterSelect}>
               <option>All Categories</option>
-              {/* Add more categories based on PDF if available */}
+              {/* Add more category options here */}
             </select>
           </div>
           <div className={styles.filterGroup}>
-            <label htmlFor="pricing" className={styles.filterLabel}>All Pricing</label>
-            <select id="pricing" className={styles.filterSelect}>
+            <select className={styles.filterSelect}>
               <option>All Pricing</option>
-              {/* Add more pricing options */}
+              {/* Add more pricing options here */}
             </select>
           </div>
+        </div>
+        <div className={styles.sortGroupRight}>
           <div className={styles.sortGroup}>
-            <label htmlFor="sort" className={styles.sortLabel}>Sort by:</label>
-            <select id="sort" className={styles.sortSelect}>
+            <span className={styles.sortLabel}>Sort by:</span>
+            <select className={styles.sortSelect}>
               <option>Popular</option>
-              {/* Add more sort options */}
+              {/* Add more sort options here */}
             </select>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <main className={styles.productsMainContent}>
         <section className={styles.productGrid}>
           {currentProducts.map((product, index) => (
             <ProductCard key={index} {...product} />
@@ -236,6 +240,7 @@ const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
         </section>
 
         <section className={styles.paginationContainer}>
+          {/* Previous Button (still using < for visual consistency with t38.PNG, but can be changed to "Prev" if preferred) */}
           <button
             className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
             onClick={() => paginate(currentPage - 1)}
@@ -243,15 +248,23 @@ const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
           >
             &lt;
           </button>
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              className={`${styles.paginationButton} ${currentPage === index + 1 ? styles.paginationButtonActive : ''}`}
-              onClick={() => paginate(index + 1)}
-            >
-              {index + 1}
-            </button>
+
+          {/* Page Numbers and Ellipses */}
+          {getPageNumbers().map((pageNumber, index) => (
+            pageNumber === '...' ? (
+              <span key={`ellipsis-${index}`} className={styles.paginationEllipsis}>...</span>
+            ) : (
+              <button
+                key={pageNumber} // Use pageNumber as key for actual page buttons
+                className={`${styles.paginationButton} ${currentPage === pageNumber ? styles.paginationButtonActive : ''}`}
+                onClick={() => paginate(pageNumber)}
+              >
+                {pageNumber}
+              </button>
+            )
           ))}
+
+          {/* Next Button (still using > for visual consistency with t38.PNG, but can be changed to "Next" if preferred) */}
           <button
             className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
             onClick={() => paginate(currentPage + 1)}
@@ -262,7 +275,6 @@ const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
         </section>
       </main>
 
-      {/* Move the CTA section here if it's meant to be full-width as well */}
       <section className={styles.ctaSection}>
         <h2 className={styles.ctaTitle}>Ready to Transform Your Customer Experience?</h2>
         <p className={styles.ctaSubtitle}>
@@ -274,7 +286,7 @@ const ProductsPage = () => { // This is the ONLY declaration of ProductsPage
         </div>
       </section>
 
-      <Footer /> {/* Your Footer component */}
+      <Footer />
     </div>
   );
 };

@@ -2,117 +2,56 @@
 
 /* Base Styles (will be overridden by Layout.module.css if Layout is used) */
 /* If you are using the shared Layout component in _app.jsx,
-    the .productsContainer styles below are redundant and can be removed.
-    The Layout component's .appContainer will provide the base styling. */
+    the .productsContainer styles below are redundant and can be removed.
+    The Layout component's .appContainer will provide the base styling. */
 .productsContainer {
   min-height: 100vh;
-  background-color: #f9fafb; /* bg-gray-50 */
+  background-color: #f9fafb;
+  /* bg-gray-50 */
   font-family: 'Inter', sans-serif;
-  color: #1f2937; /* text-gray-900 */
+  color: #1f2937;
+  /* text-gray-900 */
 }
 
 .productsMainContent {
-  max-width: 1280px; /* max-w-7xl */
+  max-width: 1440px;
+  /* max-w-7xl */
   margin-left: auto;
   margin-right: auto;
-  padding-top: 3rem; /* py-12 */
-  padding-bottom: 3rem; /* py-12 */
-  padding-left: 1.5rem; /* px-6 */
-  padding-right: 1.5rem; /* px-6 */
-}
-
-/* Header Styles (These styles should ideally be in components/layout/Layout.module.css if Header is a shared component) */
-.header {
-  background-color: #ffffff;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 3rem;
+  /* py-12 */
+  padding-bottom: 3rem;
+  /* py-12 */
   padding-left: 1.5rem;
+  /* px-6 */
   padding-right: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  /* px-6 */
 }
 
-.headerLogo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #4f46e5; /* Changed to match the purple in the image */
-}
-
-.headerNav {
-  display: none; /* hidden by default */
-  gap: 2rem;
-}
-
-.headerNavLink {
-  color: #1f2937; /* Changed to a dark gray/black to match the image */
-  font-weight: 500;
-  transition-property: color;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  text-decoration: none;
-}
-
-.headerNavLink:hover {
-  color: #4f46e5;
-}
-
-.headerButton {
-  background-color: #4f46e5;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.5rem 1.5rem;
-  border-radius: 9999px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition-property: background-color, transform;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
-  cursor: pointer;
-}
-
-.headerButton:hover {
-  background-color: #4338ca;
-  transform: translateY(-1px);
-}
-
-.mobileMenuIcon {
-  display: block; /* block by default */
-}
-
-.icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
-}
-
-/* Products Hero Section */
+/* Hero Section */
 .productsHeroSection {
   text-align: center;
-  margin-bottom: 4rem;
-  background-color: #6633ff; /* FIXED: Added the purple color here */
-  padding-top: 4rem; /* Added padding to match the visual spacing in the image */
-  padding-bottom: 4rem; /* Added padding to match the visual spacing in the image */
+  background-color: #6633ff;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+  /* Slightly more padding to separate from filter */
+  position: relative;
+  z-index: 1;
 }
 
 .productsHeroTitle {
   font-size: 3rem;
   font-weight: 800;
-  color: #ffffff; /* Changed title color to white for better contrast on purple background */
+  color: #ffffff;
   margin-bottom: 1rem;
   line-height: 1.25;
 }
 
 .productsHeroSubtitle {
   font-size: 1.25rem;
-  color: #e0e7ff; /* Changed subtitle color to a lighter shade for better contrast */
+  color: #e0e7ff;
   max-width: 48rem;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
+  margin: 0 auto 2rem auto;
 }
 
 .productsHeroFeatures {
@@ -125,7 +64,7 @@
 .productsHeroFeatureItem {
   display: flex;
   align-items: center;
-  color: #ffffff; /* Changed feature text color to white for better contrast */
+  color: #ffffff;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -133,16 +72,54 @@
 /* Filter and Sort Bar */
 .filterSortBar {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 2.5rem;
+
   background-color: #ffffff;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  padding: 1.25rem 2rem;
+  
+  margin-bottom: 2rem;
+
+  width: 100%;            /* ✅ full width */
+  max-width: 1440px;      /* ✅ wider than .productsMainContent (1280px) */
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 0.75rem;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.05);
 }
+
+/* Optional – Make left filters group stay aligned */
+.filterGroupGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  flex: 1; /* take available space */
+}
+
+/* Optional – Align sortGroup to right cleanly */
+.sortGroup {
+  flex-shrink: 0;
+}
+
+
+.filterGroupLeft {
+  display: flex;
+  gap: 1.5rem;
+  /* Space between "All Categories" and "All Pricing" */
+  flex-wrap: wrap;
+}
+
+.sortGroupRight {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 
 .filterGroup,
 .sortGroup {
@@ -168,10 +145,13 @@
   background-color: #ffffff;
   cursor: pointer;
   appearance: none;
+  /* Removes default browser dropdown arrow */
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3e%3cpath d='M7 7l3-3 3 3m0 6l-3 3-3-3' stroke='%236B7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1rem;
+  padding-right: 2.25rem;
+  /* Make space for custom arrow */
 }
 
 .filterSelect:focus,
@@ -181,10 +161,15 @@
   box-shadow: 0 0 0 1px #6366f1;
 }
 
+
+/* Product Grid */
+/* === Icon Background Utility Classes === */
+/* styles/utilities.css */
+
 /* Product Grid */
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -192,86 +177,122 @@
 /* Product Card */
 .productCard {
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 1rem 1rem 0.75rem 1rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  text-align: center;
+  text-align: left;
   display: flex;
   flex-direction: column;
+}
+
+/* === Icon Container === */
+.productIconContainer {
+  padding: 0.5rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
 }
 
-.productIconContainer {
-  background-color: #eef2ff;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  margin-bottom: 1.5rem;
-  display: inline-flex;
-}
+/* Background colors */
+.purpleBg { background-color: #8672df; }
+.orangeBg { background-color: #b88445; }
+.greenBg  { background-color: #52d899; }
+.redBg    { background-color: #bb9595; }
+.pinkBg   { background-color: #db72ac; }
+.blueBg   { background-color: #3c5d88; }
 
-.productIcon {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: #4f46e5;
-}
-
-.productTitle {
+/* === Icon Style === */
+.productFaIcon {
   font-size: 1.5rem;
+  color: #ffffff;
+}
+
+/* === Title === */
+.productTitle {
+  font-size: 1.125rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.15rem;
 }
 
+/* === Description === */
+.productDescription {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b7280;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+/* === Price + Rating Row === */
+.productPriceRatingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+/* === Price === */
 .productPrice {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: #4f46e5;
-  margin-bottom: 1.5rem;
+  margin: 0;
 }
 
+/* === Rating === */
+.productRating {
+  font-size: 0.8rem;
+  color: #6b7280;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+.starIcon {
+  color: #f59e0b;
+  margin-right: 0;
+}
+
+/* === Feature List === */
 .productFeaturesList {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0.75rem 0;
   text-align: left;
   width: 100%;
-  margin-bottom: 1.5rem;
 }
 
 .productFeatureItem {
   display: flex;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: #4b5563;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
+/* === Feature Check Icon === */
 .checkIcon {
-  width: 1rem;
-  height: 1rem;
+  font-size: 0.85rem;
   color: #10b981;
   margin-right: 0.5rem;
 }
 
-.productRating {
-  font-size: 0.875rem;
-  color: #6b7280;
-  margin-top: auto;
-  margin-bottom: 1.5rem;
-}
-
-.starIcon {
-  color: #f59e0b;
-  margin-right: 0.25rem;
-}
-
+/* === Button === */
 .productLearnMoreButton {
   background-color: #4f46e5;
   color: #ffffff;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  padding: 0.45rem 1rem;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease-in-out;
   border: none;
   cursor: pointer;
@@ -282,6 +303,7 @@
   background-color: #4338ca;
   transform: translateY(-1px);
 }
+
 
 /* Pagination */
 .paginationContainer {
@@ -326,7 +348,6 @@
   padding: 4rem 2rem;
   text-align: center;
   border-radius: 0.75rem;
-  margin-bottom: 4rem;
 }
 
 .ctaTitle {
@@ -474,7 +495,10 @@
   }
 
   .filterSortBar {
-    justify-content: flex-start;
+    justify-content: space-between;
+    /* Re-enable space-between for larger screens */
+    flex-wrap: nowrap;
+    /* Prevent wrapping on larger screens */
     gap: 2rem;
   }
 

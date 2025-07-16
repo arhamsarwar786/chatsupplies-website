@@ -3,10 +3,31 @@
 /* Base Styles (similar to globals.css if you had one) */
 .aboutContainer {
   min-height: 100vh;
-  background-color: #f9fafb; /* bg-gray-50 */
+  background-color: #f9fafb; /* bg-gray-50 - This will be the alternating background */
   font-family: 'Inter', sans-serif;
   color: #1f2937; /* text-gray-900 */
 }
+
+/* Section Container for alternating backgrounds */
+.sectionContainer {
+  padding-top: 4rem; /* py-16 */
+  padding-bottom: 4rem; /* py-16 */
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  width: 100vw; /* Occupy full viewport width */
+  margin-left: calc(50% - 50vw); /* Center it by negating default margin */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Specific background colors for sections */
+.sectionWhiteBg {
+  background-color: #ffffff;
+}
+
+.sectionLightGreyBg {
+  background-color: #f2f4f6; /* A slightly darker light grey for distinction */
+}
+
 
 .aboutHeroSection {
   width: 100vw;
@@ -20,9 +41,8 @@
   align-items: center;
   text-align: center;
 
-  min-height: 30vh;         /* Make it fill screen vertically */
-  box-sizing: border-box;    /* Ensure padding is included */
-  margin-bottom: 6rem;
+  min-height: 30vh; /* Make it fill screen vertically */
+  box-sizing: border-box; /* Ensure padding is included */
 }
 
 .aboutHeroInner {
@@ -36,12 +56,12 @@
   justify-content: center;
 }
 
-
 .aboutHeroTitle {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.2;
+  text-align: center; /* Centered title */
 }
 
 .aboutHeroSubtitle {
@@ -63,21 +83,39 @@
   font-size: 1rem;
 }
 
-
-/* Section Titles */
+/* Our Story Section */
 .storySection {
-  margin-top: -4rem;
-  margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 0 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a202c;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  width: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  margin-top: -0.3rem;
+}
+
+@media (min-width: 1024px) {
+  .sectionTitle {
+    text-align: left;
+  }
 }
 
 .storyContentWrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
@@ -85,49 +123,35 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    text-align: left;
   }
 
   .storyTextContainer {
     flex: 1;
     max-width: 50%;
-    padding-right: 2rem;
+    padding-right: 3rem;
+    margin-top: -2.5rem;
   }
 
   .storyImageContainer {
     flex: 1;
-    max-width: 100%;
+    max-width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 }
 
-/* ✅ Smaller title */
-.sectionTitle {
-  font-size: 1.75rem; /* Reduced from 2.5rem */
-  font-weight: 700;
-  color: #1a202c;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .sectionTitle {
-    text-align: left;
-  }
-}
-
-/* ✅ Smaller paragraph */
 .storyText {
-  font-size: 1rem; /* Reduced from 1.125rem */
+  font-size: 1rem;
+  font-weight:400 ;
   color: #4b5563;
   margin: 0 0 1rem 0;
-  line-height: 1.5;
-  text-align: center;
+  line-height: 1.6;
+  margin-top: 2rem;
+  text-align: left;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) {
   .storyText {
     text-align: left;
   }
@@ -136,131 +160,200 @@
 .storyStats {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  margin-left: -4rem; /* More aggressive pull */
+  padding-left: 4rem; /* Compensating padding */
+  padding-right: 0;
+  align-items: flex-start;
+  position: relative;
+  width: calc(100% + 4rem);
+  left: -4.5rem; /* Additional manual adjustment */
+  transform: translateX(-1rem); /* Final nudge */
 }
 
-@media (min-width: 768px) {
-  .storyStats {
-    justify-content: flex-start;
-  }
+/* Add this to ensure parent containers don't clip the content */
+.storyTextContainer {
+  overflow-x: visible !important;
+}
+.storyContentWrapper {
+  overflow-x: visible !important;
 }
 
 .statItem {
-  text-align: center;
+  text-align: left;
+  padding: 0;
+  margin: 0;
 }
 
-/* ✅ Smaller number */
 .statNumber {
-  font-size: 2rem; /* Reduced from 3rem */
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #4f46e5;
-  line-height: 1;
-  margin-bottom: 0.3rem;
+  line-height: 0.9;
+  margin: 0;
+  padding: 0;
+  letter-spacing: -1px;
 }
 
-/* ✅ Smaller label */
 .statLabel {
-  font-size: 1rem; /* Reduced from 1.125rem */
+  font-size: 0.85rem;
   font-weight: 500;
   color: #374151;
+  text-align: left;
+  line-height: 1.1;
+  padding-left: 0;
+  margin-left: 0;
 }
 
-/* Image still large and responsive */
 .storyImage {
   width: 100%;
   height: auto;
-  max-width: 700px;
+  max-width: 100%;
   max-height: 500px;
   object-fit: cover;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  margin-top: 4rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  margin-top: -2rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 767px) {
   .storyImage {
-    max-width: 800px;
-    max-height: 600px;
+    margin-top: 3rem;
   }
 }
-
-
+/* Mission & Values Section */
 .missionValuesSection {
   margin-bottom: 4rem;
+  text-align: center; /* This centers the overall section content, including title */
+}
+
+.missionValuesInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* .sectionTitle for Mission & Values (re-declared or specific instance) */
+/* Ensure this rule is separate or more specific if there's a global .sectionTitle */
+/* The previous sectionTitle rule might be global, so we're making this one specific */
+.missionValuesSection .sectionTitle { /* More specific selector */
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2.5rem; /* Added space below title */
+  text-align: center; /* Explicitly center for Mission & Values */
 }
 
 .missionValuesGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
-  justify-content: center; /* Center grid items */
+  justify-content: center;
+  gap: 0.5rem; /* Decreased gap for mobile */
+  margin-top: 3.5rem; /* Additional spacing between title and cards */
 }
 
+/* Desktop view - side by side cards */
+@media (min-width: 768px) {
+  .missionValuesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.125rem; /* Further decreased horizontal gap for desktop */
+    /* padding: 0.025; - Removed this typo */
+  }
+}
+
+/* Card styling */
 .missionValueCard {
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 1.8rem 1.25rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
               0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  width: 70%;               /* ⬅️ More narrow */
-  min-height: 420px;        /* ⬆️ Increased height */
-  margin: 0 auto;           /* Center horizontally */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /* Center content vertically */
-  align-items: center;      /* ✅ Center everything horizontally */
-  text-align: center;       /* Ensure all inner text is centered */
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
 }
 
+/* Icon Container */
+.missionValueIconContainer {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.25rem auto;
+}
+
+.missionValueIcon {
+  font-size: 1.5rem;
+}
+
+/* Icon Background Colors (Ensure these are separate from general icon containers if colors vary) */
+.missionIconBg {
+  background-color: #e0e7ff;
+}
+.visionIconBg {
+  background-color: #eef2ff;
+}
+.valuesIconBg {
+  background-color: #fff7ed;
+}
+
+/* Icon Colors (Ensure these are separate from general icon containers if colors vary) */
+.missionIconColor {
+  color: #6d28d9;
+}
+.visionIconColor {
+  color: #8b5cf6;
+}
+.valuesIconColor {
+  color: #fbbf24;
+}
+
+/* Card Title */
 .missionValueTitle {
   font-size: 1.5rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1rem;
-  text-align: center;       /* ✅ Make sure the title text is centered */
-}
-
-.missionValueText {
-  font-size: 1rem;
-  color: #4b5563;
-  line-height: 1.625;
+  margin-bottom: 1.25rem;
   text-align: center;
 }
 
-/* Responsive layout */
-@media (min-width: 768px) {
-  .missionValuesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .missionValueCard {
-    width: 60%; /* Even narrower on tablets and up */
-    min-height: 450px;
-  }
+/* Card Description */
+.missionValueText {
+  font-size: 1.2rem;
+  color: #4b5563;
+  line-height: 1.625;
 }
 
-@media (min-width: 1024px) {
-  .missionValuesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .missionValueCard {
-    width: 85%;
-    min-height: 380px;
-  }
-}
 
 /* Meet Our Team Section */
 .teamSection {
   margin-bottom: 4rem; /* mb-16 */
-  text-align: center;
+  text-align: center; /* This centers the overall section content, including title */
+}
+
+/* .sectionTitle for Meet Our Team (re-declared or specific instance) */
+.teamSection .sectionTitle { /* More specific selector */
+  font-size: 2.5rem; /* Adjusted based on previous instructions for this specific title */
+  margin-bottom: -0.5rem;
+  text-align: center; /* Explicitly center for Meet Our Team */
+  font-weight: 700; /* Ensure font-weight is consistent if not overridden */
+  color: #1f2937; /* Ensure color is consistent if not overridden */
+}
+
+.teamInner { /* Added for content padding */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .teamSubtitle {
-  font-size: 1.125rem; /* text-lg */
+  font-size: 1.2rem; /* text-lg */
   color: #4b5563; /* text-gray-600 */
   margin-bottom: 2.5rem; /* mb-10 */
 }
@@ -275,7 +368,8 @@
   background-color: #ffffff; /* bg-white */
   padding: 2rem; /* p-8 */
   border-radius: 0.75rem; /* rounded-xl */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -289,7 +383,6 @@
   overflow: hidden;
   margin-bottom: 1.5rem; /* mb-6 */
   border: 4px solid #eef2ff; /* border-4 border-indigo-50 */
-  box-shadow: 0 0 0 2px #4f46e5; /* ring-2 ring-indigo-600 */
 }
 
 .teamMemberImage {
@@ -303,6 +396,7 @@
   font-weight: 700; /* font-bold */
   color: #1f2937; /* text-gray-800 */
   margin-bottom: 0.25rem; /* mb-1 */
+  text-align: center; /* Centered name */
 }
 
 .teamMemberTitle {
@@ -319,44 +413,130 @@
   max-width: 24rem; /* max-w-xs */
 }
 
-/* Industry Recognition Section */
+/* Recognition Section (Assuming this is "Our Achievements") */
 .recognitionSection {
-  margin-bottom: 4rem; /* mb-16 */
-  text-align: center;
+  margin-bottom: 4rem !important;
+  text-align: center !important; /* Explicitly center for Our Achievements */
 }
 
+.recognitionInner {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1.5rem !important;
+  text-align: center !important;
+}
+
+/* .sectionTitle for Recognition (re-declared or specific instance) */
+.recognitionSection + .sectionTitle { /* If .sectionTitle is immediately after .recognitionSection */
+  text-align: center; /* Explicitly center for Recognition/Achievements */
+  font-size: 2rem; /* Assuming default sectionTitle size unless otherwise specified */
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2.5rem;
+}
+/* If the title for the recognition section has its own distinct class in JSX
+   like <h2 className={styles.recognitionSectionTitle}>, use that class for specificity.
+   Otherwise, ensure the global .sectionTitle is centered OR use a more specific selector
+   like .recognitionSection .sectionTitle if the title is nested.
+   Based on previous patterns, let's assume it uses .sectionTitle.
+   The .recognitionSection .sectionTitle selector would be best if it's nested: */
+.recognitionSection .sectionTitle {
+  text-align: center; /* Explicitly center for Recognition/Achievements */
+  font-size: 2rem; /* Assuming default sectionTitle size unless otherwise specified */
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2.5rem;
+}
+
+
 .recognitionSubtitle {
-  font-size: 1.125rem; /* text-lg */
-  color: #4b5563; /* text-gray-600 */
-  margin-bottom: 2.5rem; /* mb-10 */
+  font-size: 1.125rem !important;
+  color: #4b5563 !important;
+  margin-bottom: 3rem !important;
 }
 
 .recognitionGrid {
-  display: grid;
-  grid-template-columns: 1fr; /* Single column by default */
-  gap: 2rem; /* gap-8 */
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 2rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  max-width: 450px !important;
+}
+
+@media (min-width: 768px) {
+  .recognitionGrid {
+    grid-template-columns: repeat(2, minmax(0, 400px)) !important;
+    gap: 1.25rem !important;
+    max-width: calc(2 * 400px + 1.25rem) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .recognitionGrid {
+    grid-template-columns: repeat(2, minmax(0, 440px)) !important;
+    max-width: calc(2 * 440px + 1.25rem) !important;
+  }
 }
 
 .recognitionItem {
-  background-color: #ffffff; /* bg-white */
-  padding: 2rem; /* p-8 */
-  border-radius: 0.75rem; /* rounded-xl */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-  text-align: center;
+  background-color: #ffffff !important;
+  padding: 1.25rem !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: 400px !important;
 }
 
+@media (min-width: 1024px) {
+  .recognitionItem {
+    max-width: 440px !important;
+  }
+}
+
+.recognitionIconContainer {
+  width: 3.5rem !important;
+  height: 3.5rem !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 0 auto 1rem auto !important;
+}
+
+.recognitionIcon {
+  font-size: 1.5rem !important;
+}
+
+.awardIconBg { background-color: #e0e7ff !important; }
+.growthIconBg { background-color: #e0e7ff !important; }
+.partnershipIconBg { background-color: #fff7ed !important; }
+.securityIconBg { background-color: #e0e7ff !important; }
+
+.awardIconColor { color: #6366f1 !important; }
+.growthIconColor { color: #6366f1 !important; }
+.partnershipIconColor { color: #f59e0b !important; }
+.securityIconColor { color: #6366f1 !important; }
+
 .recognitionItemTitle {
-  font-size: 1.5rem; /* text-xl */
-  font-weight: 700; /* font-bold */
-  color: #1f2937; /* text-gray-800 */
-  margin-bottom: 1rem; /* mb-4 */
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: #1f2937 !important;
+  margin-bottom: 0.75rem !important;
+  text-align: center !important;
 }
 
 .recognitionItemText {
-  font-size: 1rem; /* text-base */
-  color: #4b5563; /* text-gray-600 */
-  line-height: 1.625; /* leading-relaxed */
+  font-size: 0.95rem !important;
+  color: #4b5563 !important;
+  line-height: 1.6 !important;
+  text-align: center !important;
 }
+
 
 /* Call To Action Section (Copied from ProductsPage.module.css for self-containment) */
 .ctaSection {
@@ -366,6 +546,9 @@
   text-align: center;
   border-radius: 0.75rem; /* rounded-xl */
   margin-bottom: 0; /* mb-16 */
+  width: 100vw; /* Occupy full viewport width */
+  margin-left: calc(50% - 50vw); /* Center it by negating default margin */
+  box-sizing: border-box; /* Include padding in width */
 }
 
 .ctaTitle {
@@ -373,6 +556,7 @@
   font-weight: 700; /* font-bold */
   margin-bottom: 1.5rem; /* mb-6 */
   line-height: 1.25;
+  text-align: center; /* Centered title */
 }
 
 .ctaSubtitle {
@@ -449,6 +633,7 @@
   font-size: 1.25rem; /* text-xl */
   font-weight: 700; /* font-bold */
   margin-bottom: 1rem; /* mb-4 */
+  text-align: center; /* Centered title */
 }
 
 .footerBrandText {
@@ -460,6 +645,7 @@
   font-weight: 600; /* font-semibold */
   font-size: 1.125rem; /* text-lg */
   margin-bottom: 1rem; /* mb-4 */
+  text-align: center; /* Centered title */
 }
 
 .footerList {
@@ -493,7 +679,8 @@
 }
 
 /* Responsive adjustments */
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
+  /* md breakpoint */
   .header {
     padding-left: 3rem; /* md:px-12 */
     padding-right: 3rem; /* md:px-12 */
@@ -514,7 +701,6 @@
 
   .aboutHeroSection {
     flex-direction: row; /* Side-by-side on medium screens */
-    text-align: left;
   }
 
   .aboutHeroText {
@@ -526,11 +712,12 @@
   }
 
   .aboutHeroFeatures {
-    justify-content: flex-start; /* Align features to start */
+    justify-content: center; /* Align features to center */
   }
 
   .storyStats {
     flex-direction: row; /* Side-by-side on medium screens */
+    justify-content: center; /* Center stats on desktop */
   }
 
   .missionValuesGrid {
@@ -559,7 +746,8 @@
   }
 }
 
-@media (min-width: 1024px) { /* lg breakpoint */
+@media (min-width: 1024px) {
+  /* lg breakpoint */
   .header {
     padding-left: 6rem; /* lg:px-24 */
     padding-right: 6rem; /* lg:px-24 */

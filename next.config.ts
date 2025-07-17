@@ -2,7 +2,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['randomuser.me'], 
+    domains: ['randomuser.me'],
+  },
+  experimental: {
+    turbo: false, // ✅ Disable Turbopack to avoid internal font module errors
   },
 };
 

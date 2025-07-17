@@ -2,8 +2,8 @@
 
 /* Base Styles (will be overridden by Layout.module.css if Layout is used) */
 /* If you are using the shared Layout component in _app.jsx,
-    the .productsContainer styles below are redundant and can be removed.
-    The Layout component's .appContainer will provide the base styling. */
+   the .productsContainer styles below are redundant and can be removed.
+   The Layout component's .appContainer will provide the base styling. */
 .productsContainer {
   min-height: 100vh;
   background-color: #f9fafb;
@@ -79,11 +79,13 @@
 
   background-color: #ffffff;
   padding: 1.25rem 2rem;
-  
+
   margin-bottom: 2rem;
 
-  width: 100%;            /* ✅ full width */
-  max-width: 1440px;      /* ✅ wider than .productsMainContent (1280px) */
+  width: 100%;
+  /* ✅ full width */
+  max-width: 1440px;
+  /* ✅ wider than .productsMainContent (1280px) */
   margin-left: auto;
   margin-right: auto;
 
@@ -98,7 +100,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  flex: 1; /* take available space */
+  flex: 1;
+  /* take available space */
 }
 
 /* Optional – Align sortGroup to right cleanly */
@@ -183,6 +186,13 @@
   text-align: left;
   display: flex;
   flex-direction: column;
+  /* Add animation properties */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.productCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* === Icon Container === */
@@ -197,12 +207,29 @@
 }
 
 /* Background colors */
-.purpleBg { background-color: #8672df; }
-.orangeBg { background-color: #b88445; }
-.greenBg  { background-color: #52d899; }
-.redBg    { background-color: #bb9595; }
-.pinkBg   { background-color: #db72ac; }
-.blueBg   { background-color: #3c5d88; }
+.purpleBg {
+  background-color: #8672df;
+}
+
+.orangeBg {
+  background-color: #b88445;
+}
+
+.greenBg {
+  background-color: #52d899;
+}
+
+.redBg {
+  background-color: #bb9595;
+}
+
+.pinkBg {
+  background-color: #db72ac;
+}
+
+.blueBg {
+  background-color: #3c5d88;
+}
 
 /* === Icon Style === */
 .productFaIcon {
@@ -292,7 +319,7 @@
   padding: 0.45rem 1rem;
   border-radius: 0.5rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.2s ease-in-out;
   border: none;
   cursor: pointer;

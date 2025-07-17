@@ -1,10 +1,9 @@
 "use client";
-import Header from '../Component/NavBarPages'; // Import NavBar component
 import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/ProductsPage.module.css';
 
-<Header />
+
 // Product Card Component - Now uses Font Awesome icons and dynamic background colors
 const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, price, features, rating, reviews }) => {
   console.log(`ProductCard: ${title}, iconBgClass: ${iconBgClass}, Resolved Class: ${styles[iconBgClass]}`);
@@ -182,7 +181,6 @@ const ProductsPage = () => {
 
   return (
     <div className={styles.productsContainer}>
-      <Header />
 
       <section className={styles.productsHeroSection}>
         <h1 className={styles.productsHeroTitle}>Our AI Products</h1>

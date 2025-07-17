@@ -9,10 +9,10 @@ import {
     faTwitter,
     faLinkedinIn,
     faInstagram
-} from '@fortawesome/free-brands-svg-icons'; // For social brand icons
+} from '@fortawesome/free-brands-svg-icons';
 
-// Import the icon for your ChatSupplies logo (faComments for two speech bubbles)
-import { faComments } from '@fortawesome/free-solid-svg-icons'; // For the chat supplies logo icon
+// ChatSupplies logo icon
+import { faComments } from '@fortawesome/free-solid-svg-icons';
 
 const Footer = () => {
     return (
@@ -21,18 +21,16 @@ const Footer = () => {
                 <div className={styles.footerContent}>
                     <div className={styles.footerBrand}>
                         <div className={styles.logoName}>
-                           
                             <div className={styles.chatSuppliesLogoWrapper}>
                                 <FontAwesomeIcon
-                                    icon={faComments} 
-                                    size="lg" 
-
+                                    icon={faComments}
+                                    size="lg"
                                     style={{ color: 'white' }}
                                 />
                             </div>
                             <span>ChatSupplies</span>
                         </div>
-                        <p>Your trusted partner for premium<br/> chat solutions and customer<br/> engagement tools.</p>
+                        <p>Your trusted partner for premium<br />chat solutions and customer<br />engagement tools.</p>
                         <div className={styles.socialIcons}>
                             <Link href="#" passHref>
                                 <FontAwesomeIcon icon={faFacebookF} size="sm" />
@@ -48,6 +46,7 @@ const Footer = () => {
                             </Link>
                         </div>
                     </div>
+
                     <div className={styles.footerLinks}>
                         <div className={styles.linkGroup}>
                             <h4>Products</h4>
@@ -58,19 +57,21 @@ const Footer = () => {
                                 <li><Link href="#">Integrations</Link></li>
                             </ul>
                         </div>
+
                         <div className={styles.linkGroup}>
                             <h4>Support</h4>
                             <ul>
                                 <li><Link href="#">Help Center</Link></li>
                                 <li><Link href="#">Documentation</Link></li>
                                 <li><Link href="#">API Reference</Link></li>
-                                <li><Link href="#">Contact Us</Link></li>
+                                <li><Link href="/Contacts">Contact Us</Link></li> {/* ✅ Route fixed */}
                             </ul>
                         </div>
+
                         <div className={styles.linkGroup}>
                             <h4>Company</h4>
                             <ul>
-                                <li><Link href="#">About Us</Link></li>
+                                <li><Link href="/About">About Us</Link></li> {/* ✅ Route fixed */}
                                 <li><Link href="#">Careers</Link></li>
                                 <li><Link href="#">Privacy Policy</Link></li>
                                 <li><Link href="#">Terms of Service</Link></li>
@@ -78,6 +79,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
+
                 <div className={styles.copyright}>
                     <p>&copy; 2024 ChatSupplies. All rights reserved.</p>
                 </div>

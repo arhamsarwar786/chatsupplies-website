@@ -143,7 +143,7 @@
 
 .storyText {
   font-size: 1rem;
-  font-weight:400 ;
+  font-weight: 400;
   color: #4b5563;
   margin: 0 0 1rem 0;
   line-height: 1.6;
@@ -177,6 +177,7 @@
 .storyTextContainer {
   overflow-x: visible !important;
 }
+
 .storyContentWrapper {
   overflow-x: visible !important;
 }
@@ -224,6 +225,7 @@
     margin-top: 3rem;
   }
 }
+
 /* Mission & Values Section */
 .missionValuesSection {
   margin-bottom: 4rem;
@@ -270,11 +272,18 @@
   padding: 1.8rem 1.25rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   text-align: center;
   width: 100%;
   max-width: 350px;
   margin: 0 auto;
+  /* Animation properties */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.missionValueCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 /* Icon Container */
@@ -296,9 +305,11 @@
 .missionIconBg {
   background-color: #e0e7ff;
 }
+
 .visionIconBg {
   background-color: #eef2ff;
 }
+
 .valuesIconBg {
   background-color: #fff7ed;
 }
@@ -307,9 +318,11 @@
 .missionIconColor {
   color: #6d28d9;
 }
+
 .visionIconColor {
   color: #8b5cf6;
 }
+
 .valuesIconColor {
   color: #fbbf24;
 }
@@ -374,6 +387,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* Animation properties */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.teamMemberCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .teamMemberImageContainer {
@@ -434,12 +454,13 @@
   color: #1f2937;
   margin-bottom: 2.5rem;
 }
+
 /* If the title for the recognition section has its own distinct class in JSX
-   like <h2 className={styles.recognitionSectionTitle}>, use that class for specificity.
-   Otherwise, ensure the global .sectionTitle is centered OR use a more specific selector
-   like .recognitionSection .sectionTitle if the title is nested.
-   Based on previous patterns, let's assume it uses .sectionTitle.
-   The .recognitionSection .sectionTitle selector would be best if it's nested: */
+    like <h2 className={styles.recognitionSectionTitle}>, use that class for specificity.
+    Otherwise, ensure the global .sectionTitle is centered OR use a more specific selector
+    like .recognitionSection .sectionTitle if the title is nested.
+    Based on previous patterns, let's assume it uses .sectionTitle.
+    The .recognitionSection .sectionTitle selector would be best if it's nested: */
 .recognitionSection .sectionTitle {
   text-align: center; /* Explicitly center for Recognition/Achievements */
   font-size: 2rem; /* Assuming default sectionTitle size unless otherwise specified */
@@ -490,6 +511,13 @@
   align-items: center !important;
   width: 100% !important;
   max-width: 400px !important;
+  /* Animation properties */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.recognitionItem:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 @media (min-width: 1024px) {
@@ -512,15 +540,37 @@
   font-size: 1.5rem !important;
 }
 
-.awardIconBg { background-color: #e0e7ff !important; }
-.growthIconBg { background-color: #e0e7ff !important; }
-.partnershipIconBg { background-color: #fff7ed !important; }
-.securityIconBg { background-color: #e0e7ff !important; }
+.awardIconBg {
+  background-color: #e0e7ff !important;
+}
 
-.awardIconColor { color: #6366f1 !important; }
-.growthIconColor { color: #6366f1 !important; }
-.partnershipIconColor { color: #f59e0b !important; }
-.securityIconColor { color: #6366f1 !important; }
+.growthIconBg {
+  background-color: #e0e7ff !important;
+}
+
+.partnershipIconBg {
+  background-color: #fff7ed !important;
+}
+
+.securityIconBg {
+  background-color: #e0e7ff !important;
+}
+
+.awardIconColor {
+  color: #6366f1 !important;
+}
+
+.growthIconColor {
+  color: #6366f1 !important;
+}
+
+.partnershipIconColor {
+  color: #f59e0b !important;
+}
+
+.securityIconColor {
+  color: #6366f1 !important;
+}
 
 .recognitionItemTitle {
   font-size: 1.4rem !important;
@@ -565,7 +615,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .ctaButtons {
   display: flex;
   flex-direction: column; /* Stack buttons on small screens */
@@ -586,7 +635,11 @@
 .ctaButtonPrimary {
   background-color: #ffffff; /* bg-white */
   color: #4f46e5; /* text-indigo-600 */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  /* Updated properties to match the image */
+  border-radius: 0.625rem; /* Slightly more rounded corners, 10px */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer, more spread out shadow */
+  font-size: 1.125rem; /* text-lg based on visual assessment */
+  padding: 1rem 2rem; /* Adjusted padding to make it larger */
 }
 
 .ctaButtonPrimary:hover {

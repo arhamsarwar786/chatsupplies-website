@@ -91,6 +91,9 @@
     margin-bottom: 4rem; /* Reduced margin-bottom for smaller screens */
     padding: 3rem 1rem; /* Reduced padding for very small screens */
     /* Increased space below the contact grid to separate from FAQ */
+    max-width: 95%; /* Decreased max-width slightly for smaller screens */
+    margin-left: auto; /* Center the grid */
+    margin-right: auto; /* Center the grid */
 }
 
 /* Card Styles - General */
@@ -362,7 +365,7 @@
 
 .faqContainer {
     width: 100%; /* Ensure it takes full width of its parent (faqContentWrapper) */
-    max-width: 900px; /* This will control the maximum width of the individual FAQ bars, centered within faqContentWrapper */
+    max-width: 850px; /* Adjusted: Decreased max-width for FAQ cards */
     margin: 0 auto; /* Center the FAQ bars within the faqContentWrapper */
     display: flex;
     flex-direction: column;
@@ -469,6 +472,7 @@
     }
 
     .contactGrid {
+        max-width: 90%; /* Decreased max-width for 480px and up */
         gap: 1.5rem;
         margin-bottom: 6rem;
         padding: 5rem 1.5rem;
@@ -573,6 +577,7 @@
         margin-bottom: 2.5rem;
     }
     .faqContainer {
+        max-width: 800px; /* Adjusted: Decreased max-width for FAQ cards at 480px and up */
         gap: 1.5rem;
     }
     .faqItem {
@@ -624,6 +629,7 @@
         gap: 1.5rem;
         padding-left: 3rem; /* Equal padding for tablet */
         padding-right: 3rem; /* Equal padding for tablet */
+        max-width: 85%; /* Decreased max-width for 768px and up */
     }
 
     .formRow {
@@ -633,6 +639,9 @@
     .faqContentWrapper {
         padding-left: 3rem;
         padding-right: 3rem;
+    }
+    .faqContainer {
+        max-width: 750px; /* Adjusted: Decreased max-width for FAQ cards at 768px and up */
     }
 }
 
@@ -652,8 +661,8 @@
         /* Critical change: allow mainContent to take more width */
         max-width: none;
         /* Allows mainContent to expand to viewport edges */
-        padding-left: 6rem; /* Equal padding for laptop */
-        padding-right: 6rem; /* Equal padding for laptop */
+        padding-left: 8rem; /* Increased padding for laptop to shrink effective content width */
+        padding-right: 8rem; /* Increased padding for laptop to shrink effective content width */
     }
 
     .contactGrid {
@@ -664,7 +673,7 @@
         /* Essential for stacking cards in the second column */
         gap: 2rem;
         /* Gap between the two main columns */
-        max-width: 1600px; /* Increased overall max width of the contact section */
+        max-width: 1300px; /* Decreased overall max width of the contact section */
         margin-left: auto;
         /* Center the grid within mainContent */
         margin-right: auto;
@@ -714,6 +723,6 @@
         max-width: 1400px; /* Further increase max-width for very large screens if needed */
     }
     .faqContainer {
-        max-width: 1000px; /* Set a specific max-width for FAQ bars on larger screens, adjust as desired */
+        max-width: 900px; /* Decreased max-width for FAQ bars on larger screens */
     }
 }

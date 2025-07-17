@@ -1,6 +1,5 @@
 "use client"; // This directive is typically for Next.js App Router components
 
-import Header from '../Component/NavBarPages'; // Import NavBar component
 import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
 import React, { useEffect } from 'react';
 import styles from '../styles/AboutPage.module.css'; // Corrected import to AboutPage.module.css
@@ -60,7 +59,6 @@ const AboutUsPage = () => {
 
   return (
     <div className={styles.aboutContainer}>
-      <Header />
 
       {/* Hero Section - No change in color */}
       <section className={styles.aboutHeroSection}>

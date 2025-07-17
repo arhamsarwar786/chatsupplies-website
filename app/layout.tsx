@@ -2,24 +2,24 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "./Component/Navbar";
-import NavBarPages from "./Component/NavBarPages"; // Import NavBar component
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import './globals.css';
+import LayoutWrapper from './Component/LayoutWrapper'; // 👈 Import the new wrapper
+
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
-  title: "ChatSupplies - Smart Chat Solutions",
-  description: "Premium chatbot tools and AI-powered customer support solutions",
+  title: 'ChatSupplies - Smart Chat Solutions',
+  description: 'Premium chatbot tools and AI-powered customer support solutions',
 };
 
 export default function RootLayout({
@@ -30,8 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}>
-        <Navbar />
-        <main>{children}</main>
+        <LayoutWrapper>
+          <main>{children}</main>
+        </LayoutWrapper>
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import Header from '../Component/NavBarPages'; // Import NavBar component
 import Footer from '../Component/Footer';
 import React, { useState } from 'react';
 import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
@@ -50,7 +49,7 @@ const FAQItem = ({ question, answer }) => {
 const ContactsPage = () => {
     return (
         <div className={styles.container}>
-            <Header />
+            
 
             <section className={styles.heroSection}>
                 <div className={styles.heroContentWrapper}>

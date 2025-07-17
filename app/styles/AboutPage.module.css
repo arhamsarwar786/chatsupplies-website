@@ -544,7 +544,6 @@
   color: #ffffff; /* text-white */
   padding: 4rem 2rem; /* py-16 px-8 */
   text-align: center;
-  border-radius: 0.75rem; /* rounded-xl */
   margin-bottom: 0; /* mb-16 */
   width: 100vw; /* Occupy full viewport width */
   margin-left: calc(50% - 50vw); /* Center it by negating default margin */

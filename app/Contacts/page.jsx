@@ -1,11 +1,27 @@
 "use client";
 
 import Header from '../Component/NavBarPages'; // Import NavBar component
-import Footer from '../Component/Footer'; 
+import Footer from '../Component/Footer';
 import React, { useState } from 'react';
 import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
 
-// Header Component (Included for self-containment to match P1.PNG exactly)
+// Import Font Awesome components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faClock, // For 24/7 Support
+    faBolt, // For Quick Response
+    faUsers, // For Expert Team
+    faLocationDot, // For Address
+    faPhone, // For Phone
+    faEnvelope, // For Email
+    faChevronDown // For FAQ arrow
+} from '@fortawesome/free-solid-svg-icons';
+import {
+    faTwitter,
+    faLinkedinIn,
+    faFacebookF,
+    faInstagram
+} from '@fortawesome/free-brands-svg-icons';
 
 
 // FAQ Item Component
@@ -18,15 +34,10 @@ const FAQItem = ({ question, answer }) => {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {question}
-                <svg
+                <FontAwesomeIcon
+                    icon={faChevronDown}
                     className={`${styles.faqArrowIcon} ${isOpen ? styles.faqArrowOpen : ''}`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
+                />
             </button>
             {isOpen && (
                 <p className={styles.faqAnswer}>{answer}</p>
@@ -35,7 +46,6 @@ const FAQItem = ({ question, answer }) => {
     );
 };
 
-// Main Contact Page Component
 // Main Contact Page Component
 const ContactsPage = () => {
     return (
@@ -50,15 +60,15 @@ const ContactsPage = () => {
                     </p>
                     <div className={styles.heroFeatures}>
                         <div className={styles.heroFeatureItem}>
-                            <svg className={styles.heroIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <FontAwesomeIcon icon={faClock} className={styles.heroIcon} />
                             24/7 Support
                         </div>
                         <div className={styles.heroFeatureItem}>
-                            <svg className={styles.heroIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <FontAwesomeIcon icon={faBolt} className={styles.heroIcon} />
                             Quick Response
                         </div>
                         <div className={styles.heroFeatureItem}>
-                            <svg className={styles.heroIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.653-.192-1.268-.516-1.806A7.472 7.472 0 0015 10.5a2.25 2.25 0 00-2.25-2.25h-.5A2.25 2.25 0 0010 10.5c0 1.099-.308 2.122-.844 3.036-.324.538-.516 1.153-.516 1.806v2H7m3-2.25a4.5 4.5 0 00-4.5-4.5H5.25A2.25 2.25 0 003 10.5c0-.653-.192-1.268-.516-1.806A7.472 7.472 0 002.25 10.5a2.25 2.25 0 00-2.25-2.25h-.5A2.25 2.25 0 00-3 10.5c0 1.099-.308 2.122-.844 3.036-.324.538-.516 1.153-.516 1.806v2H-3"></path></svg>
+                            <FontAwesomeIcon icon={faUsers} className={styles.heroIcon} />
                             Expert Team
                         </div>
                     </div>
@@ -150,18 +160,22 @@ const ContactsPage = () => {
                     <div className={styles.infoCard}>
                         <h2 className={styles.infoTitle}>Contact Information</h2>
 
-                        {/* Address Group */}
+                        {/* Address Group - MODIFIED */}
                         <div className={styles.infoGroup}>
-                            <svg className={styles.infoIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path></svg>
-                            <div> {/* No special wrapper needed here, just a div for the text content */}
+                            {/* Icon for Address, now Font Awesome */}
+                            <FontAwesomeIcon icon={faLocationDot} className={styles.infoIcon} />
+                            <div> {/* This div now holds both subtitle and text */}
                                 <p className={styles.infoSubtitle}>Address</p>
-                                <p className={styles.infoText}>123 AI Street, Tech Valley<br />San Francisco, CA 94102</p>
+                                <p className={styles.infoText}>
+                                    123 AI Street, Tech Valley<br />
+                                    San Francisco, CA 94102
+                                </p>
                             </div>
                         </div>
 
                         {/* Phone Group */}
                         <div className={styles.infoGroup}>
-                            <svg className={styles.infoIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 17.006V19a2 2 0 01-2 2H6a2 2 0 01-2-2v-1.994l2-.997L7.493 14H16.507l1.493 1.997 2 .997zM20 7.006V9a2 2 0 01-2 2H6a2 2 0 01-2-2V7.006l2-.997L7.493 4H16.507l1.493 1.997 2 .997z"></path></svg>
+                            <FontAwesomeIcon icon={faPhone} className={styles.infoIcon} />
                             <div> {/* No special wrapper needed here, just a div for the text content */}
                                 <p className={styles.infoSubtitle}>Phone</p>
                                 <p className={styles.infoText}>+1 (555) 123-4567</p>
@@ -170,7 +184,7 @@ const ContactsPage = () => {
 
                         {/* Email Group */}
                         <div className={styles.infoGroup}>
-                            <svg className={styles.infoIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 002-2zm0 2v.5L12 11 4 6.5V6h16zM4 18V9.5l8 4.5 8-4.5V18H4z"></path></svg>
+                            <FontAwesomeIcon icon={faEnvelope} className={styles.infoIcon} />
                             <div> {/* No special wrapper needed here, just a div for the text content */}
                                 <p className={styles.infoSubtitle}>Email</p>
                                 <p className={styles.infoText}>hello@aichatsupplies.com</p>
@@ -202,20 +216,16 @@ const ContactsPage = () => {
                         <h2 className={styles.socialTitle}>Follow Us</h2>
                         <div className={styles.socialIcons}>
                             <a href="#" className={styles.socialIconLink}>
-                                {/* Twitter Icon */}
-                                <svg className={styles.socialIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6c-.77.34-1.6.56-2.46.66.89-.53 1.5-1.37 1.8-2.36-.83.49-1.74.84-2.72 1.03C18.3 3.66 17.15 3 15.82 3c-2.3 0-4.17 1.87-4.17 4.17 0 .33.04.65.11.96-3.47-.17-6.53-1.84-8.58-4.33-.36.6-.57 1.3-.57 2.04 0 1.44.73 2.7 1.84 3.44-.68-.02-1.3-.2-1.85-.5v.05c0 2.02 1.44 3.7 3.35 4.09-.35.09-.72.14-1.1.14-.27 0-.53-.02-.79-.07.53 1.66 2.07 2.87 3.9 2.9-.66.52-1.5 1-2.42 1-.16 0-.32-.01-.47-.03 1.85 1.18 4.07 1.87 6.46 1.87 7.74 0 11.98-6.4 11.98-11.98 0-.18-.01-.35-.01-.53.82-.59 1.54-1.33 2.1-2.18z" /></svg>
+                                <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
                             </a>
                             <a href="#" className={styles.socialIconLink}>
-                                {/* LinkedIn Icon */}
-                                <svg className={styles.socialIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.564c0-1.393-.027-3.187-1.947-3.187-1.952 0-2.25 1.524-2.25 3.097v5.654H9.109V9h3.414v1.564h.046c.477-.9 1.637-1.853 3.369-1.853 3.606 0 4.275 2.367 4.275 5.438v6.503zM7.003 7.719a2.76 2.76 0 01-2.77 2.753 2.76 2.76 0 01-2.77-2.753c0-1.523 1.25-2.753 2.77-2.753s2.77 1.23 2.77 2.753zm-3.554 12.733H7.003V9H3.449v11.452z" /></svg>
+                                <FontAwesomeIcon icon={faLinkedinIn} className={styles.socialIcon} />
                             </a>
                             <a href="#" className={styles.socialIconLink}>
-                                {/* Facebook Icon */}
-                                <svg className={styles.socialIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.35C0 23.407.593 24 1.325 24h11.492v-9.294H9.692V11.237h3.125V8.71c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.79.143v3.24l-1.914.001c-1.503 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.626h-3.12V24h6.115c.732 0 1.325-.593 1.325-1.325V1.325C24 .593 23.407 0 22.675 0z" /></svg>
+                                <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
                             </a>
                             <a href="#" className={styles.socialIconLink}>
-                                {/* Instagram Icon */}
-                                <svg className={styles.socialIcon} fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.386.903.426.426.686.824.903 1.386.166.422.36 1.057.415 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.071 4.85c-.055 1.17-.249 1.805-.415 2.227-.217.562-.477.96-.903 1.386-.426.426-.686.824-.903 1.386-.166.422-.36 1.057-.415 2.227-.059 1.266-.071 1.646-.071 4.85s.012 3.584.071 4.85c.055 1.17.249 1.805.415 2.227.217.562.477-.96.903-1.386.426.426.824-.686 1.386-.903.422-.166 1.057-.36 2.227-.415C8.416 2.175 8.796 2.163 12 2.163zm0 1.412c-3.102 0-3.486.011-4.706.068-1.082.051-1.581.205-1.83.303-.383.14-.658.318-.925.584-.267.267-.444.542-.584.925-.098.249-.252.748-.303 1.83-.057 1.22-.068 1.604-.068 4.706s.011 3.486.068 4.706c.051 1.082.205 1.581.303 1.83.14.383.318.658.584.925.267.267.542.444.925.584.249.098.748.252 1.83.303 1.22.057 1.604.068 4.706.068s3.486-.011 4.706-.068c1.082-.051 1.581-.205 1.83-.303.14-.383.318-.658.584-.925.267-.267.542-.444.584-.925-.098-.249-.252-.748-.303-1.83-.057-1.22-.068-1.604-.068-4.706s-.011-3.486-.068-4.706c-.051-1.082-.205-1.581-.303-1.83-.14-.383-.318-.658-.584-.925-.267-.267-.542-.444-.925-.584-.249-.098-.748-.252-1.83-.303-1.22-.057-1.604-.068-4.706-.068zm0 1.802A3.333 3.333 0 1112 17.21c1.84 0 3.333-1.493 3.333-3.333s-1.493-3.333-3.333-3.333zm0 1.412a1.921 1.921 0 100 3.842 1.921 1.921 0 000-3.842zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" /></svg>
+                                <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
                             </a>
                         </div>
                     </div>

@@ -182,18 +182,21 @@ const AboutUsPage = () => {
                 name="Alex Johnson"
                 title="CEO & Founder"
                 description="Former Google AI researcher with 15+ years in machine learning and natural language processing."
+                unoptimized
               />
               <TeamMemberCard
                 imageSrc="https://randomuser.me/api/portraits/women/44.jpg"
                 name="Sarah Chen"
                 title="CTO"
                 description="AI architect and former Microsoft principal engineer, specializing in conversational AI and scalable systems."
+                unoptimized
               />
               <TeamMemberCard
                 imageSrc="https://randomuser.me/api/portraits/men/75.jpg"
                 name="Michael Rodriguez"
                 title="Head of Product"
                 description="Product strategist with expertise in user experience design and AI product development at scale."
+                unoptimized
               />
             </div>
           </div>

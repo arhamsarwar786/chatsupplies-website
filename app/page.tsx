@@ -10,9 +10,9 @@ import WhyChooseUs from './Component/WhyChooseUs'; // This is from Pic 3, below 
 import Testimonials from './Component/Testimonial'; // This is from Pic 4
 import CallToAction from './Component/CallToAction'; // This is from Pic 4, below Testimonials
 import Footer from './Component/Footer'; // This is from Pic 5
-import ContactsPage from './Pages/ContactsPage'
-import AboutPage from './Pages/AboutPage';
-import ProductsPage from './Pages/ProductsPage';
+import ContactsPage from './Contacts/page'
+import AboutPage from './About/page';
+import ProductsPage from './Products/page';
 
 
 export default function Home() {

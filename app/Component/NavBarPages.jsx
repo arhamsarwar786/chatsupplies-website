@@ -1,22 +1,52 @@
-import styles from './NavBarPages.module.css'; // Adjust path if needed
+"use client";
+
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import styles from './NavBarPages.module.css';
 
 const Header = () => {
+    const router = useRouter();
+
+    const handleGetStarted = () => {
+        router.push('/Contacts'); // 👈 Capitalized to match folder name exactly
+    };
+
     return (
         <header className={styles.header}>
-            <div className={styles.headerLogo}>AI Chat Supplies</div>
+            {/* Logo with Link */}
+            <div className={styles.headerLogo}>
+                <Link href="/" className={styles.headerLogoLink}>
+                    AI Chat Supplies
+                </Link>
+            </div>
 
+            {/* Main Navigation */}
             <nav className={styles.headerNav}>
-                <a href="/" className={styles.headerNavLink}>Home</a>
-                <a href="/products" className={styles.headerNavLink}>Products</a>
-                <a href="/about" className={styles.headerNavLink}>About</a>
-                <a href="/contact" className={styles.headerNavLink}>Contact</a>
+                <Link href="/" className={styles.headerNavLink}>
+                    Home
+                </Link>
+                <Link href="/Products" className={styles.headerNavLink}>
+                    Products
+                </Link>
+                <Link href="/About" className={styles.headerNavLink}>
+                    About
+                </Link>
+                <Link href="/Contacts" className={styles.headerNavLink}>
+                    Contact
+                </Link>
             </nav>
 
-            <button className={styles.headerButton}>
+            {/* CTA Button */}
+            <button
+                className={styles.headerButton}
+                onClick={handleGetStarted}
+                aria-label="Get Started"
+            >
                 Get Started
             </button>
 
-            <div className={styles.mobileMenuIcon}>
+            {/* Mobile Menu Icon */}
+            <div className={styles.mobileMenuIcon} aria-label="Menu">
                 <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>

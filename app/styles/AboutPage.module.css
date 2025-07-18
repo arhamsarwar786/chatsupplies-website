@@ -238,13 +238,10 @@
     }
 }
 
-/* Optional: If the entire story section feels too close to the edge on mobile,
-   you might want to ensure padding on .storySection or its parent.
-   Currently, .storySection has padding: 0 1.5rem; which should handle it. */
 /* Mission & Values Section */
 .missionValuesSection {
   margin-bottom: 4rem;
-  text-align: center; /* This centers the overall section content, including title */
+  text-align: center;
 }
 
 .missionValuesInner {
@@ -253,46 +250,48 @@
   padding: 0 1.5rem;
 }
 
-/* .sectionTitle for Mission & Values (re-declared or specific instance) */
-/* Ensure this rule is separate or more specific if there's a global .sectionTitle */
-/* The previous sectionTitle rule might be global, so we're making this one specific */
-.missionValuesSection .sectionTitle { /* More specific selector */
+.missionValuesSection .sectionTitle {
   font-size: 2rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 2.5rem; /* Added space below title */
-  text-align: center; /* Explicitly center for Mission & Values */
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
 .missionValuesGrid {
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
-  gap: 0.5rem; /* Decreased gap for mobile */
-  margin-top: 3.5rem; /* Additional spacing between title and cards */
+  gap: 0.5rem; /* Gap for mobile (vertical spacing between cards) */
+  margin-top: 3.5rem;
+
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Desktop view - side by side cards */
 @media (min-width: 768px) {
   .missionValuesGrid {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.125rem; /* Further decreased horizontal gap for desktop */
-    /* padding: 0.025; - Removed this typo */
+    gap: 1.5rem;
+    max-width: 900px;
   }
 }
 
 /* Card styling */
 .missionValueCard {
   background-color: #ffffff;
-  padding: 1.8rem 1.25rem;
+  /* INCREASE HEIGHT by increasing vertical padding from 0.8rem */
+  padding: 1rem 1.25rem; /* Increased vertical padding slightly */
   border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
   text-align: center;
+
   width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
-  /* Animation properties */
+  margin: 0;
+
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -301,123 +300,116 @@
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
+/* For mobile, cards should be centered and have a max-width if desired */
+@media (max-width: 767px) {
+    .missionValueCard {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
+
+
 /* Icon Container */
 .missionValueIconContainer {
-  width: 4.5rem;
-  height: 4.5rem;
+  /* Increased icon container size and margin from previous very small values */
+  width: 4rem; /* Increased from 3.5rem */
+  height: 4rem; /* Increased from 3.5rem */
   border-radius: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto 1.25rem auto;
+  margin: 0 auto 1rem auto; /* Increased margin-bottom from 0.75rem */
 }
 
 .missionValueIcon {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* Increased from 1.2rem */
 }
 
-/* Icon Background Colors (Ensure these are separate from general icon containers if colors vary) */
-.missionIconBg {
-  background-color: #e0e7ff;
-}
+/* Icon Background Colors */
+.missionIconBg { background-color: #e0e7ff; }
+.visionIconBg { background-color: #eef2ff; }
+.valuesIconBg { background-color: #eef2ff; }
 
-.visionIconBg {
-  background-color: #eef2ff;
-}
-
-.valuesIconBg {
-  background-color: #fff7ed;
-}
-
-/* Icon Colors (Ensure these are separate from general icon containers if colors vary) */
-.missionIconColor {
-  color: #6d28d9;
-}
-
-.visionIconColor {
-  color: #8b5cf6;
-}
-
-.valuesIconColor {
-  color: #fbbf24;
-}
+/* Icon Colors */
+.missionIconColor { color: #6d28d9; }
+.visionIconColor { color: #8b5cf6; }
+.valuesIconColor { color: #fbbf24; }
 
 /* Card Title */
 .missionValueTitle {
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* Increased from 1.3rem */
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem; /* Increased from 0.75rem */
   text-align: center;
 }
 
 /* Card Description */
 .missionValueText {
-  font-size: 1.2rem;
+  font-size: 1.1rem; /* Increased from 1rem */
   color: #4b5563;
-  line-height: 1.625;
+  line-height: 1.625; /* Back to original line height for readability */
 }
 
 
 /* Meet Our Team Section */
 .teamSection {
-  margin-bottom: 4rem; /* mb-16 */
-  text-align: center; /* This centers the overall section content, including title */
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
-/* .sectionTitle for Meet Our Team (re-declared or specific instance) */
-.teamSection .sectionTitle { /* More specific selector */
-  font-size: 2.5rem; /* Adjusted based on previous instructions for this specific title */
+.teamSection .sectionTitle {
+  font-size: 2.5rem;
   margin-bottom: -0.5rem;
-  text-align: center; /* Explicitly center for Meet Our Team */
-  font-weight: 700; /* Ensure font-weight is consistent if not overridden */
-  color: #1f2937; /* Ensure color is consistent if not overridden */
+  text-align: center;
+  font-weight: 700;
+  color: #1f2937;
 }
 
-.teamInner { /* Added for content padding */
+.teamInner {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 .teamSubtitle {
-  font-size: 1.2rem; /* text-lg */
-  color: #4b5563; /* text-gray-600 */
-  margin-bottom: 2.5rem; /* mb-10 */
+  font-size: 1.2rem;
+  color: #4b5563;
+  margin-bottom: 2.5rem;
 }
 
 .teamGrid {
   display: grid;
-  grid-template-columns: 1fr; /* Single column by default */
-  gap: 2rem; /* gap-8 */
+  grid-template-columns: 1fr;
+  gap: 2rem; /* reduced vertical spacing */
 }
 
 .teamMemberCard {
-  background-color: #ffffff; /* bg-white */
-  padding: 2rem; /* p-8 */
-  border-radius: 0.75rem; /* rounded-xl */
+  background-color:#FFFAFA;
+  padding: 1.25rem; /* reduced from 2rem */
+  border-radius: 0.75rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* Animation properties */
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .teamMemberCard:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .teamMemberImageContainer {
-  width: 7.5rem; /* w-32 */
-  height: 7.5rem; /* h-32 */
-  border-radius: 9999px; /* rounded-full */
+  width: 6rem; /* reduced from 7.5rem */
+  height: 6rem;
+  border-radius: 9999px;
   overflow: hidden;
-  margin-bottom: 1.5rem; /* mb-6 */
-  border: 4px solid #eef2ff; /* border-4 border-indigo-50 */
+  margin-bottom: 1rem; /* reduced from 1.5rem */
+  border: 4px solid #eef2ff;
 }
 
 .teamMemberImage {
@@ -427,26 +419,27 @@
 }
 
 .teamMemberName {
-  font-size: 1.25rem; /* text-xl */
-  font-weight: 700; /* font-bold */
-  color: #1f2937; /* text-gray-800 */
-  margin-bottom: 0.25rem; /* mb-1 */
-  text-align: center; /* Centered name */
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.15rem; /* reduced from 0.25rem */
+  text-align: center;
 }
 
 .teamMemberTitle {
-  font-size: 1rem; /* text-base */
-  font-weight: 500; /* font-medium */
-  color: #4f46e5; /* text-indigo-600 */
-  margin-bottom: 1rem; /* mb-4 */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4f46e5;
+  margin-bottom: 0.5rem; /* reduced from 1rem */
 }
 
 .teamMemberDescription {
-  font-size: 0.875rem; /* text-sm */
-  color: #4b5563; /* text-gray-600 */
-  line-height: 1.5; /* leading-relaxed */
-  max-width: 24rem; /* max-w-xs */
+  font-size: 0.8rem; /* slightly smaller */
+  color: #4b5563;
+  line-height: 1.5;
+  max-width: 20rem; /* slightly narrower */
 }
+
 
 /* Recognition Section (Assuming this is "Our Achievements") */
 .recognitionSection {

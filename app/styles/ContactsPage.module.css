@@ -82,8 +82,8 @@
     margin-right: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    padding-left: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
-    padding-right: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
+    padding-left: 0.5rem; /* MODIFIED: Further decreased to allow more card width */
+    padding-right: 0.5rem; /* MODIFIED: Further decreased to allow more card width */
     flex-grow: 1;
 }
 
@@ -93,9 +93,9 @@
     grid-template-columns: 1fr;
     /* Default to single column for mobile */
     gap: 1.25rem; /* Slightly reduced gap for smaller screens */
-    padding: 3rem 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
+    padding: 3rem 0; /* Horizontal padding removed here, handled by .mainContent now */
     /* Increased space below the contact grid to separate from FAQ */
-    max-width: 95%; /* Decreased max-width slightly for smaller screens */
+    max-width: 98%; /* MODIFIED: Increased to allow cards to take more width on mobile */
     margin-left: auto; /* Center the grid */
     margin-right: auto; /* Center the grid */
 }
@@ -107,7 +107,7 @@
 .followUsCard {
     background-color: #fcfcfc;
     /* Changed to off-white */
-    padding: 1rem; /* DECREASED PADDING FOR ALL CARDS ON MOBILE (INTERNAL CARD PADDING) */
+    padding: 1rem; /* INTERNAL CARD PADDING - KEPT AS IS */
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -341,8 +341,8 @@
     background-color: #f9fafb;
     width: 100%;
     margin: 0 auto;
-    padding-left: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
-    padding-right: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
+    padding-left: 0.5rem; /* MODIFIED: Further decreased to allow more card width */
+    padding-right: 0.5rem; /* MODIFIED: Further decreased to allow more card width */
     max-width: 1200px;
 }
 
@@ -464,14 +464,14 @@
     }
 
     .mainContent {
-        padding-left: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
-        padding-right: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
+        padding-left: 0.75rem; /* MODIFIED: Decreased to allow more card width */
+        padding-right: 0.75rem; /* MODIFIED: Decreased to allow more card width */
     }
 
     .contactGrid {
-        max-width: 90%;
+        max-width: 95%; /* MODIFIED: Increased to allow cards to take more width on tablet */
         gap: 1.5rem;
-        padding: 5rem 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
+        padding: 5rem 0; /* Horizontal padding removed here, handled by .mainContent now */
     }
 
     .formCard,
@@ -485,6 +485,8 @@
         margin-bottom: 1.25rem;
     }
     .form {
+        display: flex; /* Ensure flex is set here */
+        flex-direction: column;
         gap: 1.25rem;
     }
     .formRow {
@@ -563,8 +565,8 @@
         padding-bottom: 5rem; /* FIX: Added padding to the bottom of FAQ section for tablet (480px+) */
     }
     .faqContentWrapper {
-        padding-left: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
-        padding-right: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
+        padding-left: 0.75rem; /* MODIFIED: Decreased to allow more card width */
+        padding-right: 0.75rem; /* MODIFIED: Decreased to allow more card width */
     }
     .faqTitle {
         font-size: 2.25rem;
@@ -617,16 +619,16 @@
     }
 
     .mainContent {
-        padding-left: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
-        padding-right: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
+        padding-left: 1rem; /* MODIFIED: Decreased to allow more card width */
+        padding-right: 1rem; /* MODIFIED: Decreased to allow more card width */
     }
 
     .contactGrid {
         grid-template-columns: 1fr 1fr;
         gap: 1.5rem;
-        padding-left: 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
-        padding-right: 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
-        max-width: 85%;
+        padding-left: 0; /* Horizontal padding removed here, handled by .mainContent now */
+        padding-right: 0; /* Horizontal padding removed here, handled by .mainContent now */
+        max-width: 90%; /* MODIFIED: Increased to allow cards to take more width on larger tablet */
     }
 
     .formRow {
@@ -634,8 +636,8 @@
     }
 
     .faqContentWrapper {
-        padding-left: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
-        padding-right: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
+        padding-left: 1rem; /* MODIFIED: Decreased to allow more card width */
+        padding-right: 1rem; /* MODIFIED: Decreased to allow more card width */
     }
     .faqContainer {
         max-width: 750px;

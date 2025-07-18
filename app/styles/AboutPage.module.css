@@ -81,151 +81,166 @@
 .aboutHeroFeatureItem {
   font-weight: 600;
   font-size: 1rem;
+  display: flex; /* Make it a flex container to align icon and text */
+  align-items: center; /* Vertically center icon and text */
 }
+
+/* New style for spacing the icon from the text */
+.aboutHeroFeatureItem .fas {
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+.aboutHeroFeatureItem i,
+.aboutHeroFeatureItem svg {
+  margin-right: 0.5rem; /* Space between icon and text */
+}
+
 
 /* Our Story Section */
 .storySection {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1.5rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.5rem; /* Keep existing horizontal padding */
 }
 
 .sectionTitle {
-  font-size: 2rem;
-  font-weight: 800;
-  color: #1a202c;
-  margin-bottom: 1.5rem;
-  text-align: left;
-  width: 100%;
-  margin-left: 0;
-  padding-left: 0;
-  margin-top: -0.3rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    width: 100%;
+    /* Removed margin-left: 0; padding-left: 0; as they are default or handled by parent */
+    margin-top: -0.3rem;
 }
 
 @media (min-width: 1024px) {
-  .sectionTitle {
-    text-align: left;
-  }
+    .sectionTitle {
+        text-align: left;
+    }
 }
 
 .storyContentWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 3rem;
-  padding: 0;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align children to the start (left) */
+    gap: 3rem;
+    padding: 0; /* Keep existing padding */
+    text-align: left;
+    /* Removed overflow-x: visible !important; as it might hide parent clipping issues */
 }
 
 @media (min-width: 768px) {
-  .storyContentWrapper {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+    .storyContentWrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
 
-  .storyTextContainer {
-    flex: 1;
-    max-width: 50%;
-    padding-right: 3rem;
-    margin-top: -2.5rem;
-  }
+    .storyTextContainer {
+        flex: 1;
+        max-width: 50%;
+        padding-right: 3rem;
+        margin-top: -2.5rem;
+        /* Removed overflow-x: visible !important; */
+    }
 
-  .storyImageContainer {
-    flex: 1;
-    max-width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .storyImageContainer {
+        flex: 1;
+        max-width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .storyText {
-  font-size: 1rem;
-  font-weight: 400;
-  color: #4b5563;
-  margin: 0 0 1rem 0;
-  line-height: 1.6;
-  margin-top: 2rem;
-  text-align: left;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #4b5563;
+    margin: 0 0 1rem 0;
+    line-height: 1.6;
+    margin-top: 2rem;
+    text-align: left;
 }
 
 @media (max-width: 767px) {
-  .storyText {
-    text-align: left;
-  }
+    .storyText {
+        text-align: left;
+    }
 }
 
 .storyStats {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
-  margin-left: -4rem; /* More aggressive pull */
-  padding-left: 4rem; /* Compensating padding */
-  padding-right: 0;
-  align-items: flex-start;
-  position: relative;
-  width: calc(100% + 4rem);
-  left: -4.5rem; /* Additional manual adjustment */
-  transform: translateX(-1rem); /* Final nudge */
+    display: flex;
+    flex-direction: row; /* Stays row for mobile */
+    justify-content: flex-start; /* Align stats to the left */
+    gap: 1.5rem; /* Space between stat items */
+    margin-top: 0.5rem;
+
+    /* --- RESPONSIVENESS FIXES START HERE --- */
+    /* Remove all previous aggressive negative positioning: */
+    margin-left: 0; /* Remove aggressive pull */
+    padding-left: 0; /* Remove compensating padding */
+    padding-right: 0;
+    position: static; /* Reset position */
+    width: auto; /* Reset width */
+    left: auto; /* Reset left */
+    transform: none; /* Remove final nudge */
+
+    /* For mobile, ensure internal padding/spacing handles the left alignment */
+    /* If .storyTextContainer has padding, it will automatically indent.
+       If it doesn't, or if you want more specific control, add padding here. */
+    padding-left: 0; /* Or adjust if you want internal padding for the stats row itself */
 }
 
-/* Add this to ensure parent containers don't clip the content */
-.storyTextContainer {
-  overflow-x: visible !important;
-}
-
-.storyContentWrapper {
-  overflow-x: visible !important;
-}
-
+/* Ensure stat items don't have unnecessary margins */
 .statItem {
-  text-align: left;
-  padding: 0;
-  margin: 0;
+    text-align: left; /* Keep text aligned left within each stat */
+    padding: 0;
+    margin: 0;
 }
 
 .statNumber {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #4f46e5;
-  line-height: 0.9;
-  margin: 0;
-  padding: 0;
-  letter-spacing: -1px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #4f46e5;
+    line-height: 0.9;
+    margin: 0;
+    padding: 0;
+    letter-spacing: -1px;
 }
 
 .statLabel {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #374151;
-  text-align: left;
-  line-height: 1.1;
-  padding-left: 0;
-  margin-left: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #374151;
+    text-align: left;
+    line-height: 1.1;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .storyImage {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 500px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-  margin-top: -2rem;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    margin-top: -2rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 767px) {
-  .storyImage {
-    margin-top: 3rem;
-  }
+    .storyImage {
+        margin-top: 3rem;
+    }
 }
 
+/* Optional: If the entire story section feels too close to the edge on mobile,
+   you might want to ensure padding on .storySection or its parent.
+   Currently, .storySection has padding: 0 1.5rem; which should handle it. */
 /* Mission & Values Section */
 .missionValuesSection {
   margin-bottom: 4rem;

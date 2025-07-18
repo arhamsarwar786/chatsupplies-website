@@ -68,9 +68,15 @@ const AboutUsPage = () => {
             We are passionate about building innovative AI solutions that empower businesses and delight customers.
           </p>
           <div className={styles.aboutHeroFeatures}>
-            <div className={styles.aboutHeroFeatureItem}>AI-Driven</div>
-            <div className={styles.aboutHeroFeatureItem}>Customer-Centric</div>
-            <div className={styles.aboutHeroFeatureItem}>Innovation</div>
+            <div className={styles.aboutHeroFeatureItem}>
+              <i className="fas fa-rocket"></i> Innovation First
+            </div>
+            <div className={styles.aboutHeroFeatureItem}>
+              <i className="fas fa-users"></i> Customer Focused
+            </div>
+            <div className={styles.aboutHeroFeatureItem}>
+              <i className="fas fa-crown"></i> Industry Leading
+            </div>
           </div>
         </div>
       </section>
@@ -82,11 +88,11 @@ const AboutUsPage = () => {
           <div className={styles.storyContentWrapper}>
             <div className={`${styles.storyTextContainer} ${styles.storyOrderText}`}>
               <p className={styles.storyText}>
-                Founded in 2020, AI Chat Supplies emerged from a simple observation:<br/> 
+                Founded in 2020, AI Chat Supplies emerged from a simple observation:<br />
                 businesses were struggling to provide instant, personalized customer support at scale. Our founders, experienced in AI and customer service, saw an opportunity to bridge this gap.
               </p>
               <p className={styles.storyText}>
-                What started as a small team of passionate engineers has grown into a<br/> 
+                What started as a small team of passionate engineers has grown into a<br />
                 leading provider of AI chat solutions, serving thousands of businesses worldwide. We believe that every customer interaction should be meaningful, efficient, and human-like.
               </p>
               <div className={styles.storyStats}>
@@ -141,11 +147,11 @@ const AboutUsPage = () => {
                 title="Vision"
                 description={
                   <>
-                  To become the global leader<br/> 
-                  in AI chat solutions, making<br/>
-                  advanced conversational AI<br/> 
-                  accessible to businesses of<br/> 
-                  all sizes worldwide.
+                    To become the global leader<br />
+                    in AI chat solutions, making<br />
+                    advanced conversational AI<br />
+                    accessible to businesses of<br />
+                    all sizes worldwide.
                   </>
                 }
               />
@@ -156,11 +162,11 @@ const AboutUsPage = () => {
                 title="Values"
                 description={
                   <>
-                  Innovation, transparency,<br/> 
-                  customer-centricity, and<br/> 
-                  ethical AI development guide<br/> 
-                  everything we do in our<br/> 
-                  pursuit of excellence.
+                    Innovation, transparency,<br />
+                    customer-centricity, and<br />
+                    ethical AI development guide<br />
+                    everything we do in our<br />
+                    pursuit of excellence.
                   </>
                 }
               />

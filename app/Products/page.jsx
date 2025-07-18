@@ -1,292 +1,296 @@
 "use client";
 import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/ProductsPage.module.css';
+import styles from '../styles/ProductsPage.module.css'; // Your CSS Module
 
 
 // Product Card Component - Now uses Font Awesome icons and dynamic background colors
 const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, price, features, rating, reviews }) => {
-  console.log(`ProductCard: ${title}, iconBgClass: ${iconBgClass}, Resolved Class: ${styles[iconBgClass]}`);
+    console.log(`ProductCard: ${title}, iconBgClass: ${iconBgClass}, Resolved Class: ${styles[iconBgClass]}`);
 
-  return (
-    <div className={styles.productCard}>
-      <div className={`${styles.productIconContainer} ${styles[iconBgClass] || ''}`}>
-        <i className={`${iconClass} ${styles.productFaIcon}`}></i>
-      </div>
-      <h3 className={styles.productTitle}>{title}</h3>
-      {/* Added description paragraph */}
-      <p className={styles.productDescription}>{description}</p>
+    return (
+        <div className={styles.productCard}>
+            <div className={`${styles.productIconContainer} ${styles[iconBgClass] || ''}`}>
+                <i className={`${iconClass} ${styles.productFaIcon}`}></i>
+            </div>
+            <h3 className={styles.productTitle}>{title}</h3>
+            {/* Added description paragraph */}
+            <p className={styles.productDescription}>{description}</p>
 
-      {/* ✅ Price and rating row */}
-      <div className={styles.productPriceRatingRow}>
-        <p className={styles.productPrice}>{price}</p>
-        <div className={styles.productRating}>
-          <span className={styles.starIcon}>★</span> {rating} ({reviews})
+            {/* ✅ Price and rating row */}
+            <div className={styles.productPriceRatingRow}>
+                <p className={styles.productPrice}>{price}</p>
+                <div className={styles.productRating}>
+                    <span className={styles.starIcon}>★</span> {rating} ({reviews})
+                </div>
+            </div>
+
+            <ul className={styles.productFeaturesList}>
+                {features.map((feature, index) => (
+                    <li key={index} className={styles.productFeatureItem}>
+                        <i className={`fas fa-check ${styles.checkIcon}`}></i>
+                        {feature}
+                    </li>
+                ))}
+            </ul>
+
+            <button className={styles.productLearnMoreButton}>Learn More</button>
         </div>
-      </div>
-
-      <ul className={styles.productFeaturesList}>
-        {features.map((feature, index) => (
-          <li key={index} className={styles.productFeatureItem}>
-            <i className={`fas fa-check ${styles.checkIcon}`}></i>
-            {feature}
-          </li>
-        ))}
-      </ul>
-
-      <button className={styles.productLearnMoreButton}>Learn More</button>
-    </div>
-  );
+    );
 };
 
 
 // Mock Product Data - Updated with Font Awesome icon classes and descriptions
 const products = [
-  {
-    iconClass: 'fas fa-robot',
-    iconBgClass: 'purpleBg',
-    title: 'Smart Chatbot Pro',
-    description: 'Advanced AI chatbot with natural language processing and machine learning capabilities.',
-    price: '$99/mo',
-    features: ['Unlimited conversations', 'Multi-language support', 'Advanced analytics'],
-    rating: 4.9,
-    reviews: 120,
-  },
-  {
-    iconClass: 'fas fa-microphone-alt',
-    iconBgClass: 'orangeBg',
-    title: 'Voice AI Assistant',
-    description: 'Intelligent voice recognition system with real-time speech processing and response.',
-    price: '$149/mo',
-    features: ['Voice recognition', 'Text-to-speech', 'Custom voice models'],
-    rating: 4.8,
-    reviews: 89,
-  },
-  {
-    iconClass: 'fas fa-chart-line',
-    iconBgClass: 'greenBg',
-    title: 'Analytics Dashboard',
-    description: 'Comprehensive analytics and insights for your AI chat performance and customer interactions.',
-    price: '$79/mo',
-    features: ['Real-time metrics', 'Custom reports', 'Data export'],
-    rating: 4.7,
-    reviews: 156,
-  },
-  {
-    iconClass: 'fas fa-puzzle-piece',
-    iconBgClass: 'pinkBg',
-    title: 'Integration Suite',
-    description: 'Seamlessly connect your AI chat solutions with popular business tools and platforms.',
-    price: '$59/mo',
-    features: ['100+ integrations', 'API access', 'Custom webhooks'],
-    rating: 4.6,
-    reviews: 94,
-  },
-  {
-    iconClass: 'fas fa-shield-alt',
-    iconBgClass: 'redBg',
-    title: 'Security Pro',
-    description: 'Enterprise-grade security features to protect your conversations and customer data.',
-    price: '$199/mo',
-    features: ['End-to-end encryption', 'GDPR compliance', 'Audit logs'],
-    rating: 4.9,
-    reviews: 67,
-  },
-  {
-    iconClass: 'fas fa-mobile-alt',
-    iconBgClass: 'blueBg',
-    title: 'Mobile SDK',
-    description: 'Native mobile SDK for iOS and Android to integrate AI chat into your mobile applications.',
-    price: '$129/mo',
-    features: ['iOS & Android', 'Native performance', 'Easy integration'],
-    rating: 4.8,
-    reviews: 112,
-  },
+    {
+        iconClass: 'fas fa-robot',
+        iconBgClass: 'purpleBg',
+        title: 'Smart Chatbot Pro',
+        description: 'Advanced AI chatbot with natural language processing and machine learning capabilities.',
+        price: '$99/mo',
+        features: ['Unlimited conversations', 'Multi-language support', 'Advanced analytics'],
+        rating: 4.9,
+        reviews: 120,
+    },
+    {
+        iconClass: 'fas fa-microphone-alt',
+        iconBgClass: 'orangeBg',
+        title: 'Voice AI Assistant',
+        description: 'Intelligent voice recognition system with real-time speech processing and response.',
+        price: '$149/mo',
+        features: ['Voice recognition', 'Text-to-speech', 'Custom voice models'],
+        rating: 4.8,
+        reviews: 89,
+    },
+    {
+        iconClass: 'fas fa-chart-line',
+        iconBgClass: 'greenBg',
+        title: 'Analytics Dashboard',
+        description: 'Comprehensive analytics and insights for your AI chat performance and customer interactions.',
+        price: '$79/mo',
+        features: ['Real-time metrics', 'Custom reports', 'Data export'],
+        rating: 4.7,
+        reviews: 156,
+    },
+    {
+        iconClass: 'fas fa-puzzle-piece',
+        iconBgClass: 'pinkBg',
+        title: 'Integration Suite',
+        description: 'Seamlessly connect your AI chat solutions with popular business tools and platforms.',
+        price: '$59/mo',
+        features: ['100+ integrations', 'API access', 'Custom webhooks'],
+        rating: 4.6,
+        reviews: 94,
+    },
+    {
+        iconClass: 'fas fa-shield-alt',
+        iconBgClass: 'redBg',
+        title: 'Security Pro',
+        description: 'Enterprise-grade security features to protect your conversations and customer data.',
+        price: '$199/mo',
+        features: ['End-to-end encryption', 'GDPR compliance', 'Audit logs'],
+        rating: 4.9,
+        reviews: 67,
+    },
+    {
+        iconClass: 'fas fa-mobile-alt',
+        iconBgClass: 'blueBg',
+        title: 'Mobile SDK',
+        description: 'Native mobile SDK for iOS and Android to integrate AI chat into your mobile applications.',
+        price: '$129/mo',
+        features: ['iOS & Android', 'Native performance', 'Easy integration'],
+        rating: 4.8,
+        reviews: 112,
+    },
 ];
 
 
 // Main Products Page Component
 const ProductsPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 6;
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 6;
 
-  // Effect to load Font Awesome script
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
+    // Effect to load Font Awesome script
+    useEffect(() => {
+        const link = document.createElement('link');
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
 
-    // Clean up the link when the component unmounts
-    return () => {
-      document.head.removeChild(link);
+        // Clean up the link when the component unmounts
+        return () => {
+            document.head.removeChild(link);
+        };
+    }, []); // Empty dependency array ensures this runs once on mount
+
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    const totalPages = Math.ceil(products.length / productsPerPage);
+
+    // Function to generate page numbers to display (e.g., 1, 2, ..., 5, 6, 7, ..., 10)
+    const getPageNumbers = () => {
+        const pageNumbers = [];
+        const maxPagesToShow = 5; // Max number of visible page buttons (excluding prev/next)
+
+        if (totalPages <= maxPagesToShow) {
+            // If total pages are few, show all
+            for (let i = 1; i <= totalPages; i++) {
+                pageNumbers.push(i);
+            }
+        } else {
+            // Always show first page
+            pageNumbers.push(1);
+
+            // Determine start and end of the middle range
+            let startMiddle = Math.max(2, currentPage - Math.floor((maxPagesToShow - 3) / 2));
+            let endMiddle = Math.min(totalPages - 1, currentPage + Math.ceil((maxPagesToShow - 3) / 2));
+
+            // Adjust start/end if near boundaries
+            if (currentPage < 3) {
+                endMiddle = Math.min(totalPages - 1, maxPagesToShow - 1);
+            } else if (currentPage > totalPages - 2) {
+                startMiddle = Math.max(2, totalPages - (maxPagesToShow - 2));
+            }
+
+            // Add ellipsis at the beginning if needed
+            if (startMiddle > 2) {
+                pageNumbers.push('...');
+            }
+
+            // Add middle pages
+            for (let i = startMiddle; i <= endMiddle; i++) {
+                pageNumbers.push(i);
+            }
+
+            // Add ellipsis at the end if needed
+            if (endMiddle < totalPages - 1) {
+                pageNumbers.push('...');
+            }
+
+            // Always show last page
+            if (totalPages > 1 && !pageNumbers.includes(totalPages)) {
+                pageNumbers.push(totalPages);
+            }
+        }
+        return pageNumbers;
     };
-  }, []); // Empty dependency array ensures this runs once on mount
 
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    return (
+        <div className={styles.productsContainer}>
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+            <section className={styles.productsHeroSection}>
+                <h1 className={styles.productsHeroTitle}>Our AI Products</h1>
+                <p className={styles.productsHeroSubtitle}>
+                    Discover our comprehensive suite of AI-powered chat solutions designed to transform your customer experience.
+                </p>
+                <div className={styles.productsHeroFeatures}>
+                    <div className={styles.productsHeroFeatureItem}>
+                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 0 00-3 3v5m6 4v3m-3 0h6M7 10h10a2 2 0 002-2V6a2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                        Smart AI
+                    </div>
+                    <div className={styles.productsHeroFeatureItem}>
+                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>
+                        Secure
+                    </div>
+                    <div className={styles.productsHeroFeatureItem}>
+                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        Fast Setup
+                    </div>
+                </div>
+            </section>
 
-  const totalPages = Math.ceil(products.length / productsPerPage);
+            <section className={styles.filterSortBar}>
+                <div className={styles.filterGroupLeft}>
+                    <div className={styles.filterGroup}>
+                        <span className={styles.filterLabel}>Filter by:</span>
+                        <select className={styles.filterSelect}>
+                            <option>All Categories</option>
+                            {/* Add more category options here */}
+                        </select>
+                    </div>
+                    <div className={styles.filterGroup}>
+                        <select className={styles.filterSelect}>
+                            <option>All Pricing</option>
+                            {/* Add more pricing options here */}
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.sortGroupRight}>
+                    <div className={styles.sortGroup}>
+                        <span className={styles.sortLabel}>Sort by:</span>
+                        <select className={styles.sortSelect}>
+                            <option>Popular</option>
+                            {/* Add more sort options here */}
+                        </select>
+                    </div>
+                </div>
+            </section>
 
-  // Function to generate page numbers to display (e.g., 1, 2, ..., 5, 6, 7, ..., 10)
-  const getPageNumbers = () => {
-    const pageNumbers = [];
-    const maxPagesToShow = 5; // Max number of visible page buttons (excluding prev/next)
+            <main className={styles.productsMainContent}>
+                <section className={styles.productGrid}>
+                    {currentProducts.map((product, index) => (
+                        <ProductCard key={index} {...product} />
+                    ))}
+                </section>
 
-    if (totalPages <= maxPagesToShow) {
-      // If total pages are few, show all
-      for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-      }
-    } else {
-      // Always show first page
-      pageNumbers.push(1);
+                {/* Pagination Section - Updated for p10.PNG look */}
+                <section className={styles.paginationSection}>
+                    {/* Previous Button with Chevron Icon */}
+                    <button
+                        className={`${styles.paginationArrow} ${currentPage === 1 ? styles.disabled : ''}`}
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
+                    >
+                        {/* Using Font Awesome Icon */}
+                        <i className="fas fa-chevron-left"></i>
+                    </button>
 
-      // Determine start and end of the middle range
-      let startMiddle = Math.max(2, currentPage - Math.floor((maxPagesToShow - 3) / 2));
-      let endMiddle = Math.min(totalPages - 1, currentPage + Math.ceil((maxPagesToShow - 3) / 2));
+                    {/* Page Numbers and Ellipses */}
+                    {getPageNumbers().map((pageNumber, index) => (
+                        pageNumber === '...' ? (
+                            <span key={`ellipsis-${index}`} className={styles.paginationEllipsis}>...</span>
+                        ) : (
+                            <button
+                                key={pageNumber}
+                                className={`${styles.paginationButton} ${currentPage === pageNumber ? styles.activePage : ''}`}
+                                onClick={() => paginate(pageNumber)}
+                                disabled={pageNumber === '...'} // Ensure ellipsis buttons are disabled
+                            >
+                                {pageNumber}
+                            </button>
+                        )
+                    ))}
 
-      // Adjust start/end if near boundaries
-      if (currentPage < 3) {
-        endMiddle = Math.min(totalPages - 1, maxPagesToShow - 1);
-      } else if (currentPage > totalPages - 2) {
-        startMiddle = Math.max(2, totalPages - (maxPagesToShow - 2));
-      }
+                    {/* Next Button with Chevron Icon */}
+                    <button
+                        className={`${styles.paginationArrow} ${currentPage === totalPages ? styles.disabled : ''}`}
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                    >
+                        {/* Using Font Awesome Icon */}
+                        <i className="fas fa-chevron-right"></i>
+                    </button>
+                </section>
+            </main>
 
-      // Add ellipsis at the beginning if needed
-      if (startMiddle > 2) {
-        pageNumbers.push('...');
-      }
+            <section className={styles.ctaSection}>
+                <h2 className={styles.ctaTitle}>Ready to Transform Your Customer Experience?</h2>
+                <p className={styles.ctaSubtitle}>
+                    Start with our free trial and discover how AI can revolutionize your business communication.
+                </p>
+                <div className={styles.ctaButtons}>
+                    <button className={styles.ctaButtonPrimary}>Start Free Trial</button>
+                    <button className={styles.ctaButtonSecondary}>Schedule Demo</button>
+                </div>
+            </section>
 
-      // Add middle pages
-      for (let i = startMiddle; i <= endMiddle; i++) {
-        pageNumbers.push(i);
-      }
-
-      // Add ellipsis at the end if needed
-      if (endMiddle < totalPages - 1) {
-        pageNumbers.push('...');
-      }
-
-      // Always show last page
-      if (totalPages > 1 && !pageNumbers.includes(totalPages)) {
-        pageNumbers.push(totalPages);
-      }
-    }
-    return pageNumbers;
-  };
-
-  return (
-    <div className={styles.productsContainer}>
-
-      <section className={styles.productsHeroSection}>
-        <h1 className={styles.productsHeroTitle}>Our AI Products</h1>
-        <p className={styles.productsHeroSubtitle}>
-          Discover our comprehensive suite of AI-powered chat solutions designed to transform your customer experience.
-        </p>
-        <div className={styles.productsHeroFeatures}>
-          <div className={styles.productsHeroFeatureItem}>
-            <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 3 0 00-3 3v5m6 4v3m-3 0h6M7 10h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
-            Smart AI
-          </div>
-          <div className={styles.productsHeroFeatureItem}>
-            <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>
-            Secure
-          </div>
-          <div className={styles.productsHeroFeatureItem}>
-            <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            Fast Setup
-          </div>
+            <Footer />
         </div>
-      </section>
-
-      <section className={styles.filterSortBar}>
-        <div className={styles.filterGroupLeft}>
-          <div className={styles.filterGroup}>
-            <span className={styles.filterLabel}>Filter by:</span>
-            <select className={styles.filterSelect}>
-              <option>All Categories</option>
-              {/* Add more category options here */}
-            </select>
-          </div>
-          <div className={styles.filterGroup}>
-            <select className={styles.filterSelect}>
-              <option>All Pricing</option>
-              {/* Add more pricing options here */}
-            </select>
-          </div>
-        </div>
-        <div className={styles.sortGroupRight}>
-          <div className={styles.sortGroup}>
-            <span className={styles.sortLabel}>Sort by:</span>
-            <select className={styles.sortSelect}>
-              <option>Popular</option>
-              {/* Add more sort options here */}
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <main className={styles.productsMainContent}>
-        <section className={styles.productGrid}>
-          {currentProducts.map((product, index) => (
-            <ProductCard key={index} {...product} />
-          ))}
-        </section>
-
-        <section className={styles.paginationContainer}>
-          {/* Previous Button (still using < for visual consistency with t38.PNG, but can be changed to "Prev" if preferred) */}
-          <button
-            className={`${styles.paginationButton} ${currentPage === 1 ? styles.paginationButtonDisabled : ''}`}
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-          >
-            &lt;
-          </button>
-
-          {/* Page Numbers and Ellipses */}
-          {getPageNumbers().map((pageNumber, index) => (
-            pageNumber === '...' ? (
-              <span key={`ellipsis-${index}`} className={styles.paginationEllipsis}>...</span>
-            ) : (
-              <button
-                key={pageNumber} // Use pageNumber as key for actual page buttons
-                className={`${styles.paginationButton} ${currentPage === pageNumber ? styles.paginationButtonActive : ''}`}
-                onClick={() => paginate(pageNumber)}
-              >
-                {pageNumber}
-              </button>
-            )
-          ))}
-
-          {/* Next Button (still using > for visual consistency with t38.PNG, but can be changed to "Next" if preferred) */}
-          <button
-            className={`${styles.paginationButton} ${currentPage === totalPages ? styles.paginationButtonDisabled : ''}`}
-            onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
-          >
-            &gt;
-          </button>
-        </section>
-      </main>
-
-      <section className={styles.ctaSection}>
-        <h2 className={styles.ctaTitle}>Ready to Transform Your Customer Experience?</h2>
-        <p className={styles.ctaSubtitle}>
-          Start with our free trial and discover how AI can revolutionize your business communication.
-        </p>
-        <div className={styles.ctaButtons}>
-          <button className={styles.ctaButtonPrimary}>Start Free Trial</button>
-          <button className={styles.ctaButtonSecondary}>Schedule Demo</button>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  );
+    );
 };
 
 export default ProductsPage;

@@ -7,11 +7,10 @@ import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
 // Import Font Awesome components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faClock, // For 24/7 Support
-    faBolt, // For Quick Response
-    faUsers, // For Expert Team
+    faClock, // For Quick Response (based on p13.PNG, though it's typically for time/support)
+    faPhone, // For 24/7 Support (based on p13.PNG)
+    faUsers, // For Expert Team (based on p13.PNG)
     faLocationDot, // For Address
-    faPhone, // For Phone
     faEnvelope, // For Email
     faChevronDown // For FAQ arrow
 } from '@fortawesome/free-solid-svg-icons';
@@ -59,14 +58,17 @@ const ContactsPage = () => {
                     </p>
                     <div className={styles.heroFeatures}>
                         <div className={styles.heroFeatureItem}>
-                            <FontAwesomeIcon icon={faClock} className={styles.heroIcon} />
+                            {/* Updated icon to faPhone for "24/7 Support" matching p13.PNG */}
+                            <FontAwesomeIcon icon={faPhone} className={styles.heroIcon}  size="2x" />
                             24/7 Support
                         </div>
                         <div className={styles.heroFeatureItem}>
-                            <FontAwesomeIcon icon={faBolt} className={styles.heroIcon} />
+                            {/* Updated icon to faClock for "Quick Response" matching p13.PNG */}
+                            <FontAwesomeIcon icon={faClock} className={styles.heroIcon} />
                             Quick Response
                         </div>
                         <div className={styles.heroFeatureItem}>
+                            {/* Updated icon to faUsers for "Expert Team" matching p13.PNG */}
                             <FontAwesomeIcon icon={faUsers} className={styles.heroIcon} />
                             Expert Team
                         </div>

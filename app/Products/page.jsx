@@ -3,6 +3,12 @@ import Footer from '../Component/Footer'; // Assuming Footer is in the same dire
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/ProductsPage.module.css'; // Your CSS Module
 
+// IMPORTANT: Since we are going for an all-<i> tag approach,
+// you do NOT need to import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+// If this line exists, it should be removed to avoid confusion or unnecessary package dependencies
+// if you are only relying on the CDN CSS.
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // REMOVE THIS LINE
+
 
 // Product Card Component - Now uses Font Awesome icons and dynamic background colors
 const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, price, features, rating, reviews }) => {
@@ -11,6 +17,7 @@ const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, 
     return (
         <div className={styles.productCard}>
             <div className={`${styles.productIconContainer} ${styles[iconBgClass] || ''}`}>
+                {/* This will rely on the CDN-loaded Font Awesome CSS */}
                 <i className={`${iconClass} ${styles.productFaIcon}`}></i>
             </div>
             <h3 className={styles.productTitle}>{title}</h3>
@@ -28,6 +35,7 @@ const ProductCard = ({ iconClass, iconBgClass = 'purpleBg', title, description, 
             <ul className={styles.productFeaturesList}>
                 {features.map((feature, index) => (
                     <li key={index} className={styles.productFeatureItem}>
+                        {/* This will also rely on the CDN-loaded Font Awesome CSS */}
                         <i className={`fas fa-check ${styles.checkIcon}`}></i>
                         {feature}
                     </li>
@@ -189,15 +197,18 @@ const ProductsPage = () => {
                 </p>
                 <div className={styles.productsHeroFeatures}>
                     <div className={styles.productsHeroFeatureItem}>
-                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 0 00-3 3v5m6 4v3m-3 0h6M7 10h10a2 2 0 002-2V6a2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2z"></path></svg>
+                        {/* Replaced SVG with Font Awesome <i> tag for robot icon */}
+                        <i className={`fas fa-robot ${styles.icon}`}></i>
                         Smart AI
                     </div>
                     <div className={styles.productsHeroFeatureItem}>
-                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.007 12.007 0 002.944 12c0 2.893 1.146 5.66 3.175 7.712A12.007 12.007 0 0012 21.056c2.893 0 5.66-1.146 7.712-3.175A12.007 12.007 0 0021.056 12c0-2.893-1.146-5.66-3.175-7.712z"></path></svg>
+                        {/* Replaced SVG with Font Awesome <i> tag for shield icon */}
+                        <i className={`fas fa-shield-alt ${styles.icon}`}></i>
                         Secure
                     </div>
                     <div className={styles.productsHeroFeatureItem}>
-                        <svg className={styles.icon} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        {/* Replaced SVG with Font Awesome <i> tag for rocket icon */}
+                        <i className={`fas fa-rocket ${styles.icon}`}></i>
                         Fast Setup
                     </div>
                 </div>
@@ -237,7 +248,7 @@ const ProductsPage = () => {
                     ))}
                 </section>
 
-                {/* Pagination Section - Updated for p10.PNG look */}
+                {/* Pagination Section */}
                 <section className={styles.paginationSection}>
                     {/* Previous Button with Chevron Icon */}
                     <button
@@ -245,7 +256,7 @@ const ProductsPage = () => {
                         onClick={() => paginate(currentPage - 1)}
                         disabled={currentPage === 1}
                     >
-                        {/* Using Font Awesome Icon */}
+                        {/* Using Font Awesome Icon via <i> tag */}
                         <i className="fas fa-chevron-left"></i>
                     </button>
 
@@ -271,7 +282,7 @@ const ProductsPage = () => {
                         onClick={() => paginate(currentPage + 1)}
                         disabled={currentPage === totalPages}
                     >
-                        {/* Using Font Awesome Icon */}
+                        {/* Using Font Awesome Icon via <i> tag */}
                         <i className="fas fa-chevron-right"></i>
                     </button>
                 </section>

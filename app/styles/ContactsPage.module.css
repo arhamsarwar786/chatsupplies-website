@@ -63,8 +63,7 @@
 }
 
 .heroIcon {
-    width: 1.3rem; /* Slightly smaller icon */
-    height: 1.3rem; /* Slightly smaller icon */
+    
     margin-right: 0.4rem; /* Slightly less margin */
     color: #ffffff;
 }
@@ -154,6 +153,9 @@
     color: #1f2937;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
+.formInput{
+    background-color: white;
+}
 
 .formInput:focus,
 .formTextarea:focus {
@@ -206,8 +208,8 @@
 
 
 .infoIconBackground {
-    width: 2.75rem; /* Slightly smaller icon box */
-    height: 2.75rem; /* Slightly smaller icon box */
+    width: 3rem; /* Slightly smaller icon box */
+    height: 3rem; /* Slightly smaller icon box */
     background-color: #eef2ff; /* Background color for the circle/square behind the icon */
     padding: 0.3rem; /* Less internal padding */
     border-radius: 0.5rem;
@@ -464,8 +466,8 @@
         font-size: 1rem;
     }
     .heroIcon {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1rem;
+        height: 1rem;
         margin-right: 0.5rem;
     }
 

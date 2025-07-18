@@ -68,6 +68,10 @@
   font-weight: 600;
   white-space: nowrap;
 }
+.productsHeroFeatureItem .icon {
+  margin-right: 0.5rem;
+}
+
 
 /* Filter and Sort Bar */
 .filterSortBar {

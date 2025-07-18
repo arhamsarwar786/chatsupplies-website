@@ -51,7 +51,7 @@ const Footer = () => {
                         <div className={styles.linkGroup}>
                             <h4>Products</h4>
                             <ul>
-                                <li><Link href="#">AI Chatbots</Link></li>
+                                <li><Link href="/Products">AI Chatbots</Link></li>
                                 <li><Link href="#">Live Chat</Link></li>
                                 <li><Link href="#">Analytics</Link></li>
                                 <li><Link href="#">Integrations</Link></li>

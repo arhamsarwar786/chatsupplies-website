@@ -63,10 +63,16 @@
 }
 
 .heroIcon {
-    
     margin-right: 0.4rem; /* Slightly less margin */
     color: #ffffff;
+    /* FIX: Make hero icons smaller on mobile (base size) */
+    width: 1.2rem; /* Adjusted from 1.5rem to be smaller on very small screens */
+    height: 1.2rem;
+    /* !important added for robustness, but try without first */
+    /* width: 1.2rem !important; */
+    /* height: 1.2rem !important; */
 }
+
 
 /* Main Content */
 .mainContent {
@@ -76,8 +82,8 @@
     margin-right: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    padding-left: 1rem; /* Base equal padding for smallest screens */
-    padding-right: 1rem; /* Base equal padding for smallest screens */
+    padding-left: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
+    padding-right: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
     flex-grow: 1;
 }
 
@@ -87,7 +93,7 @@
     grid-template-columns: 1fr;
     /* Default to single column for mobile */
     gap: 1.25rem; /* Slightly reduced gap for smaller screens */
-    padding: 3rem 1rem; /* Reduced padding for very small screens */
+    padding: 3rem 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
     /* Increased space below the contact grid to separate from FAQ */
     max-width: 95%; /* Decreased max-width slightly for smaller screens */
     margin-left: auto; /* Center the grid */
@@ -101,8 +107,7 @@
 .followUsCard {
     background-color: #fcfcfc;
     /* Changed to off-white */
-    padding: 1.25rem; /* Slightly reduced padding for smaller screens */
-    /* Consistent padding for all cards */
+    padding: 1rem; /* DECREASED PADDING FOR ALL CARDS ON MOBILE (INTERNAL CARD PADDING) */
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -153,9 +158,6 @@
     color: #1f2937;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-.formInput{
-    background-color: white;
-}
 
 .formInput:focus,
 .formTextarea:focus {
@@ -186,32 +188,27 @@
 /* Info Card Specifics */
 .infoTitle {
     font-size: 1.15rem; /* Adjusted for very small screens */
-    /* slightly smaller */
     font-weight: 600;
     color: #1f2937;
     margin-bottom: 1rem; /* Adjusted for very small screens */
-    /* tighter spacing */
     margin-top: -5px;
-    /* no top margin */
 }
 
 
 .infoGroup {
     margin-bottom: 0.5rem;
-    /* less vertical spacing between groups */
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 0.75rem;
-    /* slightly reduced gap */
 }
 
 
 .infoIconBackground {
-    width: 3rem; /* Slightly smaller icon box */
-    height: 3rem; /* Slightly smaller icon box */
-    background-color: #eef2ff; /* Background color for the circle/square behind the icon */
-    padding: 0.3rem; /* Less internal padding */
+    width: 2.5rem; /* DECREASED ICON BACKGROUND SIZE ON MOBILE */
+    height: 2.5rem; /* DECREASED ICON BACKGROUND SIZE ON MOBILE */
+    background-color: #eef2ff;
+    padding: 0.3rem;
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
@@ -220,10 +217,12 @@
 }
 
 .infoIcon {
-    width: 100%; /* Make icon fill its container */
-    height: 100%; /* Make icon fill its container */
-    color: #4f46e5; /* Color of the icon itself */
-    /* svg will need to be styled directly or through a wrapper */
+    width: 1rem; /* FIX: DECREASED ICON SIZE FOR INFO CARD ON MOBILE */
+    height: 1rem; /* FIX: DECREASED ICON SIZE FOR INFO CARD ON MOBILE */
+    color: #4f46e5;
+    /* If you still face issues, consider adding !important here: */
+    /* width: 1rem !important; */
+    /* height: 1rem !important; */
 }
 
 .infoContent {
@@ -236,7 +235,6 @@
     font-size: 0.95rem; /* Adjusted for very small screens */
     color: #1f2937;
     margin: -1px 0 0 0;
-    /* tighter vertical spacing */
     line-height: 1.2;
 }
 
@@ -244,7 +242,6 @@
     font-size: 0.9rem; /* Adjusted for very small screens */
     color: #4b5563;
     line-height: 1.3;
-    /* slightly tighter line-height */
     margin-top: 0.1rem;
 }
 
@@ -278,7 +275,7 @@
 
 .businessHoursCard {
     padding: 0.9rem; /* Adjusted for very small screens */
-    border-radius: 0.5rem; /* no change */
+    border-radius: 0.5rem;
     padding-bottom: 1.5rem; /* Adjusted for very small screens */
 }
 
@@ -287,17 +284,14 @@
 /* Follow Us Card Specifics */
 .socialTitle {
     font-size: 1.3rem; /* Adjusted for very small screens */
-    /* smaller title */
     font-weight: 600;
     color: #1f2937;
     margin-bottom: 0.6rem; /* Adjusted for very small screens */
-    /* reduced spacing */
 }
 
 .socialIcons {
     display: flex;
     gap: 0.6rem; /* Tighter gap for very small screens */
-    /* tighter gap between icons */
     margin-top: 0.8rem; /* Less margin above icons */
     margin-bottom: 0.8rem;
 }
@@ -306,7 +300,6 @@
     width: 2rem; /* Smaller circle */
     height: 2rem; /* Smaller circle */
     border-radius: 0.375rem;
-    /* slightly tighter corners */
     background-color: #f3f4f6;
     display: flex;
     justify-content: center;
@@ -335,69 +328,68 @@
 
 /* FAQ Section Specifics */
 .faqSection {
-    background-color: #f9fafb !important; /* Keep this as the background for the whole section */
+    background-color: #f9fafb !important;
     width: 100%;
     margin-top: -2rem; /* Adjusted for very small screens */
-    display: flex; /* Added to help center content */
-    flex-direction: column; /* Added to help center content */
-    align-items: center; /* Added to center content horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem; /* FIX: Added padding to the bottom of FAQ section for mobile (base) */
 }
 
 .faqContentWrapper {
-    background-color: #f9fafb; /* This should match faqSection background if it's the main container */
+    background-color: #f9fafb;
     width: 100%;
     margin: 0 auto;
-    padding-left: 1rem; /* Adjusted for very small screens */
-    padding-right: 1rem; /* Adjusted for very small screens */
-    max-width: 1200px; /* Increased from 900px to allow for wider FAQ content */
+    padding-left: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
+    padding-right: 0.75rem; /* MODIFIED: Decreased for smaller overall side space on mobile */
+    max-width: 1200px;
 }
 
 .faqTitle {
-    font-size: 2rem; /* Adjusted for very small screens */
+    font-size: 2rem;
     font-weight: 700;
     color: #1f2937;
     text-align: center;
-    margin-bottom: 0.4rem; /* Adjusted for very small screens */
+    margin-bottom: 0.4rem;
 }
 
 .faqSubtitle {
-    font-size: 1rem; /* Adjusted for very small screens */
+    font-size: 1rem;
     color: #4b5563;
     text-align: center;
-    margin-bottom: 2rem; /* Adjusted for very small screens */
+    margin-bottom: 2rem;
     line-height: 1.5;
 }
 
 .faqContainer {
-    width: 100%; /* Ensure it takes full width of its parent (faqContentWrapper) */
-    max-width: 850px; /* Adjusted: Decreased max-width for FAQ cards */
-    margin: 0 auto; /* Center the FAQ bars within the faqContentWrapper */
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Slightly reduced gap between bars for a more compact look */
+    gap: 1rem;
 }
 
 .faqItem {
-    background-color: #ffffff; /* Changed to white for the individual bar background */
-    padding: 0.8rem 1.2rem; /* Adjusted for very small screens */
-    border-radius: 0.5rem; /* Rounded corners for each card */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Shadow for each card */
-    border-bottom: none; /* No border-bottom needed as cards are separate */
-    margin: 0 !important; /* Crucial: Resets all default margins for the FAQ item itself */
-    display: block; /* Ensures it behaves as a block element */
+    background-color: #ffffff;
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-bottom: none;
+    margin: 0 !important;
+    display: block;
 }
 
 .faqItem:last-child {
-    border-bottom: none; /* Already handled by .faqItem, but good for redundancy */
+    border-bottom: none;
 }
 
 .faqItem>*:first-child {
-    /* Target the first child inside faqItem (usually the button) */
     margin-top: 0 !important;
 }
 
 .faqItem>*:last-child {
-    /* Target the last child inside faqItem (answer or button) */
     margin-bottom: 0 !important;
 }
 
@@ -408,15 +400,15 @@
     width: 100%;
     text-align: left;
     font-weight: 600;
-    font-size: 1.05rem; /* Adjusted for very small screens */
+    font-size: 1.05rem;
     color: #1f2937;
     transition: color 200ms ease-in-out;
     background: none;
     border: none;
     cursor: pointer;
-    margin: 0 !important; /* Crucial: Resets default button margins */
-    padding: 0 !important; /* Crucial: Resets default button padding */
-    line-height: normal; /* Ensure consistent line height */
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: normal;
 }
 
 .faqQuestionButton:hover {
@@ -424,8 +416,8 @@
 }
 
 .faqArrowIcon {
-    width: 1.1rem; /* Adjusted for very small screens */
-    height: 1.1rem; /* Adjusted for very small screens */
+    width: 1.1rem;
+    height: 1.1rem;
     transform: rotate(0deg);
     transition: transform 200ms ease-in-out;
     color: #4b5563;
@@ -436,10 +428,10 @@
 }
 
 .faqAnswer {
-    margin-top: 0.4rem; /* Adjusted for very small screens */
+    margin-top: 0.4rem;
     color: #4b5563;
-    line-height: 1.5; /* Adjusted for very small screens */
-    font-size: 0.9rem; /* Adjusted for very small screens */
+    line-height: 1.5;
+    font-size: 0.9rem;
 }
 
 
@@ -466,27 +458,27 @@
         font-size: 1rem;
     }
     .heroIcon {
-        width: 1rem;
-        height: 1rem;
+        width: 1.5rem; /* Adjusted for 480px+ screens */
+        height: 1.5rem;
         margin-right: 0.5rem;
     }
 
     .mainContent {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
+        padding-right: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
     }
 
     .contactGrid {
-        max-width: 90%; /* Decreased max-width for 480px and up */
+        max-width: 90%;
         gap: 1.5rem;
-        padding: 5rem 1.5rem;
+        padding: 5rem 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
     }
 
     .formCard,
     .infoCard,
     .businessHoursCard,
     .followUsCard {
-        padding: 1.5rem;
+        padding: 1.25rem; /* INTERNAL CARD PADDING - KEPT AS IS */
     }
     .formTitle {
         font-size: 1.625rem;
@@ -516,10 +508,13 @@
         font-size: 1.25rem;
         margin-bottom: 1.5rem;
     }
+    .infoIconBackground {
+        width: 2.75rem; /* DECREASED ICON BACKGROUND SIZE ON TABLET (480px+) */
+        height: 2.75rem;
+    }
     .infoIcon {
-        width: 1rem;
-        height: 1rem;
-        padding: 0.4rem;
+        width: 1.15rem; /* FIX: DECREASED ICON SIZE FOR INFO CARD ON TABLET (480px+) */
+        height: 1.15rem;
     }
     .infoSubtitle {
         font-size: 1rem;
@@ -556,7 +551,7 @@
         height: 2.25rem;
     }
     .socialIcon {
-        width: 1rem;
+        width: 1rem; /* Adjusted for 480px+ */
         height: 1rem;
     }
     .followUsCard {
@@ -565,11 +560,11 @@
 
     .faqSection {
         padding-top: 3rem;
-        padding-bottom: 5rem
+        padding-bottom: 5rem; /* FIX: Added padding to the bottom of FAQ section for tablet (480px+) */
     }
     .faqContentWrapper {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+        padding-left: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
+        padding-right: 1rem; /* MODIFIED: Decreased for tablet (480px+) */
     }
     .faqTitle {
         font-size: 2.25rem;
@@ -580,7 +575,7 @@
         margin-bottom: 2.5rem;
     }
     .faqContainer {
-        max-width: 800px; /* Adjusted: Decreased max-width for FAQ cards at 480px and up */
+        max-width: 800px;
         gap: 1.5rem;
     }
     .faqItem {
@@ -596,7 +591,7 @@
     .faqAnswer {
         margin-top: 0.5rem;
         line-height: 1.625;
-        font-size: inherit; /* Reset to default inherited size */
+        font-size: inherit;
     }
 }
 
@@ -622,17 +617,16 @@
     }
 
     .mainContent {
-        padding-left: 3rem;
-        padding-right: 3rem;
+        padding-left: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
+        padding-right: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
     }
 
     .contactGrid {
         grid-template-columns: 1fr 1fr;
-        /* Two columns for tablet */
         gap: 1.5rem;
-        padding-left: 3rem; /* Equal padding for tablet */
-        padding-right: 3rem; /* Equal padding for tablet */
-        max-width: 85%; /* Decreased max-width for 768px and up */
+        padding-left: 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
+        padding-right: 0; /* MODIFIED: Horizontal padding removed here, handled by .mainContent now */
+        max-width: 85%;
     }
 
     .formRow {
@@ -640,11 +634,15 @@
     }
 
     .faqContentWrapper {
-        padding-left: 3rem;
-        padding-right: 3rem;
+        padding-left: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
+        padding-right: 2rem; /* MODIFIED: Decreased for tablet (768px+) */
     }
     .faqContainer {
-        max-width: 750px; /* Adjusted: Decreased max-width for FAQ cards at 768px and up */
+        max-width: 750px;
+    }
+    /* FIX: Added padding to the bottom of FAQ section for tablet (768px+) */
+    .faqSection {
+        padding-bottom: 6rem; /* Slightly more padding for larger tablets */
     }
 }
 
@@ -656,76 +654,94 @@
     }
 
     .heroContentWrapper {
-        padding-left: 6rem;
-        padding-right: 6rem;
+        padding: 3rem 6rem; /* Ensure consistent padding on desktop */
+    }
+    /* Revert heroIcon to its desktop size if needed for 1024px+ */
+    .heroIcon {
+        width: 2rem; /* Assuming '2x' implies about 2rem on desktop, adjust as needed */
+        height: 2rem;
+        margin-right: 0.6rem; /* Revert/adjust margin for desktop */
     }
 
     .mainContent {
-        /* Critical change: allow mainContent to take more width */
         max-width: none;
-        /* Allows mainContent to expand to viewport edges */
-        padding-left: 8rem; /* Increased padding for laptop to shrink effective content width */
-        padding-right: 8rem; /* Increased padding for laptop to shrink effective content width */
+        padding-left: 8rem; /* Desktop padding */
+        padding-right: 8rem; /* Desktop padding */
     }
 
     .contactGrid {
-        /* Set column widths for equal card width and overall wider appearance */
-        grid-template-columns: 1fr 1fr; /* Changed to 1fr 1fr for equal and flexible width */
-        /* Each column will grow equally */
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto;
-        /* Essential for stacking cards in the second column */
         gap: 2rem;
-        /* Gap between the two main columns */
-        max-width: 1300px; /* Decreased overall max width of the contact section */
+        max-width: 1300px;
         margin-left: auto;
-        /* Center the grid within mainContent */
         margin-right: auto;
-        /* Center the grid within mainContent */
-        padding-left: 0; /* Remove specific padding here as mainContent handles it */
-        padding-right: 0; /* Remove specific padding here as mainContent handles it */
+        padding-left: 0; /* No horizontal padding here on desktop, handled by mainContent */
+        padding-right: 0; /* No horizontal padding here on desktop, handled by mainContent */
     }
 
-    /* Card placement within the grid */
     .formCard {
         grid-column: 1;
-        /* First column */
         grid-row: 1 / span 3;
-        /* Spans all three rows in the first column */
     }
 
     .infoCard {
         grid-column: 2;
-        /* Second column */
         grid-row: 1;
-        /* First row of second column */
     }
 
     .businessHoursCard {
         grid-column: 2;
-        /* Second column */
         grid-row: 2;
-        /* Second row of second column */
     }
 
     .followUsCard {
         grid-column: 2;
-        /* Second column */
         grid-row: 3;
-        /* Third row of second column */
     }
 
-    /* Ensure these cards are visible */
     .businessHoursCard,
     .followUsCard {
         display: block;
     }
 
     .faqContentWrapper {
-        padding-left: 6rem;
-        padding-right: 6rem;
-        max-width: 1400px; /* Further increase max-width for very large screens if needed */
+        padding-left: 6rem; /* Desktop padding */
+        padding-right: 6rem; /* Desktop padding */
+        max-width: 1400px;
     }
     .faqContainer {
-        max-width: 900px; /* Decreased max-width for FAQ bars on larger screens */
+        max-width: 900px;
+    }
+    /* Ensure FAQ section padding is correct for desktop if needed */
+    .faqSection {
+        padding-bottom: 8rem; /* Example desktop padding */
+    }
+
+    /* Revert padding on cards for desktop if they were specifically decreased for mobile/tablet */
+    .formCard,
+    .infoCard,
+    .businessHoursCard,
+    .followUsCard {
+        padding: 1.5rem; /* Assuming this was the desired desktop internal card padding */
+    }
+
+    /* Revert infoIcon size for desktop */
+    .infoIconBackground {
+        width: 3rem;
+        height: 3rem;
+    }
+    .infoIcon {
+        width: 1.25rem; /* Revert to desktop size if it was larger */
+        height: 1.25rem;
+    }
+    /* Revert socialIcon size for desktop */
+    .socialIcon {
+        width: 1.1rem; /* Revert to original desktop size */
+        height: 1.1rem;
+    }
+    .socialIconLink {
+        width: 2.5rem; /* Revert to original desktop size */
+        height: 2.5rem;
     }
 }

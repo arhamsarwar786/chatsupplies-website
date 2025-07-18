@@ -49,7 +49,7 @@ const FAQItem = ({ question, answer }) => {
 const ContactsPage = () => {
     return (
         <div className={styles.container}>
-            
+
 
             <section className={styles.heroSection}>
                 <div className={styles.heroContentWrapper}>
@@ -155,15 +155,16 @@ const ContactsPage = () => {
                     </div>
 
                     {/* Right Column: Individual Cards */}
-
                     <div className={styles.infoCard}>
                         <h2 className={styles.infoTitle}>Contact Information</h2>
 
                         {/* Address Group - MODIFIED */}
                         <div className={styles.infoGroup}>
-                            {/* Icon for Address, now Font Awesome */}
-                            <FontAwesomeIcon icon={faLocationDot} className={styles.infoIcon} />
-                            <div> {/* This div now holds both subtitle and text */}
+                            {/* New wrapper div for icon background */}
+                            <div className={styles.infoIconBackground}>
+                                <FontAwesomeIcon icon={faLocationDot} className={styles.infoIcon} />
+                            </div>
+                            <div>
                                 <p className={styles.infoSubtitle}>Address</p>
                                 <p className={styles.infoText}>
                                     123 AI Street, Tech Valley<br />
@@ -174,8 +175,11 @@ const ContactsPage = () => {
 
                         {/* Phone Group */}
                         <div className={styles.infoGroup}>
-                            <FontAwesomeIcon icon={faPhone} className={styles.infoIcon} />
-                            <div> {/* No special wrapper needed here, just a div for the text content */}
+                            {/* New wrapper div for icon background */}
+                            <div className={styles.infoIconBackground}>
+                                <FontAwesomeIcon icon={faPhone} className={styles.infoIcon} />
+                            </div>
+                            <div>
                                 <p className={styles.infoSubtitle}>Phone</p>
                                 <p className={styles.infoText}>+1 (555) 123-4567</p>
                             </div>
@@ -183,8 +187,11 @@ const ContactsPage = () => {
 
                         {/* Email Group */}
                         <div className={styles.infoGroup}>
-                            <FontAwesomeIcon icon={faEnvelope} className={styles.infoIcon} />
-                            <div> {/* No special wrapper needed here, just a div for the text content */}
+                            {/* New wrapper div for icon background */}
+                            <div className={styles.infoIconBackground}>
+                                <FontAwesomeIcon icon={faEnvelope} className={styles.infoIcon} />
+                            </div>
+                            <div>
                                 <p className={styles.infoSubtitle}>Email</p>
                                 <p className={styles.infoText}>hello@aichatsupplies.com</p>
                             </div>
@@ -229,31 +236,31 @@ const ContactsPage = () => {
                         </div>
                     </div>
                 </section>
-
-                <section className={styles.faqSection}>
-                    <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
-                    {/* Add this subtitle for the "Quick answers to common questions..." text */}
-                    <p className={styles.faqSubtitle}>Quick answers to common questions about our AI chat solutions</p>
-                    <div className={styles.faqContainer}>
-                        <FAQItem
-                            question="How quickly can I get started with AI Chat Supplies?"
-                            answer="Getting started is quick and easy! Our onboarding process is designed to be seamless, and you can typically have your AI chat solutions up and running within a few hours to a couple of days, depending on your specific integration needs."
-                        />
-                        <FAQItem
-                            question="What kind of support do you offer?"
-                            answer="We offer 24/7 comprehensive support including live chat, email, and phone assistance. We also provide extensive documentation, tutorials, and a dedicated help center to ensure you have all the resources you need."
-                        />
-                        <FAQItem
-                            question="Can I customize the AI responses?"
-                            answer="Yes, absolutely! Our AI solutions are highly customizable. You can train the AI with your specific business data, define custom responses, and integrate with your existing knowledge bases to ensure accurate and on-brand communication."
-                        />
-                        <FAQItem
-                            question="Do you offer enterprise solutions?"
-                            answer="Yes, we provide tailored enterprise solutions designed for large organizations with complex needs. These include advanced security features, dedicated account management, custom integrations, and scalable infrastructure. Please contact our sales team for a personalized consultation."
-                        />
-                    </div>
-                </section>
             </main>
+
+            <section className={styles.faqSection}>
+                <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
+                {/* Add this subtitle for the "Quick answers to common questions..." text */}
+                <p className={styles.faqSubtitle}>Quick answers to common questions about our AI chat solutions</p>
+                <div className={styles.faqContainer}>
+                    <FAQItem
+                        question="How quickly can I get started with AI Chat Supplies?"
+                        answer="Getting started is quick and easy! Our onboarding process is designed to be seamless, and you can typically have your AI chat solutions up and running within a few hours to a couple of days, depending on your specific integration needs."
+                    />
+                    <FAQItem
+                        question="What kind of support do you offer?"
+                        answer="We offer 24/7 comprehensive support including live chat, email, and phone assistance. We also provide extensive documentation, tutorials, and a dedicated help center to ensure you have all the resources you need."
+                    />
+                    <FAQItem
+                        question="Can I customize the AI responses?"
+                        answer="Yes, absolutely! Our AI solutions are highly customizable. You can train the AI with your specific business data, define custom responses, and integrate with your existing knowledge bases to ensure accurate and on-brand communication."
+                    />
+                    <FAQItem
+                        question="Do you offer enterprise solutions?"
+                        answer="Yes, we provide tailored enterprise solutions designed for large organizations with complex needs. These include advanced security features, dedicated account management, custom integrations, and scalable infrastructure. Please contact our sales team for a personalized consultation."
+                    />
+                </div>
+            </section>
 
             <Footer />
         </div>

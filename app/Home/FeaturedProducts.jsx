@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import styles from './FeaturedProducts.module.css';
+import styles from '../styles/FeaturedProducts.module.css';
 
 const products = [
   {

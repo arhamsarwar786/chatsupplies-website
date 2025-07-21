@@ -2,21 +2,20 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
-import Navbar from "./Component/Navbar";
-import HeroSection from "./Component/HeroSection";    // This is from Pic1
-import FeaturedProducts from "./Component/FeaturedProducts"; // This is from Pic2
-import ShopByCategory from './Component/ShopByCategory';    // This is from pic3
-import WhyChooseUs from './Component/WhyChooseUs'; // This is from Pic 3, below ShopByCategory
-import Testimonials from './Component/Testimonial'; // This is from Pic 4
-import CallToAction from './Component/CallToAction'; // This is from Pic 4, below Testimonials
-import Footer from './Component/Footer'; // This is from Pic 5
 
+import HeroSection from "./Home/HeroSection";    
+import FeaturedProducts from "./Home/FeaturedProducts"; 
+import ShopByCategory from './Home/ShopByCategory';   
+import WhyChooseUs from './Home/WhyChooseUs'; 
+import Testimonials from './Home/Testimonial'; 
+import CallToAction from './Home/CallToAction'; 
+import Footer from './Components/Footer'; 
 
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+     
       <HeroSection />
       <FeaturedProducts />
       <ShopByCategory />

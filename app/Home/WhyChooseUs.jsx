@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import styles from './WhyChooseUs.module.css';
+import styles from '../styles/WhyChooseUs.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 

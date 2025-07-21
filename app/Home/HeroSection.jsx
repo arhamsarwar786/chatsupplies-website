@@ -1,7 +1,7 @@
 // components/HeroSection.jsx (or HeroSection.js)
 
 import Image from 'next/image';
-import styles from './HeroSection.module.css';
+import styles from '../styles/HeroSection.module.css';
 
 const HeroSection = () => {
   return (

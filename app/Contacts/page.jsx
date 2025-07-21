@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from '../Component/Footer';
+import Footer from '../Components/Footer';
 import React, { useState } from 'react';
 import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
 

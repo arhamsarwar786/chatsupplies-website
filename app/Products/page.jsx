@@ -1,5 +1,5 @@
 "use client";
-import Footer from '../Component/Footer'; // Assuming Footer is in the same directory
+import Footer from '../Components/Footer'; // Assuming Footer is in the same directory
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/ProductsPage.module.css'; // Your CSS Module
 

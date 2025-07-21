@@ -32,7 +32,10 @@
 .aboutHeroSection {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  padding: 3rem 1.5rem;
+  padding-top: 6rem; /* Default (desktop) */
+  padding-right: 1.5rem;
+  padding-bottom: 3rem;
+  padding-left: 1.5rem;
   background-color: #4f46e5;
   color: #fff;
 
@@ -174,7 +177,7 @@
     display: flex;
     flex-direction: row; /* Stays row for mobile */
     justify-content: flex-start; /* Align stats to the left */
-    gap: 1.5rem; /* Space between stat items */
+    gap: 2rem; /* Space between stat items */
     margin-top: 0.5rem;
 
     /* --- RESPONSIVENESS FIXES START HERE --- */
@@ -205,7 +208,7 @@
     font-weight: 800;
     color: #4f46e5;
     line-height: 0.9;
-    margin: 0;
+    margin-right: 0;
     padding: 0;
     letter-spacing: -1px;
 }
@@ -774,10 +777,31 @@
   .aboutHeroFeatures {
     justify-content: center; /* Align features to center */
   }
+@media (min-width: 480px) and (max-width: 767px) {
+  .aboutHeroSection {
+    padding-top: 7rem; 
+  }
+}  
 
+@media (max-width: 767px) {
+  .aboutHeroSection {
+    padding-top: 6.5rem; /* For mobile screens */
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .aboutHeroSection {
+    padding-top: 6.5rem; /* For tablets */
+  }
+}
+
+@media (min-width: 1024px) {
+  .aboutHeroSection {
+    padding-top: 6.5rem; /* For laptops/desktops */
+  }
+}
   .storyStats {
     flex-direction: row; /* Side-by-side on medium screens */
-    justify-content: center; /* Center stats on desktop */
+    justify-content: flex-start; /* Center stats on desktop */
   }
 
   .missionValuesGrid {

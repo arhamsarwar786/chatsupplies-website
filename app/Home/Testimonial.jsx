@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import styles from './Testimonials.module.css';
+import styles from '../styles/Testimonials.module.css';
 
 const Testimonials = () => {
     // Original testimonial data (quotes and roles)

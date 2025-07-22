@@ -7,12 +7,12 @@ import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
 // Import Font Awesome components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faClock, // For Quick Response (based on p13.PNG, though it's typically for time/support)
-    faPhone, // For 24/7 Support (based on p13.PNG)
-    faUsers, // For Expert Team (based on p13.PNG)
-    faLocationDot, // For Address
-    faEnvelope, // For Email
-    faChevronDown // For FAQ arrow
+    faClock,
+    faPhone,
+    faUsers,
+    faLocationDot,
+    faEnvelope,
+    faChevronDown
 } from '@fortawesome/free-solid-svg-icons';
 import {
     faTwitter,
@@ -46,10 +46,75 @@ const FAQItem = ({ question, answer }) => {
 
 // Main Contact Page Component
 const ContactsPage = () => {
+    // State to manage form data
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        subject: 'General Inquiry', // Default subject
+        message: '',
+    });
+
+    // State for form submission status and messages
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+
+    // Handle input changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        setIsSubmitting(true);
+        setMessage(''); // Clear previous messages
+        setMessageType('');
+
+        try {
+            const response = await fetch('/api/sendEmail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setMessage(data.message);
+                setMessageType('success');
+                // Optionally clear the form after successful submission
+                setFormData({
+                    firstName: '',
+                    lastName: '',
+                    email: '',
+                    phone: '',
+                    subject: 'General Inquiry',
+                    message: '',
+                });
+            } else {
+                setMessage(data.message || 'An unexpected error occurred.');
+                setMessageType('error');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setMessage('Failed to send message. Please try again later.');
+            setMessageType('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className={styles.container}>
-
-
             <section className={styles.heroSection}>
                 <div className={styles.heroContentWrapper}>
                     <h1 className={styles.heroTitle}>Get in Touch</h1>
@@ -58,17 +123,14 @@ const ContactsPage = () => {
                     </p>
                     <div className={styles.heroFeatures}>
                         <div className={styles.heroFeatureItem}>
-                            {/* Updated icon to faPhone for "24/7 Support" matching p13.PNG */}
-                            <FontAwesomeIcon icon={faPhone} className={styles.heroIcon}  size="2x" />
+                            <FontAwesomeIcon icon={faPhone} className={styles.heroIcon} size="2x" />
                             24/7 Support
                         </div>
                         <div className={styles.heroFeatureItem}>
-                            {/* Updated icon to faClock for "Quick Response" matching p13.PNG */}
                             <FontAwesomeIcon icon={faClock} className={styles.heroIcon} />
                             Quick Response
                         </div>
                         <div className={styles.heroFeatureItem}>
-                            {/* Updated icon to faUsers for "Expert Team" matching p13.PNG */}
                             <FontAwesomeIcon icon={faUsers} className={styles.heroIcon} />
                             Expert Team
                         </div>
@@ -81,7 +143,12 @@ const ContactsPage = () => {
                     {/* Left Column: Send us a Message Form Card */}
                     <div className={styles.formCard}>
                         <h2 className={styles.formTitle}>Send us a Message</h2>
-                        <form className={styles.form}>
+                        {message && (
+                            <div className={`${styles.formMessage} ${styles[messageType]}`}>
+                                {message}
+                            </div>
+                        )}
+                        <form className={styles.form} onSubmit={handleSubmit}>
                             <div className={styles.formRow}>
                                 <div className={styles.formGroup}>
                                     <label htmlFor="firstName" className={styles.formLabel}>First Name</label>
@@ -91,6 +158,9 @@ const ContactsPage = () => {
                                         name="firstName"
                                         placeholder="John"
                                         className={styles.formInput}
+                                        value={formData.firstName}
+                                        onChange={handleChange}
+                                        required
                                     />
                                 </div>
                                 <div className={styles.formGroup}>
@@ -101,6 +171,9 @@ const ContactsPage = () => {
                                         name="lastName"
                                         placeholder="Doe"
                                         className={styles.formInput}
+                                        value={formData.lastName}
+                                        onChange={handleChange}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -112,6 +185,9 @@ const ContactsPage = () => {
                                     name="email"
                                     placeholder="john@example.com"
                                     className={styles.formInput}
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                 />
                             </div>
                             <div className={styles.formGroup}>
@@ -122,6 +198,8 @@ const ContactsPage = () => {
                                     name="phone"
                                     placeholder="+1 (555) 000-0000"
                                     className={styles.formInput}
+                                    value={formData.phone}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className={styles.formGroup}>
@@ -130,6 +208,9 @@ const ContactsPage = () => {
                                     id="subject"
                                     name="subject"
                                     className={styles.formInput}
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    required
                                 >
                                     <option>General Inquiry</option>
                                     <option>Support Request</option>
@@ -145,13 +226,17 @@ const ContactsPage = () => {
                                     rows="4"
                                     placeholder="Tell us how we can help you..."
                                     className={styles.formTextarea}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
                                 ></textarea>
                             </div>
                             <button
                                 type="submit"
                                 className={styles.submitButton}
+                                disabled={isSubmitting} // Disable button while submitting
                             >
-                                Send Message
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>
@@ -242,7 +327,6 @@ const ContactsPage = () => {
 
             <section className={styles.faqSection}>
                 <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
-                {/* Add this subtitle for the "Quick answers to common questions..." text */}
                 <p className={styles.faqSubtitle}>Quick answers to common questions about our AI chat solutions</p>
                 <div className={styles.faqContainer}>
                     <FAQItem

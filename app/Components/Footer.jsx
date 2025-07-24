@@ -32,16 +32,16 @@ const Footer = () => {
                         </div>
                         <p>Your trusted partner for premium<br />chat solutions and customer<br />engagement tools.</p>
                         <div className={styles.socialIcons}>
-                            <Link href="#" passHref>
+                            <Link href="#" passHref legacyBehavior>
                                 <FontAwesomeIcon icon={faFacebookF} size="sm" />
                             </Link>
-                            <Link href="#" passHref>
+                            <Link href="#" passHref legacyBehavior>
                                 <FontAwesomeIcon icon={faTwitter} size="sm" />
                             </Link>
-                            <Link href="#" passHref>
+                            <Link href="#" passHref legacyBehavior>
                                 <FontAwesomeIcon icon={faLinkedinIn} size="sm" />
                             </Link>
-                            <Link href="#" passHref>
+                            <Link href="#" passHref legacyBehavior>
                                 <FontAwesomeIcon icon={faInstagram} size="sm" />
                             </Link>
                         </div>

@@ -1,14 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: ['randomuser.me'],
-  },
-  experimental: {
-    turbo: {
-      // Disable Turbopack (use Webpack instead)
-      enabled: false,
-    },
-  },
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
 };
 
-module.exports = nextConfig;
+export default nextConfig;

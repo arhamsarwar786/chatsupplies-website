@@ -14,19 +14,14 @@ const CallToAction = () => {
         <div className="flex flex-wrap justify-center gap-[15px] mt-5 w-full px-4 box-border md:flex-row md:gap-[15px]">
           <Link
             href="/shop"
-            className="inline-flex items-center justify-center text-[clamp(0.9rem,2.8vw,1.2rem)] 
-             px-[clamp(1.6rem,6vw,2.5rem)] py-[clamp(0.8rem,2.5vw,1.2rem)] 
-             bg-white text-[#5b48e3] font-semibold rounded-[10px] 
-             border-2 border-white transition-colors duration-300 
-             w-full max-w-[320px] text-center whitespace-nowrap 
-             hover:bg-[#f0f0f0] box-border no-underline"
+            className="px-4 py-2 bg-white rounded-2xl text-[#5b48e3] hover:bg-[#000000] hover:text-white"
           >
             Start Shopping
           </Link>
 
           <Link
             href="/contact"
-            className="px-4 py-2 hover:bg-white hover:text-[#5b48e3] text-white"
+            className="px-4 py-2 bg-white rounded-2xl text-[#5b48e3] hover:bg-[#000000] hover:text-white"
           >
             Contact Sales
           </Link>

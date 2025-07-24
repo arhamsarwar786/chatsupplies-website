@@ -1,20 +1,26 @@
-/* 🔧 Your custom base/reset styles should come BEFORE @tailwind base */
+@import "tailwindcss";
 
-button {
-  all: unset;
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
-button {
-  appearance: none;
-  border: none;
-  background: none;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
-/* ✅ Tailwind directives must stay in this order */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

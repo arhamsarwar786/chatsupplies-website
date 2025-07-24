@@ -2,9 +2,6 @@
 
 import Footer from '../Components/Footer';
 import React, { useState } from 'react';
-import styles from '../styles/ContactsPage.module.css'; // Import CSS Module
-
-// Import Font Awesome components
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faClock,
@@ -21,47 +18,41 @@ import {
     faInstagram
 } from '@fortawesome/free-brands-svg-icons';
 
-
-// FAQ Item Component
 const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className={styles.faqItem}>
+        <div className="bg-white p-4 rounded-lg shadow-sm mb-4 border-b border-gray-100 last:border-b-0">
             <button
-                className={styles.faqQuestionButton}
+                className="w-full flex justify-between items-center text-left font-medium text-gray-900 hover:text-indigo-600 focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {question}
                 <FontAwesomeIcon
                     icon={faChevronDown}
-                    className={`${styles.faqArrowIcon} ${isOpen ? styles.faqArrowOpen : ''}`}
+                    className={`w-4 h-4 text-gray-500 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}
                 />
             </button>
             {isOpen && (
-                <p className={styles.faqAnswer}>{answer}</p>
+                <p className="mt-3 text-gray-600">{answer}</p>
             )}
         </div>
     );
 };
 
-// Main Contact Page Component
 const ContactsPage = () => {
-    // State to manage form data
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
         email: '',
         phone: '',
-        subject: 'General Inquiry', // Default subject
+        subject: 'General Inquiry',
         message: '',
     });
 
-    // State for form submission status and messages
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState(''); // 'success' or 'error'
+    const [messageType, setMessageType] = useState('');
 
-    // Handle input changes
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -70,11 +61,10 @@ const ContactsPage = () => {
         }));
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault();
         setIsSubmitting(true);
-        setMessage(''); // Clear previous messages
+        setMessage('');
         setMessageType('');
 
         try {
@@ -91,7 +81,6 @@ const ContactsPage = () => {
             if (response.ok) {
                 setMessage(data.message);
                 setMessageType('success');
-                // Optionally clear the form after successful submission
                 setFormData({
                     firstName: '',
                     lastName: '',
@@ -114,100 +103,101 @@ const ContactsPage = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <section className={styles.heroSection}>
-                <div className={styles.heroContentWrapper}>
-                    <h1 className={styles.heroTitle}>Get in Touch</h1>
-                    <p className={styles.heroSubtitle}>
+        <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
+            {/* Hero Section */}
+            <section className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-center pt-24 pb-12 px-4 w-full relative">
+                <div className="max-w-6xl mx-auto px-4">
+                    <h1 className="text-4xl font-extrabold mb-4 leading-tight">Get in Touch</h1>
+                    <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">
                         Have questions about our AI chat solutions? We're here to help you transform your customer communication.
                     </p>
-                    <div className={styles.heroFeatures}>
-                        <div className={styles.heroFeatureItem}>
-                            <FontAwesomeIcon icon={faPhone} className={styles.heroIcon} size="2x" />
+                    <div className="flex flex-wrap justify-center gap-6">
+                        <div className="flex items-center text-white font-semibold">
+                            <FontAwesomeIcon icon={faPhone} className="w-6 h-6 mr-2" />
                             24/7 Support
                         </div>
-                        <div className={styles.heroFeatureItem}>
-                            <FontAwesomeIcon icon={faClock} className={styles.heroIcon} />
+                        <div className="flex items-center text-white font-semibold">
+                            <FontAwesomeIcon icon={faClock} className="w-5 h-5 mr-2" />
                             Quick Response
                         </div>
-                        <div className={styles.heroFeatureItem}>
-                            <FontAwesomeIcon icon={faUsers} className={styles.heroIcon} />
+                        <div className="flex items-center text-white font-semibold">
+                            <FontAwesomeIcon icon={faUsers} className="w-5 h-5 mr-2" />
                             Expert Team
                         </div>
                     </div>
                 </div>
             </section>
 
-            <main className={styles.mainContent}>
-                <section className={styles.contactGrid}>
-                    {/* Left Column: Send us a Message Form Card */}
-                    <div className={styles.formCard}>
-                        <h2 className={styles.formTitle}>Send us a Message</h2>
+            <main className="flex-grow max-w-7xl mx-auto w-full py-12 px-4 sm:px-6">
+                <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    {/* Form Card */}
+                    <div className="bg-gray-50 p-6 rounded-xl shadow-md">
+                        <h2 className="text-2xl font-bold mb-6">Send us a Message</h2>
                         {message && (
-                            <div className={`${styles.formMessage} ${styles[messageType]}`}>
+                            <div className={`p-4 mb-6 rounded-lg ${messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                 {message}
                             </div>
                         )}
-                        <form className={styles.form} onSubmit={handleSubmit}>
-                            <div className={styles.formRow}>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="firstName" className={styles.formLabel}>First Name</label>
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
                                     <input
                                         type="text"
                                         id="firstName"
                                         name="firstName"
                                         placeholder="John"
-                                        className={styles.formInput}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                         value={formData.firstName}
                                         onChange={handleChange}
                                         required
                                     />
                                 </div>
-                                <div className={styles.formGroup}>
-                                    <label htmlFor="lastName" className={styles.formLabel}>Last Name</label>
+                                <div>
+                                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
                                     <input
                                         type="text"
                                         id="lastName"
                                         name="lastName"
                                         placeholder="Doe"
-                                        className={styles.formInput}
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                         value={formData.lastName}
                                         onChange={handleChange}
                                         required
                                     />
                                 </div>
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="email" className={styles.formLabel}>Email</label>
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                                 <input
                                     type="email"
                                     id="email"
                                     name="email"
                                     placeholder="john@example.com"
-                                    className={styles.formInput}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="phone" className={styles.formLabel}>Phone Number</label>
+                            <div>
+                                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                                 <input
                                     type="tel"
                                     id="phone"
                                     name="phone"
                                     placeholder="+1 (555) 000-0000"
-                                    className={styles.formInput}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                     value={formData.phone}
                                     onChange={handleChange}
                                 />
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="subject" className={styles.formLabel}>Subject</label>
-                                <select // Changed to select dropdown
+                            <div>
+                                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <select
                                     id="subject"
                                     name="subject"
-                                    className={styles.formInput}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                     value={formData.subject}
                                     onChange={handleChange}
                                     required
@@ -218,14 +208,14 @@ const ContactsPage = () => {
                                     <option>Other</option>
                                 </select>
                             </div>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="message" className={styles.formLabel}>Message</label>
+                            <div>
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     rows="4"
                                     placeholder="Tell us how we can help you..."
-                                    className={styles.formTextarea}
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
@@ -233,118 +223,120 @@ const ContactsPage = () => {
                             </div>
                             <button
                                 type="submit"
-                                className={styles.submitButton}
-                                disabled={isSubmitting} // Disable button while submitting
+                                className="w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition-colors disabled:opacity-50"
+                                disabled={isSubmitting}
                             >
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </form>
                     </div>
 
-                    {/* Right Column: Individual Cards */}
-                    <div className={styles.infoCard}>
-                        <h2 className={styles.infoTitle}>Contact Information</h2>
-
-                        {/* Address Group - MODIFIED */}
-                        <div className={styles.infoGroup}>
-                            {/* New wrapper div for icon background */}
-                            <div className={styles.infoIconBackground}>
-                                <FontAwesomeIcon icon={faLocationDot} className={styles.infoIcon} />
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        {/* Contact Info Card */}
+                        <div className="bg-gray-50 p-6 rounded-xl shadow-md">
+                            <h2 className="text-xl font-bold mb-6">Contact Information</h2>
+                            
+                            <div className="flex items-start mb-6">
+                                <div className="bg-indigo-100 p-3 rounded-lg mr-4 flex-shrink-0">
+                                    <FontAwesomeIcon icon={faLocationDot} className="w-5 h-5 text-indigo-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium text-gray-500 mb-1">Address</p>
+                                    <p className="text-gray-700">
+                                        123 AI Street, Tech Valley<br />
+                                        San Francisco, CA 94102
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <p className={styles.infoSubtitle}>Address</p>
-                                <p className={styles.infoText}>
-                                    123 AI Street, Tech Valley<br />
-                                    San Francisco, CA 94102
-                                </p>
+                            
+                            <div className="flex items-start mb-6">
+                                <div className="bg-indigo-100 p-3 rounded-lg mr-4 flex-shrink-0">
+                                    <FontAwesomeIcon icon={faPhone} className="w-5 h-5 text-indigo-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium text-gray-500 mb-1">Phone</p>
+                                    <p className="text-gray-700">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-start">
+                                <div className="bg-indigo-100 p-3 rounded-lg mr-4 flex-shrink-0">
+                                    <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5 text-indigo-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium text-gray-500 mb-1">Email</p>
+                                    <p className="text-gray-700">hello@aichatsupplies.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Business Hours Card */}
+                        <div className="bg-gray-50 p-6 rounded-xl shadow-md">
+                            <h2 className="text-xl font-bold mb-6">Business Hours</h2>
+                            <div className="space-y-3">
+                                <div className="flex justify-between">
+                                    <span className="text-gray-700 font-medium">Monday - Friday</span>
+                                    <span className="text-gray-700">9:00 AM - 6:00 PM</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-gray-700 font-medium">Saturday</span>
+                                    <span className="text-gray-700">10:00 AM - 4:00 PM</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span className="text-gray-700 font-medium">Sunday</span>
+                                    <span className="text-gray-700">Closed</span>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Phone Group */}
-                        <div className={styles.infoGroup}>
-                            {/* New wrapper div for icon background */}
-                            <div className={styles.infoIconBackground}>
-                                <FontAwesomeIcon icon={faPhone} className={styles.infoIcon} />
+                        {/* Follow Us Card */}
+                        <div className="bg-gray-50 p-6 rounded-xl shadow-md">
+                            <h2 className="text-xl font-bold mb-6">Follow Us</h2>
+                            <div className="flex space-x-4">
+                                <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition-colors">
+                                    <FontAwesomeIcon icon={faTwitter} className="w-5 h-5 text-gray-700" />
+                                </a>
+                                <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition-colors">
+                                    <FontAwesomeIcon icon={faLinkedinIn} className="w-5 h-5 text-gray-700" />
+                                </a>
+                                <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition-colors">
+                                    <FontAwesomeIcon icon={faFacebookF} className="w-5 h-5 text-gray-700" />
+                                </a>
+                                <a href="#" className="bg-gray-100 p-3 rounded-lg hover:bg-gray-200 transition-colors">
+                                    <FontAwesomeIcon icon={faInstagram} className="w-5 h-5 text-gray-700" />
+                                </a>
                             </div>
-                            <div>
-                                <p className={styles.infoSubtitle}>Phone</p>
-                                <p className={styles.infoText}>+1 (555) 123-4567</p>
-                            </div>
-                        </div>
-
-                        {/* Email Group */}
-                        <div className={styles.infoGroup}>
-                            {/* New wrapper div for icon background */}
-                            <div className={styles.infoIconBackground}>
-                                <FontAwesomeIcon icon={faEnvelope} className={styles.infoIcon} />
-                            </div>
-                            <div>
-                                <p className={styles.infoSubtitle}>Email</p>
-                                <p className={styles.infoText}>hello@aichatsupplies.com</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Business Hours Card */}
-                    <div className={styles.businessHoursCard}>
-                        <h2 className={styles.hoursTitle}>Business Hours</h2>
-                        <div className={styles.hoursTable}>
-                            <div className={styles.hoursRow}>
-                                <span className={styles.hoursDay}>Monday - Friday</span>
-                                <span className={styles.hoursTime}>9:00 AM - 6:00 PM</span>
-                            </div>
-                            <div className={styles.hoursRow}>
-                                <span className={styles.hoursDay}>Saturday</span>
-                                <span className={styles.hoursTime}>10:00 AM - 4:00 PM</span>
-                            </div>
-                            <div className={styles.hoursRow}>
-                                <span className={styles.hoursDay}>Sunday</span>
-                                <span className={styles.hoursTime}>Closed</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Follow Us Card */}
-                    <div className={styles.followUsCard}>
-                        <h2 className={styles.socialTitle}>Follow Us</h2>
-                        <div className={styles.socialIcons}>
-                            <a href="#" className={styles.socialIconLink}>
-                                <FontAwesomeIcon icon={faTwitter} className={styles.socialIcon} />
-                            </a>
-                            <a href="#" className={styles.socialIconLink}>
-                                <FontAwesomeIcon icon={faLinkedinIn} className={styles.socialIcon} />
-                            </a>
-                            <a href="#" className={styles.socialIconLink}>
-                                <FontAwesomeIcon icon={faFacebookF} className={styles.socialIcon} />
-                            </a>
-                            <a href="#" className={styles.socialIconLink}>
-                                <FontAwesomeIcon icon={faInstagram} className={styles.socialIcon} />
-                            </a>
                         </div>
                     </div>
                 </section>
             </main>
 
-            <section className={styles.faqSection}>
-                <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
-                <p className={styles.faqSubtitle}>Quick answers to common questions about our AI chat solutions</p>
-                <div className={styles.faqContainer}>
-                    <FAQItem
-                        question="How quickly can I get started with AI Chat Supplies?"
-                        answer="Getting started is quick and easy! Our onboarding process is designed to be seamless, and you can typically have your AI chat solutions up and running within a few hours to a couple of days, depending on your specific integration needs."
-                    />
-                    <FAQItem
-                        question="What kind of support do you offer?"
-                        answer="We offer 24/7 comprehensive support including live chat, email, and phone assistance. We also provide extensive documentation, tutorials, and a dedicated help center to ensure you have all the resources you need."
-                    />
-                    <FAQItem
-                        question="Can I customize the AI responses?"
-                        answer="Yes, absolutely! Our AI solutions are highly customizable. You can train the AI with your specific business data, define custom responses, and integrate with your existing knowledge bases to ensure accurate and on-brand communication."
-                    />
-                    <FAQItem
-                        question="Do you offer enterprise solutions?"
-                        answer="Yes, we provide tailored enterprise solutions designed for large organizations with complex needs. These include advanced security features, dedicated account management, custom integrations, and scalable infrastructure. Please contact our sales team for a personalized consultation."
-                    />
+            {/* FAQ Section */}
+            <section className="bg-gray-50 py-16 px-4 sm:px-6 w-full">
+                <div className="max-w-4xl mx-auto text-center">
+                    <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+                    <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Quick answers to common questions about our AI chat solutions
+                    </p>
+                    <div className="max-w-3xl mx-auto space-y-4">
+                        <FAQItem
+                            question="How quickly can I get started with AI Chat Supplies?"
+                            answer="Getting started is quick and easy! Our onboarding process is designed to be seamless, and you can typically have your AI chat solutions up and running within a few hours to a couple of days, depending on your specific integration needs."
+                        />
+                        <FAQItem
+                            question="What kind of support do you offer?"
+                            answer="We offer 24/7 comprehensive support including live chat, email, and phone assistance. We also provide extensive documentation, tutorials, and a dedicated help center to ensure you have all the resources you need."
+                        />
+                        <FAQItem
+                            question="Can I customize the AI responses?"
+                            answer="Yes, absolutely! Our AI solutions are highly customizable. You can train the AI with your specific business data, define custom responses, and integrate with your existing knowledge bases to ensure accurate and on-brand communication."
+                        />
+                        <FAQItem
+                            question="Do you offer enterprise solutions?"
+                            answer="Yes, we provide tailored enterprise solutions designed for large organizations with complex needs. These include advanced security features, dedicated account management, custom integrations, and scalable infrastructure. Please contact our sales team for a personalized consultation."
+                        />
+                    </div>
                 </div>
             </section>
 

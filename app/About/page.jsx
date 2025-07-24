@@ -1,261 +1,149 @@
-"use client"; // This directive is typically for Next.js App Router components
+"use client";
 
-import Footer from '../Components/Footer'; // Assuming Footer is in the same directory
+import Footer from '../Components/Footer';
 import React, { useEffect } from 'react';
-import styles from '../styles/AboutPage.module.css'; // Corrected import to AboutPage.module.css
 
-// Component for a Mission/Vision/Value Card with Icon
-const MissionValueCard = ({ iconClass, iconBgClass, iconColorClass, title, description }) => {
-  return (
-    <div className={styles.missionValueCard}>
-      <div className={`${styles.missionValueIconContainer} ${styles[iconBgClass]}`}>
-        <i className={`${iconClass} ${styles.missionValueIcon} ${styles[iconColorClass]}`}></i>
-      </div>
-      <h3 className={styles.missionValueTitle}>{title}</h3>
-      <p className={styles.missionValueText}>{description}</p>
+const MissionValueCard = ({ iconClass, iconBgClass, iconColorClass, title, description }) => (
+  <div className="bg-white p-4 md:p-5 rounded-xl shadow-md text-center w-full hover:scale-[1.02] transition-all">
+    <div className={`w-16 h-16 rounded-md flex items-center justify-center mb-4 mx-auto ${iconBgClass}`}>
+      <i className={`${iconClass} text-lg ${iconColorClass}`}></i>
     </div>
-  );
-};
+    <h3 className="text-xl font-bold text-gray-900 mb-4">{title}</h3>
+    <p className="text-base text-gray-600 leading-relaxed">{description}</p>
+  </div>
+);
 
-// Component for a Team Member Card
-const TeamMemberCard = ({ imageSrc, name, title, description }) => {
-  return (
-    <div className={styles.teamMemberCard}>
-      <div className={styles.teamMemberImageContainer}>
-        <img src={imageSrc} alt={name} className={styles.teamMemberImage} />
-      </div>
-      <h3 className={styles.teamMemberName}>{name}</h3>
-      <p className={styles.teamMemberTitle}>{title}</p>
-      <p className={styles.teamMemberDescription}>{description}</p>
+const TeamMemberCard = ({ imageSrc, name, title, description }) => (
+  <div className="bg-[#FFFAFA] p-5 rounded-xl shadow-md text-center flex flex-col items-center hover:scale-[1.02] transition-all">
+    <div className="w-24 h-24 rounded-full overflow-hidden mb-4 border-4 border-indigo-100">
+      <img src={imageSrc} alt={name} className="w-full h-full object-cover" />
     </div>
-  );
-};
+    <h3 className="text-lg font-bold text-gray-900 mb-1">{name}</h3>
+    <p className="text-base font-medium text-indigo-600 mb-2">{title}</p>
+    <p className="text-sm text-gray-600 leading-snug max-w-xs">{description}</p>
+  </div>
+);
 
-const RecognitionItem = ({ iconClass, iconBgClass, iconColorClass, title, text }) => {
-  return (
-    <div className={styles.recognitionItem}>
-      <div className={`${styles.recognitionIconContainer} ${styles[iconBgClass]}`}>
-        <i className={`${iconClass} ${styles.recognitionIcon} ${styles[iconColorClass]}`}></i>
-      </div>
-      <h3 className={styles.recognitionItemTitle}>{title}</h3>
-      <p className={styles.recognitionItemText}>{text}</p>
+const RecognitionItem = ({ iconClass, iconBgClass, iconColorClass, title, text }) => (
+  <div className="bg-white p-5 rounded-xl shadow-md text-center flex flex-col items-center hover:scale-[1.02] transition-all w-full max-w-[440px]">
+    <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 mx-auto ${iconBgClass}`}>
+      <i className={`${iconClass} text-xl ${iconColorClass}`}></i>
     </div>
-  );
-};;
+    <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
+    <p className="text-sm text-gray-600 leading-relaxed">{text}</p>
+  </div>
+);
 
 const AboutUsPage = () => {
-  // Effect to load Font Awesome script for icons
   useEffect(() => {
     const link = document.createElement('link');
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
     link.rel = 'stylesheet';
     document.head.appendChild(link);
-
-    return () => {
-      document.head.removeChild(link);
-    };
+    return () => document.head.removeChild(link);
   }, []);
 
-
   return (
-    <div className={styles.aboutContainer}>
-
-      {/* Hero Section */}
-      <section className={styles.aboutHeroSection}>
-        <div className={styles.aboutHeroInner}>
-          <h1 className={styles.aboutHeroTitle}>About Our Company</h1>
-          <p className={styles.aboutHeroSubtitle}>
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+      <section className="w-screen ml-[calc(50%-50vw)] py-24 px-6 bg-indigo-600 text-white text-center flex justify-center items-center min-h-[30vh] box-border">
+        <div className="max-w-2xl w-full mx-auto flex flex-col items-center justify-center">
+          <h1 className="text-4xl font-extrabold mb-4 leading-tight">About Our Company</h1>
+          <p className="text-lg mb-8 text-indigo-100 leading-relaxed">
             We are passionate about building innovative AI solutions that empower businesses and delight customers.
           </p>
-          <div className={styles.aboutHeroFeatures}>
-            <div className={styles.aboutHeroFeatureItem}>
-              <i className="fas fa-rocket"></i> Innovation First
+          <div className="flex flex-wrap justify-center gap-6">
+            <div className="font-semibold text-base flex items-center">
+              <i className="fas fa-rocket mr-2"></i> Innovation First
             </div>
-            <div className={styles.aboutHeroFeatureItem}>
-              <i className="fas fa-users"></i> Customer Focused
+            <div className="font-semibold text-base flex items-center">
+              <i className="fas fa-users mr-2"></i> Customer Focused
             </div>
-            <div className={styles.aboutHeroFeatureItem}>
-              <i className="fas fa-crown"></i> Industry Leading
+            <div className="font-semibold text-base flex items-center">
+              <i className="fas fa-crown mr-2"></i> Industry Leading
             </div>
           </div>
         </div>
       </section>
 
-      {/* Our Story Section - White background */}
-      <section className={`${styles.sectionContainer} ${styles.sectionWhiteBg}`}>
-        <div className={styles.storySection}>
-          <h2 className={styles.sectionTitle}>Our Story</h2>
-          <div className={styles.storyContentWrapper}>
-            <div className={`${styles.storyTextContainer} ${styles.storyOrderText}`}>
-              <p className={styles.storyText}>
+     <section className="bg-white py-16 px-6 w-full">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold mb-12 text-gray-900">Our Story</h2>
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2">
+              <p className="text-gray-600 mb-6">
                 Founded in 2020, AI Chat Supplies emerged from a simple observation:<br />
                 businesses were struggling to provide instant, personalized customer support at scale. Our founders, experienced in AI and customer service, saw an opportunity to bridge this gap.
               </p>
-              <p className={styles.storyText}>
+              <p className="text-gray-600 mb-8">
                 What started as a small team of passionate engineers has grown into a<br />
                 leading provider of AI chat solutions, serving thousands of businesses worldwide. We believe that every customer interaction should be meaningful, efficient, and human-like.
               </p>
-              <div className={styles.storyStats}>
-                <div className={styles.statItem}>
-                  <p className={styles.statNumber}>10K+</p>
-                  <p className={styles.statLabel}>Happy Clients</p>
+              <div className="flex gap-8">
+                <div>
+                  <p className="text-2xl font-bold text-indigo-600">10K+</p>
+                  <p className="text-gray-700">Happy Clients</p>
                 </div>
-                <div className={styles.statItem}>
-                  <p className={styles.statNumber}>50M+</p>
-                  <p className={styles.statLabel}>Conversations</p>
+                <div>
+                  <p className="text-2xl font-bold text-indigo-600">50M+</p>
+                  <p className="text-gray-700">Conversations</p>
                 </div>
-                <div className={styles.statItem}>
-                  <p className={styles.statNumber}>99.9%</p>
-                  <p className={styles.statLabel}>Uptime</p>
+                <div>
+                  <p className="text-2xl font-bold text-indigo-600">99.9%</p>
+                  <p className="text-gray-700">Uptime</p>
                 </div>
               </div>
             </div>
-            <div className={`${styles.storyImageContainer} ${styles.storyOrderImage}`}>
-              {/* Corrected image source for Next.js public directory */}
-              <img src="/Images/Teamwork.PNG" alt="Our Story" className={styles.storyImage} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Values Section - Light grey background */}
-      <section className={`${styles.sectionContainer} ${styles.sectionLightGreyBg}`}>
-        <div className={styles.missionValuesSection}>
-          <div className={styles.missionValuesInner}>
-            <h2 className={styles.sectionTitle}>Our Mission & Values</h2>
-            <div className={styles.missionValuesGrid}>
-              <MissionValueCard
-                iconClass="fas fa-bullseye"
-                iconBgClass="missionIconBg"
-                iconColorClass="missionIconColor"
-                title="Mission"
-                description={
-                  <>
-                    To empower businesses with <br />
-                    AI-driven communication <br />
-                    tools that enhance customer <br />
-                    experiences and drive growth <br />
-                    through intelligent<br />
-                    automation.
-                  </>
-                }
-              />
-              <MissionValueCard
-                iconClass="fas fa-eye"
-                iconBgClass="visionIconBg"
-                iconColorClass="visionIconColor"
-                title="Vision"
-                description={
-                  <>
-                    To become the global leader<br />
-                    in AI chat solutions, making<br />
-                    advanced conversational AI<br />
-                    accessible to businesses of<br />
-                    all sizes worldwide.
-                  </>
-                }
-              />
-              <MissionValueCard
-                iconClass="fas fa-heart"
-                iconBgClass="valuesIconBg"
-                iconColorClass="valuesIconColor"
-                title="Values"
-                description={
-                  <>
-                    Innovation, transparency,<br />
-                    customer-centricity, and<br />
-                    ethical AI development guide<br />
-                    everything we do in our<br />
-                    pursuit of excellence.
-                  </>
-                }
+            <div className="lg:w-1/2">
+              <img 
+                src="/Images/Teamwork.PNG" 
+                alt="Our Story" 
+                className="rounded-xl shadow-lg w-full max-h-96 object-cover"
               />
             </div>
           </div>
         </div>
       </section>
-      {/* Meet Our Team Section */}
-      <section className={`${styles.sectionContainer} ${styles.sectionWhiteBg}`}>
-        <div className={styles.teamSection}>
-          <div className={styles.teamInner}>
-            <h2 className={styles.sectionTitle}>Meet Our Team</h2>
-            <p className={styles.teamSubtitle}>The brilliant minds behind AI Chat Supplies</p>
-            <div className={styles.teamGrid}>
-              <TeamMemberCard
-                imageSrc="https://randomuser.me/api/portraits/men/32.jpg"
-                name="Alex Johnson"
-                title="CEO & Founder"
-                description="Former Google AI researcher with 15+ years in machine learning and natural language processing."
-                unoptimized
-              />
-              <TeamMemberCard
-                imageSrc="https://randomuser.me/api/portraits/women/44.jpg"
-                name="Sarah Chen"
-                title="CTO"
-                description="AI architect and former Microsoft principal engineer, specializing in conversational AI and scalable systems."
-                unoptimized
-              />
-              <TeamMemberCard
-                imageSrc="https://randomuser.me/api/portraits/men/75.jpg"
-                name="Michael Rodriguez"
-                title="Head of Product"
-                description="Product strategist with expertise in user experience design and AI product development at scale."
-                unoptimized
-              />
-            </div>
+      <section className="w-screen ml-[calc(50%-50vw)] py-16 px-6 bg-[#f2f4f6]">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-10">Our Mission & Values</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[900px] mx-auto mt-14">
+            <MissionValueCard iconClass="fas fa-bullseye" iconBgClass="bg-indigo-100" iconColorClass="text-purple-800" title="Mission" description={<>To empower businesses with <br /> AI-driven communication tools that enhance customer experiences and drive growth through intelligent automation.</>} />
+            <MissionValueCard iconClass="fas fa-eye" iconBgClass="bg-indigo-100" iconColorClass="text-purple-500" title="Vision" description={<>To become the global leader in AI chat solutions, making advanced conversational AI accessible to businesses of all sizes worldwide.</>} />
+            <MissionValueCard iconClass="fas fa-heart" iconBgClass="bg-indigo-100" iconColorClass="text-yellow-400" title="Values" description={<>Innovation, transparency, customer-centricity, and ethical AI development guide everything we do in our pursuit of excellence.</>} />
           </div>
         </div>
       </section>
 
-
-      {/* Our Achievements (Industry Recognition) Section - Light grey background */}
-      <section className={`${styles.sectionContainer} ${styles.sectionLightGreyBg}`}>
-        <div className={styles.recognitionSection}>
-          <div className={styles.recognitionInner}>
-            <h2 className={styles.sectionTitle}>Our Achievements</h2>
-            <div className={styles.recognitionGrid}>
-              <RecognitionItem
-                iconClass="fas fa-trophy"
-                iconBgClass="awardIconBg"
-                iconColorClass="awardIconColor"
-                title="Industry Recognition"
-                text="Winner of the 2023 AI Innovation Award and recognized as 'Best AI Chat Solution' by TechCrunch."
-              />
-              <RecognitionItem
-                iconClass="fas fa-chart-line"
-                iconBgClass="growthIconBg"
-                iconColorClass="growthIconColor"
-                title="Growth Milestone"
-                text="Achieved 300% year-over-year growth and expanded to serve clients across 50+ countries worldwide."
-              />
-              <RecognitionItem
-                iconClass="fas fa-handshake"
-                iconBgClass="partnershipIconBg"
-                iconColorClass="partnershipIconColor"
-                title="Strategic Partnerships"
-                text="Partnered with leading CRM platforms and integrated with 100+ business tools and applications."
-              />
-              <RecognitionItem
-                iconClass="fas fa-shield-alt"
-                iconBgClass="securityIconBg"
-                iconColorClass="securityIconColor"
-                title="Security Standards"
-                text="SOC 2 Type II certified and GDPR compliant, ensuring the highest standards of data security and privacy."
-              />
-            </div>
+      <section className="w-screen ml-[calc(50%-50vw)] py-16 px-6 bg-white">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Meet Our Team</h2>
+          <p className="text-lg text-gray-600 mb-10">The brilliant minds behind AI Chat Supplies</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <TeamMemberCard imageSrc="https://randomuser.me/api/portraits/men/32.jpg" name="Alex Johnson" title="CEO & Founder" description="Former Google AI researcher with 15+ years in machine learning and natural language processing." />
+            <TeamMemberCard imageSrc="https://randomuser.me/api/portraits/women/44.jpg" name="Sarah Chen" title="CTO" description="AI architect and former Microsoft principal engineer, specializing in conversational AI and scalable systems." />
+            <TeamMemberCard imageSrc="https://randomuser.me/api/portraits/men/75.jpg" name="Michael Rodriguez" title="Head of Product" description="Product strategist with expertise in user experience design and AI product development at scale." />
           </div>
         </div>
       </section>
 
-      {/* Call To Action Section - No change in color */}
-      <section className={styles.ctaSection}>
-        <h2 className={styles.ctaTitle}>Ready to Transform Your Customer Experience?</h2>
-        <p className={styles.ctaSubtitle}>
-          Start with our free trial and discover how AI can revolutionize your business communication.
-        </p>
-        <div className={styles.ctaButtons}>
-          <button className={styles.ctaButtonPrimary}>Start Free Trial</button>
-          <button className={styles.ctaButtonSecondary}>Schedule Demo</button>
+      <section className="w-screen ml-[calc(50%-50vw)] py-16 px-6 bg-[#f2f4f6]">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-10">Our Achievements</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[880px] mx-auto">
+            <RecognitionItem iconClass="fas fa-trophy" iconBgClass="bg-indigo-100" iconColorClass="text-indigo-500" title="Industry Recognition" text="Winner of the 2023 AI Innovation Award and recognized as 'Best AI Chat Solution' by TechCrunch." />
+            <RecognitionItem iconClass="fas fa-chart-line" iconBgClass="bg-indigo-100" iconColorClass="text-indigo-500" title="Growth Milestone" text="Achieved 300% year-over-year growth and expanded to serve clients across 50+ countries worldwide." />
+            <RecognitionItem iconClass="fas fa-handshake" iconBgClass="bg-orange-50" iconColorClass="text-yellow-500" title="Strategic Partnerships" text="Partnered with leading CRM platforms and integrated with 100+ business tools and applications." />
+            <RecognitionItem iconClass="fas fa-shield-alt" iconBgClass="bg-indigo-100" iconColorClass="text-indigo-500" title="Security Standards" text="SOC 2 Type II certified and GDPR compliant, ensuring the highest standards of data security and privacy." />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-screen ml-[calc(50%-50vw)] py-16 px-8 bg-indigo-600 text-white text-center">
+        <h2 className="text-4xl font-bold mb-6 leading-snug">Ready to Transform Your Customer Experience?</h2>
+        <p className="text-lg mb-8 max-w-2xl mx-auto">Start with our free trial and discover how AI can revolutionize your business communication.</p>
+        <div className="flex flex-col md:flex-row justify-center gap-4">
+          <button className="bg-white text-indigo-600 font-semibold py-4 px-8 rounded-xl text-lg shadow-md hover:bg-gray-100 transition-all">Start Free Trial</button>
+          <button className="bg-transparent border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-white/10 transition-all">Schedule Demo</button>
         </div>
       </section>
 

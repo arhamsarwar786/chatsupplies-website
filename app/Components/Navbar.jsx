@@ -42,19 +42,15 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-sm py-3 z-[1000]">
-      <div className="max-w-[1300px] mx-auto flex justify-between items-center px-4 sm:px-6">
+      {/* Adjusted horizontal padding for very small screens to px-1, then px-2 for xs, px-4 for sm and up */}
+      <div className="max-w-[1300px] mx-auto flex justify-between items-center px-1 xs:px-2 sm:px-4 md:px-6">
         {/* Logo */}
-        <div className="flex items-center gap-3 ml-[18px]">
-          {/* Extra spacing on mobile screens */}
-          <div className="block md:hidden mr-2">
-            <button className="hover:text-indigo-600 hover:bg-gray-100 p-2 rounded-full transition-colors text-gray-600">
-              <FontAwesomeIcon icon={faSearch} className="h-6 w-6" />
-            </button>
+        <div className="flex items-center gap-1 xs:gap-2 sm:gap-3"> {/* Reduced gap for smaller screens */}
+          <div className="bg-indigo-600 w-[28px] h-[28px] xs:w-[32px] xs:h-[32px] sm:w-[38px] sm:h-[38px] rounded-lg flex items-center justify-center mr-[1px] xs:mr-[2px]"> {/* Even smaller logo for tiny screens */}
+            <FontAwesomeIcon icon={faComments} className="text-white text-sm xs:text-base sm:text-lg" /> {/* Adjusted icon size */}
           </div>
-          <div className="bg-indigo-600 w-[38px] h-[38px] rounded-lg flex items-center justify-center mr-[2px]">
-            <FontAwesomeIcon icon={faComments} size="lg" className="text-white" />
-          </div>
-          <span className="text-[1.55rem] font-extrabold text-gray-800">ChatSupplies</span>
+          {/* Reduced font size for very small screens */}
+          <span className="text-sm xs:text-base sm:text-[1.55rem] font-extrabold text-gray-800 whitespace-nowrap">ChatSupplies</span>
         </div>
 
         {/* Desktop Navigation */}
@@ -66,27 +62,34 @@ const Navbar = () => {
           <Link href="/Contacts" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Contact</Link>
         </nav>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2 md:gap-2">
-          <button className="hidden md:block hover:text-indigo-600 hover:bg-gray-100 p-2 rounded-full transition-colors text-gray-600">
-            <FontAwesomeIcon icon={faSearch} className="h-6 w-6" />
-          </button>
-          <button className="hover:text-indigo-600 hover:bg-gray-100 p-2 rounded-full transition-colors text-gray-600 relative">
-            <FontAwesomeIcon icon={faShoppingCart} className="h-6 w-6" />
-            <span className="absolute top-[-6px] right-[-2px] bg-red-500 text-white text-xs font-bold rounded-full h-[1.1rem] w-[1.1rem] flex items-center justify-center border border-white">3</span>
-          </button>
+        {/* Actions - Further decreased spacing for extra small screens */}
+        <div className="flex items-center gap-x-0.5 xs:gap-x-1 sm:gap-x-2 md:gap-x-4"> {/* Tighter gap for xs, then sm, default for md */}
+          {/* Search and Add to Cart Icons - Visible on all screens, but grouped for mobile */}
+          <div className="flex items-center gap-x-0 xs:gap-x-0.5 sm:gap-x-1"> {/* Even tighter gap for mobile icons */}
+            <button className="hover:text-indigo-600 hover:bg-gray-100 p-1 xs:p-1.5 sm:p-2 rounded-full transition-colors text-gray-600"> {/* Smaller padding for icons */}
+              <FontAwesomeIcon icon={faSearch} className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6" /> {/* Smaller icon size for xs */}
+            </button>
+            <button className="hover:text-indigo-600 hover:bg-gray-100 p-1 xs:p-1.5 sm:p-2 rounded-full transition-colors text-gray-600 relative"> {/* Smaller padding for icons */}
+              <FontAwesomeIcon icon={faShoppingCart} className="h-4 w-4 xs:h-5 xs:w-5 sm:h-6 sm:w-6" /> {/* Smaller icon size for xs */}
+              <span className="absolute top-[-3px] right-[-1px] bg-red-500 text-white text-[0.5rem] xs:text-[0.6rem] sm:text-xs font-bold rounded-full h-[0.9rem] w-[0.9rem] xs:h-[1rem] xs:w-[1rem] sm:h-[1.1rem] sm:w-[1.1rem] flex items-center justify-center border border-white">3</span> {/* Smaller badge for xs */}
+            </button>
+          </div>
+
+          {/* Main Action Button */}
           <button
             onClick={handleButtonClick}
-            className="bg-indigo-600 text-white px-5 py-[0.7rem] rounded-md font-semibold text-base hover:bg-indigo-700 transition"
+            className="bg-indigo-600 text-white px-2 py-[0.5rem] xs:px-3 xs:py-[0.6rem] sm:px-4 sm:py-[0.7rem] rounded-md font-semibold text-[0.65rem] xs:text-xs sm:text-sm hover:bg-indigo-700 transition whitespace-nowrap" // Adjusted padding and text size for xs
           >
             {getButtonLabel()}
           </button>
+
+          {/* Mobile Menu Toggle */}
           <button
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
-            className="ml-2 p-2 md:hidden text-gray-600"
+            className="ml-0.5 xs:ml-1 p-1 xs:p-1.5 sm:p-2 md:hidden text-gray-600" // Adjusted margin and padding for mobile
           >
-            <FontAwesomeIcon icon={faBars} className="w-6 h-6" />
+            <FontAwesomeIcon icon={faBars} className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" /> {/* Smaller icon size for xs */}
           </button>
         </div>
       </div>

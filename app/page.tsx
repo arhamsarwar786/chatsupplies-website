@@ -5,6 +5,7 @@ config.autoAddCss = false;
 
 import HeroSection from "./Home/HeroSection";    
 import FeaturedProducts from "./Home/FeaturedProducts"; 
+import Subscription from './Home/Subscription';
 import ShopByCategory from './Home/ShopByCategory';   
 import WhyChooseUs from './Home/WhyChooseUs'; 
 import Testimonials from './Home/Testimonial'; 
@@ -18,6 +19,7 @@ export default function Home() {
      
       <HeroSection />
       <FeaturedProducts />
+      <Subscription />
       <ShopByCategory />
       <WhyChooseUs />
       <Testimonials />

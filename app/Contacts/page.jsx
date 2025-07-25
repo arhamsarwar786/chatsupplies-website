@@ -105,7 +105,7 @@ const ContactsPage = () => {
     return (
         <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-center pt-24 pb-12 px-4 w-full relative">
+            <section className="bg-gradient-to-br from-indigo-500 to-purple-500 text-white text-center pt-32 pb-12 px-4 w-full relative">
                 <div className="max-w-6xl mx-auto px-4">
                     <h1 className="text-4xl font-extrabold mb-4 leading-tight">Get in Touch</h1>
                     <p className="text-xl text-indigo-100 max-w-3xl mx-auto mb-8">

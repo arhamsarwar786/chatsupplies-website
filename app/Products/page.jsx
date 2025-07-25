@@ -142,7 +142,7 @@ const ProductsPage = () => {
 
   return (
     <div className="bg-gray-50 text-gray-900 font-sans min-h-screen">
-      <section className="text-center bg-[#6633ff] pt-28 pb-12 relative z-[1]">
+      <section className="text-center bg-[#6633ff] pt-32 pb-12 relative z-[1]">
         <h1 className="text-4xl font-extrabold text-white mb-4 leading-tight">Our AI Products</h1>
         <p className="text-lg text-indigo-100 max-w-3xl mx-auto mb-8">
           Discover our comprehensive suite of AI-powered chat solutions designed to transform your customer experience.

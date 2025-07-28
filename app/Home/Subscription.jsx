@@ -68,21 +68,7 @@ export default function App() {
       ],
       isHighlighted: true, // This card is highlighted
     },
-    {
-      name: 'Teams',
-      price: '$70',
-      discountedPrice: '$28',
-      period: 'per user / month (regional discount)',
-      buttonText: 'Create Team',
-      features: [
-        'Pro Features +',
-        'Real-Time Collaboration',
-        'Project Level Access Controls',
-        '7 Day Audit Logs',
-        'Centralized Billing',
-      ],
-      isHighlighted: false,
-    },
+    // The "Teams" card has been removed
   ];
 
   return (
@@ -94,7 +80,7 @@ export default function App() {
       {/* Increased vertical padding from p-4 to py-8, keeping px-4 for horizontal */}
       <div className="min-h-screen bg-[#72DED1] flex items-center justify-center px-4 py-8 font-inter">
         <div className="container mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> {/* Changed lg:grid-cols-4 to lg:grid-cols-3 */}
             {pricingPlans.map((plan, index) => (
               <PricingCard key={index} {...plan} />
             ))}

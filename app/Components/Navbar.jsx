@@ -57,7 +57,7 @@ const Navbar = () => {
         <nav className="hidden md:flex gap-[2.2rem]">
           <a href="/" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Home</a>
           <Link href="/Products" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Products</Link>
-          <a href="#" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Solutions</a>
+          <a href="/Solutions" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Solutions</a>
           <a href="#" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Pricing</a>
           <Link href="/Contacts" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Contact</Link>
         </nav>
@@ -78,10 +78,11 @@ const Navbar = () => {
           {/* Main Action Button */}
           <button
             onClick={handleButtonClick}
-            className="bg-indigo-600 text-white px-2 py-[0.5rem] xs:px-3 xs:py-[0.6rem] sm:px-4 sm:py-[0.7rem] rounded-md font-semibold text-[0.65rem] xs:text-xs sm:text-sm hover:bg-indigo-700 transition whitespace-nowrap" // Adjusted padding and text size for xs
+            className="bg-indigo-600 text-white px-2 py-[0.5rem] xs:px-3 xs:py-[0.6rem] sm:px-4 sm:py-[0.7rem] rounded-md font-semibold text-[0.65rem] xs:text-xs sm:text-sm hover:bg-indigo-700 transition whitespace-nowrap min-w-[100px]"
           >
             {getButtonLabel()}
           </button>
+
 
           {/* Mobile Menu Toggle */}
           <button
@@ -104,9 +105,8 @@ const Navbar = () => {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 right-0 w-[80%] max-w-[300px] h-full bg-white shadow-md z-[1000] p-6 flex flex-col transform transition-transform duration-300 overflow-y-auto ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 w-[80%] max-w-[300px] h-full bg-white shadow-md z-[1000] p-6 flex flex-col transform transition-transform duration-300 overflow-y-auto ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-3">

@@ -58,7 +58,7 @@ const Navbar = () => {
           <a href="/" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Home</a>
           <Link href="/Products" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Products</Link>
           <a href="/Solutions" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Solutions</a>
-          <a href="#" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Pricing</a>
+          <a href="/Services" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Services</a>
           <Link href="/Contacts" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Contact</Link>
         </nav>
 
@@ -123,8 +123,8 @@ const Navbar = () => {
         <nav className="flex flex-col gap-6">
           <a href="/" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Home</a>
           <Link href="/Products" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Products</Link>
-          <a href="#" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Solutions</a>
-          <a href="#" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Pricing</a>
+          <a href="/Solutions" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Solutions</a>
+          <a href="/Services" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Services</a>
           <Link href="/Contacts" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Contact</Link>
         </nav>
       </div>

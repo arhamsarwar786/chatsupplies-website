@@ -6,7 +6,7 @@ import Navbar from './Navbar';
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
-  const showNavBarPages = ['/', '/About', '/Contacts', '/Products','/Solutions'].includes(pathname);
+  const showNavBarPages = ['/', '/About', '/Contacts', '/Products','/Solutions', '/Services'].includes(pathname);
 
   return (
     <>

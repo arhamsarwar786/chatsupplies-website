@@ -1,0 +1,62 @@
+[
+  {
+    "iconClass": "fas fa-robot",
+    "iconBgClass": "purpleBg",
+    "title": "Smart Chatbot Pro",
+    "description": "Advanced AI chatbot with natural language processing and machine learning capabilities.",
+    "price": "$99/mo",
+    "features": ["Unlimited conversations", "Multi-language support", "Advanced analytics"],
+    "rating": 4.9,
+    "reviews": 120
+  },
+  {
+    "iconClass": "fas fa-microphone-alt",
+    "iconBgClass": "orangeBg",
+    "title": "Voice AI Assistant",
+    "description": "Intelligent voice recognition system with real-time speech processing and response.",
+    "price": "$149/mo",
+    "features": ["Voice recognition", "Text-to-speech", "Custom voice models"],
+    "rating": 4.8,
+    "reviews": 89
+  },
+  {
+    "iconClass": "fas fa-chart-line",
+    "iconBgClass": "greenBg",
+    "title": "Analytics Dashboard",
+    "description": "Comprehensive analytics and insights for your AI chat performance and customer interactions.",
+    "price": "$79/mo",
+    "features": ["Real-time metrics", "Custom reports", "Data export"],
+    "rating": 4.7,
+    "reviews": 156
+  },
+  {
+    "iconClass": "fas fa-puzzle-piece",
+    "iconBgClass": "pinkBg",
+    "title": "Integration Suite",
+    "description": "Seamlessly connect your AI chat solutions with popular business tools and platforms.",
+    "price": "$59/mo",
+    "features": ["100+ integrations", "API access", "Custom webhooks"],
+    "rating": 4.6,
+    "reviews": 94
+  },
+  {
+    "iconClass": "fas fa-shield-alt",
+    "iconBgClass": "redBg",
+    "title": "Security Pro",
+    "description": "Enterprise-grade security features to protect your conversations and customer data.",
+    "price": "$199/mo",
+    "features": ["End-to-end encryption", "GDPR compliance", "Audit logs"],
+    "rating": 4.9,
+    "reviews": 67
+  },
+  {
+    "iconClass": "fas fa-mobile-alt",
+    "iconBgClass": "blueBg",
+    "title": "Mobile SDK",
+    "description": "Native mobile SDK for iOS and Android to integrate AI chat into your mobile applications.",
+    "price": "$129/mo",
+    "features": ["iOS & Android", "Native performance", "Easy integration"],
+    "rating": 4.8,
+    "reviews": 112
+  }
+]

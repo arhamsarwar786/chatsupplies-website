@@ -9,6 +9,7 @@ import CustomerSupport from './CustomerSupport';
 import EcommerceEnhancement from './ECommerceEnhancement';
 import Analytics from './Analytics';
 import LayoutComponent from './Layout';
+import popUp from './popUp';
 
 
 interface CardProps {

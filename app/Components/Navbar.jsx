@@ -1,3 +1,4 @@
+// components/Navbar.tsx
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -11,6 +12,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import ServicesDropdown from './popUp'; // Import the new ServicesDropdown component
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -58,7 +60,10 @@ const Navbar = () => {
           <a href="/" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Home</a>
           <Link href="/Products" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Products</Link>
           <a href="/Solutions" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Solutions</a>
-          <a href="/Services" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Services</a>
+
+          {/* Services link now uses the imported ServicesDropdown component */}
+          <ServicesDropdown />
+
           <Link href="/Contacts" className="text-gray-600 font-semibold text-base hover:text-indigo-600">Contact</Link>
         </nav>
 

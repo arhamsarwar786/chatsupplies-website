@@ -12,7 +12,7 @@ import {
   faShoppingCart,
 } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
-import ServicesDropdown from './popUp'; // Import the new ServicesDropdown component
+import ServicesDropdown from './ServicesDropdown'; // Import the new ServicesDropdown component
 
 const Navbar = () => {
   const pathname = usePathname();

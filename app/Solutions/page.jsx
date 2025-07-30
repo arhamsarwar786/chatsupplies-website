@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../components/Footer';
+import Footer from '../Components/Footer';
 import Image from 'next/image';
 import { Bot, Lightbulb, User, MessageSquareText, Calendar, BarChart, TrendingUp, DollarSign, Scale, Smile, Zap } from 'lucide-react';
 

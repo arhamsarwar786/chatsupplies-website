@@ -1,4 +1,3 @@
-// components/ServicesDropdown.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -21,7 +20,7 @@ const DropdownMenuTrigger = ({ children }: any) => <>{children}</>;
 const DropdownMenuContent = ({ children, className }: any) => (
   // Changed 'mt-4' to 'top-full' to ensure no gap between trigger and pop-up
   <div className={`absolute left-1/2 transform -translate-x-1/2 w-full max-w-5xl rounded-lg shadow-xl p-6 border border-teal-300 z-50 animate-fade-in-down ${className}`}
-       style={{ backgroundColor: 'white', minWidth: '750px', top: '100%' }}> {/* Using top: '100%' for direct placement below trigger */}
+    style={{ backgroundColor: 'white', minWidth: '750px', top: '100%' }}> {/* Using top: '100%' for direct placement below trigger */}
     {children}
   </div>
 );
@@ -45,7 +44,7 @@ const servicesData: ServiceCategory[] = [
     items: [
       { name: 'Social Media Management', link: '/services/social-media' },
       { name: 'PPC Advertising', link: '/services/ppc-advertising' },
-      { name: 'E-commerce Optimization', link: '/services/ecommerce-optimization' },
+      { name: 'E-Commerce', link: '/E-Commerce' },
     ],
   },
   {
@@ -108,6 +107,34 @@ const ServicesDropdown: React.FC<ServicesDropdownProps> = ({ triggerClassName })
                       </li>
                     ))}
                   </ul>
+                  {/* Buttons placed under respective categories */}
+                  {category.title === 'DIGITAL MARKETING STRATEGY' && (
+                    <a
+                      href="/marketing-session" // Example link
+                      className="mt-4 px-3 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-colors duration-300 border-t border-gray-200 pt-4 pb-4 flex items-center justify-center self-start"
+                      style={{ backgroundColor: '#14b8a6' }} // Directly using primary color hex code
+                    >
+                      Marketing Session
+                    </a>
+                  )}
+                  {category.title === 'BUSINESS TECHNOLOGY' && (
+                    <a
+                      href="/tech-consultation" // Example link
+                      className="mt-4 px-3 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-colors duration-300 border-t border-gray-200 pt-4 pb-4 flex items-center justify-center self-start"
+                      style={{ backgroundColor: '#14b8a6' }} // Directly using primary color hex code
+                    >
+                      Tech Consultation
+                    </a>
+                  )}
+                  {category.title === 'WEB & DESIGN' && (
+                    <a
+                      href="/design-planning" // Example link
+                      className="mt-4 px-3 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-teal-600 transition-colors duration-300 border-t border-gray-200 pt-4 pb-4 flex items-center justify-center self-start"
+                      style={{ backgroundColor: '#14b8a6' }} // Directly using primary color hex code
+                    >
+                      Design Planning
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

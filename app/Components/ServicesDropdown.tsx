@@ -37,21 +37,21 @@ interface ServiceCategory {
   items: ServiceItem[];
 }
 
-// Define the data for the services menu
+// Define the data for the services menu with CORRECTED links
 const servicesData: ServiceCategory[] = [
   {
     title: 'DIGITAL MARKETING STRATEGY',
     items: [
-      { name: 'Social Media Management', link: '/services/social-media' },
+      { name: 'Social Media Management', link: '/services/social-media-management' },
       { name: 'PPC Advertising', link: '/services/ppc-advertising' },
-      { name: 'E-Commerce', link: '/E-Commerce' },
+      { name: 'E-Commerce Optimization', link: '/services/e-commerce-optimization' },
     ],
   },
   {
     title: 'BUSINESS TECHNOLOGY',
     items: [
       { name: 'AI Chatbots', link: '/services/ai-chatbots' },
-      { name: 'CRM & ERP Solutions', link: '/services/crm-erp' },
+      { name: 'CRM & ERP Solutions', link: '/services/crm-erp-solutions' },
       { name: 'Customer Engagement', link: '/services/customer-engagement' },
       { name: 'Business Analytics', link: '/services/business-analytics' },
     ],
@@ -83,7 +83,7 @@ const ServicesDropdown: React.FC<ServicesDropdownProps> = ({ triggerClassName })
     >
       <DropdownMenu> {/* Removed setIsOpen prop as it's not used by the mock */}
         <DropdownMenuTrigger asChild>
-          <a href="/Services" className={`text-gray-600 font-semibold text-base hover:text-indigo-600 cursor-pointer ${triggerClassName}`}>Services</a>
+          <a href="/services" className={`text-gray-600 font-semibold text-base hover:text-indigo-600 cursor-pointer ${triggerClassName}`}>Services</a>
         </DropdownMenuTrigger>
         {/* Conditionally render DropdownMenuContent based on isOpen state */}
         {isOpen && (

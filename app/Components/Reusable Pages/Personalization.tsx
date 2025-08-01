@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const PersonalizationEngine: React.FC = () => { // Renamed component
+const Personalization: React.FC = () => { // Renamed component
   const primaryColor = '#14b8a6'; // Your --primary color: teal
   const secondaryColor = '#d1f5ee'; // Your --secondary color: light teal
   const darkBackground = '#2d2d34'; // Dark background color from w3.PNG
@@ -104,4 +104,4 @@ const PersonalizationEngine: React.FC = () => { // Renamed component
   );
 };
 
-export default PersonalizationEngine; // Exporting the renamed component
+export default Personalization;

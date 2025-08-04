@@ -1,10 +1,10 @@
-import HeroSection from "../Components/Reusable Pages/Automated";
-import Optimization from "../Components/Reusable Pages/Optimization";
-import Personalization from "../Components/Reusable Pages/Personalization";
-import DynamicPricingOptimization from "../Components/Reusable Pages/DynamicPricingOptimization";
-import ProductRecommendationSystem from "../Components/Reusable Pages/ProductRecommendationSystem";
-import Automated from "../Components/Reusable Pages/Automated";
-import Store from "../Components/Reusable Pages/Store";
+import HeroSection from "../Components/Services/HeroSection";
+import Optimization from "../Components/Services/Optimization";
+import Personalization from "../Components/Services/Personalization";
+import DynamicPricingOptimization from "../Components/Services/DynamicPricingOptimization";
+import ProductRecommendationSystem from "../Components/Services/ProductRecommendationSystem";
+import Automated from "../Components/Services/Automated";
+import Store from "../Components/Services/Store";
 import Footer from "../Components/Footer";
 
 export const  servicePages = [

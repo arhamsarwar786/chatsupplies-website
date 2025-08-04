@@ -129,7 +129,7 @@ const Navbar = () => {
           <a href="/" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Home</a>
           <Link href="/Products" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Products</Link>
           <a href="/Solutions" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Solutions</a>
-          <a href="/Services" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Services</a>
+          <a href="/services" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Services</a>
           <Link href="/Contacts" className="text-gray-800 font-semibold text-base hover:text-indigo-600" onClick={toggleMobileMenu}>Contact</Link>
         </nav>
       </div>

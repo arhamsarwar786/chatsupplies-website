@@ -86,23 +86,31 @@ const App = () => {
   return (
     <div>
       <main>
-        <section className="bg-gray-900 pt-32 pb-20 px-6 md:px-12">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="md:w-1/3 text-center md:text-left">
-              <h2 className="text-5xl md:text-6xl font-extrabold leading-tight">
-                <span className="text-white">Our</span>{' '}
-                <span style={{ color: 'var(--primary)' }}>Services</span>
-              </h2>
-            </div>
-            <div className="md:w-2/3 text-center md:text-left">
-              <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-                Step into the future of customer engagement with <br />
-                Smarter Revolution's AI-powered solutions. We elevate<br />
-                your business with intelligent, transformative communication.
-              </p>
-            </div>
-          </div>
-        </section>
+      <section className="bg-gray-900 pt-32 pb-20 px-6 md:px-12">
+  <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-40">
+    <div className="md:w-1/3 text-left md:text-left">
+      <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight">
+        <span className="whitespace-nowrap">
+          <span className="text-white">Our</span>{' '}
+          <span
+            style={{ color: 'var(--primary)' }}
+            className="drop-shadow-md"
+          >
+            Services
+          </span>
+        </span>
+      </h2>
+    </div>
+    <div className="md:w-2/3 text-left md:text-left">
+      <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+        Step into the future of customer engagement with Smarter Revolution's AI-powered solutions.
+        We elevate your business with intelligent, transformative communication.
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
         <div className="min-h-screen flex items-center justify-center p-4 sm:p-8 bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto w-full">
@@ -112,10 +120,10 @@ const App = () => {
           </div>
         </div>
 
-        <AIChatbot/>
-        <CustomerSupport/>
-        <LeadGeneration/>
-        <EcommerceEnhancement/>
+        <AIChatbot />
+        <CustomerSupport />
+        <LeadGeneration />
+        <EcommerceEnhancement />
         <Analytics />
         <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4 sm:p-8">
           <LayoutComponent />

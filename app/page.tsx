@@ -11,6 +11,7 @@ import WhyChooseUs from './Home/WhyChooseUs';
 import Testimonials from './Home/Testimonial'; 
 import CallToAction from './Home/CallToAction'; 
 import Footer from './Components/Footer'; 
+import Bubbles from './Home/Bubbles'
 
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <FeaturedProducts />
       <Subscription />
       <ShopByCategory />
+      <Bubbles/>
       <WhyChooseUs />
       <Testimonials />
       <CallToAction />

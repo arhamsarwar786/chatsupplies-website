@@ -12,7 +12,9 @@ import Testimonials from './Home/Testimonial';
 import CallToAction from './Home/CallToAction'; 
 import Footer from './Components/Footer'; 
 import Bubbles from './Home/Bubbles'
-
+import Animated from './Home/Animated';
+import whyChoose from './Home/WhyChoose';
+import WhyChoose from './Home/WhyChoose';
 
 export default function Home() {
   return (
@@ -22,7 +24,9 @@ export default function Home() {
       <FeaturedProducts />
       <Subscription />
       <ShopByCategory />
+      <Animated/>
       <Bubbles/>
+      <WhyChoose/>
       <WhyChooseUs />
       <Testimonials />
       <CallToAction />

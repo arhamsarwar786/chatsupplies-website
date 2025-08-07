@@ -6,43 +6,44 @@ import Head from 'next/head';
 interface Service {
   text: string;
   description: string;
-  size: number;
   x: string;
   y: string;
+  size: number;
+  image?: string;
 }
 
 interface Bubble {
+  text: string;
+  description: string;
   x: number;
   y: number;
+  size: number;
   radius: number;
   dx: number;
   dy: number;
-  color: string;
-  text: string;
-  description: string;
   collisionTimer: number;
+  image?: string;
 }
 
 export default function BubblePage() {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const bubblesRef = useRef<Bubble[]>([]);
   const animationIdRef = useRef<number | null>(null);
+  const bubblesRef = useRef<Bubble[]>([]);
 
   const services: Service[] = [
-    { text: "Create chatbots", description: "with public links and customizable flows", size: 180, x: '8vw', y: '50vh' },
-    { text: "User Support", description: "Email, ticket, and live meeting support based on plan", size: 220, x: '30vw', y: '35vh' },
-    { text: "Real-time performance", description: "insights and advanced reporting", size: 200, x: '55vw', y: '40vh' },
-    { text: "Multilingual Support", description: "Engage users in their native language", size: 200, x: '75vw', y: '20vh' },
-    { text: "Unlimited chat storage", description: "with CSV export", size: 150, x: '22vw', y: '70vh' },
-    { text: "Personalize chatbot", description: "name, logo, theme, avatar, and CSS", size: 200, x: '45vw', y: '65vh' },
-    { text: "Train chatbot", description: "with your own documents (PDFs, URLs, etc.)", size: 170, x: '65vw', y: '55vh' },
-    { text: "Premium Services", description: "contains Backup and recovery", size: 190, x: '85vw', y: '65vh' },
-    // Small decorative bubbles
-    { text: "", description: "", size: 90, x: '17vw', y: '25vh' },
-    { text: "", description: "", size: 70, x: '48vw', y: '50vh' },
-    { text: "", description: "", size: 60, x: '73vw', y: '45vh' },
-    { text: "", description: "", size: 50, x: '58vw', y: '85vh' },
-    { text: "", description: "", size: 50, x: '85vw', y: '5vh' },
+    // Increased size for text bubbles (original size * 1.2)
+    { text: "Create chatbots", description: "with public links and customizable flows", size: 216, x: '8vw', y: '50vh', image: "/Icons/Bubbles/Create Chatbots.svg" },
+    { text: "User Support", description: "Email, ticket, and live meeting support based on plan", size: 264, x: '30vw', y: '35vh', image: "/Icons/Bubbles/User Support.svg" },
+    { text: "Real-time performance", description: "insights and advanced reporting", size: 240, x: '55vw', y: '40vh', image: "/Icons/Bubbles/Real Time.svg" },
+    { text: "Multilingual Support", description: "Engage users in their native language", size: 240, x: '75vw', y: '20vh', image: "/Icons/Bubbles/Multilingual.svg" },
+    { text: "Unlimited chat storage", description: "with CSV export", size: 180, x: '22vw', y: '70vh', image: "/Icons/Bubbles/Unlimited Chat.svg" },
+    { text: "Personalize chatbot", description: "name, logo, theme, avatar, and CSS", size: 240, x: '45vw', y: '65vh', image: "/Icons/Bubbles/bubble 5.svg" },
+    { text: "Train chatbot", description: "with your own documents (PDFs, URLs, etc.)", size: 204, x: '65vw', y: '55vh', image: "/Icons/Bubbles/bubble 6.svg" },
+    { text: "Premium Services", description: "contains Backup and recovery", size: 228, x: '85vw', y: '65vh', image: "/Icons/Bubbles/Premium Services.svg" },
+    { text: "", description: "", size: 90, x: '17vw', y: '25vh', image: "Icons/Bubbles/bubble 10.svg" },
+    { text: "", description: "", size: 70, x: '48vw', y: '50vh', image: "Icons/Bubbles/bubble 9.svg" },
+    { text: "", description: "", size: 60, x: '73vw', y: '45vh', image: "Icons/Bubbles/bubble 8.svg" },
+    { text: "", description: "", size: 50, x: '58vw', y: '85vh', image: "Icons/Bubbles/bubble 7.svg" },
   ];
 
   const initializeBubbles = (containerWidth: number, containerHeight: number) => {
@@ -50,85 +51,49 @@ export default function BubblePage() {
       const x = parseFloat(service.x) / 100 * containerWidth;
       const y = parseFloat(service.y) / 100 * containerHeight;
       const radius = service.size / 2;
-      
-      // Increased speeds for better visibility
-      const speed = service.text ? 1.5 : 1.0; // Content bubbles slightly faster than decorative ones
-      
+      // All bubbles get movement, but small ones are slower
+      const speed = service.text ? 1.5 : (0.5 + Math.random() * 0.5);
+
       return {
+        text: service.text,
+        description: service.description,
         x,
         y,
+        size: service.size,
         radius,
         dx: (Math.random() - 0.5) * speed,
         dy: (Math.random() - 0.5) * speed,
-        color: 'rgba(255, 255, 255, 0.2)',
-        text: service.text,
-        description: service.description,
-        collisionTimer: 0
+        collisionTimer: 0,
+        image: service.image,
       };
     });
   };
 
-  const renderBubbles = (bubbles: Bubble[], container: HTMLDivElement) => {
-    container.innerHTML = '';
-    bubbles.forEach(bubble => {
-      const el = document.createElement('div');
-      el.className = 'absolute rounded-full flex flex-col items-center justify-center text-white cursor-pointer transition-transform hover:scale-105';
-      
-      const glowEffect = bubble.collisionTimer > 0 ? 
-        `0 0 ${10 + bubble.collisionTimer * 2}px rgba(255, 255, 255, 0.5)` : 
-        '0 0 20px rgba(255, 255, 255, 0.1)';
-      
-      el.style.cssText = `
-        width: ${bubble.radius * 2}px;
-        height: ${bubble.radius * 2}px;
-        left: ${bubble.x - bubble.radius}px;
-        top: ${bubble.y - bubble.radius}px;
-        background: ${bubble.color};
-        backdrop-filter: blur(10px);
-        box-shadow: ${glowEffect};
-        padding: 10px;
-        transition: box-shadow 0.1s ease-out;
-      `;
-      
-      if (bubble.text) {
-        const title = document.createElement('div');
-        title.className = 'font-bold text-center drop-shadow-sm';
-        title.textContent = bubble.text;
-        
-        const desc = document.createElement('div');
-        desc.className = 'text-xs md:text-sm font-light mt-1 text-center drop-shadow-sm';
-        desc.textContent = bubble.description;
-        
-        el.appendChild(title);
-        el.appendChild(desc);
-      }
-
-      el.onclick = () => alert(`${bubble.text ? bubble.text + '\n' + bubble.description : 'Decorative bubble'}`);
-      container.appendChild(el);
-    });
-  };
-
   const updateBubbles = (bubbles: Bubble[], width: number, height: number) => {
-    // Update positions
+    // Wall collision and movement for all bubbles
     bubbles.forEach(bubble => {
-      if (bubble.collisionTimer > 0) bubble.collisionTimer--;
+      if (bubble.collisionTimer > 0) {
+        bubble.collisionTimer--;
+      }
 
       bubble.x += bubble.dx;
       bubble.y += bubble.dy;
 
-      // Wall collision
-      if (bubble.x - bubble.radius < 0 || bubble.x + bubble.radius > width) {
-        bubble.dx *= -1;
-        bubble.x = Math.max(bubble.radius, Math.min(bubble.x, width - bubble.radius));
-      }
+      const radius = bubble.radius;
 
-      if (bubble.y - bubble.radius < 0 || bubble.y + bubble.radius > height) {
+      if (bubble.x - radius < 0 || bubble.x + radius > width) {
+        bubble.dx *= -1;
+        bubble.x = Math.max(radius, Math.min(bubble.x, width - radius));
+        bubble.collisionTimer = 10;
+      }
+      if (bubble.y - radius < 0 || bubble.y + radius > height) {
         bubble.dy *= -1;
-        bubble.y = Math.max(bubble.radius, Math.min(bubble.y, height - bubble.radius));
+        bubble.y = Math.max(radius, Math.min(bubble.y, height - radius));
+        bubble.collisionTimer = 10;
       }
     });
 
-    // Bubble-to-bubble collision
+    // Bubble-to-bubble collision for all bubbles
     for (let i = 0; i < bubbles.length; i++) {
       for (let j = i + 1; j < bubbles.length; j++) {
         const b1 = bubbles[i];
@@ -174,32 +139,146 @@ export default function BubblePage() {
     if (!canvasRef.current) return;
 
     const container = canvasRef.current;
+    
     bubblesRef.current = initializeBubbles(container.clientWidth, container.clientHeight);
+
+    bubblesRef.current.forEach((bubble) => {
+      const el = document.createElement("div");
+      el.id = bubble.text || `bubble-${bubble.x}-${bubble.y}`;
+      el.className = 'absolute flex flex-col items-center justify-center text-white cursor-pointer';
+      
+      el.style.cssText = `
+        width: ${bubble.radius * 2}px;
+        height: ${bubble.radius * 2}px;
+        left: ${bubble.x}px;
+        top: ${bubble.y}px;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        transition: all 0.1s ease-out;
+      `;
+
+      if (bubble.image) {
+        const img = document.createElement("img");
+        img.src = bubble.image;
+        img.alt = bubble.text || "";
+        img.className = 'w-full h-full object-contain pointer-events-none transition-all duration-100 ease-out';
+        el.appendChild(img);
+
+        const textContainer = document.createElement('div');
+        textContainer.className = 'absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none';
+        
+        if (bubble.text) {
+          const title = document.createElement('span');
+          title.className = 'font-bold text-center drop-shadow-sm leading-tight text-[12px] md:text-base'; // Increased text size
+          title.textContent = bubble.text;
+          textContainer.appendChild(title);
+        }
+
+        if (bubble.description) {
+          const desc = document.createElement('span');
+          desc.className = 'text-[10px] md:text-sm font-light mt-1 text-center drop-shadow-sm leading-none'; // Increased text size
+          desc.textContent = bubble.description;
+          textContainer.appendChild(desc);
+        }
+
+        el.appendChild(textContainer);
+      }
+      
+      el.style.pointerEvents = 'auto';
+      el.onclick = () => {
+        if (bubble.text) {
+          alert(`${bubble.text}\n${bubble.description}`);
+        }
+      };
+      container.appendChild(el);
+    });
 
     const animate = () => {
       const bubbles = bubblesRef.current;
       const { clientWidth: width, clientHeight: height } = container;
 
       updateBubbles(bubbles, width, height);
-      renderBubbles(bubbles, container);
 
+      bubbles.forEach(bubble => {
+        const el = document.getElementById(bubble.text || `bubble-${bubble.x}-${bubble.y}`);
+        if (el) {
+          el.style.left = `${bubble.x}px`;
+          el.style.top = `${bubble.y}px`;
+          
+          // Blinking effect on collision
+          if (bubble.collisionTimer > 0) {
+            const opacity = (bubble.collisionTimer % 2 === 0) ? 0.8 : 1;
+            el.style.opacity = `${opacity}`;
+          } else {
+            el.style.opacity = '1';
+          }
+        }
+      });
       animationIdRef.current = requestAnimationFrame(animate);
     };
 
-    // Start the animation
     animationIdRef.current = requestAnimationFrame(animate);
 
     const handleResize = () => {
       if (container) {
         bubblesRef.current = initializeBubbles(container.clientWidth, container.clientHeight);
+        container.innerHTML = '';
+        bubblesRef.current.forEach((bubble) => {
+          const el = document.createElement("div");
+          el.id = bubble.text || `bubble-${bubble.x}-${bubble.y}`;
+          el.className = 'absolute flex flex-col items-center justify-center text-white cursor-pointer';
+          
+          el.style.cssText = `
+            width: ${bubble.radius * 2}px;
+            height: ${bubble.radius * 2}px;
+            left: ${bubble.x}px;
+            top: ${bubble.y}px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: all 0.1s ease-out;
+          `;
+
+          if (bubble.image) {
+            const img = document.createElement("img");
+            img.src = bubble.image;
+            img.alt = bubble.text || "";
+            img.className = 'w-full h-full object-contain pointer-events-none transition-all duration-100 ease-out';
+            el.appendChild(img);
+
+            const textContainer = document.createElement('div');
+            textContainer.className = 'absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none';
+            
+            if (bubble.text) {
+              const title = document.createElement('span');
+              title.className = 'font-bold text-center drop-shadow-sm leading-tight text-[12px] md:text-base';
+              title.textContent = bubble.text;
+              textContainer.appendChild(title);
+            }
+
+            if (bubble.description) {
+              const desc = document.createElement('span');
+              desc.className = 'text-[10px] md:text-sm font-light mt-1 text-center drop-shadow-sm leading-none';
+              desc.textContent = bubble.description;
+              textContainer.appendChild(desc);
+            }
+
+            el.appendChild(textContainer);
+          }
+          
+          el.style.pointerEvents = 'auto';
+          el.onclick = () => {
+            if (bubble.text) {
+              alert(`${bubble.text}\n${bubble.description}`);
+            }
+          };
+          container.appendChild(el);
+        });
       }
     };
 
     window.addEventListener('resize', handleResize);
     return () => {
-      if (animationIdRef.current) {
-        cancelAnimationFrame(animationIdRef.current);
-      }
+      if (animationIdRef.current) cancelAnimationFrame(animationIdRef.current);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -214,12 +293,7 @@ export default function BubblePage() {
         <h1 className="text-4xl font-extrabold text-center mb-10 mt-20 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services
         </h1>
-        
-        <div 
-          ref={canvasRef}
-          className="relative w-full h-[70vh] mx-auto"
-        />
-        
+        <div ref={canvasRef} className="relative w-full h-[70vh] mx-auto" />
         <div className="mt-6 text-center text-white/60 text-sm drop-shadow-sm">
           Click on any service bubble to learn more
         </div>

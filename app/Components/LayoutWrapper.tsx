@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Navbar from './Navbar';
+/*import Navbar from './Navbar';*/
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -10,7 +10,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
 
   return (
     <>
-      {showNavBarPages && <Navbar />}
+      {showNavBarPages}
       {children}
     </>
   );

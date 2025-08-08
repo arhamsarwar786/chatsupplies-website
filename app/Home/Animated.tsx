@@ -21,7 +21,14 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 md:px-8 py-16 gap-8">
 
           {/* Left content: Wider text */}
-          <div className="w-full md:w-[60%] text-center md:text-left z-10 mt-32">
+          <div className="w-full md:w-[60%] text-center md:text-left z-10 mt-32 flex flex-col items-center md:items-start">
+            {/* Robot image ONLY on mobile/tablet, hidden on md+ */}
+            <img
+              src="/Icons/Bot.svg"
+              alt="Robot"
+              className="w-64 mb-10 md:hidden -mt-10"
+            />
+
             <p className="text-[30px] font-normal leading-[120%] font-[Mont-Bold] mb-8">
               Looking for an AI assistant to effortlessly meet<br />
               your customer needs<br />
@@ -33,8 +40,8 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Right content: Robot image */}
-          <div className="w-full md:w-[40%] flex justify-center md:justify-end z-10 -mt-12 md:-mt-20">
+          {/* Right content: Robot image on desktop, hidden on mobile/tablet */}
+          <div className="w-full md:w-[40%] hidden md:flex justify-center md:justify-end z-10 -mt-12 md:-mt-20">
             <img
               src="/Icons/Bot.svg"
               alt="Robot"
@@ -44,24 +51,22 @@ export default function HomePage() {
         </div>
 
         {/* Curved vector line behind the robot */}
-       {/* Curved vector line behind the robot */}
-<svg
-  className="absolute top-0 right-[3%] h-full w-[400px] z-0 pointer-events-none"
-  viewBox="0 0 400 800"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
-  preserveAspectRatio="none"
->
-  <path
-    d="M50 0 C350 200, 50 400, 300 800"
-    stroke="#4F7DF3"
-    strokeOpacity="0.3"
-    strokeWidth="50"
-    strokeLinecap="round"
-    fill="none"
-  />
-</svg>
-
+        <svg
+          className="absolute top-0 right-[3%] h-full w-[400px] z-0 pointer-events-none"
+          viewBox="0 0 400 800"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M50 0 C350 200, 50 400, 300 800"
+            stroke="#4F7DF3"
+            strokeOpacity="0.3"
+            strokeWidth="50"
+            strokeLinecap="round"
+            fill="none"
+          />
+        </svg>
 
       </div>
     </>

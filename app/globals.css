@@ -29,7 +29,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* In your globals.css file */
 .custom-gradient-bg {
   background: 
     linear-gradient(0deg, #0015FF, #0015FF), 
@@ -37,4 +36,23 @@ body {
     radial-gradient(48.46% 48.46% at 13.51% 33.88%, #53ACFF 0%, rgba(86, 133, 255, 0) 100%), 
     radial-gradient(24.12% 24.12% at 53.35% 85.75%, rgba(236, 178, 65, 0.5) 0%, rgba(236, 178, 65, 0) 100%), 
     radial-gradient(71.34% 71.34% at 20.03% 18.21%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 97.45%);
+}
+
+
+@media (max-width: 400px) {
+  .very-small-scale {
+    transform: scale(0.6) !important;
+  }
+}
+/* Shift inner container slightly left on very small screens but keep equal horizontal padding */
+
+@media (max-width: 400px) {
+  .very-small-shift {
+    transform: translateX(-12px);
+  }
+}
+@media (min-width: 401px) {
+  .very-small-shift {
+    transform: none;
+  }
 }

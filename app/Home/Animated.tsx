@@ -22,13 +22,13 @@ export default function HomePage() {
 
           {/* Left content: Wider text */}
           <div className="w-full md:w-[60%] text-center md:text-left z-10 mt-32">
-            <p className="text-[32px] font-normal leading-[120%] font-[Mont-Bold] mb-8">
+            <p className="text-[30px] font-normal leading-[120%] font-[Mont-Bold] mb-8">
               Looking for an AI assistant to effortlessly meet<br />
               your customer needs<br />
               and boost business efficiency?
             </p>
 
-            <button className="mt-20 border border-white bg-transparent text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition">
+            <button className="mt-16 border border-white bg-transparent text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition">
               Book a demo
             </button>
           </div>
@@ -46,7 +46,7 @@ export default function HomePage() {
         {/* Curved vector line behind the robot */}
        {/* Curved vector line behind the robot */}
 <svg
-  className="absolute top-0 right-[4%] h-full w-[400px] z-0 pointer-events-none"
+  className="absolute top-0 right-[3%] h-full w-[400px] z-0 pointer-events-none"
   viewBox="0 0 400 800"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"

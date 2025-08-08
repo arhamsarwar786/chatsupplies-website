@@ -8,7 +8,7 @@ const WhyChoose = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-16">
+        <div className="text-center ">
           <h1
             className="text-[48px] leading-[100%] font-normal text-white mx-auto"
             style={{
@@ -34,95 +34,153 @@ const WhyChoose = () => {
           </p>
         </div>
 
-        {/* Main content: Cards + text block side by side */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 relative">
-          {/* Left: Card Grid (65%) */}
-          <div className="relative w-full lg:w-[65%] h-auto min-h-[550px] flex items-center justify-center p-4">
-            
-            {/* Individual Cards with text, using a responsive grid layout */}
-            <div className="grid grid-cols-2 gap-x-12 gap-y-20 w-full relative z-10">
-
-
-              {/* Card 1 - Top Left (Higher position, green) */}
-             <div className="relative flex-1 w-full h-auto -mt-20">
-  <div 
-    className="relative w-full h-full p-4 md:p-6 flex flex-col justify-between" 
-    style={{ 
-      backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')", 
-      backgroundSize: 'cover', 
-      backgroundRepeat: 'no-repeat', 
-      backgroundPosition: 'center', 
-      minHeight: '200px' 
-    }}
-  >
-    {/* Center-aligned text container */}
-    <div className="absolute inset-0 flex items-center justify-center text-center">
-      <div>
-        <h3 className="font-semibold text-lg md:text-2xl text-white">Center Text</h3>
-        <p className="text-gray-200 text-sm mt-2">Additional centered information</p>
-      </div>
-    </div>
-    
-    {/* Existing bottom-aligned content */}
-    <div className="text-left mt-auto">
-      <h3 className="font-semibold text-lg md:text-2xl">Ultra-Fast Support</h3>
-      <p className="text-gray-300 text-sm mt-1">Encounter any kind of problem.</p>
-    </div>
-  </div>
-</div>
-              {/* Card 2 - Top Right (Lower position, blue) */}
-              <div className="relative flex-1 w-full h-auto mt-20">
-                <div className="relative w-full h-full p-4 md:p-6 flex flex-col justify-between" style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '200px' }}>
-                  <div className="text-left mt-auto">
-                    <h3 className="font-semibold text-lg md:text-2xl">Multilingual Support</h3>
-                    <p className="text-gray-300 text-sm mt-1">6+ languages are supported for connecting users from all over the world</p>
-                  </div>
-                </div>
+        {/* Main content */}
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 relative">
+          {/* Left: Manual Positioned Cards */}
+          <div className="relative w-full lg:w-[60%] min-h-[650px] p-4 -mt-16">
+            {/* Card 1 */}
+            <div
+              className="absolute w-[300px] h-[358px]"
+              style={{
+                top: '0px',
+                left: '0px',
+                backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div
+                className="absolute text-left"
+                style={{
+                  top: '63%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                  Ultra-Fast Support
+                </h3>
+                <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
+                  24/7 support available if you encounter any kind of problem
+                </p>
               </div>
+            </div>
 
-              {/* Card 3 - Bottom Left (Higher position, purple) */}
-              <div className="relative flex-1 w-full h-auto -mt-20">
-                <div className="relative w-full h-full p-4 md:p-6 flex flex-col justify-between" style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '200px' }}>
-                  <div className="text-left mt-auto">
-                    <h3 className="font-semibold text-lg md:text-2xl">Team Access</h3>
-                    <p className="text-gray-300 text-sm mt-1">Role-based access in admin panel for up to 10 team members</p>
-                  </div>
-                </div>
+            {/* Card 2 */}
+            <div
+              className="absolute w-[300px] h-[358px]"
+              style={{
+                top: '42px',
+                left: '299px',
+                backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div
+                className="absolute text-left"
+                style={{
+                  top: '63%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                  Multilingual Support
+                </h3>
+                <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
+                  10+ languages are supported for connecting users from all over the world
+                </p>
               </div>
+            </div>
 
-              {/* Card 4 - Bottom Right (Lower position, orange) */}
-              <div className="relative flex-1 w-full h-auto mt-20">
-                <div className="relative w-full h-full p-4 md:p-6 flex flex-col justify-between" style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', minHeight: '200px' }}>
-                  <div className="text-left mt-auto">
-                    <h3 className="font-semibold text-lg md:text-2xl">Analysis & Insights</h3>
-                    <p className="text-gray-300 text-sm mt-1">Insight driven data analysis for real-time business decisions</p>
-                  </div>
-                </div>
+            {/* Card 3 */}
+            <div
+              className="absolute w-[300px] h-[358px]"
+              style={{
+                top: '230px',
+                left: '0px',
+                backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div
+                className="absolute text-left"
+                style={{
+                  top: '63%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                  Team Access
+                </h3>
+                <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
+                  Role-based access in admin panel for up to 10 team members
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div
+              className="absolute w-[300px] h-[300px]"
+              style={{
+                top: '307px',
+                left: '299px',
+                backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div
+                className="absolute text-left"
+                style={{
+                  top: '72%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              >
+                <h3 className="font-montbold text-[20px] md:text-[14px] font-[550] text-white">
+                  Analysis & Insights
+                </h3>
+                <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
+                  Insight driven data analysis for real-time business decisions
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Vertical Divider */}
+          {/* Divider */}
           <div
-            className="hidden lg:block w-[2px] h-[462px] rounded-full"
-            style={{
-              backgroundColor: '#FFFFFF4D',
-            }}
-          />
+            className="hidden lg:block w-[2px] h-[462px] rounded-full mt-18"
+            style={{ backgroundColor: '#FFFFFF4D' }}
+          ></div>
 
-          {/* Right: Text Block (35%) */}
-          <div className="lg:w-[35%] flex justify-start">
+          {/* Right: Text Block */}
+          {/* Right: Text Block */}
+          <div className="lg:w-[40%] flex justify-start mt-18">
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left text-gray-300">
-              <img
-                src="/Icons/face.svg"
-                alt="Chatbot Icon"
-                className="w-28 h-28 mb-6"
-              />
+
+              {/* SVG wrapper for perfect center */}
+              <div className="flex items-center justify-center w-full mb-6">
+                <img
+                  src="/Icons/face.svg"
+                  alt="Chatbot Icon"
+                  className="w-28 h-28"
+                />
+              </div>
+
+              {/* Description text */}
               <p
-                className="text-[22px] font-normal text-left"
+                className="text-[20px] font-normal text-left"
                 style={{
                   fontFamily: 'Mont-Bold',
-                  fontWeight: '400',
+                  fontWeight: 'bold',
                   fontStyle: 'normal',
                 }}
               >
@@ -133,6 +191,7 @@ const WhyChoose = () => {
                 smarter business decisions. From customizable flows to premium backup
                 services, we're built for performance, reliability, and growth.
               </p>
+
             </div>
           </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const WhyChoose = () => {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-blue-950 text-white overflow-hidden">
+<section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[#0055FF] text-white overflow-hidden">
       {/* Background glowing effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
 
@@ -29,7 +29,7 @@ const WhyChoose = () => {
               fontStyle: 'normal',
               verticalAlign: 'middle',
             }}
-          >
+            >
             Here’s what sets us apart from other services
           </p>
         </div>
@@ -37,9 +37,9 @@ const WhyChoose = () => {
         {/* Main content */}
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 relative">
           {/* Left: Manual Positioned Cards */}
-          <div className="relative w-full lg:w-[60%] min-h-[650px] p-0 -mt-16 scale-75 sm:scale-100 very-small-scale">
-            {/* Inner wrapper with horizontal padding only on mobile */}
-            <div className="px-4 sm:px-0 relative h-full very-small-shift">
+          <div className="relative w-full lg:w-[60%] min-h-[650px] p-0 -mt-16 scale-90 sm:scale-100 very-small-scale mx-auto px-4 md:p-0">
+            {/* The absolute positioning inside this container will now respect the padding */}
+            <div className="relative h-full very-small-shift">
               {/* Card 1 */}
               <div
                 className="absolute w-[300px] h-[358px]"
@@ -74,7 +74,7 @@ const WhyChoose = () => {
                 className="absolute w-[300px] h-[358px]"
                 style={{
                   top: '42px',
-                  left: '299px',
+                  left: '300px', /* Increased from 299px to 300px */
                   backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
@@ -132,7 +132,7 @@ const WhyChoose = () => {
                 className="absolute w-[300px] h-[300px]"
                 style={{
                   top: '307px',
-                  left: '299px',
+                  left: '300px', /* Increased from 299px to 300px */
                   backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
@@ -167,7 +167,6 @@ const WhyChoose = () => {
           {/* Right: Text Block */}
           <div className="lg:w-[40%] flex justify-start mt-18">
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left text-gray-300">
-
               {/* SVG wrapper for perfect center */}
               <div className="flex items-center justify-center w-full mb-6">
                 <img
@@ -193,7 +192,6 @@ const WhyChoose = () => {
                 smarter business decisions. From customizable flows to premium backup
                 services, we're built for performance, reliability, and growth.
               </p>
-
             </div>
           </div>
         </div>

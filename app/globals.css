@@ -43,16 +43,12 @@ body {
   .very-small-scale {
     transform: scale(0.6) !important;
   }
+  .very-small-center {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
 }
-/* Shift inner container slightly left on very small screens but keep equal horizontal padding */
 
-@media (max-width: 400px) {
-  .very-small-shift {
-    transform: translateX(-12px);
-  }
-}
-@media (min-width: 401px) {
-  .very-small-shift {
-    transform: none;
-  }
-}
+
+

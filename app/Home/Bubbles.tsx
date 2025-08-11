@@ -327,7 +327,7 @@ export default function BubblePage() {
         <title>Services Overview</title>
         <meta name="description" content="Interactive services visualization" />
       </Head>
-      <div className="min-h-screen bg-gradient-to-br from-[#1e3a8a] to-[#0c1a4e] font-inter text-white flex flex-col items-center p-4 overflow-hidden relative">
+<div className="min-h-screen bg-[#0055FF] bg-gradient-to-br font-inter text-white flex flex-col items-center p-4 overflow-hidden relative">
         <h1 className="text-4xl font-extrabold text-center mb-10 mt-20 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services
         </h1>

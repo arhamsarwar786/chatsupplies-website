@@ -9,7 +9,7 @@ export default function HomePage() {
         <title>ChatSupplies - AI Assistant</title>
       </Head>
 
-      <div className="min-h-screen bg-[#0E1B4F] text-white flex flex-col justify-center items-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#0055FF] text-white flex flex-col justify-center items-center relative overflow-hidden">
 
         {/* Top left logo */}
         <div className="absolute top-8 left-8 flex items-center space-x-3 z-20">
@@ -35,9 +35,10 @@ export default function HomePage() {
               and boost business efficiency?
             </p>
 
-            <button className="mt-16 border border-white bg-transparent text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition">
+            <button className="mt-16 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] font-Mont-Block py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition">
               Book a demo
             </button>
+
           </div>
 
           {/* Right content: Robot image on desktop, hidden on mobile/tablet */}

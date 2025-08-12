@@ -47,15 +47,15 @@ const pricingData: PricingData = {
             features: {
                 numberOfUsers: '20 Pages',
                 usersPerPage: '5 Pages',
-                includesEssential: true,
-                moreAdvanced: true,
-                designingDevelopment: true,
+                includesEssential: '/PaymentPlan/Vector.svg',
+                moreAdvanced: '/PaymentPlan/Vector.svg',
+                designingDevelopment: '/PaymentPlan/Vector.svg',
                 customizableOptions: false,
                 secureDataStorage: false,
                 emailSupport: false,
                 customerSupport: false,
                 analyticsReporting: false,
-                accountManagement: true,
+                accountManagement: '/PaymentPlan/Vector.svg',
             },
         },
         {
@@ -64,15 +64,15 @@ const pricingData: PricingData = {
             features: {
                 numberOfUsers: '600 Pages',
                 usersPerPage: '50 Pages',
-                includesEssential: true,
-                moreAdvanced: true,
+                includesEssential: '/PaymentPlan/Vector.svg',
+                moreAdvanced: '/PaymentPlan/Vector.svg',
                 designingDevelopment: false,
-                customizableOptions: true,
+                customizableOptions: '/PaymentPlan/Vector.svg',
                 secureDataStorage: false,
                 emailSupport: false,
                 customerSupport: false,
-                analyticsReporting: true,
-                accountManagement: true,
+                analyticsReporting: '/PaymentPlan/Vector.svg',
+                accountManagement: '/PaymentPlan/Vector.svg',
             },
         },
         {
@@ -81,15 +81,15 @@ const pricingData: PricingData = {
             features: {
                 numberOfUsers: '600 Pages',
                 usersPerPage: '50 Pages',
-                includesEssential: true,
-                moreAdvanced: true,
-                designingDevelopment: true,
-                customizableOptions: true,
-                secureDataStorage: true,
-                emailSupport: true,
+                includesEssential: '/PaymentPlan/Vector.svg',
+                moreAdvanced: '/PaymentPlan/Vector.svg',
+                designingDevelopment: '/PaymentPlan/Vector.svg',
+                customizableOptions: '/PaymentPlan/Vector.svg',
+                secureDataStorage: '/PaymentPlan/Vector.svg',
+                emailSupport: '/PaymentPlan/Vector.svg',
                 customerSupport: false,
-                analyticsReporting: true,
-                accountManagement: true,
+                analyticsReporting: '/PaymentPlan/Vector.svg',
+                accountManagement: '/PaymentPlan/Vector.svg',
             },
         },
         {
@@ -98,24 +98,19 @@ const pricingData: PricingData = {
             features: {
                 numberOfUsers: 'Unlimited',
                 usersPerPage: 'Unlimited',
-                includesEssential: true,
-                moreAdvanced: true,
-                designingDevelopment: true,
-                customizableOptions: true,
-                secureDataStorage: true,
-                emailSupport: true,
-                customerSupport: true,
-                analyticsReporting: true,
-                accountManagement: true,
+                includesEssential: '/PaymentPlan/Vector.svg',
+                moreAdvanced: '/PaymentPlan/Vector.svg',
+                designingDevelopment: '/PaymentPlan/Vector.svg',
+                customizableOptions: '/PaymentPlan/Vector.svg',
+                secureDataStorage: '/PaymentPlan/Vector.svg',
+                emailSupport: '/PaymentPlan/Vector.svg',
+                customerSupport: '/PaymentPlan/Vector.svg',
+                analyticsReporting: '/PaymentPlan/Vector.svg',
+                accountManagement: '/PaymentPlan/Vector.svg',
             },
         },
     ],
 };
-
-// Custom Checkmark SVG
-const CustomCheck = () => (
-    <CheckCircle className="h-6 w-6 text-[#5d67e2] drop-shadow-sm" />
-);
 
 const PricingTablePage: React.FC = () => {
     return (
@@ -125,14 +120,14 @@ const PricingTablePage: React.FC = () => {
                 <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12">Our Plans</h1>
 
                 {/* Pricing Table */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 rounded-3xl overflow-hidden border border-gray-700">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 rounded-3xl overflow-hidden bg-white/15">
                     {/* Headers Row */}
                     <div className="contents">
                         {/* First Header Column */}
-                        <div className="bg-[#FFFFFF] opacity-15  p-4 lg:p-6 h-32 flex flex-col justify-between border-b border-r border-gray-700">
+                        <div className="p-4 lg:p-6 h-32 flex flex-col justify-between border-b border-r border-white-700">
                             <div className="flex items-center space-x-2">
                                 <h2 className="text-lg font-Mont-Bold text-[#FFFFFF]">Compare plans</h2>
-                                <span className="bg-[#212b4e] text-[#FFFFFF] border border-[#FFFFFF] text-sm rounded-full px-5 py-1 flex items-center justify-center whitespace-nowrap">
+                                <span className="text-[#FFFFFF] border border-[#FFFFFF] text-sm rounded-full px-5 py-1 flex items-center justify-center whitespace-nowrap">
                                     <span className="font-Mont-bold text-[#FFFFFF] border-[#FFFFFF]">40% OFF</span>
                                 </span>
                             </div>
@@ -140,15 +135,16 @@ const PricingTablePage: React.FC = () => {
                                 Choose your workspace plan according to your organizational plan
                             </p>
                         </div>
+
                         {/* Plan Headers */}
                         {pricingData.plans.map((plan, index) => (
                             <div
                                 key={plan.name}
-                                className={`bg-[#212b4e] p-4 lg:p-6 h-32 flex flex-col justify-between items-center border-b border-gray-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
+                                className={`p-4 lg:p-6 h-32 flex flex-col justify-between items-center border-b border-white-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
                             >
                                 <h2 className="text-xl font-Mont-Bold text-[#FFFFFF]">
                                     {plan.name}
-                                    <span className="ml-1 text-sm text-gray-400 font-normal">
+                                    <span className="ml-1 text-sm text-white/15 font-normal">
                                         {plan.name === 'Free' ? '/Lifetime' : '/Month'}
                                     </span>
                                 </h2>
@@ -163,30 +159,32 @@ const PricingTablePage: React.FC = () => {
                     {pricingData.features.map((feature) => (
                         <div key={feature.key} className="contents">
                             {/* First Column Feature Label */}
-                            <div className="bg-[#212b4e] p-4 flex items-center text-sm font-light text-gray-300 border-b border-r border-gray-700">
+                            <div className="p-4 flex items-center text-sm font-Mont-SemiBold text-[#FFFFFF] border-b border-r border-white-700">
                                 {feature.label}
                             </div>
+
                             {/* Plan Columns Features */}
                             {pricingData.plans.map((plan, index) => (
                                 <div
                                     key={plan.name}
-                                    className={`bg-[#212b4e] p-4 flex items-center justify-center text-sm border-b border-gray-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
+                                    className={`p-4 flex items-center justify-center text-sm border-b border-white-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
                                 >
-                                    {/* Handle 'numberOfUsers' */}
                                     {feature.key === 'numberOfUsers' && (
-                                        <span className="text-gray-300">{plan.features.numberOfUsers}</span>
+                                        <span className="text-Mont-SemiBold">{plan.features.numberOfUsers}</span>
                                     )}
-                                    {/* Handle 'usersPerPage' */}
                                     {feature.key === 'usersPerPage' && (
-                                        <span className="text-gray-300">{plan.features.usersPerPage}</span>
+                                        <span className="text-Mont-SemiBold">{plan.features.usersPerPage}</span>
                                     )}
-                                    {/* Handle all other features */}
                                     {feature.key !== 'numberOfUsers' && feature.key !== 'usersPerPage' && (
-                                        plan.features[feature.key] === true ? (
-                                            <CustomCheck />
+                                        typeof plan.features[feature.key] === 'string' ? (
+                                            <img
+                                                src={plan.features[feature.key] as string}
+                                                alt="Included"
+                                                className="w-6 h-6"
+                                            />
                                         ) : (
                                             <span className="text-gray-300">
-                                                {plan.features[feature.key] !== false ? plan.features[feature.key] : ''}
+                                                {plan.features[feature.key] || ''}
                                             </span>
                                         )
                                     )}

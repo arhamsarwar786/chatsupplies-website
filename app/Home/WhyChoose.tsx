@@ -73,7 +73,7 @@ const WhyChoose = () => {
               <div
                 className="absolute w-[300px] h-[358px]"
                 style={{
-                  top: '42px',
+                  top: '43px',
                   left: '300px', /* Increased from 299px to 300px */
                   backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
                   backgroundSize: 'cover',

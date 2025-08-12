@@ -62,7 +62,7 @@ const pricingData: PricingData = {
             name: '$25',
             description: '600 Pages',
             features: {
-                numberOfUsers: '600 Pages',
+                numberOfUsers: '600 Pages \n Pages add-ons on Demand',
                 usersPerPage: '50 Pages',
                 includesEssential: '/PaymentPlan/Vector.svg',
                 moreAdvanced: '/PaymentPlan/Vector.svg',
@@ -79,7 +79,7 @@ const pricingData: PricingData = {
             name: '$40',
             description: '600 Pages',
             features: {
-                numberOfUsers: '600 Pages',
+                numberOfUsers: '600 Pages  \n Pages add-ons on Demand',
                 usersPerPage: '50 Pages',
                 includesEssential: '/PaymentPlan/Vector.svg',
                 moreAdvanced: '/PaymentPlan/Vector.svg',
@@ -113,13 +113,14 @@ const pricingData: PricingData = {
 };
 
 const PricingTablePage: React.FC = () => {
+    // Assuming the first plan is the "Current Plan" for demonstration
+    const currentPlanName = pricingData.plans[0].name;
+
     return (
         <div className="bg-[#0055FF] min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
             <div className="max-w-[1400px] w-full mx-auto">
                 {/* Page Title */}
                 <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12">Our Plans</h1>
-
-                {/* Pricing Table */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 rounded-3xl overflow-hidden bg-white/15">
                     {/* Headers Row */}
                     <div className="contents">
@@ -135,7 +136,6 @@ const PricingTablePage: React.FC = () => {
                                 Choose your workspace plan according to your organizational plan
                             </p>
                         </div>
-
                         {/* Plan Headers */}
                         {pricingData.plans.map((plan, index) => (
                             <div
@@ -148,50 +148,74 @@ const PricingTablePage: React.FC = () => {
                                         {plan.name === 'Free' ? '/Lifetime' : '/Month'}
                                     </span>
                                 </h2>
-                                <button className="w-full bg-[#FFFFFF] hover:bg-[#FFFFFF] text-black font-bold py-2 px-4 rounded-lg transition-colors">
-                                    Choose This Plan
-                                </button>
+                                {/* Updated Button Logic */}
+                                {plan.name === currentPlanName ? (
+                                    <button className="w-full bg-white/20 text-[#00F0FF] font-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap">
+                                        Current Plan
+                                    </button>
+                                ) : (
+                                    <button className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-Mont-bold py-2 px-8 rounded-full whitespace-nowrap">
+                                        Choose This Plan
+                                    </button>
+                                )}
                             </div>
                         ))}
                     </div>
-
                     {/* Feature Rows */}
-                    {pricingData.features.map((feature) => (
-                        <div key={feature.key} className="contents">
-                            {/* First Column Feature Label */}
-                            <div className="p-4 flex items-center text-sm font-Mont-SemiBold text-[#FFFFFF] border-b border-r border-white-700">
-                                {feature.label}
-                            </div>
-
-                            {/* Plan Columns Features */}
-                            {pricingData.plans.map((plan, index) => (
+                    {pricingData.features.map((feature, featureIndex) => {
+                        const isLastFeature = featureIndex === pricingData.features.length - 1;
+                        return (
+                            <div key={feature.key} className="contents">
+                                {/* First Column Feature Label */}
                                 <div
-                                    key={plan.name}
-                                    className={`p-4 flex items-center justify-center text-sm border-b border-white-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
+                                    className={`p-4 flex items-center text-sm font-Mont-SemiBold text-[#FFFFFF] border-r border-white-700 ${isLastFeature ? '' : 'border-b'}`}
                                 >
-                                    {feature.key === 'numberOfUsers' && (
-                                        <span className="text-Mont-SemiBold">{plan.features.numberOfUsers}</span>
-                                    )}
-                                    {feature.key === 'usersPerPage' && (
-                                        <span className="text-Mont-SemiBold">{plan.features.usersPerPage}</span>
-                                    )}
-                                    {feature.key !== 'numberOfUsers' && feature.key !== 'usersPerPage' && (
-                                        typeof plan.features[feature.key] === 'string' ? (
-                                            <img
-                                                src={plan.features[feature.key] as string}
-                                                alt="Included"
-                                                className="w-6 h-6"
-                                            />
-                                        ) : (
-                                            <span className="text-gray-300">
-                                                {plan.features[feature.key] || ''}
-                                            </span>
-                                        )
-                                    )}
+                                    {feature.label}
                                 </div>
-                            ))}
-                        </div>
-                    ))}
+                                {/* Plan Columns Features */}
+                                {pricingData.plans.map((plan, index) => (
+                                    <div
+                                        key={plan.name}
+                                        className={`p-4 flex items-center justify-center text-sm border-white-700 ${isLastFeature ? '' : 'border-b'} ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
+                                    >
+                                        {feature.key === 'numberOfUsers' && (
+                                            <span className="text-Mont-SemiBold whitespace-pre-line text-center">
+                                                {typeof plan.features.numberOfUsers === 'string'
+                                                    ? plan.features.numberOfUsers.split('\n').map((line: string, idx: number) =>
+                                                        line.trim() === 'Pages add-ons on Demand' ? (
+                                                            <span key={idx} className="text-[#00F0FF] block">
+                                                                {line}
+                                                            </span>
+                                                        ) : (
+                                                            <span key={idx} className="block">
+                                                                {line}
+                                                            </span>
+                                                        )
+                                                    )
+                                                    : plan.features.numberOfUsers}
+                                            </span>
+                                        )}
+                                        {feature.key === 'usersPerPage' && (
+                                            <span className="text-Mont-SemiBold">{plan.features.usersPerPage}</span>
+                                        )}
+                                        {feature.key !== 'numberOfUsers' && feature.key !== 'usersPerPage' && (
+                                            typeof plan.features[feature.key] === 'string' ? (
+                                                <img
+                                                    src={plan.features[feature.key] as string}
+                                                    alt="Included"
+                                                    className="w-6 h-6"
+                                                />
+                                            ) : (
+                                                <span className="text-gray-300">
+                                                    {plan.features[feature.key] || ''}
+                                                </span>
+                                            )
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

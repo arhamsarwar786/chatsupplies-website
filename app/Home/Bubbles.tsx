@@ -157,11 +157,25 @@ export default function BubblePage() {
         `}</style>
 
         {/* Vector line in background */}
-        <img
-          src="/Lines/Vector Line.svg"
-          alt="Decorative Line"
-          className="absolute top-0 left-[-2%] w-[520px] h-[120vh] pointer-events-none z-0 sm:left-[-1%] sm:w-[400px] sm:h-[140vh] md:left-[3%] md:w-[470px] md:h-[160vh] lg:left-[-2%] lg:w-[520px] lg:h-full"
-        />
+  
+
+<div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:left-[-23] lg:translate-x-0">
+  <svg
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+    width="100%"
+    height="100%"
+    className="w-full h-full"
+  >
+    <image 
+      href="/Lines/Vector Line.svg" 
+      width="100%" 
+      height="100%"
+    />
+  </svg>
+</div>
+
+
         <h1 className="text-4xl font-extrabold text-center mb-6 mt-10 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services
         </h1>

@@ -141,7 +141,10 @@ const PricingTablePage: React.FC = () => {
     };
 
     return (
-        <div className="bg-[#0055FF] min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
+        <div 
+            className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center"
+        
+        >
             <div className="max-w-[1400px] w-full mx-auto">
                 {/* Page Title */}
                 <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12">Our Plans</h1>

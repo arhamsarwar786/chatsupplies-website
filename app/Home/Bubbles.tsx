@@ -27,7 +27,7 @@ interface BubbleMovement {
 }
 
 const services: Service[] = [
-  { text: "Create chatbots", description: "with public links\nand customizable flows", size: 255, x: '13vw', y: '40vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 14, descFontSize: 12, textOffsetY: 0, textOffsetX: 0, fontFamily: "Mont-Regular" },
+  { text: "Create chatbots", description: "with public links\nand customizable flows", size: 255, x: '13vw', y: '36vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 14, descFontSize: 12, textOffsetY: 0, textOffsetX: 0, fontFamily: "Mont-Regular" },
   { text: "User Support", description: "Email, ticket, and live\nmeeting support\nbased on plan", size: 318, x: '30vw', y: '20vh', image: "/Icons/Bubbles/User Support.svg", fontSize: 16, descFontSize: 13, textOffsetY: -5, fontFamily: "Mont-Regular" },
   { text: "Real-time\nperformance", description: "insights and\nadvanced reporting", size: 300, x: '55vw', y: '25vh', image: "/Icons/Bubbles/Real Time.svg", fontSize: 14, descFontSize: 12, textOffsetY: 0, fontFamily: "Mont-Regular" },
   { text: "Multilingual Support", description: "Engage users in their\nnative language", size: 315, x: '75vw', y: '10vh', image: "/Icons/Bubbles/Multilingual.svg", fontSize: 14, descFontSize: 12, textOffsetY: 0, fontFamily: "Mont-Regular" },
@@ -194,7 +194,10 @@ export default function BubblePage() {
         <title>Services Overview</title>
         <meta name="description" content="Static services visualization" />
       </Head>
-      <div className="min-h-screen bg-[#0055FF] bg-gradient-to-br font-inter text-white flex flex-col items-center p-4 overflow-hidden relative">
+      <div 
+        className="min-h-screen font-inter text-white flex flex-col items-center p-4 overflow-hidden relative"
+      
+      >
         <style jsx global>{`
           /* Light glowing pulse animation */
           @keyframes bubbleGlowPulse {

@@ -2,7 +2,7 @@ import React from 'react';
 
 const WhyChoose = () => {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-[#0055FF] text-white overflow-hidden">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
       {/* Background glowing effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
 
@@ -36,12 +36,126 @@ const WhyChoose = () => {
 
         {/* Main content */}
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 relative">
-          {/* Left: Manual Positioned Cards */}
+          {/* Left: Cards */}
           <div className="relative w-full lg:w-[60%] min-h-[650px] p-0 -mt-16 mx-auto md:p-0">
-            {/* New responsive wrapper div */}
-            <div className="relative w-full h-full flex justify-center lg:justify-start">
-              {/* The absolute positioning inside this container will now respect the padding */}
-              <div className="relative h-full shrink-0 scale-[0.5] sm:scale-[0.8] md:scale-90 lg:scale-100" style={{ width: '600px', height: '650px' }}>
+
+            {/* Mobile stacked layout */}
+            <div className="flex flex-col items-center mt-12 sm:hidden">
+              {/* Card 1 */}
+              <div
+                className="relative w-[300px] h-[358px]"
+                style={{
+                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div
+                  className="absolute text-left"
+                  style={{
+                    top: '63%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                    Ultra-Fast Support
+                  </h3>
+                  <p className="font-montbold text-gray-200 text-[11px]">
+                    24/7 support available if you encounter any kind of problem
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 2 */}
+              <div
+                className="relative w-[300px] h-[358px]"
+                style={{
+                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div
+                  className="absolute text-left"
+                  style={{
+                    top: '60%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <h3 className="font-montbold text-[15px] font-[550] text-white">
+                    Multilingual Support
+                  </h3>
+                  <p className="font-montbold text-gray-200 text-[11px]">
+                    10+ languages are supported for connecting users from all over the world
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div
+                className="relative w-[300px] h-[358px]"
+                style={{
+                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div
+                  className="absolute text-left"
+                  style={{
+                    top: '63%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                    Team Access
+                  </h3>
+                  <p className="font-montbold text-gray-200 text-[11px]">
+                    Role-based access in admin panel for up to 10 team members
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div
+                className="relative w-[300px] h-[300px]  mb-24 sm:mb-0"
+                style={{
+                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div
+                  className="absolute text-left"
+                  style={{
+                    top: '69%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                    Analysis & Insights
+                  </h3>
+                  <p className="font-montbold text-gray-200 text-[11px]">
+                    Insight driven data analysis for real-time business decisions
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Original absolute cluster for tablet/desktop */}
+            <div className="relative w-full h-full justify-center lg:justify-start hidden sm:flex">
+              <div
+                className="relative h-full shrink-0 scale-[0.5] sm:scale-[0.8] md:scale-90 lg:scale-100"
+                style={{ width: '600px', height: '650px' }}
+              >
                 {/* Card 1 */}
                 <div
                   className="absolute w-[300px] h-[358px]"

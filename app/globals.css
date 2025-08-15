@@ -1,44 +1,42 @@
 @import "tailwindcss";
 
+/* Global color variables */
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --primary: #14b8a6; 
-   --secondary: #d1f5ee;
+  --secondary: #d1f5ee;
+  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
+  --font-mono: var(--font-geist-mono, monospace);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary); /* ✅ Optional: shorthand in theme */
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
+/* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --primary: #14b8a6; /* Keep same or change for dark mode if needed */
+    --primary: #14b8a6; /* You can change for dark mode if desired */
   }
 }
 
+/* Body styles */
 body {
-  background: var(--background);
+  background: linear-gradient(to right, #2648EF 0%, #252F8B 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
 
+/* Custom gradient background class */
 .custom-gradient-bg {
   background: 
-    linear-gradient(0deg, #0015FF, #0015FF), 
+    linear-gradient(90deg, #0015FF, #0015FF), 
     radial-gradient(45.73% 45.73% at 70.47% 50%, #B541EC 0%, rgba(212, 65, 236, 0) 100%), 
     radial-gradient(48.46% 48.46% at 13.51% 33.88%, #53ACFF 0%, rgba(86, 133, 255, 0) 100%), 
     radial-gradient(24.12% 24.12% at 53.35% 85.75%, rgba(236, 178, 65, 0.5) 0%, rgba(236, 178, 65, 0) 100%), 
     radial-gradient(71.34% 71.34% at 20.03% 18.21%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0) 97.45%);
 }
 
-
+/* Small screen adjustments */
 @media (max-width: 400px) {
   .very-small-scale {
     transform: scale(0.6) !important;
@@ -49,6 +47,3 @@ body {
     align-items: center !important;
   }
 }
-
-
-

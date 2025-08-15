@@ -1,6 +1,4 @@
-// pages/index.tsx
 "use client"
-
 
 import Head from 'next/head';
 import { useState } from 'react';
@@ -18,7 +16,10 @@ export default function HomePage() {
         <title>ChatSupplies - AI Assistant</title>
       </Head>
 
-      <div className="min-h-screen bg-[#0055FF] text-white flex flex-col justify-center items-center relative overflow-hidden">
+      <div 
+        className="min-h-screen text-white flex flex-col justify-center items-center relative overflow-hidden"
+       
+      >
 
         {/* Top left logo */}
         <div className="absolute top-8 left-8 flex items-center space-x-3 z-20">
@@ -54,23 +55,23 @@ export default function HomePage() {
 
           {/* Right content: Robot on desktop */}
           <div className="w-full md:w-[40%] hidden md:flex justify-center md:justify-end z-10 -mt-12 md:-mt-20 relative">
-  {/* Container for background + robot */}
-  <div className="relative flex items-center justify-center">
-    {/* SVG background */}
-    <img
-      src="/Lines/RobotBackground.svg"
-      alt="Robot Background"
-      className="absolute scale-125 w-full h-full object-contain z-0 "
-    />
+            {/* Container for background + robot */}
+            <div className="relative flex items-center justify-center">
+              {/* SVG background */}
+              <img
+                src="/Lines/RobotBackground.svg"
+                alt="Robot Background"
+                className="absolute scale-125 w-full h-full object-contain z-0 "
+              />
 
-    {/* Robot */}
-    <img
-      src="/Icons/Bot.svg"
-      alt="Robot"
-      className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10"
-    />
-  </div>
-</div>
+              {/* Robot */}
+              <img
+                src="/Icons/Bot.svg"
+                alt="Robot"
+                className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10"
+              />
+            </div>
+          </div>
 
         </div>
 
@@ -99,7 +100,7 @@ export default function HomePage() {
                   <label className="block mb-2">Website(URL)</label>
                   <input type="text" className="w-full p-2 border rounded" />
                 </div>
-                 <div className="mb-6">
+                  <div className="mb-6">
                   <label className="block mb-2">Contact</label>
                   <input type="text" className="w-full p-2 border rounded" />
                 </div>
@@ -115,11 +116,22 @@ export default function HomePage() {
         )}
 
         {/* Curved vector line from public folder */}
-        <img
-          src="/Lines/Vector Line.svg"
-          alt="Decorative Line"
-          className="absolute top-0 right-[1%] h-full w-[470px] z-0 pointer-events-none"
-        />
+       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:right-[-7%] lg:translate-x-0 lg:w-auto">
+  <svg
+    viewBox="0 0 100 100"
+    preserveAspectRatio="none"
+    width="100%"
+    height="100%"
+    className="w-full h-full"
+  >
+    <image 
+      href="/Lines/Vector Line.svg" 
+      width="100%" 
+      height="100%"
+    />
+  </svg>
+</div>
+
       </div>
     </>
   );

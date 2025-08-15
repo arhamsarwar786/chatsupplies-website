@@ -53,13 +53,25 @@ export default function HomePage() {
           </div>
 
           {/* Right content: Robot on desktop */}
-          <div className="w-full md:w-[40%] hidden md:flex justify-center md:justify-end z-10 -mt-12 md:-mt-20">
-            <img
-              src="/Icons/Bot.svg"
-              alt="Robot"
-              className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto"
-            />
-          </div>
+          <div className="w-full md:w-[40%] hidden md:flex justify-center md:justify-end z-10 -mt-12 md:-mt-20 relative">
+  {/* Container for background + robot */}
+  <div className="relative flex items-center justify-center">
+    {/* SVG background */}
+    <img
+      src="/Lines/RobotBackground.svg"
+      alt="Robot Background"
+      className="absolute scale-125 w-full h-full object-contain z-0"
+    />
+
+    {/* Robot */}
+    <img
+      src="/Icons/Bot.svg"
+      alt="Robot"
+      className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10"
+    />
+  </div>
+</div>
+
         </div>
 
         {/* Popup overlay and container */}

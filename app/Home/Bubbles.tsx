@@ -17,6 +17,15 @@ interface Service {
   fontFamily?: string;
 }
 
+interface BubbleMovement {
+  x: number;
+  y: number;
+  speedX: number;
+  speedY: number;
+  amplitudeX: number;
+  amplitudeY: number;
+}
+
 const services: Service[] = [
   { text: "Create chatbots", description: "with public links\nand customizable flows", size: 255, x: '13vw', y: '40vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 14, descFontSize: 12, textOffsetY: 0, textOffsetX: 0, fontFamily: "Mont-Regular" },
   { text: "User Support", description: "Email, ticket, and live\nmeeting support\nbased on plan", size: 318, x: '30vw', y: '20vh', image: "/Icons/Bubbles/User Support.svg", fontSize: 16, descFontSize: 13, textOffsetY: -5, fontFamily: "Mont-Regular" },
@@ -36,6 +45,7 @@ export default function BubblePage() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [bubbleMovements, setBubbleMovements] = useState<Record<string, BubbleMovement>>({});
 
   const createBubbleElement = (service: Service, isStatic = false) => {
     const el = document.createElement("div");
@@ -53,6 +63,7 @@ export default function BubblePage() {
       el.style.height = `${radius * 2}px`;
       el.style.left = `calc(${service.x} - ${radius}px)`;
       el.style.top = `calc(${service.y} - ${radius}px)`;
+      el.style.transition = "transform 1.5s ease-out";
     }
 
     el.onclick = () => {
@@ -128,7 +139,54 @@ export default function BubblePage() {
       const el = createBubbleElement(service);
       container.appendChild(el);
     });
+
+    // Initialize random movements for each bubble
+    const movements: Record<string, BubbleMovement> = {};
+    services.forEach(service => {
+      const id = service.text?.trim().toLowerCase().replace(/\s+/g, "-") || `bubble-${Math.random()}`;
+      movements[id] = {
+        x: 0,
+        y: 0,
+        speedX: 0.2 + Math.random() * 0.3,
+        speedY: 0.2 + Math.random() * 0.3,
+        amplitudeX: 2 + Math.random() * 5,
+        amplitudeY: 2 + Math.random() * 5,
+      };
+    });
+    setBubbleMovements(movements);
   }, [isMobile, isTablet]);
+
+  useEffect(() => {
+    if (isMobile || isTablet || !canvasRef.current) return;
+
+    let animationFrameId: number;
+    let time = 0;
+
+    const animate = () => {
+      time += 0.05;
+      const container = canvasRef.current;
+      if (!container) return;
+
+      const bubbles = Array.from(container.children) as HTMLElement[];
+      bubbles.forEach(bubble => {
+        const movement = bubbleMovements[bubble.id];
+        if (!movement) return;
+
+        const xOffset = Math.sin(time * movement.speedX) * movement.amplitudeX;
+        const yOffset = Math.cos(time * movement.speedY) * movement.amplitudeY;
+        
+        bubble.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [isMobile, isTablet, bubbleMovements]);
 
   return (
     <>
@@ -157,9 +215,7 @@ export default function BubblePage() {
         `}</style>
 
         {/* Vector line in background */}
-  
-
-<div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:left-[-23] lg:translate-x-0">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:left-[-7%] lg:translate-x-0 lg:w-auto">
   <svg
     viewBox="0 0 100 100"
     preserveAspectRatio="none"
@@ -174,7 +230,6 @@ export default function BubblePage() {
     />
   </svg>
 </div>
-
 
         <h1 className="text-4xl font-extrabold text-center mb-6 mt-10 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services

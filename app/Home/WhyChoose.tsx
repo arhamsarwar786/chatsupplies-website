@@ -157,120 +157,66 @@ const WhyChoose = () => {
                 style={{ width: '600px', height: '650px' }}
               >
                 {/* Card 1 */}
-                <div
-                  className="absolute w-[300px] h-[358px]"
-                  style={{
-                    top: '0px',
-                    left: '0px',
-                    backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div
-                    className="absolute text-left"
-                    style={{
-                      top: '63%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
-                      Ultra-Fast Support
-                    </h3>
-                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
-                      24/7 support available if you encounter any kind of <br/> problem
-                    </p>
-                  </div>
-                </div>
+               {/* Card 1 */}
+<div
+  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')", top: '0px', left: '0px' }}
+>
+  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
+      Ultra-Fast Support
+    </h3>
+    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
+      24/7 support available if you <br /> encounter any kind of <br /> problem
+    </p>
+  </div>
+</div>
 
-                {/* Card 2 */}
-                <div
-                  className="absolute w-[300px] h-[358px]"
-                  style={{
-                    top: '43px',
-                    left: '300px',
-                    backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div
-                    className="absolute text-left"
-                    style={{
-                      top: '63%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
-                      Multilingual Support
-                    </h3>
-                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
-                      10+ languages are supported<br/>for connecting users from all<br/> over the world
-                    </p>
-                  </div>
-                </div>
+{/* Card 2 */}
+<div
+  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')", top: '43px', left: '300px' }}
+>
+  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
+      Multilingual Support
+    </h3>
+    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
+      10+ languages are supported <br /> for connecting users from all <br /> over the world
+    </p>
+  </div>
+</div>
 
-                {/* Card 3 */}
-                <div
-                  className="absolute w-[300px] h-[358px]"
-                  style={{
-                    top: '230px',
-                    left: '0px',
-                    backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div
-                    className="absolute text-left"
-                    style={{
-                      top: '63%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
-                      Team Access
-                    </h3>
-                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
-                      Role-based access in admin<br/>panel for up to 10 team<br/>members
-                    </p>
-                  </div>
-                </div>
+{/* Card 3 */}
+<div
+  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')", top: '230px', left: '0px' }}
+>
+  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
+      Team Access
+    </h3>
+    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
+      Role-based access in admin <br /> panel for up to 10 team <br /> members
+    </p>
+  </div>
+</div>
 
-                {/* Card 4 */}
-                <div
-                  className="absolute w-[300px] h-[300px]"
-                  style={{
-                    top: '307px',
-                    left: '300px',
-                    backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div
-                    className="absolute text-left"
-                    style={{
-                      top: '72%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                    }}
-                  >
-                    <h3 className="font-Mont-bold text-[20px] md:text-[14px] font-[550] text-white">
-                      Analysis & Insights
-                    </h3>
-                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
-                      Insight driven data analysis for real-time business <br/> decisions
-                    </p>
-                  </div>
-                </div>
+{/* Card 4 */}
+<div
+  className="absolute w-[300px] h-[300px] bg-center bg-no-repeat bg-cover"
+  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')", top: '307px', left: '300px' }}
+>
+  <div className="absolute text-left top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <h3 className="font-Mont-bold text-[20px] md:text-[14px] text-white">
+      Analysis & Insights
+    </h3>
+    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
+      Insight driven data analysis for real-time business <br /> decisions
+    </p>
+  </div>
+</div>
+
               </div>
             </div>
           </div>

@@ -76,47 +76,47 @@ export default function HomePage() {
         </div>
 
         {/* Popup overlay and container */}
-      {showPopup && (
-  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-    <div
-      className="bg-white text-[#0E1F4F] p-8 rounded-lg max-w-md w-full mx-4 relative transition-opacity duration-300"
-      style={{ opacity: showPopup ? 1 : 0 }}
+     {/* This parent div will be in the DOM, but hidden, allowing for the animation */}
+<div 
+  className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 transition-opacity duration-300 ${showPopup ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+>
+  <div
+    className="bg-white text-[#0E1F4F] p-8 rounded-lg max-w-md w-full mx-4 relative"
+  >
+    <button 
+      onClick={togglePopup}
+      className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
     >
+      ✕
+    </button>
+    <h2 className="text-2xl font-bold mb-4">Book a Demo</h2>
+    <p className="mb-6">Fill out this form and we'll get back to you shortly to schedule a demo.</p>
+    <form>
+      <div className="mb-4">
+        <label className="block mb-2">Name</label>
+        <input type="text" className="w-full p-2 border rounded" />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-2">Email</label>
+        <input type="email" className="w-full p-2 border rounded" />
+      </div>
+      <div className="mb-6">
+        <label className="block mb-2">Website(URL)</label>
+        <input type="text" className="w-full p-2 border rounded" />
+      </div>
+      <div className="mb-6">
+        <label className="block mb-2">Contact</label>
+        <input type="text" className="w-full p-2 border rounded" />
+      </div>
       <button 
-        onClick={togglePopup}
-        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
+        type="button"
+        className="w-full bg-[#0055FF] text-white py-2 px-4 rounded hover:bg-[#0044CC] transition cursor-pointer"
       >
-        ✕
+        Submit
       </button>
-      <h2 className="text-2xl font-bold mb-4">Book a Demo</h2>
-      <p className="mb-6">Fill out this form and we'll get back to you shortly to schedule a demo.</p>
-      <form>
-        <div className="mb-4">
-          <label className="block mb-2">Name</label>
-          <input type="text" className="w-full p-2 border rounded" />
-        </div>
-        <div className="mb-4">
-          <label className="block mb-2">Email</label>
-          <input type="email" className="w-full p-2 border rounded" />
-        </div>
-        <div className="mb-6">
-          <label className="block mb-2">Website(URL)</label>
-          <input type="text" className="w-full p-2 border rounded" />
-        </div>
-        <div className="mb-6">
-          <label className="block mb-2">Contact</label>
-          <input type="text" className="w-full p-2 border rounded" />
-        </div>
-        <button 
-          type="button"
-          className="w-full bg-[#0055FF] text-white py-2 px-4 rounded hover:bg-[#0044CC] transition cursor-pointer"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+    </form>
   </div>
-)}
+</div>
         {/* Curved vector line from public folder */}
        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:right-[-7%] lg:translate-x-0 lg:w-auto">
   <svg

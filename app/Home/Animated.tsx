@@ -60,7 +60,7 @@ export default function HomePage() {
     <img
       src="/Lines/RobotBackground.svg"
       alt="Robot Background"
-      className="absolute scale-125 w-full h-full object-contain z-0"
+      className="absolute scale-125 w-full h-full object-contain z-0 "
     />
 
     {/* Robot */}

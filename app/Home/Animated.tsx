@@ -68,7 +68,7 @@ export default function HomePage() {
               <img
                 src="/Icons/Bot.svg"
                 alt="Robot"
-                className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10"
+                className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10 -translate-x-8"
               />
             </div>
           </div>
@@ -77,11 +77,11 @@ export default function HomePage() {
 
         {/* Popup overlay and container */}
         {showPopup && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="fixed inset-0 bg-black/60  flex items-center justify-center z-50">
             <div className="bg-white text-[#0E1B4F] p-8 rounded-lg max-w-md w-full mx-4 relative">
               <button 
                 onClick={togglePopup}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
               >
                 ✕
               </button>
@@ -106,7 +106,7 @@ export default function HomePage() {
                 </div>
                 <button 
                   type="button"
-                  className="w-full bg-[#0055FF] text-white py-2 px-4 rounded hover:bg-[#0044CC] transition"
+                  className="w-full bg-[#0055FF] text-white py-2 px-4 rounded hover:bg-[#0044CC] transition cursor-pointer"
                 >
                   Submit
                 </button>

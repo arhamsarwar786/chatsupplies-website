@@ -1,3 +1,6 @@
+"use client"
+
+
 import React from 'react';
 
 // Define the type for a single feature row
@@ -141,13 +144,13 @@ const PricingTablePage: React.FC = () => {
     };
 
     return (
-        <div 
+        <div
             className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center"
-        
+
         >
             <div className="max-w-[1400px] w-full mx-auto">
                 {/* Page Title */}
-                <h1 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12">Our Plans</h1>
+                <h1 className="text-3xl md:text-5xl font-Mont-bold text-center mb-8 md:mb-12">Our Plans</h1>
 
                 {/* Desktop View: Pricing Table */}
                 <div className="hidden lg:block">
@@ -157,12 +160,12 @@ const PricingTablePage: React.FC = () => {
                             {/* First Header Column */}
                             <div className="p-4 lg:p-6 h-32 flex flex-col justify-between border-b border-r border-white-700">
                                 <div className="flex items-center space-x-2">
-                                    <h2 className="text-lg font-bold text-[#FFFFFF]">Compare plans</h2>
+                                    <h2 className="text-lg font-Mont-bold text-[#FFFFFF]">Compare plans</h2>
                                     <span className="text-[#FFFFFF] border border-[#FFFFFF] text-sm rounded-full px-5 py-1 flex items-center justify-center whitespace-nowrap">
-                                        <span className="font-bold">40% OFF</span>
+                                        <span className="font-Mont-bold">40% OFF</span>
                                     </span>
                                 </div>
-                                <p className="text-xs mt-1 text-[#00F0FF] leading-snug">
+                                <p className="text-xs mt-1 text-[#00F0FF] leading-snug font-Mont-bold">
                                     Choose your workspace plan according to your organizational plan
                                 </p>
                             </div>
@@ -172,21 +175,33 @@ const PricingTablePage: React.FC = () => {
                                     key={plan.name}
                                     className={`p-4 lg:p-6 h-32 flex flex-col justify-between items-center border-b border-white-700 ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
                                 >
-                                    <h2 className="text-xl font-bold text-[#FFFFFF]">
+                                    <h2 className="text-xl font-Mont-bold text-[#FFFFFF]">
                                         {plan.name}
-                                        <span className="ml-1 text-sm text-white/15 font-normal">
+                                        <span className="ml-1 text-sm text-white/15 font-Mont-bold">
                                             {plan.name === 'Free' ? '/Lifetime' : '/Month'}
                                         </span>
                                     </h2>
                                     {/* Updated Button Logic */}
                                     {plan.name === currentPlanName ? (
-                                        <button className="w-full bg-white/20 text-[#00F0FF] font-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap">
+                                        <button
+                                            className="w-full bg-white/20 text-[#00F0FF] font-Mont-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap hover:bg-white/30 cursor-pointer"
+                                            onClick={() => {
+                                                alert("Button clicked!"); // Replace this with your actual action
+                                            }}
+                                        >
                                             Current Plan
                                         </button>
+
                                     ) : (
-                                        <button className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-bold py-2 px-8 rounded-full whitespace-nowrap">
+                                        <button
+                                            className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-Mont-bold py-2 px-8 rounded-full whitespace-nowrap transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
+                                            onClick={() => {
+                                                alert("Plan chosen!"); // Replace with your desired action
+                                            }}
+                                        >
                                             Choose This Plan
                                         </button>
+
                                     )}
                                 </div>
                             ))}
@@ -198,7 +213,7 @@ const PricingTablePage: React.FC = () => {
                                 <div key={feature.key} className="contents">
                                     {/* First Column Feature Label */}
                                     <div
-                                        className={`p-4 flex items-center text-sm font-semibold text-[#FFFFFF] border-r border-white-700 ${isLastFeature ? '' : 'border-b'}`}
+                                        className={`p-4 flex items-center text-sm font-Mont-semibold text-[#FFFFFF] border-r border-white-700 ${isLastFeature ? '' : 'border-b'}`}
                                     >
                                         {feature.label}
                                     </div>
@@ -209,7 +224,7 @@ const PricingTablePage: React.FC = () => {
                                             className={`p-4 flex items-center justify-center text-sm border-white-700 ${isLastFeature ? '' : 'border-b'} ${index < pricingData.plans.length - 1 ? 'border-r' : ''}`}
                                         >
                                             {feature.key === 'numberOfUsers' || feature.key === 'usersPerPage' ? (
-                                                <span className="font-semibold whitespace-pre-line text-center">
+                                                <span className="font-Mont-semibold whitespace-pre-line text-center">
                                                     {typeof plan.features[feature.key] === 'string'
                                                         ? (plan.features[feature.key] as string).split('\n').map((line: string, idx: number) =>
                                                             line.trim() === 'Pages add-ons on Demand' ? (
@@ -240,15 +255,15 @@ const PricingTablePage: React.FC = () => {
                     {/* First card (common) */}
                     <div className="bg-white/15 rounded-3xl p-6 mb-6">
                         <div className="flex items-center space-x-2 mb-4">
-                            <h2 className="text-2xl font-bold text-[#FFFFFF]">
+                            <h2 className="text-2xl font-Mont-bold text-[#FFFFFF]">
                                 {commonCard.name}
-                                <span className="ml-1 text-sm text-white/15 font-normal">
+                                <span className="ml-1 text-sm text-white/15 font-Mont-normal">
                                     {commonCard.name === 'Free' ? '/Lifetime' : '/Month'}
                                 </span>
                             </h2>
                         </div>
                         <p className="text-sm mb-4">{commonCard.description}</p>
-                        <button className="w-full bg-white/20 text-[#00F0FF] font-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap mb-6">
+                        <button className="w-full bg-white/20 text-[#00F0FF] font-Mont-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap mb-6 hover:bg-white/30 cursor-pointer">
                             Current Plan
                         </button>
                         {pricingData.features.map(feature => (
@@ -256,7 +271,7 @@ const PricingTablePage: React.FC = () => {
                                 <span className="text-sm">
                                     {feature.label}
                                     {typeof commonCard.features[feature.key] === 'string' && (
-                                        <span className="ml-1 font-bold">
+                                        <span className="ml-1 font-Mont-bold">
                                             {commonCard.features[feature.key]}
                                         </span>
                                     )}
@@ -270,15 +285,15 @@ const PricingTablePage: React.FC = () => {
                     {mergedCards.map((mergedPlan, index) => (
                         <div key={index} className="bg-white/15 rounded-3xl p-6 mb-6">
                             <div className="flex items-center space-x-2 mb-4">
-                                <h2 className="text-2xl font-bold text-[#FFFFFF]">
+                                <h2 className="text-2xl font-Mont-bold text-[#FFFFFF]">
                                     {mergedPlan.name}
-                                    <span className="ml-1 text-sm text-white/15 font-normal">
+                                    <span className="ml-1 text-sm text-white/15 font-Mont-normal">
                                         {mergedPlan.name === 'Free' ? '/Lifetime' : '/Month'}
                                     </span>
                                 </h2>
                             </div>
                             <p className="text-sm mb-4">{mergedPlan.description}</p>
-                            <button className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-bold py-2 px-8 rounded-full whitespace-nowrap mb-6">
+                            <button className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-Mont-bold py-2 px-8 rounded-full whitespace-nowrap mb-6 hover:bg-white/30 cursor-pointer ">
                                 Choose This Plan
                             </button>
                             {pricingData.features.map(feature => (
@@ -286,7 +301,7 @@ const PricingTablePage: React.FC = () => {
                                     <span className="text-sm">
                                         {feature.label}
                                         {typeof mergedPlan.features[feature.key] === 'string' && (
-                                            <span className="ml-1 font-bold">
+                                            <span className="ml-1 font-Mont-bold">
                                                 {mergedPlan.features[feature.key]}
                                             </span>
                                         )}

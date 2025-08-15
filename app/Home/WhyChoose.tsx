@@ -59,11 +59,11 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
                     Ultra-Fast Support
                   </h3>
-                  <p className="font-montbold text-gray-200 text-[11px]">
-                    24/7 support available if you encounter any kind of problem
+                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                    24/7 support available if you <br/> encounter any kind of <br/> problem
                   </p>
                 </div>
               </div>
@@ -86,11 +86,11 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-montbold text-[15px] font-[550] text-white">
+                  <h3 className="font-Mont-bold text-[15px] font-[550] text-white">
                     Multilingual Support
                   </h3>
-                  <p className="font-montbold text-gray-200 text-[11px]">
-                    10+ languages are supported for connecting users from all over the world
+                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                    10+ languages are supported for connecting users from all <br/> over the world
                   </p>
                 </div>
               </div>
@@ -113,10 +113,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
                     Team Access
                   </h3>
-                  <p className="font-montbold text-gray-200 text-[11px]">
+                  <p className="font-Mont-bold text-gray-200 text-[11px]">
                     Role-based access in admin panel for up to 10 team members
                   </p>
                 </div>
@@ -140,11 +140,11 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-montbold text-[16px] font-[550] text-white">
+                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
                     Analysis & Insights
                   </h3>
-                  <p className="font-montbold text-gray-200 text-[11px]">
-                    Insight driven data analysis for real-time business decisions
+                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                    Insight driven data analysis for real-time business <br/> decisions
                   </p>
                 </div>
               </div>
@@ -176,11 +176,11 @@ const WhyChoose = () => {
                       transform: 'translate(-50%, -50%)',
                     }}
                   >
-                    <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
                       Ultra-Fast Support
                     </h3>
-                    <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
-                      24/7 support available if you encounter any kind of problem
+                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
+                      24/7 support available if you encounter any kind of <br/> problem
                     </p>
                   </div>
                 </div>
@@ -205,11 +205,11 @@ const WhyChoose = () => {
                       transform: 'translate(-50%, -50%)',
                     }}
                   >
-                    <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
                       Multilingual Support
                     </h3>
-                    <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
-                      10+ languages are supported for connecting users from all over the world
+                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
+                      10+ languages are supported<br/>for connecting users from all<br/> over the world
                     </p>
                   </div>
                 </div>
@@ -234,11 +234,11 @@ const WhyChoose = () => {
                       transform: 'translate(-50%, -50%)',
                     }}
                   >
-                    <h3 className="font-montbold text-[20px] md:text-[15.5px] font-[550] text-white">
+                    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] font-[550] text-white">
                       Team Access
                     </h3>
-                    <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
-                      Role-based access in admin panel for up to 10 team members
+                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
+                      Role-based access in admin<br/>panel for up to 10 team<br/>members
                     </p>
                   </div>
                 </div>
@@ -263,11 +263,11 @@ const WhyChoose = () => {
                       transform: 'translate(-50%, -50%)',
                     }}
                   >
-                    <h3 className="font-montbold text-[20px] md:text-[14px] font-[550] text-white">
+                    <h3 className="font-Mont-bold text-[20px] md:text-[14px] font-[550] text-white">
                       Analysis & Insights
                     </h3>
-                    <p className="font-montbold text-gray-200 text-[8px] md:text-[11px]">
-                      Insight driven data analysis for real-time business decisions
+                    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px]">
+                      Insight driven data analysis for real-time business <br/> decisions
                     </p>
                   </div>
                 </div>

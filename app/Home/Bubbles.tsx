@@ -27,18 +27,22 @@ interface BubbleMovement {
 }
 
 const services: Service[] = [
-  { text: "Create chatbots", description: "with public links\nand customizable flows", size: 255, x: '13vw', y: '36vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, textOffsetX: 0, fontFamily: "Mont-Regular" },
-  { text: "User Support", description: "Email, ticket, and live\nmeeting support\nbased on plan", size: 318, x: '30vw', y: '20vh', image: "/Icons/Bubbles/User Support.svg", fontSize: 16, descFontSize: 16, textOffsetY: -5, fontFamily: "Mont-Regular" },
-  { text: "Real-time\nperformance", description: "insights and\nadvanced reporting", size: 300, x: '55vw', y: '25vh', image: "/Icons/Bubbles/Real Time.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "Multilingual Support", description: "Engage users in their\nnative language", size: 315, x: '75vw', y: '10vh', image: "/Icons/Bubbles/Multilingual.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "Unlimited chat\nstorage", description: "with CSV\nexport", size: 190, x: '16vw', y: '65vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 14, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "Personalize chatbot", description: "name, logo, theme,\navatar, and CSS", size: 280, x: '32vw', y: '60vh', image: "/Icons/Bubbles/bubble 5.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "Train chatbot", description: "with your own\n documents\n(PDFs, URLs, etc.)", size: 270, x: '51vw', y: '60vh', image: "/Icons/Bubbles/bubble 6.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "Premium Services", description: "contains Backup and\n recovery", size: 215, x: '80vw', y: '55vh', image: "/Icons/Bubbles/Premium Services.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont-Regular" },
-  { text: "", description: "", size: 100, x: '13vw', y: '10vh', image: "/Icons/Bubbles/bubble 10.svg", fontFamily: "Mont-Regular" },
-  { text: "", description: "", size: 90, x: '42vw', y: '38vh', image: "/Icons/Bubbles/bubble 9.svg", fontFamily: "Mont-Regular" },
-  { text: "", description: "", size: 135, x: '65vw', y: '50vh', image: "/Icons/Bubbles/bubble 8.svg", fontFamily: "Mont-Regular" },
-  { text: "", description: "", size: 65, x: '58vw', y: '75vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont-Regular" },
+  { text: "Create chatbots", description: "with public links\nand customizable flows", size: 255, x: '13vw', y: '36vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 16, descFontSize: 13, textOffsetY: 0, textOffsetX: 0, fontFamily: "Mont" },
+  { text: "User Support", description: "Email, ticket, and live\nmeeting support\nbased on plan", size: 318, x: '30vw', y: '20vh', image: "/Icons/Bubbles/User Support.svg", fontSize: 16, descFontSize: 16, textOffsetY: -5, fontFamily: "Mont" },
+  { text: "Real-time\nperformance", description: "insights and\nadvanced reporting", size: 300, x: '55vw', y: '25vh', image: "/Icons/Bubbles/Real Time.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "Multilingual Support", description: "Engage users in their\nnative language", size: 315, x: '75vw', y: '10vh', image: "/Icons/Bubbles/Multilingual.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "Unlimited chat\nstorage", description: "with CSV\nexport", size: 190, x: '16vw', y: '65vh', image: "/Icons/Bubbles/Create Chatbots.svg", fontSize: 13, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "Personalize chatbot", description: "name, logo, theme,\navatar, and CSS", size: 280, x: '32vw', y: '60vh', image: "/Icons/Bubbles/bubble 5.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "Train chatbot", description: "with your own\n documents\n(PDFs, URLs, etc.)", size: 270, x: '51vw', y: '60vh', image: "/Icons/Bubbles/bubble 6.svg", fontSize: 16, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "Premium Services", description: "contains Backup and\n recovery", size: 215, x: '80vw', y: '55vh', image: "/Icons/Bubbles/Premium Services.svg", fontSize: 15, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont" },
+  { text: "", description: "", size: 100, x: '13vw', y: '10vh', image: "/Icons/Bubbles/bubble 10.svg", fontFamily: "Montr" },
+  { text: "", description: "", size: 90, x: '42vw', y: '38vh', image: "/Icons/Bubbles/bubble 9.svg", fontFamily: "Mont" },
+  { text: "", description: "", size: 135, x: '65vw', y: '50vh', image: "/Icons/Bubbles/bubble 8.svg", fontFamily: "Mont" },
+  { text: "", description: "", size: 65, x: '65vw', y: '75vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
+  { text: "", description: "", size: 110, x: '90vw', y: '2vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
+    { text: "", description: "", size: 150, x: '90vw', y: '32vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
+
+
 ];
 
 export default function BubblePage() {
@@ -227,7 +231,7 @@ export default function BubblePage() {
     className="w-full h-full"
   >
     <image 
-      href="/Lines/Vector Line.svg" 
+      href="/Lines/VectorLine.svg" 
       width="100%" 
       height="100%"
     />

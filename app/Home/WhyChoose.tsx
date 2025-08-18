@@ -2,33 +2,18 @@ import React from 'react';
 
 const WhyChoose = () => {
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 text-white overflow-hidden">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 text-white overflow-hidden font-[var(--font-montserrat)]">
       {/* Background glowing effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Heading */}
-        <div className="text-center ">
-          <h1
-            className="text-[48px] leading-[100%] font-bold text-white mx-auto"
-            style={{
-              fontFamily: 'Mont-Black',
-              fontStyle: 'normal',
-              letterSpacing: '0%',
-              verticalAlign: 'middle',
-            }}
-          >
+        <div className="text-center">
+          <h1 className="text-[48px] leading-[100%] font-black text-white mx-auto">
             Why Choose Us?
           </h1>
 
-          <p
-            className="text-[32px] leading-[100%] font-normal text-white text-center mx-auto mt-6"
-            style={{
-              fontFamily: 'Mont-SemiBold',
-              fontStyle: 'normal',
-              verticalAlign: 'middle',
-            }}
-          >
+          <p className="text-[32px] leading-[100%] font-semibold text-white text-center mx-auto mt-6">
             Here's what sets us apart from other services
           </p>
         </div>
@@ -37,14 +22,14 @@ const WhyChoose = () => {
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 relative">
           {/* Left: Cards */}
           <div className="relative w-full lg:w-[60%] min-h-[650px] p-0 -mt-16 mx-auto md:p-0">
-
             {/* Mobile stacked layout */}
             <div className="flex flex-col items-center mt-12 sm:hidden">
               {/* Card 1 */}
               <div
                 className="relative w-[300px] h-[358px]"
                 style={{
-                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
+                  backgroundImage:
+                    "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
@@ -58,11 +43,12 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                  <h3 className="font-bold text-[15px] text-white">
                     Ultra-Fast Support
                   </h3>
-                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
-                    24/7 support available if you <br/> encounter any kind of <br/> problem
+                  <p className="font-normal text-gray-200 text-[11px]">
+                    24/7 support available if you encounter any kind of
+                    problem
                   </p>
                 </div>
               </div>
@@ -71,7 +57,8 @@ const WhyChoose = () => {
               <div
                 className="relative w-[300px] h-[358px]"
                 style={{
-                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
+                  backgroundImage:
+                    "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
@@ -85,11 +72,12 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-bold text-[15px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                  <h3 className="font-bold text-[15px] text-white">
                     Multilingual Support
                   </h3>
-                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
-                    10+ languages are supported for connecting users from all <br/> over the world
+                  <p className="font-normal text-gray-200 text-[10px]">
+                    10+ languages are supported for connecting users from all
+                    over the world
                   </p>
                 </div>
               </div>
@@ -98,7 +86,8 @@ const WhyChoose = () => {
               <div
                 className="relative w-[300px] h-[358px]"
                 style={{
-                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
+                  backgroundImage:
+                    "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
@@ -112,10 +101,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                  <h3 className="font-bold text-[16px] text-white">
                     Team Access
                   </h3>
-                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
+                  <p className="font-normal text-gray-200 text-[11px]">
                     Role-based access in admin panel for up to 10 team members
                   </p>
                 </div>
@@ -125,7 +114,8 @@ const WhyChoose = () => {
               <div
                 className="relative w-[300px] h-[300px] mb-24 sm:mb-0"
                 style={{
-                  backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
+                  backgroundImage:
+                    "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
@@ -139,11 +129,12 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                  <h3 className="font-bold text-[16px] text-white">
                     Analysis & Insights
                   </h3>
-                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
-                    Insight driven data analysis for real-time business <br/> decisions
+                  <p className="font-normal text-gray-200 text-[11px]">
+                    Insight driven data analysis for real-time business
+                    decisions
                   </p>
                 </div>
               </div>
@@ -158,14 +149,20 @@ const WhyChoose = () => {
                 {/* Card 1 */}
                 <div
                   className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')", top: '0px', left: '0px' }}
+                  style={{
+                    backgroundImage:
+                      "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')",
+                    top: '0px',
+                    left: '0px',
+                  }}
                 >
                   <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white">
                       Ultra-Fast Support
                     </h3>
-                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
-                      24/7 support available if you <br /> encounter any kind of <br /> problem
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug">
+                      24/7 support available if you encounter any kind of{' '}
+                      <br /> problem
                     </p>
                   </div>
                 </div>
@@ -173,14 +170,20 @@ const WhyChoose = () => {
                 {/* Card 2 */}
                 <div
                   className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')", top: '43px', left: '300px' }}
+                  style={{
+                    backgroundImage:
+                      "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')",
+                    top: '43px',
+                    left: '300px',
+                  }}
                 >
                   <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                    <h3 className="font-bold text-[20px] md:text-[14px] text-white">
                       Multilingual Support
                     </h3>
-                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
-                      10+ languages are supported <br /> for connecting users from all <br /> over the world
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[10px] leading-snug">
+                      10+ languages are supported for connecting users
+                      from all over the world
                     </p>
                   </div>
                 </div>
@@ -188,14 +191,20 @@ const WhyChoose = () => {
                 {/* Card 3 */}
                 <div
                   className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')", top: '230px', left: '0px' }}
+                  style={{
+                    backgroundImage:
+                      "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')",
+                    top: '230px',
+                    left: '0px',
+                  }}
                 >
                   <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white">
                       Team Access
                     </h3>
-                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
-                      Role-based access in admin <br /> panel for up to 10 team <br /> members
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug">
+                      Role-based access in admin panel for up to 10 team
+                     members
                     </p>
                   </div>
                 </div>
@@ -203,14 +212,20 @@ const WhyChoose = () => {
                 {/* Card 4 */}
                 <div
                   className="absolute w-[300px] h-[300px] bg-center bg-no-repeat bg-cover"
-                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')", top: '307px', left: '300px' }}
+                  style={{
+                    backgroundImage:
+                      "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
+                    top: '307px',
+                    left: '300px',
+                  }}
                 >
                   <div className="absolute text-left top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h3 className="font-bold text-[20px] md:text-[14px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                    <h3 className="font-bold text-[20px] md:text-[14px] text-white">
                       Analysis & Insights
                     </h3>
-                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
-                      Insight driven data analysis for real-time business <br /> decisions
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug">
+                      Insight driven data analysis for real-time business
+                      decisions
                     </p>
                   </div>
                 </div>
@@ -237,20 +252,16 @@ const WhyChoose = () => {
               </div>
 
               {/* Description text */}
-              <p
-                className="text-[20px] font-bold text-left"
-                style={{
-                  fontFamily: 'Mont-Bold',
-                  fontStyle: 'normal',
-                }}
-              >
-                We go beyond basic chatbot functionality by offering real-time analysis,
-                multilingual support, and ultra-fast customer service. Whether you're a solo
-                creator or part of a large team, our platform empowers you with team
-                collaboration tools, unlimited chat storage, and deep insights that drive
-                smarter business decisions. From customizable flows to premium backup
-                services, we're built for performance, reliability, and growth.
+              <p className="text-[20px] font-bold text-left font-sans">
+                We go beyond basic chatbot functionality by offering real-time
+                analysis, multilingual support, and ultra-fast customer service.
+                Whether you're a solo creator or part of a large team, our
+                platform empowers you with team collaboration tools, unlimited
+                chat storage, and deep insights that drive smarter business
+                decisions. From customizable flows to premium backup services,
+                we're built for performance, reliability, and growth.
               </p>
+
             </div>
           </div>
         </div>

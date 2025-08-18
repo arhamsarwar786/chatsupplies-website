@@ -1,13 +1,52 @@
 @import "tailwindcss";
+@tailwind utilities;
 
-/* Global color variables */
+/* ------------------ */
+/* Self-hosted Mont font (TTF version) */
+/* ------------------ */
+@font-face {
+  font-family: "Mont";
+  src: url("/fonts/Mont/Mont-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("/fonts/Mont/Mont-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("/fonts/Mont/Mont-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("/fonts/Mont/Mont-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ------------------ */
+/* Global color vars  */
+/* ------------------ */
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --primary: #14b8a6; 
   --secondary: #d1f5ee;
-  --font-sans: var(--font-geist-sans, Arial, Helvetica, sans-serif);
-  --font-mono: var(--font-geist-mono, monospace);
+
+  --font-sans: "Mont", sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
 /* Dark mode overrides */
@@ -15,7 +54,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --primary: #14b8a6; /* You can change for dark mode if desired */
+    --primary: #14b8a6;
   }
 }
 
@@ -48,28 +87,8 @@ body {
   }
 }
 
-
-/* In your globals.css or a dedicated fonts.css */
-@font-face {
-  font-family: 'Mont-Black';
-  src: url('/fonts/Mont-Black.woff2') format('woff2');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
+/* Ensure Tailwind's font-sans = Mont */
+.font-sans {
+  font-family: "Mont", sans-serif !important;
 }
 
-@font-face {
-  font-family: 'Mont-Bold';
-  src: url('/fonts/Mont-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Mont-SemiBold';
-  src: url('/fonts/Mont-SemiBold.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}

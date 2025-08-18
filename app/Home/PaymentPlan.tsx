@@ -160,14 +160,16 @@ const PricingTablePage: React.FC = () => {
                             {/* First Header Column */}
                             <div className="p-4 lg:p-6 h-32 flex flex-col justify-between border-b border-r border-white-700">
                                 <div className="flex items-center space-x-2">
-                                    <h2 className="text-lg font-Mont-bold text-[#FFFFFF]">Compare plans</h2>
-                                    <span className="text-[#FFFFFF] border border-[#FFFFFF] text-sm rounded-full px-5 py-1 flex items-center justify-center whitespace-nowrap">
-                                        <span className="font-Mont-bold">40% OFF</span>
+                                    <h2 className="text-[14px] font-bold text-[#FFFFFF]">Compare plans</h2>
+                                    <span className="text-[#FFFFFF] border border-[#FFFFFF] text-xs rounded-full px-4 py-1 flex items-center justify-center whitespace-nowrap ml-1">
+                                        <span className="font-bold">40% OFF</span>
                                     </span>
                                 </div>
-                                <p className="text-xs mt-1 text-[#00F0FF] leading-snug font-Mont-bold">
+
+                                <p className="text-[11px] text-[#00F0FF] leading-snug font-Mont-semibold">
                                     Choose your workspace plan according to your organizational plan
                                 </p>
+
                             </div>
                             {/* Plan Headers */}
                             {pricingData.plans.map((plan, index) => (
@@ -196,7 +198,7 @@ const PricingTablePage: React.FC = () => {
                                         <button
                                             className="w-full bg-transparent border-2 border-white text-[#00F0FF] font-Mont-bold py-2 px-8 rounded-full whitespace-nowrap transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
                                             onClick={() => {
-                                                alert("Plan chosen!"); // Replace with your desired action
+                                                alert("Plan chosen!"); 
                                             }}
                                         >
                                             Choose This Plan

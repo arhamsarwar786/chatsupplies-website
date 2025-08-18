@@ -10,10 +10,9 @@ const WhyChoose = () => {
         {/* Heading */}
         <div className="text-center ">
           <h1
-            className="text-[48px] leading-[100%] font-normal text-white mx-auto"
+            className="text-[48px] leading-[100%] font-bold text-white mx-auto"
             style={{
               fontFamily: 'Mont-Black',
-              fontWeight: 'bold',
               fontStyle: 'normal',
               letterSpacing: '0%',
               verticalAlign: 'middle',
@@ -59,10 +58,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
+                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
                     Ultra-Fast Support
                   </h3>
-                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
                     24/7 support available if you <br/> encounter any kind of <br/> problem
                   </p>
                 </div>
@@ -86,10 +85,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-Mont-bold text-[15px] font-[550] text-white">
+                  <h3 className="font-bold text-[15px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
                     Multilingual Support
                   </h3>
-                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
                     10+ languages are supported for connecting users from all <br/> over the world
                   </p>
                 </div>
@@ -113,10 +112,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
+                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
                     Team Access
                   </h3>
-                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
                     Role-based access in admin panel for up to 10 team members
                   </p>
                 </div>
@@ -124,7 +123,7 @@ const WhyChoose = () => {
 
               {/* Card 4 */}
               <div
-                className="relative w-[300px] h-[300px]  mb-24 sm:mb-0"
+                className="relative w-[300px] h-[300px] mb-24 sm:mb-0"
                 style={{
                   backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')",
                   backgroundSize: 'cover',
@@ -140,10 +139,10 @@ const WhyChoose = () => {
                     transform: 'translate(-50%, -50%)',
                   }}
                 >
-                  <h3 className="font-Mont-bold text-[16px] font-[550] text-white">
+                  <h3 className="font-bold text-[16px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
                     Analysis & Insights
                   </h3>
-                  <p className="font-Mont-bold text-gray-200 text-[11px]">
+                  <p className="font-normal text-gray-200 text-[11px]" style={{ fontFamily: 'Mont-Bold' }}>
                     Insight driven data analysis for real-time business <br/> decisions
                   </p>
                 </div>
@@ -157,66 +156,64 @@ const WhyChoose = () => {
                 style={{ width: '600px', height: '650px' }}
               >
                 {/* Card 1 */}
-               {/* Card 1 */}
-<div
-  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')", top: '0px', left: '0px' }}
->
-  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
-      Ultra-Fast Support
-    </h3>
-    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
-      24/7 support available if you <br /> encounter any kind of <br /> problem
-    </p>
-  </div>
-</div>
+                <div
+                  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast green.svg')", top: '0px', left: '0px' }}
+                >
+                  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                      Ultra-Fast Support
+                    </h3>
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
+                      24/7 support available if you <br /> encounter any kind of <br /> problem
+                    </p>
+                  </div>
+                </div>
 
-{/* Card 2 */}
-<div
-  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')", top: '43px', left: '300px' }}
->
-  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
-      Multilingual Support
-    </h3>
-    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
-      10+ languages are supported <br /> for connecting users from all <br /> over the world
-    </p>
-  </div>
-</div>
+                {/* Card 2 */}
+                <div
+                  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast blue.svg')", top: '43px', left: '300px' }}
+                >
+                  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                      Multilingual Support
+                    </h3>
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
+                      10+ languages are supported <br /> for connecting users from all <br /> over the world
+                    </p>
+                  </div>
+                </div>
 
-{/* Card 3 */}
-<div
-  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
-  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')", top: '230px', left: '0px' }}
->
-  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-    <h3 className="font-Mont-bold text-[20px] md:text-[15.5px] text-white">
-      Team Access
-    </h3>
-    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
-      Role-based access in admin <br /> panel for up to 10 team <br /> members
-    </p>
-  </div>
-</div>
+                {/* Card 3 */}
+                <div
+                  className="absolute w-[300px] h-[358px] bg-center bg-no-repeat bg-cover"
+                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast purple.svg')", top: '230px', left: '0px' }}
+                >
+                  <div className="absolute text-left top-[63%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <h3 className="font-bold text-[20px] md:text-[15.5px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                      Team Access
+                    </h3>
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
+                      Role-based access in admin <br /> panel for up to 10 team <br /> members
+                    </p>
+                  </div>
+                </div>
 
-{/* Card 4 */}
-<div
-  className="absolute w-[300px] h-[300px] bg-center bg-no-repeat bg-cover"
-  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')", top: '307px', left: '300px' }}
->
-  <div className="absolute text-left top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2">
-    <h3 className="font-Mont-bold text-[20px] md:text-[14px] text-white">
-      Analysis & Insights
-    </h3>
-    <p className="font-Mont-bold text-gray-200 text-[8px] md:text-[11px] leading-snug">
-      Insight driven data analysis for real-time business <br /> decisions
-    </p>
-  </div>
-</div>
-
+                {/* Card 4 */}
+                <div
+                  className="absolute w-[300px] h-[300px] bg-center bg-no-repeat bg-cover"
+                  style={{ backgroundImage: "url('/Icons/WhyChooseUs/Lightning-Fast orange.svg')", top: '307px', left: '300px' }}
+                >
+                  <div className="absolute text-left top-[72%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <h3 className="font-bold text-[20px] md:text-[14px] text-white" style={{ fontFamily: 'Mont-Bold' }}>
+                      Analysis & Insights
+                    </h3>
+                    <p className="font-normal text-gray-200 text-[8px] md:text-[11px] leading-snug" style={{ fontFamily: 'Mont-Bold' }}>
+                      Insight driven data analysis for real-time business <br /> decisions
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -241,10 +238,9 @@ const WhyChoose = () => {
 
               {/* Description text */}
               <p
-                className="text-[20px] font-normal text-left"
+                className="text-[20px] font-bold text-left"
                 style={{
                   fontFamily: 'Mont-Bold',
-                  fontWeight: 'bold',
                   fontStyle: 'normal',
                 }}
               >

@@ -47,3 +47,29 @@ body {
     align-items: center !important;
   }
 }
+
+
+/* In your globals.css or a dedicated fonts.css */
+@font-face {
+  font-family: 'Mont-Black';
+  src: url('/fonts/Mont-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mont-Bold';
+  src: url('/fonts/Mont-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mont-SemiBold';
+  src: url('/fonts/Mont-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,5 +1,4 @@
 import './globals.css';
-
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
@@ -7,6 +6,8 @@ config.autoAddCss = false;
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import LayoutWrapper from './Components/LayoutWrapper'; 
+import Head from 'next/head';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -29,7 +30,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased "bg-[#0055FF]"`}>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0055FF]`}>
         <LayoutWrapper>
           <main>{children}</main>
         </LayoutWrapper>

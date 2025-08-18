@@ -245,7 +245,7 @@ const WhyChoose = () => {
               {/* SVG wrapper for perfect center */}
               <div className="flex items-center justify-center w-full mb-6">
                 <img
-                  src="/Icons/face.svg"
+                  src="/Robot/face.svg"
                   alt="Chatbot Icon"
                   className="w-28 h-28"
                 />

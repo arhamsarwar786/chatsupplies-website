@@ -35,14 +35,12 @@ const services: Service[] = [
   { text: "Personalize chatbot", description: "name, logo, theme,\navatar, and CSS", size: 280, x: '32vw', y: '60vh', image: "/Icons/Bubbles/bubble 5.svg", fontSize: 16, descFontSize: 16, textOffsetY: 0, fontFamily: "Mont" },
   { text: "Train chatbot", description: "with your own\n documents\n(PDFs, URLs, etc.)", size: 270, x: '51vw', y: '60vh', image: "/Icons/Bubbles/bubble 6.svg", fontSize: 16, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont" },
   { text: "Premium Services", description: "contains Backup and\n recovery", size: 215, x: '80vw', y: '55vh', image: "/Icons/Bubbles/Premium Services.svg", fontSize: 15, descFontSize: 14, textOffsetY: 0, fontFamily: "Mont" },
-  { text: "", description: "", size: 100, x: '13vw', y: '10vh', image: "/Icons/Bubbles/bubble 10.svg", fontFamily: "Montr" },
+  { text: "", description: "", size: 100, x: '13vw', y: '10vh', image: "/Icons/Bubbles/bubble 10.svg", fontFamily: "Mont" },
   { text: "", description: "", size: 90, x: '42vw', y: '38vh', image: "/Icons/Bubbles/bubble 9.svg", fontFamily: "Mont" },
   { text: "", description: "", size: 135, x: '65vw', y: '50vh', image: "/Icons/Bubbles/bubble 8.svg", fontFamily: "Mont" },
   { text: "", description: "", size: 65, x: '65vw', y: '75vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
   { text: "", description: "", size: 110, x: '90vw', y: '2vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
-    { text: "", description: "", size: 150, x: '90vw', y: '32vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
-
-
+  { text: "", description: "", size: 150, x: '90vw', y: '32vh', image: "/Icons/Bubbles/bubble 7.svg", fontFamily: "Mont" },
 ];
 
 export default function BubblePage() {
@@ -67,7 +65,6 @@ export default function BubblePage() {
       el.style.height = `${radius * 2}px`;
       el.style.left = `calc(${service.x} - ${radius}px)`;
       el.style.top = `calc(${service.y} - ${radius}px)`;
-      el.style.transition = "transform 1.5s ease-out";
     }
 
     el.onclick = () => {
@@ -178,8 +175,9 @@ export default function BubblePage() {
 
         const xOffset = Math.sin(time * movement.speedX) * movement.amplitudeX;
         const yOffset = Math.cos(time * movement.speedY) * movement.amplitudeY;
-        
-        bubble.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+
+        // Safari-compatible transform
+        bubble.style.transform = `translate3d(${xOffset}px, ${yOffset}px, 0)`;
       });
 
       animationFrameId = requestAnimationFrame(animate);
@@ -200,10 +198,8 @@ export default function BubblePage() {
       </Head>
       <div 
         className="min-h-screen font-inter text-white flex flex-col items-center p-4 overflow-hidden relative"
-      
       >
         <style jsx global>{`
-          /* Light glowing pulse animation */
           @keyframes bubbleGlowPulse {
             0%, 100% {
               filter:
@@ -221,22 +217,23 @@ export default function BubblePage() {
           }
         `}</style>
 
-        {/* Vector line in background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0 lg:left-[-7%] lg:translate-x-0 lg:w-auto">
-  <svg
-    viewBox="0 0 100 100"
-    preserveAspectRatio="none"
-    width="100%"
-    height="100%"
-    className="w-full h-full"
-  >
-    <image 
-      href="/Lines/VectorLine.svg" 
-      width="100%" 
-      height="100%"
-    />
-  </svg>
-</div>
+        {/* Vector line */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <svg
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMinYMin meet"
+            width="100%"
+            height="100%"
+            className="w-full h-full"
+          >
+            <image 
+              href="/Lines/VectorLine.svg"
+              width="100"
+              height="100"
+              preserveAspectRatio="xMinYMin meet"
+            />
+          </svg>
+        </div>
 
         <h1 className="text-4xl font-extrabold text-center mb-6 mt-10 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services
@@ -248,9 +245,7 @@ export default function BubblePage() {
           <div ref={canvasRef} className="relative w-full h-[70vh] mx-auto" />
         )}
 
-        <div className="mt-6 text-center text-white/60 text-sm drop-shadow-sm">
-          
-        </div>
+        <div className="mt-6 text-center text-white/60 text-sm drop-shadow-sm"></div>
       </div>
     </>
   );

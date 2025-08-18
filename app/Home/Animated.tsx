@@ -52,7 +52,7 @@ export default function HomePage() {
 
             <button
               onClick={togglePopup}
-              className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer font-extrabold"
+              className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer "style={{ fontFamily: 'Mont', fontWeight: 900}}
             >
               Book a demo
             </button>

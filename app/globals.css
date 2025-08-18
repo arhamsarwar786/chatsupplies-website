@@ -36,6 +36,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Mont";
+  src: url("/fonts/Mont/Mont-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ------------------ */
 /* Global color vars  */
 /* ------------------ */
@@ -58,11 +66,17 @@
   }
 }
 
-/* Body styles */
-body {
-  background: linear-gradient(to right, #2648EF 0%, #252F8B 100%);
+/* ------------------ */
+/* Body & Overscroll Fix */
+/* ------------------ */
+html, body {
+  overscroll-behavior: none; /* Prevent overscroll bounce on all sides */
+  overflow-x: hidden;         /* Prevent horizontal scroll overshoot */
+  overflow-y: auto;           /* Allow normal vertical scroll */
+  background: linear-gradient(to right, #2648EF 0%, #252F8B 100%); /* Gradient matches website */
   color: var(--foreground);
   font-family: var(--font-sans);
+  -webkit-overflow-scrolling: auto; /* Disable momentum bounce on iOS */
 }
 
 /* Custom gradient background class */
@@ -92,3 +106,7 @@ body {
   font-family: "Mont", sans-serif !important;
 }
 
+/* Optional: Prevent overscroll bounce on all elements (extra safety) */
+* {
+  overscroll-behavior: none;
+}

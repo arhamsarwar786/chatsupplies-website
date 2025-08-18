@@ -20,7 +20,7 @@ export default function HomePage() {
 
         {/* Top left logo */}
         <div className="absolute top-8 left-8 flex items-center space-x-3 z-20">
-          <img src="/Icons/face.svg" alt="Face Logo" className="w-12 h-12" />
+          <img src="/Robot/face.svg" alt="Face Logo" className="w-12 h-12" />
           <h1 className="text-3xl font-bold">ChatSupplies</h1>
         </div>
 

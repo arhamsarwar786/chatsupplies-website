@@ -166,7 +166,7 @@ const PricingTablePage: React.FC = () => {
                                     </span>
                                 </div>
 
-                                <p className="text-[11px] text-[#00F0FF] leading-snug font-Mont-semibold">
+                                <p className="text-[12px] text-[#00F0FF] leading-snug font-Mont-semibold">
                                     Choose your workspace plan according to your organizational plan
                                 </p>
 

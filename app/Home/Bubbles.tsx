@@ -218,22 +218,23 @@ export default function BubblePage() {
         `}</style>
 
         {/* Vector line */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-          <svg
-            viewBox="0 0 100 100"
-            preserveAspectRatio="xMinYMin meet"
-            width="100%"
-            height="100%"
-            className="w-full h-full"
-          >
-            <image 
-              href="/Lines/VectorLine.svg"
-              width="100"
-              height="100"
-              preserveAspectRatio="xMinYMin meet"
-            />
-          </svg>
-        </div>
+       <div className="absolute top-0 -left-[85px] w-full h-full pointer-events-none z-0">
+  <svg
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMinYMin meet"
+    width="100%"
+    height="100%"
+    className="w-full h-full"
+  >
+    <image 
+      href="/Lines/Line.svg"
+      width="100"
+      height="100"
+      preserveAspectRatio="xMinYMin meet"
+    />
+  </svg>
+</div>
+
 
         <h1 className="text-4xl font-extrabold text-center mb-6 mt-10 tracking-wide leading-tight drop-shadow-lg z-20">
           Some of Our Services

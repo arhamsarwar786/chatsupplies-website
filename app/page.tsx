@@ -10,7 +10,6 @@ import PaymentPlan from './Home/PaymentPlan';
 export default function Home() {
   return (
     <>
-     
       <Animated/>
       <Bubbles/>
       <WhyChoose/>

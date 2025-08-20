@@ -17,6 +17,7 @@ import {
     faFacebookF,
     faInstagram
 } from '@fortawesome/free-brands-svg-icons';
+import Form from './Form'; // Importing the Form component
 
 const FAQItem = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -339,7 +340,7 @@ const ContactsPage = () => {
                     </div>
                 </div>
             </section>
-
+            <Form/>
             <Footer />
         </div>
     );

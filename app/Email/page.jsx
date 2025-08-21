@@ -2,11 +2,74 @@ import React from "react";
 
 const GoldPrimoEmail = () => {
     return (
-        // The main container for the email template. This is the outer shell that sets
-        // the background color and centers the content.
         <div style={{ backgroundColor: "#F9F9F9", minHeight: "100vh", padding: "0 0 0 0" }}>
-            {/* This is the main table that holds all the content of the email.
-                Tables are the most reliable way to create layouts for email clients like Gmail. */}
+            {/* Inline CSS for responsiveness using a style tag */}
+            <style>
+                {`
+                /* Basic reset and font import for consistency */
+                body {
+                    margin: 0;
+                    padding: 0;
+                    font-family: 'Mont', sans-serif;
+                }
+                /* Media query for mobile devices */
+                @media only screen and (max-width: 600px) {
+                    .container {
+                        width: 100% !important;
+                        min-width: 100% !important;
+                    }
+                    .header-cell {
+                        padding: 24px 20px !important;
+                        display: block !important;
+                        width: 100% !important;
+                        box-sizing: border-box;
+                        text-align: center !important;
+                    }
+                    .header-heading {
+                        font-size: 28px !important;
+                        line-height: 1.2 !important;
+                    }
+                    .header-image-cell {
+                        display: block !important;
+                        width: 100% !important;
+                        text-align: center !important;
+                    }
+                    .header-image {
+                        max-width: 200px !important;
+                        height: auto !important;
+                    }
+                    .cta-button {
+                        padding: 16px 40px !important;
+                        font-size: 16px !important;
+                    }
+                    .content-cell {
+                        padding: 24px 20px !important;
+                    }
+                    .intro-text, .outro-text, .benefit-text {
+                        font-size: 14px !important;
+                    }
+                    .benefit-title {
+                        font-size: 18px !important;
+                    }
+                    .benefit-table td {
+                        display: block !important;
+                        width: 100% !important;
+                        text-align: center !important;
+                    }
+                    .benefit-icon-cell {
+                         width: 100% !important;
+                         padding-bottom: 12px !important;
+                    }
+                    .benefit-icon-circle {
+                        margin: 0 auto;
+                    }
+                    .social-icons {
+                        width: auto !important;
+                    }
+                }
+                `}
+            </style>
+
             <table
                 className="container"
                 width="100%"
@@ -28,17 +91,17 @@ const GoldPrimoEmail = () => {
                             style={{
                                 background: "linear-gradient(to right, #2648EF 0%, #252F8B 100%)",
                                 color: "white",
-                                padding: "32px 32px 32px 52px", borderTopLeftRadius: "8px",
+                                padding: "32px 32px 32px 52px",
+                                borderTopLeftRadius: "8px",
                                 borderTopRightRadius: "8px",
-                                marginLeft: "20px",
                             }}
+                            className="header-cell"
                         >
-                            {/* Nested table for the header content and robot image to ensure proper alignment */}
                             <table width="100%" cellPadding="0" cellSpacing="0" role="presentation">
                                 <tbody>
                                     <tr>
                                         {/* Main heading text */}
-                                        <td style={{ verticalAlign: "top", width: "60%" }}>
+                                        <td style={{ verticalAlign: "top", width: "60%" }} className="header-cell">
                                             <h1
                                                 style={{
                                                     fontFamily: "'Mont', sans-serif",
@@ -47,45 +110,36 @@ const GoldPrimoEmail = () => {
                                                     margin: 0,
                                                     lineHeight: 1.2,
                                                 }}
+                                                className="header-heading"
                                             >
                                                 Your shopping experience <br /> is now called <br /> the Gold Primo
                                             </h1>
                                         </td>
                                         {/* Robot image container */}
-                                        <td style={{ verticalAlign: "top", textAlign: "right", width: "40%" }}>
-                                            <div style={{ display: "inline-block", maxWidth: "180px", position: "relative" }}>
-                                                {/* Background SVG */}
+                                        <td style={{ verticalAlign: "top", textAlign: "right", width: "40%" }} className="header-image-cell">
+                                            <div
+                                                style={{
+                                                    display: "inline-block",
+                                                    maxWidth: "100%",
+                                                    minWidth: "200px",
+                                                    position: "relative",
+                                                }}
+                                            >
                                                 <img
-                                                    src="/Lines/RobotBackground.svg"
-                                                    alt="Robot Background"
-                                                    style={{
-                                                        position: "absolute",
-                                                        top: "-10%",    // shift slightly upwards
-                                                        left: "4%",   // shift slightly left
-                                                        width: "120%",  // make background bigger than container
-                                                        height: "120%",
-                                                        objectFit: "contain",
-                                                        zIndex: 0,
-                                                    }}
-                                                />
-
-                                                {/* Robot SVG */}
-                                                <img
-                                                    src="/Icons/Bot.svg"
+                                                    src="https://images.unsplash.com/photo-1755354113133-303805b81806?q=80&w=1430&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                                                     alt="Robot"
                                                     style={{
                                                         position: "relative",
                                                         zIndex: 1,
                                                         width: "100%",
-                                                        height: "auto",
+                                                        height: "250px",
                                                         display: "block",
+                                                        maxWidth: "300px",
                                                     }}
+                                                    className="header-image"
                                                 />
                                             </div>
                                         </td>
-
-
-
                                     </tr>
                                 </tbody>
                             </table>
@@ -103,9 +157,9 @@ const GoldPrimoEmail = () => {
                                             fontFamily: "'Mont', sans-serif",
                                             fontSize: "18px",
                                             fontWeight: 600,
-                                            // The button is inline-block to prevent it from stretching in some clients
                                             display: "inline-block",
                                         }}
+                                        className="cta-button"
                                     >
                                         Learn More
                                     </button>
@@ -121,9 +175,10 @@ const GoldPrimoEmail = () => {
                                 backgroundColor: "white",
                                 color: "black",
                                 padding: "32px",
-                                borderBottomLeftRadius: "0", // No radius here, it's on the footer
+                                borderBottomLeftRadius: "0",
                                 borderBottomRightRadius: "0",
                             }}
+                            className="content-cell"
                         >
                             {/* Intro Section */}
                             <div
@@ -133,10 +188,10 @@ const GoldPrimoEmail = () => {
                                     paddingBottom: "16px",
                                 }}
                             >
-                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "18px", margin: 0 }}>
+                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "18px", margin: 0 }} className="intro-text">
                                     Hi Jonathan,
                                 </p>
-                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "16px", marginTop: "16px", marginBottom: 0 }}>
+                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "16px", marginTop: "16px", marginBottom: 0 }} className="intro-text">
                                     The free loyalty program you've been subscribed to has evolved to
                                     Gold Primo with even more benefits.
                                 </p>
@@ -188,6 +243,7 @@ const GoldPrimoEmail = () => {
                                     cellPadding="0"
                                     cellSpacing="0"
                                     role="presentation"
+                                    className="benefit-table"
                                     style={{
                                         marginBottom: "20px",
                                         borderBottom: i === 4 ? "1px solid #D1D5DB" : "none",
@@ -197,7 +253,7 @@ const GoldPrimoEmail = () => {
                                     <tbody>
                                         <tr>
                                             {/* Icon Cell */}
-                                            <td style={{ verticalAlign: "top", width: "40px", paddingRight: "12px" }}>
+                                            <td style={{ verticalAlign: "top", width: "40px", paddingRight: "12px" }} className="benefit-icon-cell">
                                                 <div
                                                     style={{
                                                         width: "32px",
@@ -209,6 +265,7 @@ const GoldPrimoEmail = () => {
                                                         justifyContent: "center",
                                                         color: "#F59E0B",
                                                     }}
+                                                    className="benefit-icon-circle"
                                                 >
                                                     <i className={b.icon}></i>
                                                 </div>
@@ -222,10 +279,11 @@ const GoldPrimoEmail = () => {
                                                         fontSize: "20px",
                                                         margin: "8px 0",
                                                     }}
+                                                    className="benefit-title"
                                                 >
                                                     {b.title}
                                                 </h3>
-                                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "16px", margin: 0 }}>
+                                                <p style={{ fontFamily: "Mont, sans-serif", fontSize: "16px", margin: 0 }} className="benefit-text">
                                                     {b.description}
                                                 </p>
                                             </td>
@@ -242,6 +300,7 @@ const GoldPrimoEmail = () => {
                                     marginTop: "32px",
                                     maxWidth: "512px",
                                 }}
+                                className="outro-text"
                             >
                                 You can manage your subscription and see how much you have saved from
                                 shipping and cash on delivery fees from your account page.
@@ -263,6 +322,7 @@ const GoldPrimoEmail = () => {
                                             fontWeight: 600,
                                             fontFamily: "Mont, sans-serif",
                                         }}
+
                                     >
                                         Learn More
                                     </button>
@@ -275,16 +335,17 @@ const GoldPrimoEmail = () => {
                                     width="auto"
                                     cellPadding="0"
                                     cellSpacing="0"
+                                    className="social-icons"
                                     style={{ textAlign: "center", borderCollapse: "collapse", margin: "0 auto" }}
                                 >
                                     <tbody>
                                         <tr>
                                             {[
-                                                { label: "Facebook", svgPath: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
-                                                { label: "LinkedIn", svgPath: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" },
-                                                { label: "Twitter", svgPath: "M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" },
-                                                { label: "Instagram", svgPath: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
-                                                { label: "YouTube", svgPath: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
+                                                { label: "Facebook", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/facebook-f.svg" },
+                                                { label: "LinkedIn", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/main/assets/linkedin-in.svg" },
+                                                { label: "Twitter", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/x-twitter.svg" },
+                                                { label: "Instagram", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/instagram.svg" },
+                                                { label: "YouTube", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/youtube.svg" },
                                             ].map((icon, idx) => (
                                                 <td key={idx} style={{ padding: "0 4px" }}>
                                                     <a href="#" aria-label={icon.label}>
@@ -300,15 +361,13 @@ const GoldPrimoEmail = () => {
                                                                 margin: "0 auto 1px",
                                                             }}
                                                         >
-                                                            <svg
-                                                                xmlns="http://www.w3.org/2000/svg"
+                                                            <img
+                                                                src={icon.svgPath}
+                                                                alt={icon.label}
                                                                 width="20"
                                                                 height="20"
-                                                                fill="black"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path d={icon.svgPath} />
-                                                            </svg>
+                                                                style={{ display: "block" }}
+                                                            />
                                                         </div>
                                                     </a>
                                                 </td>
@@ -317,6 +376,7 @@ const GoldPrimoEmail = () => {
                                     </tbody>
                                 </table>
                             </div>
+
                         </td>
                     </tr>
 
@@ -345,7 +405,7 @@ const GoldPrimoEmail = () => {
                                 NextMockup.com
                             </p>
                             <p style={{ fontFamily: "Mont, sans-serif", fontSize: "14px", textAlign: "center", marginTop: "8px", margin: "8px 0 0" }}>
-                                If you feel you received it by mistake or wish to unsubscribe,{" "}
+                                If you feel you received it by mistake or wish to unsubscribe.{" "}
                                 <a
                                     href="#"
                                     style={{

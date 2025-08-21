@@ -10,7 +10,7 @@ import juice from 'juice';
 const EMAIL_CONFIG = {
   USER: 'numan.ishaq92@gmail.com',
   PASS: 'biyv khuk mrsk wvht', // Your app password with spaces
-  RECEIVING: 'asarsaleem@gmail.com'
+  RECEIVING: 'masternumancs@gmail.com'
 };
 
 export async function POST(request: NextRequest) {

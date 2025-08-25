@@ -2,7 +2,7 @@
 
 import Footer from '../Components/Footer';
 import React, { useEffect } from 'react';
-import Form from './Form'
+import Form from '../Email/Form'
 
 const MissionValueCard = ({ iconClass, iconBgClass, iconColorClass, title, description }) => (
   <div className="bg-white p-4 md:py-8 md:px-4 rounded-xl shadow-md text-center w-full hover:scale-[1.02] transition-all">

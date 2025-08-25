@@ -1,6 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../Components/navbar";
 import { servicePages } from "../pageData";
 
 export default async function DynamicServicePage({
@@ -19,7 +19,7 @@ export default async function DynamicServicePage({
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
       {page.Components.map((Component, index) => (
         <div key={index}>{Component}</div>
       ))}

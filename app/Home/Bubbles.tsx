@@ -52,7 +52,11 @@ export default function BubblePage() {
   const createBubbleElement = (service: Service, isStatic = false) => {
     const el = document.createElement("div");
     const radius = service.size / 2;
-    el.id = service.text?.trim().toLowerCase().replace(/\s+/g, "-") || `bubble-${Math.random()}`;
+    // Generate a unique ID for each bubble (including small ones)
+    const bubbleId = service.text 
+      ? service.text.trim().toLowerCase().replace(/\s+/g, "-") 
+      : `bubble-${service.x}-${service.y}-${service.size}`;
+    el.id = bubbleId;
     el.style.willChange = "transform, opacity";
 
     if (isStatic) {
@@ -67,11 +71,12 @@ export default function BubblePage() {
       el.style.top = `calc(${service.y} - ${radius}px)`;
     }
 
-    el.onclick = () => {
-      if (service.text) {
+    // Only add click handler to bubbles with text
+    if (service.text) {
+      el.onclick = () => {
         alert(`${service.text}\n${service.description}`);
-      }
-    };
+      };
+    }
 
     if (service.image) {
       const img = document.createElement("img");
@@ -81,30 +86,34 @@ export default function BubblePage() {
       el.appendChild(img);
     }
 
-    const textContainer = document.createElement("div");
-    textContainer.className = "absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none";
-    if (!isStatic) {
-      textContainer.style.transform = `translate(${service.textOffsetX || 0}px, ${service.textOffsetY || 0}px)`;
-    }
-
+    // Only add text container to bubbles with text
     if (service.text) {
-      const title = document.createElement("span");
-      title.className = "font-bold text-center drop-shadow-sm leading-tight whitespace-pre-line";
-      title.style.fontSize = `${service.fontSize || 14}px`;
-      title.textContent = service.text;
-      textContainer.appendChild(title);
-    }
+      const textContainer = document.createElement("div");
+      textContainer.className = "absolute inset-0 flex flex-col items-center justify-center text-center p-2 pointer-events-none";
+      if (!isStatic) {
+        textContainer.style.transform = `translate(${service.textOffsetX || 0}px, ${service.textOffsetY || 0}px)`;
+      }
 
-    if (service.description) {
-      const desc = document.createElement("span");
-      desc.className = "font-light mt-1 text-center drop-shadow-sm leading-tight whitespace-pre-line";
-      desc.style.fontSize = `${service.descFontSize || 12}px`;
-      desc.innerHTML = service.description.replace(/\n/g, "<br>");
-      textContainer.appendChild(desc);
-    }
+      if (service.text) {
+        const title = document.createElement("span");
+        title.className = "font-bold text-center drop-shadow-sm leading-tight whitespace-pre-line";
+        title.style.fontSize = `${service.fontSize || 14}px`;
+        title.textContent = service.text;
+        textContainer.appendChild(title);
+      }
 
-    el.appendChild(textContainer);
-    el.style.pointerEvents = "auto";
+      if (service.description) {
+        const desc = document.createElement("span");
+        desc.className = "font-light mt-1 text-center drop-shadow-sm leading-tight whitespace-pre-line";
+        desc.style.fontSize = `${service.descFontSize || 12}px`;
+        desc.innerHTML = service.description.replace(/\n/g, "<br>");
+        textContainer.appendChild(desc);
+      }
+
+      el.appendChild(textContainer);
+    }
+    
+    el.style.pointerEvents = service.text ? "auto" : "none";
     return el;
   };
 
@@ -133,6 +142,21 @@ export default function BubblePage() {
         wrapper.appendChild(el);
       });
       container.appendChild(wrapper);
+      
+      // Initialize movements for mobile/tablet bubbles
+      const movements: Record<string, BubbleMovement> = {};
+      relevantServices.forEach(service => {
+        const bubbleId = service.text.trim().toLowerCase().replace(/\s+/g, "-");
+        movements[bubbleId] = {
+          x: 0,
+          y: 0,
+          speedX: 0.2 + Math.random() * 0.3,
+          speedY: 0.2 + Math.random() * 0.3,
+          amplitudeX: 2 + Math.random() * 3, // Slightly smaller amplitude for mobile
+          amplitudeY: 2 + Math.random() * 3,
+        };
+      });
+      setBubbleMovements(movements);
       return;
     }
 
@@ -141,11 +165,14 @@ export default function BubblePage() {
       container.appendChild(el);
     });
 
-    // Initialize random movements for each bubble
+    // Initialize random movements for ALL bubbles (including small ones)
     const movements: Record<string, BubbleMovement> = {};
     services.forEach(service => {
-      const id = service.text?.trim().toLowerCase().replace(/\s+/g, "-") || `bubble-${Math.random()}`;
-      movements[id] = {
+      const bubbleId = service.text 
+        ? service.text.trim().toLowerCase().replace(/\s+/g, "-") 
+        : `bubble-${service.x}-${service.y}-${service.size}`;
+      
+      movements[bubbleId] = {
         x: 0,
         y: 0,
         speedX: 0.2 + Math.random() * 0.3,
@@ -158,7 +185,7 @@ export default function BubblePage() {
   }, [isMobile, isTablet]);
 
   useEffect(() => {
-    if (isMobile || isTablet || !canvasRef.current) return;
+    if (!canvasRef.current) return;
 
     let animationFrameId: number;
     let time = 0;
@@ -169,7 +196,16 @@ export default function BubblePage() {
       if (!container) return;
 
       const bubbles = Array.from(container.children) as HTMLElement[];
-      bubbles.forEach(bubble => {
+      
+      // For mobile/tablet, we need to get the bubbles inside the wrapper
+      let targetBubbles = bubbles;
+      if (isMobile || isTablet) {
+        if (bubbles.length > 0 && bubbles[0].children) {
+          targetBubbles = Array.from(bubbles[0].children) as HTMLElement[];
+        }
+      }
+      
+      targetBubbles.forEach(bubble => {
         const movement = bubbleMovements[bubble.id];
         if (!movement) return;
 

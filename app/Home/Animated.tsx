@@ -12,18 +12,9 @@ export default function HomePage() {
 
   return (
     <>
-      <Head>
-        <title>ChatSupplies - AI Assistant</title>
-      </Head>
-
+     
       <div className="min-h-screen text-white flex flex-col justify-center items-center relative overflow-hidden font-mont">
-
-        {/* Top left logo */}
-        <div className="absolute top-8 left-8 flex items-center space-x-3 z-20">
-          <img src="/Robot/face.svg" alt="Face Logo" className="w-12 h-12" />
-          <h1 className="text-3xl font-bold">ChatSupplies</h1>
-        </div>
-
+        
         {/* Main content area */}
         <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 md:px-8 py-16 gap-8">
           {/* Left content */}

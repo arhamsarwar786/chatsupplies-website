@@ -2,7 +2,6 @@
 'use client';
 
 import { useState } from 'react';
-import Form from './Form';
 
 export default function ContactForm() {
   const [status, setStatus] = useState('');

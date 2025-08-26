@@ -6,33 +6,38 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      className="w-full relative z-50 transition-all duration-300 min-h-60"
+      className="w-full relative z-50 transition-all duration-300 min-h-48"
       style={{
-        background: "linear-gradient(to right, #2648EF 0%, #252F8B 100%)",
+        background:
+          "linear-gradient(to right, rgba(38, 72, 239, 1) 0%, rgba(37, 47, 139, 1) 100%), rgba(0, 0, 0, 0.2)",
+        backgroundBlendMode: "overlay",
       }}
     >
       <div className="max-w-[1440px] mx-auto flex flex-col h-full px-4 sm:px-6 py-8">
-        {/* Divide into 3 equal horizontal parts */}
+        {/* Divide into 3 horizontal parts with adjusted widths */}
         <div className="flex flex-col lg:flex-row w-full justify-between">
-
-          {/* Logo Section (33%) */}
-          <div className="w-full lg:w-1/3 flex flex-col items-start mb-8 lg:mb-0">
+          {/* Logo Section (25%) */}
+          <div className="w-full lg:w-1/4 flex flex-col items-start mb-8 lg:mb-0">
             <div className="flex items-center">
               <Image
-                src="/Robot/face.svg"
+                src="/Robot/FooterLogo.svg"
                 alt="ChatSupplies Logo"
-                width={50}
-                height={50}
-                className="rounded-md"
+                width={250}
+                height={250}
+                className="rounded-md transition-transform duration-300 hover:scale-105 hover:opacity-90 cursor-pointer"
               />
-              <span className="text-white font-mont font-bold text-xl sm:text-3xl ml-2">
-                ChatSupplies
-              </span>
             </div>
+
+
+            {/* Paragraph under the logo */}
+            <p className="text-white font-mont text-sm sm:text-base mt-3 max-w-xs">
+              Your trusted partner for premium chat solutions and customer
+              engagement tools.
+            </p>
           </div>
 
-          {/* Buttons Section (33%) */}
-          <div className="w-full lg:w-1/3 flex flex-col md:flex-row justify-center gap-8 mb-8 lg:mb-0">
+          {/* Buttons Section (50%) */}
+          <div className="w-full lg:w-2/4 flex flex-col md:flex-row justify-center gap-15 mb-8 lg:mb-0">
             {/* First column - 3 buttons */}
             <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
               {["Privacy Policy", "Term and Conditions", "Packages"].map(
@@ -80,57 +85,72 @@ export default function Footer() {
             </div>
           </div>
 
-         {/* Social Icons Section (33%) */}
-<div className="w-full lg:w-1/3 flex flex-col items-center lg:items-center">
-  {/* Heading above social icons */}
-  <h2 className="text-white font-mont font-bold text-2xl mb-4 mr-25">Follow us</h2>
+          {/* Social Icons Section (25%) */}
+          <div className="w-full lg:w-1/4 flex flex-col items-start">
+            {/* Heading above social icons */}
+            <h2 className="text-white font-mont font-bold text-lg mb-4 text-left ml-3">
+              Follow us
+            </h2>
 
-  {/* Social Media Icons shifted left */}
-  <div className="flex justify-start items-center gap-6 mb-6 w-full lg:w-auto">
-    <Link href="https://facebook.com" target="_blank">
-      <img
-        src="/SocialMedia/facebook-f.svg"
-        alt="Facebook"
-        className="w-6 h-6 cursor-pointer hover:opacity-80 transition filter invert brightness-0"
-      />
-    </Link>
-    <Link href="https://twitter.com" target="_blank">
-      <img
-        src="/SocialMedia/x-twitter.svg"
-        alt="Twitter"
-        className="w-6 h-6 cursor-pointer hover:opacity-80 transition filter invert brightness-0"
-      />
-    </Link>
-    <Link href="https://linkedin.com" target="_blank">
-      <img
-        src="/SocialMedia/linkedin-in.svg"
-        alt="LinkedIn"
-        className="w-6 h-6 cursor-pointer hover:opacity-80 transition filter invert brightness-0"
-      />
-    </Link>
-    <Link href="https://instagram.com" target="_blank">
-      <img
-        src="/SocialMedia/instagram.svg"
-        alt="Instagram"
-        className="w-6 h-6 cursor-pointer hover:opacity-80 transition filter invert brightness-0"
-      />
-    </Link>
-    <Link href="https://youtube.com" target="_blank">
-      <img
-        src="/SocialMedia/youtube.svg"
-        alt="YouTube"
-        className="w-6 h-6 cursor-pointer hover:opacity-80 transition filter invert brightness-0"
-      />
-    </Link>
-  </div>
+            {/* Social Media Icons */}
+            <div className="flex justify-start mb-6 -mt-5 w-auto">
+              <Link href="https://facebook.com" target="_blank">
+                <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
+                  <img
+                    src="/SocialMedia/facebook-f.svg"
+                    alt="Facebook"
+                    className="w-4 h-4 cursor-pointer filter invert brightness-0"
+                  />
+                </div>
+              </Link>
+              <Link href="https://twitter.com" target="_blank">
+                <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
+                  <img
+                    src="/SocialMedia/x-twitter.svg"
+                    alt="Twitter"
+                    className="w-4 h-4 cursor-pointer filter invert brightness-0"
+                  />
+                </div>
+              </Link>
+              <Link href="https://linkedin.com" target="_blank">
+                <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
+                  <img
+                    src="/SocialMedia/linkedin-in.svg"
+                    alt="LinkedIn"
+                    className="w-4 h-4 cursor-pointer filter invert brightness-0"
+                  />
+                </div>
+              </Link>
+              <Link href="https://instagram.com" target="_blank">
+                <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
+                  <img
+                    src="/SocialMedia/instagram.svg"
+                    alt="Instagram"
+                    className="w-4 h-4 cursor-pointer filter invert brightness-0"
+                  />
+                </div>
+              </Link>
+              <Link href="https://youtube.com" target="_blank">
+                <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
+                  <img
+                    src="/SocialMedia/youtube.svg"
+                    alt="YouTube"
+                    className="w-4 h-4 cursor-pointer filter invert brightness-0"
+                  />
+                </div>
+              </Link>
+            </div>
 
-  {/* Contact Us Section */}
-  <div className="text-center lg:text-right">
-    <h2 className="text-white font-mont font-bold text-2xl mb-2 mr-17">Contact us</h2>
-    <p className="text-white font-mont text-base mr-40">Xyz</p>
-  </div>
-</div>
-
+            {/* Contact Us Section */}
+            <div className="text-left">
+              <h2 className="text-white font-mont font-bold text-lg mb-2 -mt-6 ml-4">
+                Contact us
+              </h2>
+              <p className="text-white font-mont text-base -mt-1 ml-5">
+                (928) 524-9771
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -2,6 +2,8 @@
 
 import Head from "next/head";
 import { useState } from "react";
+import { User, Mail, ChevronDown, MessageSquare } from "lucide-react";
+import Form from "../Components/Form";
 
 export default function HomePage() {
   const [showPopup, setShowPopup] = useState(false);
@@ -12,9 +14,9 @@ export default function HomePage() {
 
   return (
     <>
-     
+
       <div className="min-h-screen text-white flex flex-col justify-center items-center relative overflow-hidden font-mont">
-        
+
         {/* Main content area */}
         <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-7xl mx-auto px-4 md:px-8 py-16 gap-8">
           {/* Left content */}
@@ -43,7 +45,7 @@ export default function HomePage() {
 
             <button
               onClick={togglePopup}
-              className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer "style={{ fontFamily: 'Mont', fontWeight: 900}}
+              className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer " style={{ fontFamily: 'Mont', fontWeight: 900 }}
             >
               Book a demo
             </button>
@@ -68,11 +70,15 @@ export default function HomePage() {
 
         {/* Popup overlay */}
         <div
-          className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 transition-opacity duration-300 ${
-            showPopup ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+          className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 transition-opacity duration-300 ${showPopup ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
         >
-          <div className="bg-white text-[#0E1F4F] p-8 rounded-lg max-w-md w-full mx-4 relative font-mont">
+          <div
+            className={`bg-white text-[#0E1F4F] p-8 rounded-lg max-w-md w-full mx-4 relative font-mont transform transition-all duration-300 ease-out ${showPopup
+                ? "scale-100 opacity-100 translate-y-0"
+                : "scale-95 opacity-0 -translate-y-4"
+              }`}
+          >
             <button
               onClick={togglePopup}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
@@ -81,33 +87,9 @@ export default function HomePage() {
             </button>
             <h2 className="text-2xl mb-4 font-bold">Book a Demo</h2>
             <p className="mb-6 font-normal">
-              Fill out this form and we'll get back to you shortly to schedule a
-              demo.
+              Fill out this form and we'll get back to you shortly to schedule a demo.
             </p>
-            <form>
-              <div className="mb-4">
-                <label className="block mb-2 font-medium">Name</label>
-                <input type="text" className="w-full p-2 border rounded" />
-              </div>
-              <div className="mb-4">
-                <label className="block mb-2 font-medium">Email</label>
-                <input type="email" className="w-full p-2 border rounded" />
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 font-medium">Website(URL)</label>
-                <input type="text" className="w-full p-2 border rounded" />
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 font-medium">Contact</label>
-                <input type="text" className="w-full p-2 border rounded" />
-              </div>
-              <button
-                type="button"
-                className="w-full bg-[#0055FF] text-white py-2 px-4 rounded hover:bg-[#0044CC] transition cursor-pointer font-bold"
-              >
-                Submit
-              </button>
-            </form>
+          <Form/>
           </div>
         </div>
 

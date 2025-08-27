@@ -13,17 +13,17 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    
+
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", checkMobile);
-    
+
     // Initial check
     checkMobile();
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", checkMobile);
@@ -33,16 +33,16 @@ export default function Navbar() {
   // Prevent background scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset';
-      document.documentElement.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
+      document.documentElement.style.overflow = "unset";
     };
   }, [mobileMenuOpen]);
 
@@ -50,7 +50,13 @@ export default function Navbar() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navItems = ["Services", "Plans", "Documentation", "Contact Us", "About"];
+  const navItems = [
+    { label: "Services", href: "/services" },
+    { label: "Plans", href: "/plans" },
+    { label: "Documentation", href: "/documentation" },
+    { label: "Contact Us", href: "/Contacts" }, 
+    { label: "About", href: "/about" },
+  ];
 
   return (
     <>
@@ -70,8 +76,8 @@ export default function Navbar() {
             <Image
               src="/Robot/face.svg"
               alt="ChatSupplies Logo"
-              width={scrolled ? 22 : 28}
-              height={scrolled ? 22 : 28}
+              width={scrolled ? 26 : 32}
+              height={scrolled ? 26 : 32}
               className="rounded-md transition-all duration-300"
             />
             <span
@@ -86,12 +92,9 @@ export default function Navbar() {
           {/* Center Navigation - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, idx) => (
-              <Link
-                key={idx}
-                href={`/${item.toLowerCase().replace(" ", "")}`}
-              >
+              <Link key={idx} href={item.href}>
                 <button className="cursor-pointer text-white font-medium hover:text-gray-200 transition">
-                  {item}
+                  {item.label}
                 </button>
               </Link>
             ))}
@@ -107,19 +110,23 @@ export default function Navbar() {
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
                           h-0.5 w-8 rounded-sm ${
-                            mobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-0.5'
+                            mobileMenuOpen
+                              ? "rotate-45 translate-y-1"
+                              : "-translate-y-0.5"
                           }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
                           h-0.5 w-8 rounded-sm my-1 ${
-                            mobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                            mobileMenuOpen ? "opacity-0" : "opacity-100"
                           }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
                           h-0.5 w-8 rounded-sm ${
-                            mobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-0.5'
+                            mobileMenuOpen
+                              ? "-rotate-45 -translate-y-1"
+                              : "translate-y-0.5"
                           }`}
               ></span>
             </button>
@@ -144,11 +151,11 @@ export default function Navbar() {
           {navItems.map((item, idx) => (
             <Link
               key={idx}
-              href={`/${item.toLowerCase().replace(" ", "")}`}
+              href={item.href}
               onClick={() => setMobileMenuOpen(false)}
             >
               <button className="text-white text-lg font-medium hover:text-gray-200 transition w-full text-left">
-                {item}
+                {item.label}
               </button>
             </Link>
           ))}
@@ -157,7 +164,7 @@ export default function Navbar() {
 
       {/* Overlay - Only shown when mobile menu is open */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/30 z-30 md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         ></div>

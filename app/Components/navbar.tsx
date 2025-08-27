@@ -54,7 +54,7 @@ export default function Navbar() {
     { label: "Services", href: "/services" },
     { label: "Plans", href: "/plans" },
     { label: "Documentation", href: "/documentation" },
-    { label: "Contact Us", href: "/Contacts" }, 
+    { label: "Contact Us", href: "/Contacts" },
     { label: "About", href: "/about" },
   ];
 
@@ -93,7 +93,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, idx) => (
               <Link key={idx} href={item.href}>
-                <button className="cursor-pointer text-white font-medium hover:text-gray-200 transition">
+                <button className="cursor-pointer text-white font-bold hover:text-gray-200 transition">
                   {item.label}
                 </button>
               </Link>
@@ -154,7 +154,7 @@ export default function Navbar() {
               href={item.href}
               onClick={() => setMobileMenuOpen(false)}
             >
-              <button className="text-white text-lg font-medium hover:text-gray-200 transition w-full text-left">
+              <button className="text-white text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
                 {item.label}
               </button>
             </Link>

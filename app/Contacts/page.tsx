@@ -26,7 +26,7 @@ const App: React.FC = () => {
                         {/* Email */}
                         <div className="flex items-center space-x-2">
                             <Mail size={20} className="text-white min-w-[20px]" />
-                            <a href="mailto:info@snappy.io" className="text-white text-shadow-amber-200 font-mont break-words">info@snappy.io</a>
+                            <a href="mailto:info@snappy.io" className="text-white text-shadow-amber-200 font-mont break-words">info@ChatSupplies.io</a>
                         </div>
 
                         {/* Phone */}
@@ -53,10 +53,10 @@ const App: React.FC = () => {
 
                         {/* Feedback and Suggestions */}
                         <div className="flex flex-col">
-                            <h2 className="text-base sm:text-lg text-white font-bold mb-3 md:mb-4">Feedback and Sugg_</h2>
+                            <h2 className="text-base sm:text-lg text-white font-bold mb-3 md:mb-4">Feedback and Suggestions</h2>
                             <p className="text-white font-mont text-xs sm:text-sm leading-relaxed">
-                                We value your feedback and are continuously working to improve Snappy.
-                                Your input is crucial in shaping the future of Snappy.
+                                We value your feedback and are continuously working to improve ChatSupplies.
+                                Your input is crucial in shaping the future of ChatSupplies.
                             </p>
                         </div>
 
@@ -66,7 +66,7 @@ const App: React.FC = () => {
                             <p className="text-white font-mont text-xs sm:text-sm leading-relaxed">
                                 For media-related questions or press inquiries, please contact us at{" "}
                                 <a href="mailto:media@snappyapp.com" className="underline break-all">
-                                    media@snappyapp.com
+                                    media@ChatSupplies.com
                                 </a>.
                             </p>
                         </div>
@@ -81,7 +81,7 @@ const App: React.FC = () => {
 
                         {/* Form */}
                         <Form />
-                        <p className="text-center text-xs text-gray-500 leading-relaxed">
+                        <p className="text-center text-xs text-gray-500 leading-relaxed mt-2">
                             By contacting us, you agree to our{" "}
                             <a href="#" className="font-mont text-black font-semibold">
                                 Terms of service

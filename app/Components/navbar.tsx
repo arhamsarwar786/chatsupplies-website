@@ -51,11 +51,11 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { label: "Services", href: "/services" },
-    { label: "Plans", href: "/plans" },
-    { label: "Documentation", href: "/documentation" },
+    { label: "Services", href: "/Services" },
+    { label: "Plans", href: "/Plans" },
+    { label: "Documentation", href: "/Documentation" },
     { label: "Contact Us", href: "/Contacts" },
-    { label: "About", href: "/about" },
+    { label: "About", href: "/About" },
   ];
 
   return (

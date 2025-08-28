@@ -5,9 +5,28 @@ import Footer from "./Footer";
 type GenericPageProps = {
   heading: string;
   text?: string;
+  text1?: string;
+  text2?: string;
+  text3?: string;
+  text4?: string;
+  text5?: string;
+  text6?: string;
+  text7?: string;
+  text8?: string;
 };
 
-const GenericPage: React.FC<GenericPageProps> = ({ heading, text }) => {
+const GenericPage: React.FC<GenericPageProps> = ({
+  heading,
+  text,
+  text1,
+  text2,
+  text3,
+  text4,
+  text5,
+  text6,
+  text7,
+  text8,
+}) => {
   return (
     <>
       {/* Page Wrapper */}
@@ -25,6 +44,14 @@ const GenericPage: React.FC<GenericPageProps> = ({ heading, text }) => {
               {heading}
             </h1>
             {text && <p className="text-lg text-gray-200">{text}</p>}
+            {text1 && <p className="mt-4 text-lg text-gray-200">{text1}</p>}
+            {text2 && <p className="mt-4 text-lg text-gray-200">{text2}</p>}
+            {text3 && <p className="mt-4 text-lg text-gray-200">{text3}</p>}
+            {text4 && <p className="mt-4 text-lg text-gray-200">{text4}</p>}
+            {text5 && <p className="mt-4 text-lg text-gray-200">{text5}</p>}
+            {text6 && <p className="mt-4 text-lg text-gray-200">{text6}</p>}
+            {text7 && <p className="mt-4 text-lg text-gray-200">{text7}</p>}
+            {text8 && <p className="mt-4 text-lg text-gray-200">{text8}</p>}
           </div>
         </main>
       </div>

@@ -2,8 +2,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
- 
-import Bubbles from './Home/Bubbles'
+import KeyFeature from './Home/KeyFeature'
 import Animated from './Home/Animated';
 import WhyChoose from './Home/WhyChoose';
 import PaymentPlan from './Home/PaymentPlan';
@@ -15,7 +14,7 @@ export default function Home() {
     
     <Navbar/>
       <Animated/>
-      <Bubbles/>
+      <KeyFeature/>
       <WhyChoose/>
       <PaymentPlan/>
       <Footer/>

@@ -13,7 +13,7 @@ const KeyFeatures = () => {
             <section className="grid grid-cols-1 md:grid-cols-5 gap-8 px-18 font-inter">
 
                 {/* Agent Builder Card (Full width on md screens) */}
-                <div className="md:col-span-5 bg-gradient-to-r from-[#252F8B] via-white/15 to-[#2648EF] rounded-2xl shadow-md p-4 flex flex-col md:flex-row items-center">
+                <div className="md:col-span-5 bg-gradient-to-r from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-2xl p-4 flex flex-col md:flex-row items-center">
                     {/* Text shifted lower */}
                     <div className="md:w-1/2 md:pr-3 ml-4 md:self-end mb-10">
                         <h2 className="text-2xl font-bold text-white mb-4">
@@ -39,7 +39,7 @@ const KeyFeatures = () => {
                 </div>
 
                 {/* Card 1 - Instant Responses */}
-                <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B] via-white/15 to-[#2648EF] rounded-2xl shadow-2xl flex flex-col h-[560px]">
+                <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-2xl flex flex-col h-[560px]">
                     {/* Image fills top area */}
                     <div className="w-full">
                         <img
@@ -65,7 +65,7 @@ const KeyFeatures = () => {
                 </div>
 
                 {/* Card 2 - Form Assistance */}
-                <div className="md:col-span-2 bg-gradient-to-t from-[#252F8B] via-white/15 to-[#2648EF] rounded-2xl shadow-2xl flex flex-col h-[560px]">
+                <div className="md:col-span-2 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-2xl flex flex-col h-[560px]">
                     {/* Image fills top area */}
                     <div className="w-full">
                         <img
@@ -90,7 +90,7 @@ const KeyFeatures = () => {
                 </div>
 
                 {/* Card 3 - Customizable Branding */}
-                <div className="md:col-span-2 bg-gradient-to-t from-[#252F8B] via-white/15 to-[#2648EF] rounded-xl shadow-2xl flex flex-col justify-between flex-grow">
+                <div className="md:col-span-2 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-xl flex flex-col justify-between flex-grow">
                     {/* Image takes full top area */}
                     <div className="flex-grow">
                         <img
@@ -115,7 +115,7 @@ const KeyFeatures = () => {
 
 
                 {/* Card 4 - Embed Anywhere */}
-                <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B] via-white/15 to-[#2648EF] rounded-xl shadow-2xl flex flex-col flex-grow">
+                <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-xl flex flex-col flex-grow">
                     {/* Image fills whole top area */}
                     <img
                         src="https://f.vimeocdn.com/cms-images/2021/05/5.21_HowToEmbedVideos_Header.png?w=1024?w=800"
@@ -138,7 +138,7 @@ const KeyFeatures = () => {
                 </div>
 
                 {/* WordPress Plugin Card (Full width on md screens) */}
-                <div className="md:col-span-5 bg-gradient-to-r from-[#252F8B] via-white/15 to-[#2648EF] rounded-xl shadow-lg p-8 flex flex-col md:flex-row items-center">
+                <div className="md:col-span-5 bg-gradient-to-r from-[#252F8B]/80 via-black/15 to-[#2648EF]/0 rounded-xl p-8 flex flex-col md:flex-row items-center">
                     <div className="md:w-1/2 md:pr-8">
                         <div className="flex items-center text-white font-bold mb-4">
                             <svg
@@ -175,7 +175,7 @@ const KeyFeatures = () => {
                             Easily create, train, and embed AI-powered chatbots directly in WordPress—no shortcodes or coding required!
                         </p>
                         <div className="flex space-x-4">
-<button className="bg-[#2648EF] hover:bg-[#2648EF]/30 text-white font-mont font-bold py-2 px-6 transition duration-300 cursor-pointer">
+                            <button className="bg-[#2648EF] hover:bg-[#2648EF]/30 text-white font-mont font-bold py-2 px-6 transition duration-300 cursor-pointer">
                                 Get The Plugin Now!
                             </button>
                             <button className="bg-transparent border border-white text-white hover:bg-white/20 font-mont font-bold py-2 px-6 cursor-pointer transition duration-300">

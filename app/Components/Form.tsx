@@ -29,7 +29,7 @@ const ContactForm: React.FC = () => {
       });
 
       const data = await res.json();
-      setResponseMsg(JSON.stringify(data)); // show Swagger response
+      setResponseMsg(JSON.stringify(data)); 
     } catch (error) {
       console.error(error);
       setResponseMsg("Something went wrong");

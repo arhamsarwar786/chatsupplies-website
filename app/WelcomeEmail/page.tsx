@@ -3,11 +3,11 @@ import React from "react";
 import { Phone, Mail, MessageCircle } from "lucide-react";
 
 const icons = [
-  { label: "Facebook", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/facebook-f.svg" },
+  { label: "Facebook", svgPath: "/SocialIcons/fb.svg" },
   { label: "LinkedIn", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/main/assets/linkedin-in.svg" },
   { label: "Twitter", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/x-twitter.svg" },
   { label: "Instagram", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/instagram.svg" },
-  { label: "YouTube", svgPath: "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/youtube.svg" },
+  { label: "YouTube", svgPath: "/SocialIcons/youtube.svg" },
 ];
 
 const WelcomeCard: React.FC = () => {

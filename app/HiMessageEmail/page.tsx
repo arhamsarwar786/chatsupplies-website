@@ -5,7 +5,7 @@ const icons = [
   {
     label: "Facebook",
     svgPath:
-      "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/facebook-f.svg",
+      "/SocialIcons/fb.svg",
   },
   {
     label: "LinkedIn",
@@ -25,7 +25,7 @@ const icons = [
   {
     label: "YouTube",
     svgPath:
-      "https://raw.githubusercontent.com/sultan-arshi/assets-chat-supplies/fe0313790bc584b9ef066fda32960afd7642c023/assets/youtube.svg",
+      "/SocialIcons/youtube.svg",
   },
 ];
 

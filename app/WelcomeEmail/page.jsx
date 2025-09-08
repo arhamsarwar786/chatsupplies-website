@@ -9,20 +9,22 @@ export default function WelcomeCard() {
       />
       <style>{`
         * {
+        background-color: #f8f9fa; 
           margin: 0;
           padding: 0;
           box-sizing: border-box;
         }
         
-        body {
-          font-family: 'Montserrat', sans-serif;
-          background-color: white;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 24px;
-        }
+      body {
+  font-family: 'Montserrat', sans-serif;
+  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
         
         .outer-wrapper {
           position: relative;
@@ -39,7 +41,7 @@ export default function WelcomeCard() {
           background: white;
           padding: 24px;
           text-align: center;
-          height: 725px;
+          height: 737px;
           width: 480px;
           display: flex;
           flex-direction: column;
@@ -161,6 +163,7 @@ export default function WelcomeCard() {
         
         .social-icons {
           margin-top: 8px;
+          margin-bottom:12px;
         }
         
         .social-container {
@@ -185,37 +188,39 @@ export default function WelcomeCard() {
           height: 20px;
           display: block;
         }
-        
-        .footer {
-          margin-top: 16px;
-          width: 480px;
-          background-color: black;
-          color: white;
-          border-bottom-left-radius: 12px;
-          border-bottom-right-radius: 12px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 24px;
-          margin-left: -24px;
-        }
-        
-        .footer p {
-          text-align: center;
-          font-size: 14px;
-          margin: 0;
-        }
-        
-        .footer a {
-          color: white;
-          text-decoration: underline;
-          font-weight: 700;
-          font-size: 16px;
-        }
+     .footer {
+  width: 112%;
+  background-color: #000;  /* black footer background */
+  color: #fff;             /* force white text */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin-left: -26px; 
+  border-top: none;
+}
+
+.footer p,
+.footer a {
+  background-color: transparent !important; /* stop inheriting the off-white */
+  color: #fff;                              /* readable text */
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.footer a {
+  color: #4f9cff; /* light blue link for visibility */
+  text-decoration: underline;
+  font-weight: 600;
+}
+
         
         .footer p:last-child {
-          margin-top: 8px;
+          margin-top: 16px;
         }
       `}</style>
 

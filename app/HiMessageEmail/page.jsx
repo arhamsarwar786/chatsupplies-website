@@ -9,6 +9,7 @@ export default function WelcomeEmail() {
       />
       <style>{`
         * {
+        background-color: #f8f9fa ; /* force white background */
           margin: 0;
           padding: 0;
           box-sizing: border-box;
@@ -16,7 +17,6 @@ export default function WelcomeEmail() {
         
         body {
           font-family: 'Montserrat', sans-serif;
-          background-color: #fafafa; /* 🔹 changed to off-white */
           display: flex;
           justify-content: center;
           align-items: center;
@@ -143,23 +143,39 @@ export default function WelcomeEmail() {
           height: 24px;
         }
         
-        .footer {
-          background-color: #000;
-          color: white;
-          padding: 24px;
-          text-align: center;
-        }
+       .footer {
+  width: 103%;
+  background-color: #000;  /* black footer background */
+  color: #fff;             /* force white text */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  margin-left: -16.5px; 
+  border-top: none;
+}
+
+.footer p,
+.footer a {
+  background-color: transparent !important; /* stop inheriting the off-white */
+  color: #fff;                              /* readable text */
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+.footer a {
+  color: #4f9cff; /* light blue link for visibility */
+  text-decoration: underline;
+  font-weight: 600;
+}
+
         
-        .footer p {
-          font-size: 0.875rem;
-          line-height: 1.6;
-          margin-bottom: 8px;
-        }
-        
-        .footer a {
-          color: white;
-          font-weight: 700;
-          text-decoration: underline;
+        .footer p:last-child {
+          margin-top: 16px;
         }
         
         @media (max-width: 768px) {

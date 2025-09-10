@@ -51,6 +51,7 @@ export default function Navbar() {
   };
 
   const navItems = [
+    { label: "Chatbot", href: "https://chat-supplies-dashboard.vercel.app/auth/login" },
     { label: "Services", href: "/Services" },
     { label: "Plans", href: "/Plans" },
     { label: "Documentation", href: "/Documentation" },
@@ -61,9 +62,8 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
-          scrolled ? "h-12 shadow-md" : "h-20"
-        }`}
+        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "h-12 shadow-md" : "h-20"
+          }`}
         style={{
           background: scrolled
             ? "linear-gradient(to right, #2648EF 0%, #252F8B 100%)"
@@ -81,9 +81,8 @@ export default function Navbar() {
               className="rounded-md transition-all duration-300"
             />
             <span
-              className={`text-white font-mont font-bold transition-all duration-300 ${
-                scrolled ? "text-base" : "text-lg"
-              }`}
+              className={`text-white font-mont font-bold transition-all duration-300 ${scrolled ? "text-base" : "text-lg"
+                }`}
             >
               ChatSupplies
             </span>
@@ -109,25 +108,22 @@ export default function Navbar() {
             >
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${
-                            mobileMenuOpen
-                              ? "rotate-45 translate-y-1"
-                              : "-translate-y-0.5"
-                          }`}
+                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
+                    ? "rotate-45 translate-y-1"
+                    : "-translate-y-0.5"
+                  }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm my-1 ${
-                            mobileMenuOpen ? "opacity-0" : "opacity-100"
-                          }`}
+                          h-0.5 w-8 rounded-sm my-1 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
+                  }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${
-                            mobileMenuOpen
-                              ? "-rotate-45 -translate-y-1"
-                              : "translate-y-0.5"
-                          }`}
+                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
+                    ? "-rotate-45 -translate-y-1"
+                    : "translate-y-0.5"
+                  }`}
               ></span>
             </button>
           )}
@@ -136,9 +132,8 @@ export default function Navbar() {
 
       {/* Mobile Menu Slider */}
       <div
-        className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         style={{
           background: "linear-gradient(to bottom, #2648EF 0%, #252F8B 100%)",
           height: mobileMenuOpen ? "calc(100vh - 80px)" : "0",

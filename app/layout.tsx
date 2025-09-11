@@ -1,4 +1,4 @@
-import "./globals.css";
+import "./globals.css"; 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
@@ -6,6 +6,9 @@ config.autoAddCss = false;
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import LayoutWrapper from "./Components/LayoutWrapper";
+
+// ✅ Import Toaster
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +39,9 @@ export default function RootLayout({
         <LayoutWrapper>
           <main>{children}</main>
         </LayoutWrapper>
+
+        {/* ✅ Toast renderer */}
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

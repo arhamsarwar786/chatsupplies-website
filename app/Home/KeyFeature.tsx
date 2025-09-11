@@ -136,8 +136,8 @@ const KeyFeatures = () => {
                 </div>
 
                 {/* WordPress Plugin Card (Full width on md screens) */}
-                <div className="md:col-span-5 bg-gradient-to-r from-[#252F8B]/80 via-black/15 to-[#2648EF]/0 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center">
-                    <div className="md:w-1/2 md:pr-4 lg:pr-8">
+                <div className="md:col-span-5 bg-gradient-to-r from-[#2648EF]/0 via-black/15 to-[#252F8B]/80 rounded-xl p-6 md:p-8 flex flex-col md:flex-row-reverse items-center">
+                    <div className="flex-1 lg:pr-8 md:pl-20">
                         <div className="flex items-center text-white font-bold mb-4">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -180,7 +180,9 @@ const KeyFeatures = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">
+
+                    {/* Image stays inside the same card */}
+                    <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center md:mr-8">
                         <img
                             src="https://cdn.dribbble.com/userupload/24048663/file/original-342972c0fc0a4e79014b9e4503bf36cb.png?resize=1024x768&vertical=center"
                             alt="Jotform AI Chatbot for WordPress"
@@ -188,6 +190,7 @@ const KeyFeatures = () => {
                         />
                     </div>
                 </div>
+
             </section>
         </div>
     );

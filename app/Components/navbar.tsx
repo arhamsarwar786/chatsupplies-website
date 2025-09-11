@@ -51,19 +51,20 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { label: "Chatbot", href: "https://chat-supplies-dashboard.vercel.app/auth/login" },
     { label: "Services", href: "/Services" },
     { label: "Plans", href: "/Plans" },
     { label: "Documentation", href: "/Documentation" },
     { label: "Contact Us", href: "/Contacts" },
     { label: "About", href: "/About" },
+    { label: "Login", href: "https://chat-supplies-dashboard.vercel.app/auth/login" },
   ];
 
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "h-12 shadow-md" : "h-20"
-          }`}
+        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+          scrolled ? "h-12 shadow-md" : "h-20"
+        }`}
         style={{
           background: scrolled
             ? "linear-gradient(to right, #2648EF 0%, #252F8B 100%)"
@@ -81,8 +82,9 @@ export default function Navbar() {
               className="rounded-md transition-all duration-300"
             />
             <span
-              className={`text-white font-mont font-bold transition-all duration-300 ${scrolled ? "text-base" : "text-lg"
-                }`}
+              className={`text-white font-mont font-bold transition-all duration-300 ${
+                scrolled ? "text-base" : "text-lg"
+              }`}
             >
               ChatSupplies
             </span>
@@ -92,9 +94,15 @@ export default function Navbar() {
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, idx) => (
               <Link key={idx} href={item.href}>
-                <button className="cursor-pointer text-white font-bold hover:text-gray-200 transition">
-                  {item.label}
-                </button>
+                {item.label === "Login" ? (
+                  <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition">
+                    {item.label}
+                  </button>
+                ) : (
+                  <button className="cursor-pointer text-white font-bold hover:text-gray-200 transition">
+                    {item.label}
+                  </button>
+                )}
               </Link>
             ))}
           </div>
@@ -108,22 +116,25 @@ export default function Navbar() {
             >
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
-                    ? "rotate-45 translate-y-1"
-                    : "-translate-y-0.5"
-                  }`}
+                          h-0.5 w-8 rounded-sm ${
+                            mobileMenuOpen
+                              ? "rotate-45 translate-y-1"
+                              : "-translate-y-0.5"
+                          }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm my-1 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
+                          h-0.5 w-8 rounded-sm my-1 ${
+                            mobileMenuOpen ? "opacity-0" : "opacity-100"
+                          }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
-                    ? "-rotate-45 -translate-y-1"
-                    : "translate-y-0.5"
-                  }`}
+                          h-0.5 w-8 rounded-sm ${
+                            mobileMenuOpen
+                              ? "-rotate-45 -translate-y-1"
+                              : "translate-y-0.5"
+                          }`}
               ></span>
             </button>
           )}
@@ -131,31 +142,51 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Slider */}
-      <div
-        className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-        style={{
-          background: "linear-gradient(to bottom, #2648EF 0%, #252F8B 100%)",
-          height: mobileMenuOpen ? "calc(100vh - 80px)" : "0",
-          marginTop: scrolled ? "48px" : "80px",
-          overflowY: "auto",
-          zIndex: 40,
-        }}
-      >
-        <div className="flex flex-col p-6 space-y-6">
-          {navItems.map((item, idx) => (
-            <Link
-              key={idx}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <button className="text-white text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
-                {item.label}
-              </button>
-            </Link>
-          ))}
-        </div>
-      </div>
+     {/* Mobile Menu Slider */}
+<div
+  className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${
+    mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+  }`}
+  style={{
+    background: "linear-gradient(to bottom, #2648EF 0%, #252F8B 100%)",
+    height: mobileMenuOpen ? "calc(100vh - 80px)" : "0",
+    marginTop: scrolled ? "48px" : "80px",
+    overflowY: "auto",
+    zIndex: 40,
+  }}
+>
+  <div className="flex flex-col p-6 space-y-6">
+    {/* Login button on top */}
+    {navItems
+      .filter((item) => item.label === "Login")
+      .map((item, idx) => (
+        <Link
+          key={`login-${idx}`}
+          href={item.href}
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <button className="rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition w-full text-center">
+            {item.label}
+          </button>
+        </Link>
+      ))}
+
+    {/* Other nav items below */}
+    {navItems
+      .filter((item) => item.label !== "Login")
+      .map((item, idx) => (
+        <Link
+          key={idx}
+          href={item.href}
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <button className="text-white text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
+            {item.label}
+          </button>
+        </Link>
+      ))}
+  </div>
+</div>
 
       {/* Overlay - Only shown when mobile menu is open */}
       {mobileMenuOpen && (

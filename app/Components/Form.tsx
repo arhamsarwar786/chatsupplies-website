@@ -1,25 +1,41 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, ChevronDown, User, MessageSquare } from "lucide-react";
+import { Mail, ChevronDown, User, MessageSquare } from "lucide-react";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { toast } from "sonner";
 
 const ContactForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [responseMsg, setResponseMsg] = useState<string | null>(null);
+  const [form, setForm] = useState({ phone_number: "" });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-    setResponseMsg(null);
 
     const formData = new FormData(e.currentTarget);
     const payload = {
-      firstName: formData.get("firstName"),
-      lastName: formData.get("lastName"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      message: formData.get("message"),
+      firstName: (formData.get("firstName") as string)?.trim(),
+      lastName: (formData.get("lastName") as string)?.trim(),
+      email: (formData.get("email") as string)?.trim(),
+      phone: form.phone_number?.trim(),
+      message: (formData.get("message") as string)?.trim(),
     };
+
+    if (
+      !payload.firstName ||
+      !payload.lastName ||
+      !payload.email ||
+      !payload.phone ||
+      !payload.message
+    ) {
+      toast.error("Fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+    setResponseMsg(null);
 
     try {
       const res = await fetch("/api/Contact", {
@@ -29,7 +45,23 @@ const ContactForm: React.FC = () => {
       });
 
       const data = await res.json();
-      setResponseMsg(JSON.stringify(data)); 
+
+      if (!res.ok) {
+        if (res.status === 409) {
+          setResponseMsg("Your request is received. We'll contact you soon");
+          toast.success("Form submitted successfully!");
+          e.currentTarget.reset();
+          setForm({ phone_number: "" }); // ✅ clears phone
+        } else {
+          setResponseMsg(data.detail || "Something went wrong");
+        }
+        return;
+      }
+
+      setResponseMsg("Your request is received. We'll contact you soon");
+      toast.success("Form submitted successfully!");
+      e.currentTarget.reset();
+      setForm({ phone_number: "" }); // ✅ clears phone
     } catch (error) {
       console.error(error);
       setResponseMsg("Something went wrong");
@@ -44,8 +76,8 @@ const ContactForm: React.FC = () => {
         onSubmit={handleSubmit}
         className="space-y-4 sm:space-y-5 max-w-sm sm:max-w-md mx-auto w-full"
       >
+        {/* First + Last name */}
         <div className="flex flex-row space-x-4">
-          {/* First Name */}
           <div className="w-1/2">
             <label htmlFor="firstName" className="sr-only">First name</label>
             <div className="relative">
@@ -55,14 +87,13 @@ const ContactForm: React.FC = () => {
                 id="firstName"
                 name="firstName"
                 placeholder="First name"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl 
-                  outline-none transition-all text-gray-700 
-                  placeholder-gray-400 text-sm"
+                pattern="[A-Za-z]+"
+                title="Only alphabets are allowed"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
               />
             </div>
           </div>
 
-          {/* Last Name */}
           <div className="w-1/2">
             <label htmlFor="lastName" className="sr-only">Last name</label>
             <div className="relative">
@@ -72,9 +103,9 @@ const ContactForm: React.FC = () => {
                 id="lastName"
                 name="lastName"
                 placeholder="Last name"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl
-                  outline-none transition-all text-gray-700 
-                  placeholder-gray-400 text-sm"
+                pattern="[A-Za-z]+"
+                title="Only alphabets are allowed"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
               />
             </div>
           </div>
@@ -90,31 +121,29 @@ const ContactForm: React.FC = () => {
               id="email"
               name="email"
               placeholder="Your email"
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl
-                outline-none transition-all text-gray-700 
-                placeholder-gray-400 text-sm"
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
             />
           </div>
         </div>
 
         {/* Phone */}
-        <div className="flex w-full border border-gray-200 rounded-xl overflow-hidden outline-none">
-          <div className="relative border-r border-gray-200 w-1/4 sm:w-1/5">
-            <select className="pl-3 pr-8 py-2 bg-white outline-none text-gray-700 text-sm appearance-none w-full">
-              <option>+62</option>
-              <option>+1</option>
-              <option>+44</option>
-            </select>
-            <ChevronDown size={16} className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-          </div>
-
-          <div className="relative flex-1">
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Phone number"
-              className="w-full pl-3 pr-4 py-2 outline-none text-gray-700 placeholder-gray-400 text-sm"
+        <div>
+          <label htmlFor="phone" className="sr-only">Phone</label>
+          <div className="relative">
+            <PhoneInput
+              key={form.phone_number} // 🔑 forces reset
+              international
+              defaultCountry="PK"
+              value={form.phone_number}
+              onChange={(value) =>
+                setForm({ ...form, phone_number: value || "" })
+              }
+              className="w-full border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-700 placeholder-gray-400 text-sm"
+              placeholder="Enter phone number"
+            />
+            <ChevronDown
+              size={16}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
             />
           </div>
         </div>
@@ -130,10 +159,8 @@ const ContactForm: React.FC = () => {
               placeholder="How can we help?"
               rows={3}
               maxLength={120}
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl  
-                outline-none transition-all resize-none 
-                text-gray-700 placeholder-gray-400 text-sm"
-            ></textarea>
+              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all resize-none text-gray-700 placeholder-gray-400 text-sm"
+            />
             <div className="absolute bottom-2 right-4 text-xs text-gray-400">
               0/120
             </div>
@@ -144,19 +171,14 @@ const ContactForm: React.FC = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full text-white font-semibold cursor-pointer py-2 rounded-xl 
-            transition-all duration-300 shadow-lg 
-            bg-[linear-gradient(to_right,#2648EF_0%,#252F8B_100%)] 
-            hover:brightness-110 text-sm"
+          className="w-full text-white font-semibold cursor-pointer py-2 rounded-xl transition-all duration-300 shadow-lg bg-[linear-gradient(to_right,#2648EF_0%,#252F8B_100%)] hover:brightness-110 text-sm"
         >
           {loading ? "Submitting..." : "Submit"}
         </button>
       </form>
 
       {responseMsg && (
-        <p className="text-center text-sm mt-4 text-gray-700">
-          Response: {responseMsg}
-        </p>
+        <p className="text-center text-sm mt-4 text-gray-700">{responseMsg}</p>
       )}
     </>
   );

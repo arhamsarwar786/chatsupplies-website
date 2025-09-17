@@ -106,7 +106,7 @@ export default function Footer() {
               <Link href="https://twitter.com" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
-                    src="/SocialMedia/x-twitter.svg"
+                    src="/SocialIcons/x-twitter.svg"
                     alt="Twitter"
                     className="w-4 h-4 cursor-pointer filter invert brightness-0"
                   />
@@ -115,7 +115,7 @@ export default function Footer() {
               <Link href="https://linkedin.com" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
-                    src="/SocialMedia/linkedin-in.svg"
+                    src="/SocialIcons/linkedin-in.svg"
                     alt="LinkedIn"
                     className="w-4 h-4 cursor-pointer filter invert brightness-0"
                   />
@@ -124,7 +124,7 @@ export default function Footer() {
               <Link href="https://instagram.com" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
-                    src="/SocialMedia/instagram.svg"
+                    src="/SocialIcons/instagram.svg"
                     alt="Instagram"
                     className="w-4 h-4 cursor-pointer filter invert brightness-0"
                   />

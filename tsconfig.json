@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Email/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/Email/page.jsx", "app/WelcomeEmail/page.jsx", "app/HiMessageEmail/page.jsx"],
   "exclude": ["node_modules"]
 }

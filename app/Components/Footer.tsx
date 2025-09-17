@@ -147,7 +147,7 @@ export default function Footer() {
                 Contact us
               </h2>
               <p className="text-white font-mont text-base -mt-1 ml-5">
-                (928) 524-9771
+                1-945-217-8349
               </p>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { Mail, Phone, ChevronDown, User, MessageSquare } from 'lucide-react';
 import Image from "next/image";
 import Navbar from '../Components/navbar';
 import Form from '../Components/Form';
+import Footer from '../Components/Footer';
 
 const App: React.FC = () => {
     return (
@@ -94,6 +95,7 @@ const App: React.FC = () => {
                     </div>
                 </div>
             </main>
+            <Footer/>
         </div>
     );
 };

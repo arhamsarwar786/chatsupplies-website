@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer
-      className="w-full relative z-50 transition-all duration-300 min-h-48"
+      className="w-full relative z-30 transition-all duration-300 min-h-48"
       style={{
         background:
           "linear-gradient(to right, rgba(38, 72, 239, 1) 0%, rgba(37, 47, 139, 1) 100%), rgba(0, 0, 0, 0.2)",
@@ -40,19 +40,19 @@ export default function Footer() {
           <div className="w-full lg:w-2/4 flex flex-col md:flex-row justify-center gap-15 mb-8 lg:mb-0">
             {/* First column - 3 buttons */}
             <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
-              {["Privacy Policy", "Term and Conditions", "Packages"].map(
-                (item, idx) => (
-                  <Link
-                    key={idx}
-                    href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
-                  >
-                    <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
-                      {item}
-                    </button>
-                  </Link>
-                )
-              )}
+              {[
+                { label: "Privacy Policy", href: "/PrivacyPolicy" },
+                { label: "Term and Conditions", href: "/Terms&Conditions" }, // match your page filename
+                { label: "Packages", href: "/packages" },
+              ].map((item, idx) => (
+                <Link key={idx} href={item.href}>
+                  <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
+                    {item.label}
+                  </button>
+                </Link>
+              ))}
             </div>
+
 
             {/* Second column - 3 buttons */}
             <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
@@ -94,7 +94,7 @@ export default function Footer() {
 
             {/* Social Media Icons */}
             <div className="flex justify-start mb-6 -mt-5 w-auto">
-              <Link href="https://facebook.com" target="_blank">
+              <Link href="https://www.facebook.com/people/ChatSupplies/61580925337552/" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialMedia/facebook-f.svg"

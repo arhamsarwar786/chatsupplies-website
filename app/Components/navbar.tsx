@@ -62,14 +62,15 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "h-12 shadow-md" : "h-20"
+        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "h-12 shadow-md backdrop-blur-md bg-blue-600/70" : "h-20"
           }`}
         style={{
           background: scrolled
-            ? "linear-gradient(to right, #2648EF 0%, #252F8B 100%)"
+            ? "rgba(0, 0, 0, 0.4)"
             : "transparent",
         }}
       >
+
         <div className="max-w-[1440px] mx-auto flex items-center justify-between h-full px-6">
           {/* Left Logo */}
           <div className="flex items-center space-x-2 transition-all duration-300">
@@ -93,13 +94,15 @@ export default function Navbar() {
             {navItems.map((item, idx) => (
               <Link key={idx} href={item.href}>
                 {item.label === "Login" ? (
-                  <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition">
+                  <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100  transition">
                     {item.label}
                   </button>
                 ) : (
-                  <button className="cursor-pointer text-white font-bold hover:text-gray-200 transition">
+                  <button className="cursor-pointer text-white font-bold px-3 py-2 hover:bg-white/10 rounded-md transition">
                     {item.label}
                   </button>
+
+
                 )}
               </Link>
             ))}
@@ -137,7 +140,6 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu Slider */}
-      {/* Mobile Menu Slider */}
       <div
         className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
@@ -159,7 +161,7 @@ export default function Navbar() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <button className="rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition w-full text-center">
+                <button className="rounded-lg cursor-pointer bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition w-full text-center">
                   {item.label}
                 </button>
               </Link>
@@ -174,7 +176,7 @@ export default function Navbar() {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <button className="text-white text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
+                <button className="text-white cursor-pointer text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
                   {item.label}
                 </button>
               </Link>

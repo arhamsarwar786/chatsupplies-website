@@ -5,7 +5,7 @@ import { useState } from "react";
 import { User, Mail, ChevronDown, MessageSquare } from "lucide-react";
 import Form from "../Components/Form";
 
-export default function HomePage() {
+export default function Animated() {
   const [showPopup, setShowPopup] = useState(false);
 
   const togglePopup = () => {

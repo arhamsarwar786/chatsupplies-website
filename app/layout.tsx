@@ -19,7 +19,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
 // ✅ Added favicon reference
 export const metadata: Metadata = {
   title: "ChatSupplies - Smart Chat Solutions",
@@ -43,7 +42,6 @@ export default function RootLayout({
         <LayoutWrapper>
           <main>{children}</main>
         </LayoutWrapper>
-
         {/* ✅ Toast renderer */}
         <Toaster richColors position="top-right" />
       </body>

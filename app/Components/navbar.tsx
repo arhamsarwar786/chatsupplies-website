@@ -167,7 +167,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-          {/* Other nav items below */}
+          {/* Nav buttons */}
           {navItems
             .filter((item) => item.label !== "Login")
             .map((item, idx) => (

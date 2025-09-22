@@ -17,10 +17,10 @@ const KeyFeatures = () => {
                     {/* Text shifted lower */}
                     <div className="md:w-1/2 md:pr-3 ml-0 md:ml-4 md:self-end mb-6 md:mb-10">
                         <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
-                            Agent builder for <br /> advanced customization & training
+                            Chatbot builder for <br /> powerful customization & smart training
                         </h2>
                         <p className="text-white text-xs md:text-sm font-monnt">
-                            Customize your chatbot's responses, tone, and appearance with the Agent Builder.
+                            Customize your chatbot's responses, tone, and appearance with the Chatbot Builder.
                             Train the chatbot with your own data, FAQs, and unique business insights to provide
                             highly tailored interactions that align perfectly with your needs.
                         </p>
@@ -76,13 +76,10 @@ const KeyFeatures = () => {
                     {/* Text section */}
                     <div className="p-4 md:p-6 flex flex-col flex-grow">
                         <h2 className="text-xl md:text-2xl font-bold text-white mb-3">
-                            Form assistance
+                            Chat History
                         </h2>
                         <p className="text-white text-xs md:text-sm leading-relaxed">
-                            Guide users through form completion with a friendly, conversational flow,
-                            minimizing errors and ensuring all fields are filled out correctly. This
-                            product helps increase successful form submissions and improves the user
-                            experience.
+                            Easily access and review your chatbot’s past conversations in one place. Use chat history to analyze customer interactions and improve responses. Gain valuable insights that help you train smarter, more effective chatbots.
                         </p>
                     </div>
                 </div>
@@ -166,15 +163,17 @@ const KeyFeatures = () => {
                             </span>
                         </div>
                         <h2 className="text-xl md:text-2xl font-bold text-white mb-2">
-                            Jotform AI Chatbot for WordPress!
+                            ChatSupplies Your AI-Powered Chatbot Solution!
                         </h2>
                         <p className="text-white text-xs md:text-sm mb-4">
-                            Easily create, train, and embed AI-powered chatbots directly in WordPress—no shortcodes or coding required!
-                        </p>
+                            Easily create, train, and embed AI-powered chatbots into your website!                        </p>
                         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                            <button className="bg-[#2648EF] hover:bg-[#2648EF]/30 text-white font-mont font-bold py-2 px-4 md:px-6 transition duration-300 cursor-pointer text-sm md:text-base">
-                                Get The Plugin Now!
-                            </button>
+                            <a href="https://admin.chatsupplies.com/auth/login">
+                                <button className="bg-[#2648EF] hover:bg-[#2648EF]/30 text-white font-mont font-bold py-2 px-4 md:px-6 transition duration-300 cursor-pointer text-sm md:text-base">
+                                    Start Using ChatSupplies!
+                                </button>
+                            </a>
+
                             <button className="bg-transparent border border-white text-white hover:bg-white/20 font-mont font-bold py-2 px-4 md:px-6 cursor-pointer transition duration-300 text-sm md:text-base">
                                 Learn More
                             </button>

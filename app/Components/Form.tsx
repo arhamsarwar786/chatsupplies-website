@@ -39,7 +39,7 @@ const ContactForm: React.FC = () => {
 
     try {
       const res = await fetch(
-        "https://api.chatsupplies.com/api/book-appointment?client_id=123&session_id=Havier",
+        "https://api.chatsupplies.com/api/appointments/123?status=Active&limit=50",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

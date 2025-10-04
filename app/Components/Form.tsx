@@ -23,13 +23,22 @@ const ContactForm: React.FC = () => {
     const lastName = (formData.get("lastName") as string)?.trim();
 
     const payload = {
-      name: `${firstName || ""} ${lastName || ""}`.trim(), // ✅ backend expects "name"
+      firstName: firstName,
+      lastName: lastName,
       email: (formData.get("email") as string)?.trim(),
       phone: form.phone_number?.trim(),
+      website: "",
+      company: "",
       message: (formData.get("message") as string)?.trim(),
     };
 
-    if (!payload.name || !payload.email || !payload.phone || !payload.message) {
+    if (
+      !payload.firstName ||
+      !payload.lastName ||
+      !payload.email ||
+      !payload.phone ||
+      !payload.message
+    ) {
       toast.error("Fill all required fields");
       return;
     }
@@ -39,10 +48,12 @@ const ContactForm: React.FC = () => {
 
     try {
       const res = await fetch(
-        "https://api.chatsupplies.com/api/appointments/123?status=Active&limit=50",
+        "https://api.chatsupplies.com/api/book-appointment?client_id=21&session_id=21",
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(payload),
         }
       );
@@ -57,12 +68,21 @@ const ContactForm: React.FC = () => {
           setForm({ phone_number: "" });
         } else {
           let errorMsg = "Something went wrong";
+
           if (typeof data.detail === "string") {
             errorMsg = data.detail;
+          } else if (Array.isArray(data.detail) && data.detail.length > 0) {
+            // ✅ Handle array of validation errors
+            errorMsg = data.detail.map((err: any) => err.msg).join(", ");
+            console.log("Network response error:", data);
           } else if (data.detail?.msg) {
             errorMsg = data.detail.msg;
+          } else if (data.error) {
+            errorMsg = data.error;
           }
+
           setResponseMsg(errorMsg);
+          toast.error(errorMsg);
         }
         return;
       }
@@ -74,8 +94,24 @@ const ContactForm: React.FC = () => {
     } catch (error) {
       console.error(error);
       setResponseMsg("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchAppointments = async () => {
+    try {
+      const response = await fetch("/api/appointments?id=21&limit=50", {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+        },
+      });
+      const appointments = await response.json();
+      console.log(appointments);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
     }
   };
 
@@ -85,12 +121,8 @@ const ContactForm: React.FC = () => {
         onSubmit={handleSubmit}
         className="space-y-4 sm:space-y-5 max-w-sm sm:max-w-md mx-auto w-full"
       >
-        {/* First + Last name */}
         <div className="flex flex-row space-x-4">
           <div className="w-1/2">
-            <label htmlFor="firstName" className="sr-only">
-              First name
-            </label>
             <div className="relative">
               <User
                 size={18}
@@ -102,16 +134,12 @@ const ContactForm: React.FC = () => {
                 name="firstName"
                 placeholder="First name"
                 pattern="[A-Za-z]+"
-                title="Only alphabets are allowed"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
               />
             </div>
           </div>
 
           <div className="w-1/2">
-            <label htmlFor="lastName" className="sr-only">
-              Last name
-            </label>
             <div className="relative">
               <User
                 size={18}
@@ -123,80 +151,57 @@ const ContactForm: React.FC = () => {
                 name="lastName"
                 placeholder="Last name"
                 pattern="[A-Za-z]+"
-                title="Only alphabets are allowed"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
               />
             </div>
           </div>
         </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="email" className="sr-only">
-            Your email
-          </label>
-          <div className="relative">
-            <Mail
-              size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            />
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Your email"
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all text-gray-700 placeholder-gray-400 text-sm"
-            />
-          </div>
+        <div className="relative">
+          <Mail
+            size={18}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+          />
         </div>
 
-        {/* Phone */}
-        <div>
-          <label htmlFor="phone" className="sr-only">
-            Phone
-          </label>
-          <div className="relative">
-            <PhoneInput
-              name="phone_number"
-              international
-              defaultCountry="PK"
-              value={form.phone_number}
-              onChange={handlePhoneChange}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-700 placeholder-gray-400 text-sm"
-              placeholder="Enter phone number"
-            />
-            <ChevronDown
-              size={16}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
-            />
-          </div>
+        <div className="relative">
+          <PhoneInput
+            name="phone_number"
+            international
+            defaultCountry="PK"
+            value={form.phone_number}
+            onChange={handlePhoneChange}
+            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-gray-700 placeholder-gray-400 text-sm"
+            placeholder="Enter phone number"
+          />
+          <ChevronDown
+            size={16}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+          />
         </div>
 
-        {/* Message */}
-        <div>
-          <label htmlFor="message" className="sr-only">
-            How can we help?
-          </label>
-          <div className="relative">
-            <MessageSquare
-              size={20}
-              className="absolute left-3 top-4 text-gray-400"
-            />
-            <textarea
-              id="message"
-              name="message"
-              placeholder="How can we help?"
-              rows={3}
-              maxLength={120}
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl outline-none transition-all resize-none text-gray-700 placeholder-gray-400 text-sm"
-            />
-            <div className="absolute bottom-2 right-4 text-xs text-gray-400">
-              0/120
-            </div>
-          </div>
+        <div className="relative">
+          <MessageSquare
+            size={20}
+            className="absolute left-3 top-4 text-gray-400"
+          />
+          <textarea
+            id="message"
+            name="message"
+            placeholder="How can we help?"
+            rows={3}
+            maxLength={120}
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl resize-none text-gray-700 placeholder-gray-400 text-sm"
+          />
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           disabled={loading}

@@ -43,7 +43,7 @@ export default function Footer() {
               {[
                 { label: "Privacy Policy", href: "/PrivacyPolicy" },
                 { label: "Term and Conditions", href: "/Terms&Conditions" }, // match your page filename
-                { label: "Packages", href: "/packages" },
+                { label: "Contact us", href: "/packages" },
               ].map((item, idx) => (
                 <Link key={idx} href={item.href}>
                   <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
@@ -56,7 +56,7 @@ export default function Footer() {
 
             {/* Second column - 3 buttons */}
             <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
-              {["Documentation", "Contact us", "Help Center"].map(
+              {["Documentation", "Help Center","About us"].map(
                 (item, idx) => (
                   <Link
                     key={idx}
@@ -72,7 +72,7 @@ export default function Footer() {
 
             {/* Third column - 1 button */}
             <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
-              {["About us"].map((item, idx) => (
+              {[""].map((item, idx) => (
                 <Link
                   key={idx}
                   href={`/${item.toLowerCase().replace(/\s+/g, "")}`}

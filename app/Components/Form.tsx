@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, ChevronDown, User, MessageSquare } from "lucide-react";
+import { Mail, ChevronDown, User, Link, Briefcase } from "lucide-react";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { toast } from "sonner";
@@ -21,23 +21,23 @@ const ContactForm: React.FC = () => {
     const formData = new FormData(e.currentTarget);
     const firstName = (formData.get("firstName") as string)?.trim();
     const lastName = (formData.get("lastName") as string)?.trim();
+    const websiteUrl = (formData.get("websiteUrl") as string)?.trim();
+    const companyName = (formData.get("companyName") as string)?.trim();
 
     const payload = {
-      firstName: firstName,
-      lastName: lastName,
+      first_name: firstName,
+      last_name: lastName,
       email: (formData.get("email") as string)?.trim(),
-      phone: form.phone_number?.trim(),
-      website: "",
-      company: "",
-      message: (formData.get("message") as string)?.trim(),
+      phone_number: form.phone_number?.trim(),
+      website_url: websiteUrl,
+      company_name: companyName,
     };
 
     if (
-      !payload.firstName ||
-      !payload.lastName ||
+      !payload.first_name ||
+      !payload.last_name ||
       !payload.email ||
-      !payload.phone ||
-      !payload.message
+      !payload.phone_number
     ) {
       toast.error("Fill all required fields");
       return;
@@ -48,10 +48,11 @@ const ContactForm: React.FC = () => {
 
     try {
       const res = await fetch(
-        "https://api.chatsupplies.com/api/book-appointment?client_id=21&session_id=21",
+        "https://api.chatsupplies.com/beta/signup",
         {
           method: "POST",
           headers: {
+            "accept": "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
@@ -72,7 +73,6 @@ const ContactForm: React.FC = () => {
           if (typeof data.detail === "string") {
             errorMsg = data.detail;
           } else if (Array.isArray(data.detail) && data.detail.length > 0) {
-            // ✅ Handle array of validation errors
             errorMsg = data.detail.map((err: any) => err.msg).join(", ");
             console.log("Network response error:", data);
           } else if (data.detail?.msg) {
@@ -87,10 +87,16 @@ const ContactForm: React.FC = () => {
         return;
       }
 
-      setResponseMsg("Your request is received. We'll contact you soon");
-      toast.success("Form submitted successfully!");
-      e.currentTarget.reset();
-      setForm({ phone_number: "" });
+      // Handle successful response
+      if (data.success) {
+        setResponseMsg(data.message || "Your request is received. We'll contact you soon");
+        toast.success("Form submitted successfully!");
+        e.currentTarget.reset();
+        setForm({ phone_number: "" });
+      } else {
+        setResponseMsg(data.message || "Something went wrong");
+        toast.error(data.message || "Something went wrong");
+      }
     } catch (error) {
       console.error(error);
       setResponseMsg("Something went wrong");
@@ -102,12 +108,15 @@ const ContactForm: React.FC = () => {
 
   const fetchAppointments = async () => {
     try {
-      const response = await fetch("/api/appointments?id=21&limit=50", {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-        },
-      });
+      const response = await fetch(
+        "https://api.chatsupplies.com/api/book-appointment",
+        {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+          },
+        }
+      );
       const appointments = await response.json();
       console.log(appointments);
     } catch (error) {
@@ -188,17 +197,30 @@ const ContactForm: React.FC = () => {
         </div>
 
         <div className="relative">
-          <MessageSquare
-            size={20}
-            className="absolute left-3 top-4 text-gray-400"
+          <Link
+            size={18}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
           />
-          <textarea
-            id="message"
-            name="message"
-            placeholder="How can we help?"
-            rows={3}
-            maxLength={120}
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl resize-none text-gray-700 placeholder-gray-400 text-sm"
+          <input
+            type="url"
+            id="websiteUrl"
+            name="websiteUrl"
+            placeholder="Your website URL (Optional)"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+          />
+        </div>
+
+        <div className="relative">
+          <Briefcase
+            size={18}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+          />
+          <input
+            type="text"
+            id="companyName"
+            name="companyName"
+            placeholder="Company Name (Optional)"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
           />
         </div>
 

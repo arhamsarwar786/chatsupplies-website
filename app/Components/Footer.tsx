@@ -103,7 +103,7 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://twitter.com" target="_blank">
+              <Link href="https://x.com/chatsupplies" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialIcons/x-twitter.svg"
@@ -112,7 +112,7 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://linkedin.com" target="_blank">
+              <Link href="https://www.linkedin.com/company/108532655/admin/dashboard/" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialIcons/linkedin-in.svg"

@@ -29,7 +29,7 @@ const KeyFeatures = () => {
                     {/* Image stays as is */}
                     <div className="md:w-1/2 mt-4 md:mt-0 flex justify-center">
                         <img
-                            src="https://cdn.dribbble.com/userupload/43012202/file/original-169ef644192043d66b0b1cd5965b383e.jpg?resize=1024x768&vertical=center"
+                            src="./KeyFeatureCards/Chatbot Builder.PNG"
                             alt="Agent Builder Interface"
                             className="w-full max-w-[350px] md:w-[90%] object-contain"
                         />
@@ -62,12 +62,12 @@ const KeyFeatures = () => {
                     </div>
                 </div>
 
-                {/* Card 2 - Form Assistance */}
+                {/* Card 2 - Chat History */}
                 <div className="md:col-span-2 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-2xl flex flex-col h-auto md:h-[560px]">
                     {/* Image fills top area */}
                     <div className="w-full">
                         <img
-                            src="https://cdn.dribbble.com/userupload/37084664/file/original-ca5e755127d425b850d3c1c641007700.png?resize=1024x768&vertical=center"
+                            src="KeyFeatureCards/Chat Historys.PNG"
                             alt="Form Assistance Interface"
                             className="w-full h-48 md:h-88 object-cover rounded-t-2xl"
                         />
@@ -89,7 +89,7 @@ const KeyFeatures = () => {
                     {/* Image takes full top area */}
                     <div className="flex-grow">
                         <img
-                            src="https://cdn.dribbble.com/userupload/14430165/file/original-275c42e31e3d028ec56a63595ac68160.png?resize=1024x768&vertical=center"
+                            src="./KeyFeatureCards/Customizable Branding.PNG"
                             alt="Customizable Branding Interface"
                             className="w-full h-48 md:h-[400px] object-cover rounded-t-xl"
                         />
@@ -113,7 +113,7 @@ const KeyFeatures = () => {
                 <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-xl flex flex-col flex-grow">
                     {/* Image fills whole top area */}
                     <img
-                        src="https://f.vimeocdn.com/cms-images/2021/05/5.21_HowToEmbedVideos_Header.png?w=1024?w=800"
+                        src="./KeyFeatureCards/Embed Everywhere.PNG"
                         alt="Embed Code Interface"
                         className="w-full h-48 md:h-[400px] object-cover rounded-t-xl"
                     />

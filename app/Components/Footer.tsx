@@ -37,9 +37,9 @@ export default function Footer() {
           </div>
 
           {/* Buttons Section (50%) */}
-          <div className="w-full lg:w-2/4 flex flex-col md:flex-row justify-center gap-15 mb-8 lg:mb-0">
+          <div className="w-full lg:w-2/4 flex flex-col justify-start items-start gap-2 lg:flex-row lg:justify-center lg:items-start lg:gap-15 mb-6 lg:mb-0 ">
             {/* First column - 3 buttons */}
-            <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
+            <div className="flex flex-col gap-2 lg:gap-4 md:gap-3">
               {[
                 { label: "Privacy Policy", href: "/PrivacyPolicy" },
                 { label: "Term and Conditions", href: "/Terms&Conditions" }, // match your page filename
@@ -53,10 +53,9 @@ export default function Footer() {
               ))}
             </div>
 
-
-            {/* Second column - 3 buttons */}
-            <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
-              {["Documentation", "Help Center","About us"].map(
+            {/* Removed md:mt-3 to fix vertical misalignment on medium screens */}
+            <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
+              {["Documentation", "Help Center", "About us"].map(
                 (item, idx) => (
                   <Link
                     key={idx}
@@ -70,23 +69,10 @@ export default function Footer() {
               )}
             </div>
 
-            {/* Third column - 1 button */}
-            <div className="flex flex-col gap-3 lg:gap-4 md:gap-6">
-              {[""].map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
-                >
-                  <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
-                    {item}
-                  </button>
-                </Link>
-              ))}
-            </div>
+            {/* Third column - Removed as it was empty and wasn't displaying anything useful */}
           </div>
-
           {/* Social Icons Section (25%) */}
-          <div className="w-full lg:w-1/4 flex flex-col items-start">
+          <div className="w-full lg:w-1/4 flex flex-col items-start sm:items-start md:items-start -ml-4">
             {/* Heading above social icons */}
             <h2 className="text-white font-mont font-bold text-lg mb-4 text-left ml-3">
               Follow us
@@ -121,7 +107,7 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://instagram.com" target="_blank">
+              <Link href="https://www.instagram.com/chat_supplies/?fbclid=IwY2xjawNQuGpleHRuA2FlbQIxMQBicmlkETFnaEk4YnQwdHJtdHhoa0xTAR4lC7_bFJEC2XqEec71Q0p2WRWQYAdUdpGEaNq3eXIOCrEGd66KNIvQTFGggg_aem_NooHTqRvWm0hRQR_iNVNEg" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialIcons/instagram.svg"
@@ -130,7 +116,7 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://youtube.com" target="_blank">
+              <Link href="http://www.youtube.com/@chatsupplies" target="_blank">
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialMedia/youtube.svg"
@@ -143,10 +129,10 @@ export default function Footer() {
 
             {/* Contact Us Section */}
             <div className="text-left">
-              <h2 className="text-white font-mont font-bold text-lg mb-2 -mt-6 ml-4">
+              <h2 className="text-white font-mont font-bold text-lg mb-2 -mt-6 ml-3">
                 Contact us
               </h2>
-              <p className="text-white font-mont text-base -mt-1 ml-5">
+              <p className="text-white font-mont text-base -mt-1 ml-4">
                 1-945-217-8349
               </p>
             </div>

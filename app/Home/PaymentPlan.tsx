@@ -1,10 +1,9 @@
-"use client"; 
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-// ✅ Add both open & close animations dynamically (kept for existing UI behavior)
 const popupAnimation = `
 @keyframes popUp {
  0% { opacity: 0; transform: scale(0.8); }
@@ -26,7 +25,6 @@ if (typeof document !== "undefined" && !document.getElementById("popupAnim")) {
   document.head.appendChild(style);
 }
 
-// ⚠️ Plan interface for backend data
 interface Plan {
   id: number;
   name: string;
@@ -124,7 +122,6 @@ const PricingTablePage: React.FC = () => {
   const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
     const isEnterprise = plan.name.toLowerCase().includes("enterprise");
     const buttonText = isEnterprise ? "Get a Quote" : "Choose This Plan";
-    const customButtonClass = plan.button_color;
 
     let priceDisplay;
     let currencySuffix;
@@ -148,16 +145,20 @@ const PricingTablePage: React.FC = () => {
 
     return (
       <div
-        className={`flex flex-col flex-1 rounded-lg shadow-xl transition-all duration-300 w-full md:max-w-xs border border-white/20 ${
+        className={`flex flex-col justify-between h-full rounded-lg shadow-xl transition-all duration-300 border border-white/20 text-center ${
           plan.is_best_value ? "transform scale-[1.03] relative z-10" : ""
         }`}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       >
-        {/* 1. Plan Header */}
+        {/* ✅ Header */}
         <div
-          className={`p-4 rounded-full border border-white bg-transparent relative flex flex-col items-center justify-center min-h-[60px] ${
+          className={`p-4 relative flex flex-col items-center justify-center min-h-[60px] ${
             isEnterprise ? "pt-8" : ""
           }`}
+          style={{
+            background: "linear-gradient(to right, #2648EF 0%, #252F8B 100%)",
+            opacity: 0.8,
+          }}
         >
           {plan.is_best_value && (
             <div className="absolute top-0 px-4 py-1 text-xs font-bold text-white uppercase rounded-b-lg bg-[#FFC107] shadow-md">
@@ -169,31 +170,25 @@ const PricingTablePage: React.FC = () => {
           </h2>
         </div>
 
-        {/* 2. Price/Details */}
-        <div className="p-6 pb-4 flex flex-col items-center justify-center bg-transparent text-white border-b border-white/20">
-          <div className="text-center w-full">
-            <div className="text-6xl font-extrabold leading-none text-white">
-              {priceDisplay}
-            </div>
-            <p className="text-sm text-white/80 mt-1">{currencySuffix}</p>
-            {plan.is_recurring && plan.price !== 0 && (
-              <p className="text-xs text-white/70">{plan.billing_cycle}</p>
-            )}
-          </div>
+        {/* ✅ Price */}
+        <div className="p-6 pb-4 flex flex-col items-center justify-center bg-transparent text-white border-b border-white/20 text-center">
+          <div className="text-4xl font-extrabold leading-none text-white">{priceDisplay}</div>
+          <p className="text-sm text-white/80 mt-1">{currencySuffix}</p>
+          {plan.is_recurring && plan.price !== 0 && (
+            <p className="text-xs text-white/70">{plan.billing_cycle}</p>
+          )}
         </div>
 
-        {/* 3. Updated Button */}
-        <div className="p-6 pt-6 bg-transparent border-b border-white/20">
-          <button
-            className={`w-full py-3 text-lg font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md ${customButtonClass}`}
-          >
+        {/* ✅ BUTTON */}
+        <div className="p-6 pt-6 bg-transparent border-b border-white/20 flex justify-center">
+          <button className="w-full py-2.5 text-base font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md">
             {buttonText}
           </button>
         </div>
 
-        {/* 4. Features */}
-        <div className="flex flex-col p-6 pt-0 flex-grow">
-          <div className="space-y-0">
+        {/* ✅ Features */}
+        <div className="flex flex-col p-6 pt-0 flex-grow text-center justify-start">
+          <div className="space-y-0 flex-grow">
             {plan.description && plan.description.length > 0 ? (
               plan.description.map((item: string, index: number) => {
                 if (typeof item === "string" && item.includes("|")) {
@@ -207,13 +202,10 @@ const PricingTablePage: React.FC = () => {
                     </div>
                   );
                 } else if (item && item.length > 0) {
+                  // ✅ Removed tick icon here
                   return (
                     <div key={index} className="py-3 border-b border-white/20 last:border-b-0">
-                      <div className="flex items-center space-x-2 text-sm text-white/90">
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="text-[#4CAF50] w-4 h-4 flex-shrink-0"
-                        />
+                      <div className="flex flex-col items-center text-sm text-white/90">
                         <span>{item.trim()}</span>
                       </div>
                     </div>
@@ -256,11 +248,9 @@ const PricingTablePage: React.FC = () => {
   return (
     <div className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
       <div className="max-w-[1400px] w-full mx-auto">
-        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">
-          Our Plans
-        </h1>
+        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">Our Plans</h1>
 
-        {/* Desktop */}
+        {/* ✅ Equal-height cards grid */}
         <div
           className={`hidden lg:grid ${
             plans.length === 5
@@ -269,13 +259,14 @@ const PricingTablePage: React.FC = () => {
           } justify-center items-stretch gap-4 p-4`}
         >
           {plans.map((plan) => (
-            <PricingCard key={plan.id} plan={plan} />
+            <div key={plan.id} className="flex flex-col h-full">
+              <PricingCard plan={plan} />
+            </div>
           ))}
         </div>
 
         <hr className="hidden lg:block my-4 border-white/20" />
 
-        {/* Mobile */}
         <div className="lg:hidden flex flex-col gap-6 items-center">
           {plans.map((plan) => (
             <div key={plan.id} className="w-full max-w-sm">

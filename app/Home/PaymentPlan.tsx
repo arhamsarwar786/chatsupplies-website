@@ -89,7 +89,7 @@ const PricingTablePage: React.FC = () => {
         { header: "", button: "hover:opacity-80", bestValue: false }, // Explicitly set to false here for dynamic assignment
         { header: "", button: "hover:opacity-80" },
         { header: "", button: "hover:opacity-80" },
-       ][index] || { header: "", button: "hover:opacity-80" };
+      ][index] || { header: "", button: "hover:opacity-80" };
 
       const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise");
 
@@ -136,7 +136,7 @@ const PricingTablePage: React.FC = () => {
           normalizedCycle || (apiPlan.price === 0 ? "Always Free" : ""),
         created_at: apiPlan.created_at,
 
-        // is_best_value will be calculated and applied after the fetch
+        // is_best_value is set to false initially and recalculated on the filtered list
         is_best_value: colors.bestValue || false,
         header_color: colors.header,
         button_color: `${colors.button} text-white`,
@@ -156,21 +156,8 @@ const PricingTablePage: React.FC = () => {
         const data = await res.json();
         let mappedPlans = mapPlanToCardData(data);
 
-        // --- LOGIC FOR BEST VALUE (PRESERVED) ---
-        const totalPlans = mappedPlans.length;
-        if (totalPlans > 0) {
-          const centerIndex = Math.ceil(totalPlans / 2) - 1;
-
-          if (centerIndex >= 0 && centerIndex < totalPlans) {
-            mappedPlans = mappedPlans.map((plan, index) => ({
-              ...plan,
-              is_best_value: index === centerIndex,
-            }));
-          }
-        }
-        // ---------------------------------
-
-        setPlans(mappedPlans);
+        // Ensure plans are loaded without an initial 'best value' flag
+        setPlans(mappedPlans.map(plan => ({ ...plan, is_best_value: false })));
 
         const max = mappedPlans.reduce(
           (max, p) => Math.max(max, p.description.length),
@@ -188,17 +175,33 @@ const PricingTablePage: React.FC = () => {
     fetchPlans();
   }, []);
 
-  // --- NEW FILTER LOGIC ---
-  const filteredPlans = plans.filter(plan => {
+  // --- FILTER LOGIC ---
+  let filteredPlans = plans.filter(plan => {
     const planBillingCycle = plan.billing_cycle.toLowerCase();
-    
+
     if (billingCycle === 'monthly') {
       return planBillingCycle.includes('monthly') || planBillingCycle.includes('month');
     } else { // yearly
-      return planBillingCycle.includes('yearly') || planBillingCycle.includes('year') || 
-             planBillingCycle.includes('annual') || planBillingCycle.includes('always free');
+      return planBillingCycle.includes('yearly') || planBillingCycle.includes('year') ||
+        planBillingCycle.includes('annual') || planBillingCycle.includes('always free');
     }
   });
+
+  // ----------------------------------------------------------------------
+  // --- FIX 1: RECALCULATE BEST VALUE ON THE FILTERED PLANS ARRAY ---
+  // ----------------------------------------------------------------------
+  const displayPlansCount = filteredPlans.length;
+  if (displayPlansCount > 0) {
+    const centerIndex = Math.ceil(displayPlansCount / 2) - 1;
+
+    // Re-map the filtered plans to assign the best value flag to the middle plan
+    filteredPlans = filteredPlans.map((plan, index) => ({
+      ...plan,
+      is_best_value: index === centerIndex,
+    }));
+  }
+  // ----------------------------------------------------------------------
+
 
   const PricingCard: React.FC<PricingCardProps> = ({ plan, maxFeatures }) => {
     const isEnterprise = plan.name.toLowerCase().includes("enterprise");
@@ -234,13 +237,16 @@ const PricingTablePage: React.FC = () => {
       >
         {/* Header */}
         <div
+          // FIX 2: Added conditional pt-[25px] to align header content across all cards
           className={`p-4 relative flex flex-col items-center justify-center h-[70px] ${isEnterprise ? "pt-8" : ""
-            }`}
+            } ${plan.is_best_value ? "" : "pt-[25px]"}`
+          }
           style={{
             background: "linear-gradient(to right, #2648EF 0%, #252F8B 100%)",
             opacity: 0.8,
           }}
         >
+          {/* Best Value Tag */}
           {plan.is_best_value && (
             <div className="absolute top-0 px-4 py-1 text-xs font-bold text-white uppercase rounded-b-lg bg-[#FFC107] shadow-md">
               Best Value
@@ -251,7 +257,7 @@ const PricingTablePage: React.FC = () => {
           </h2>
         </div>
 
-        {/* Price */}
+        {/* Price (Fixed height h-[120px] ensures alignment) */}
         <div className="p-6 pb-4 border-b border-white/20 flex flex-col items-center justify-center text-white h-[120px]">
           <div className="text-4xl font-extrabold leading-none text-white">
             {priceDisplay}
@@ -261,7 +267,7 @@ const PricingTablePage: React.FC = () => {
           )}
         </div>
 
-        {/* Button */}
+        {/* Button (Fixed height h-[100px] ensures alignment) */}
         <div className="p-6 pt-6 border-b border-white/20 flex justify-center h-[100px]">
           <button className="w-full py-2.5 text-base font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md">
             {buttonText}
@@ -336,20 +342,17 @@ const PricingTablePage: React.FC = () => {
     );
 
   // Determine grid template for centering on large screens when plans < 5
-  // Use filteredPlans instead of plans for the count
   let lgGridClass = "";
-  const displayPlansCount = filteredPlans.length;
-  
   if (displayPlansCount === 1) {
-    lgGridClass = "grid-cols-1 max-w-sm"; // Limit width for 1 card
+    lgGridClass = "grid-cols-1 max-w-sm";
   } else if (displayPlansCount === 2) {
-    lgGridClass = "grid-cols-2 max-w-2xl"; // Limit width for 2 cards
+    lgGridClass = "grid-cols-2 max-w-2xl";
   } else if (displayPlansCount === 3) {
-    lgGridClass = "grid-cols-3 max-w-3xl"; // Limit width for 3 cards
+    lgGridClass = "grid-cols-3 max-w-3xl";
   } else if (displayPlansCount === 4) {
-    lgGridClass = "grid-cols-4 max-w-6xl"; // Limit width for 4 cards
+    lgGridClass = "grid-cols-4 max-w-6xl";
   } else {
-    lgGridClass = "grid-cols-5"; // Default for 5 or more (using max-w-[1400px])
+    lgGridClass = "grid-cols-5";
   }
 
   return (
@@ -359,19 +362,17 @@ const PricingTablePage: React.FC = () => {
           Our Plans
         </h1>
 
-        {/* --- ADDED TOGGLE HERE --- */}
         <BillingToggle billingCycle={billingCycle} setBillingCycle={setBillingCycle} />
 
-        {/* Desktop View (lg and up) - Centering by limiting container width and using mx-auto */}
+        {/* Desktop View (lg and up) */}
         <div
           className={`hidden lg:grid ${lgGridClass} justify-center items-stretch gap-4 p-4 mx-auto`}
-        // The mx-auto centers the grid *within* the max-w-[1400px] parent.
-        // For < 5 cards, lgGridClass gives a tighter max-width which centers the group.
         >
           {filteredPlans.map((plan) => (
-            <div 
-              key={plan.id} 
-              className={`flex flex-col h-full ${plan.is_best_value ? "transform scale-[1.03] my-[-8px]" : ""}`}
+            <div
+              key={plan.id}
+              // FIX 3: Removed my-[-8px] to align the card containers correctly
+              className={`flex flex-col h-full ${plan.is_best_value ? "transform scale-[1.03]" : ""}`}
             >
               <PricingCard plan={plan} maxFeatures={maxFeatures} />
             </div>
@@ -380,11 +381,11 @@ const PricingTablePage: React.FC = () => {
 
         <hr className="hidden lg:block my-4 border-white/20" />
 
-        {/* Mobile View (below lg) - Centering already happens via items-center on a full-width container */}
+        {/* Mobile View (below lg) */}
         <div className="lg:hidden flex flex-col gap-6 items-center">
           {filteredPlans.map((plan) => (
-            <div 
-              key={plan.id} 
+            <div
+              key={plan.id}
               className={`w-full max-w-sm ${plan.is_best_value ? "transform scale-[1.03]" : ""}`}
             >
               <PricingCard plan={plan} maxFeatures={maxFeatures} />

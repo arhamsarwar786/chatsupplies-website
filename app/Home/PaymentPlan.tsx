@@ -4,27 +4,6 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const popupAnimation = `
-@keyframes popUp {
- 0% { opacity: 0; transform: scale(0.8); }
- 50% { opacity: 0.8; transform: scale(1.05); }
- 100% { opacity: 1; transform: scale(1); }
-}
-@keyframes popDown {
- 0% { opacity: 1; transform: scale(1); }
- 50% { opacity: 0.8; transform: scale(1.05); }
- 100% { opacity: 0; transform: scale(0.8); }
-}
-.animate-popUp { animation: popUp 0.3s ease-out forwards; }
-.animate-popDown { animation: popDown 0.3s ease-in forwards; }
-`;
-if (typeof document !== "undefined" && !document.getElementById("popupAnim")) {
-  const style = document.createElement("style");
-  style.id = "popupAnim";
-  style.innerHTML = popupAnimation;
-  document.head.appendChild(style);
-}
-
 interface Plan {
   id: number;
   name: string;
@@ -45,37 +24,104 @@ interface Plan {
 
 interface PricingCardProps {
   plan: Plan;
+  maxFeatures: number;
 }
+
+// --- NEW BillingToggle Component ---
+interface BillingToggleProps {
+  billingCycle: 'monthly' | 'yearly';
+  setBillingCycle: (cycle: 'monthly' | 'yearly') => void;
+}
+
+const BillingToggle: React.FC<BillingToggleProps> = ({ billingCycle, setBillingCycle }) => {
+  return (
+    <div className="flex justify-center mb-8 md:mb-12">
+      <div
+        className="relative flex p-1 rounded-full shadow-inner w-full max-w-xs"
+        style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+      >
+        {/* Active Slider Background */}
+        <div
+          className={`absolute top-1 bottom-1 w-1/2 rounded-full transition-transform duration-300 ease-in-out bg-blue-600 shadow-md ${billingCycle === 'monthly' ? 'translate-x-0' : 'translate-x-full'
+            }`}
+        ></div>
+
+        {/* Monthly Button */}
+        <button
+          className={`flex-1 px-4 py-2 text-center text-lg font-semibold relative z-10 transition-colors duration-300 ${billingCycle === 'monthly' ? 'text-white' : 'text-white/60'
+            }`}
+          onClick={() => setBillingCycle('monthly')}
+        >
+          Monthly
+        </button>
+
+        {/* Yearly Button */}
+        <button
+          className={`flex-1 px-4 py-2 text-center text-lg font-semibold relative z-10 transition-colors duration-300 ${billingCycle === 'yearly' ? 'text-white' : 'text-white/60'
+            }`}
+          onClick={() => setBillingCycle('yearly')}
+        >
+          Yearly
+        </button>
+      </div>
+    </div>
+  );
+};
+// ---------------------------------
+
 
 const PricingTablePage: React.FC = () => {
   const [plans, setPlans] = useState<Plan[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [maxFeatures, setMaxFeatures] = useState(0);
+  // --- NEW STATE FOR TOGGLE ---
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
+
 
   const mapPlanToCardData = (apiPlans: any[]): Plan[] => {
+    // Only take the first 5 plans as per existing logic
     const plansWithDefaults = apiPlans.slice(0, 5).map((apiPlan: any, index: number) => {
+      // The 'colors' array is used for static default assignment, but we'll override is_best_value later
       const colors = [
         { header: "", button: "hover:opacity-80" },
         { header: "", button: "hover:opacity-80" },
-        { header: "", button: "hover:opacity-80", bestValue: true },
+        { header: "", button: "hover:opacity-80", bestValue: false }, // Explicitly set to false here for dynamic assignment
         { header: "", button: "hover:opacity-80" },
         { header: "", button: "hover:opacity-80" },
-      ][index] || { header: "", button: "hover:opacity-80" };
+       ][index] || { header: "", button: "hover:opacity-80" };
 
       const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise");
 
       let parsedDescription: string[] = [];
       if (typeof apiPlan.description === "string") {
-        const descString = apiPlan.description.replace(/^\{|\}$/g, "");
+        const descString = apiPlan.description
+          .replace(/^[{\[\"]+|[}\]\"]+$/g, "")
+          .replace(/\\+/g, "")
+          .trim();
+
         parsedDescription = descString
           .split(",")
           .map((item: string) =>
-            item.trim().replace(/^"|"$/g, "").replace(/[\u00A0]/g, " ")
+            item
+              .trim()
+              .replace(/^"+|"+$/g, "")
+              .replace(/[\u00A0]/g, " ")
           )
-          .filter((item: string) => item.length > 0);
+          .filter(
+            (item: string) =>
+              item.length > 0 && !/[{}\\]/.test(item)
+          );
       } else if (Array.isArray(apiPlan.description)) {
         parsedDescription = apiPlan.description.map(String);
       }
+
+      // Converts "monthly" or "MONTHLY" → "Monthly"
+      const normalizedCycle =
+        apiPlan.billing_cycle && typeof apiPlan.billing_cycle === "string"
+          ? apiPlan.billing_cycle.charAt(0).toUpperCase() +
+          apiPlan.billing_cycle.slice(1).toLowerCase()
+          : "";
 
       return {
         id: apiPlan.id,
@@ -87,9 +133,10 @@ const PricingTablePage: React.FC = () => {
         duration_days: apiPlan.duration_days || 30,
         is_recurring: apiPlan.is_recurring,
         billing_cycle:
-          apiPlan.billing_cycle || (apiPlan.price === 0 ? "Always Free" : "Monthly"),
+          normalizedCycle || (apiPlan.price === 0 ? "Always Free" : ""),
         created_at: apiPlan.created_at,
 
+        // is_best_value will be calculated and applied after the fetch
         is_best_value: colors.bestValue || false,
         header_color: colors.header,
         button_color: `${colors.button} text-white`,
@@ -107,7 +154,29 @@ const PricingTablePage: React.FC = () => {
         if (!res.ok) throw new Error("Failed to fetch plans");
 
         const data = await res.json();
-        setPlans(mapPlanToCardData(data));
+        let mappedPlans = mapPlanToCardData(data);
+
+        // --- LOGIC FOR BEST VALUE (PRESERVED) ---
+        const totalPlans = mappedPlans.length;
+        if (totalPlans > 0) {
+          const centerIndex = Math.ceil(totalPlans / 2) - 1;
+
+          if (centerIndex >= 0 && centerIndex < totalPlans) {
+            mappedPlans = mappedPlans.map((plan, index) => ({
+              ...plan,
+              is_best_value: index === centerIndex,
+            }));
+          }
+        }
+        // ---------------------------------
+
+        setPlans(mappedPlans);
+
+        const max = mappedPlans.reduce(
+          (max, p) => Math.max(max, p.description.length),
+          0
+        );
+        setMaxFeatures(max);
       } catch (err: any) {
         console.error("API failed:", err.message);
         setPlans([]);
@@ -119,19 +188,31 @@ const PricingTablePage: React.FC = () => {
     fetchPlans();
   }, []);
 
-  const PricingCard: React.FC<PricingCardProps> = ({ plan }) => {
+  // --- NEW FILTER LOGIC ---
+  const filteredPlans = plans.filter(plan => {
+    const planBillingCycle = plan.billing_cycle.toLowerCase();
+    
+    if (billingCycle === 'monthly') {
+      return planBillingCycle.includes('monthly') || planBillingCycle.includes('month');
+    } else { // yearly
+      return planBillingCycle.includes('yearly') || planBillingCycle.includes('year') || 
+             planBillingCycle.includes('annual') || planBillingCycle.includes('always free');
+    }
+  });
+
+  const PricingCard: React.FC<PricingCardProps> = ({ plan, maxFeatures }) => {
     const isEnterprise = plan.name.toLowerCase().includes("enterprise");
     const buttonText = isEnterprise ? "Get a Quote" : "Choose This Plan";
 
-    let priceDisplay;
-    let currencySuffix;
     const currencySymbol =
       plan.currency.toLowerCase() === "eur"
         ? "€"
         : plan.currency.toLowerCase() === "usd"
-        ? "$"
-        : plan.currency;
+          ? "$"
+          : plan.currency;
 
+    let priceDisplay;
+    let currencySuffix;
     if (isEnterprise && plan.price === 0) {
       priceDisplay = plan.currency;
       currencySuffix = plan.billing_cycle;
@@ -143,18 +224,18 @@ const PricingTablePage: React.FC = () => {
       currencySuffix = plan.is_recurring ? plan.billing_cycle : "One-Time Payment";
     }
 
+    const FEATURE_ROW_HEIGHT_CLASS = "h-[56px]";
+
     return (
       <div
-        className={`flex flex-col justify-between h-full rounded-lg shadow-xl transition-all duration-300 border border-white/20 text-center ${
-          plan.is_best_value ? "transform scale-[1.03] relative z-10" : ""
-        }`}
+        className={`flex flex-col h-full rounded-lg shadow-xl transition-all duration-300 border border-white/20 text-center ${plan.is_best_value ? "relative z-10" : ""
+          }`}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       >
-        {/* ✅ Header */}
+        {/* Header */}
         <div
-          className={`p-4 relative flex flex-col items-center justify-center min-h-[60px] ${
-            isEnterprise ? "pt-8" : ""
-          }`}
+          className={`p-4 relative flex flex-col items-center justify-center h-[70px] ${isEnterprise ? "pt-8" : ""
+            }`}
           style={{
             background: "linear-gradient(to right, #2648EF 0%, #252F8B 100%)",
             opacity: 0.8,
@@ -170,54 +251,63 @@ const PricingTablePage: React.FC = () => {
           </h2>
         </div>
 
-        {/* ✅ Price */}
-        <div className="p-6 pb-4 flex flex-col items-center justify-center bg-transparent text-white border-b border-white/20 text-center">
-          <div className="text-4xl font-extrabold leading-none text-white">{priceDisplay}</div>
-          <p className="text-sm text-white/80 mt-1">{currencySuffix}</p>
-          {plan.is_recurring && plan.price !== 0 && (
-            <p className="text-xs text-white/70">{plan.billing_cycle}</p>
+        {/* Price */}
+        <div className="p-6 pb-4 border-b border-white/20 flex flex-col items-center justify-center text-white h-[120px]">
+          <div className="text-4xl font-extrabold leading-none text-white">
+            {priceDisplay}
+          </div>
+          {currencySuffix && (
+            <p className="text-sm text-white/80 mt-1">{currencySuffix}</p>
           )}
         </div>
 
-        {/* ✅ BUTTON */}
-        <div className="p-6 pt-6 bg-transparent border-b border-white/20 flex justify-center">
+        {/* Button */}
+        <div className="p-6 pt-6 border-b border-white/20 flex justify-center h-[100px]">
           <button className="w-full py-2.5 text-base font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md">
             {buttonText}
           </button>
         </div>
 
-        {/* ✅ Features */}
-        <div className="flex flex-col p-6 pt-0 flex-grow text-center justify-start">
-          <div className="space-y-0 flex-grow">
-            {plan.description && plan.description.length > 0 ? (
-              plan.description.map((item: string, index: number) => {
-                if (typeof item === "string" && item.includes("|")) {
-                  const [title, value] = item.split("|", 2);
-                  return (
-                    <div key={index} className="py-3 border-b border-white/20 last:border-b-0">
-                      <div className="text-sm text-white/90">
-                        <div className="font-bold text-white">{title.trim()}</div>
-                        <div className="text-white/70 mt-1">{value.trim()}</div>
+        {/* Features */}
+        <div className="flex flex-col flex-grow justify-start text-center">
+          <div className="p-6 pt-0 flex-grow flex flex-col justify-between">
+            <div className="space-y-0 flex-grow">
+              {Array.from({ length: maxFeatures }).map((_, index) => {
+                const item = plan.description[index];
+                const hasItem = item && item.length > 0;
+                const hasPipe = hasItem && item.includes("|");
+
+                const rowClass = `border-b border-white/20 last:border-b-0 ${FEATURE_ROW_HEIGHT_CLASS} flex items-center justify-center`;
+
+                if (hasItem) {
+                  if (hasPipe) {
+                    const [title, value] = item.split("|", 2);
+                    return (
+                      <div key={index} className={rowClass}>
+                        <div className="text-sm text-white/90">
+                          <div className="font-bold text-white leading-tight">
+                            {title.trim()}
+                          </div>
+                          <div className="text-white/70 mt-0.5 text-xs leading-tight">
+                            {value.trim()}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  );
-                } else if (item && item.length > 0) {
-                  // ✅ Removed tick icon here
-                  return (
-                    <div key={index} className="py-3 border-b border-white/20 last:border-b-0">
-                      <div className="flex flex-col items-center text-sm text-white/90">
-                        <span>{item.trim()}</span>
+                    );
+                  } else {
+                    return (
+                      <div key={index} className={rowClass}>
+                        <div className="flex flex-col items-center text-sm text-white/90">
+                          <span>{item.trim()}</span>
+                        </div>
                       </div>
-                    </div>
-                  );
+                    );
+                  }
+                } else {
+                  return <div key={index} className={rowClass}></div>;
                 }
-                return null;
-              })
-            ) : (
-              <div className="py-3 border-b border-white/20">
-                <p className="text-center text-sm text-white/90">No features listed</p>
-              </div>
-            )}
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -245,32 +335,59 @@ const PricingTablePage: React.FC = () => {
       </div>
     );
 
+  // Determine grid template for centering on large screens when plans < 5
+  // Use filteredPlans instead of plans for the count
+  let lgGridClass = "";
+  const displayPlansCount = filteredPlans.length;
+  
+  if (displayPlansCount === 1) {
+    lgGridClass = "grid-cols-1 max-w-sm"; // Limit width for 1 card
+  } else if (displayPlansCount === 2) {
+    lgGridClass = "grid-cols-2 max-w-2xl"; // Limit width for 2 cards
+  } else if (displayPlansCount === 3) {
+    lgGridClass = "grid-cols-3 max-w-3xl"; // Limit width for 3 cards
+  } else if (displayPlansCount === 4) {
+    lgGridClass = "grid-cols-4 max-w-6xl"; // Limit width for 4 cards
+  } else {
+    lgGridClass = "grid-cols-5"; // Default for 5 or more (using max-w-[1400px])
+  }
+
   return (
     <div className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
       <div className="max-w-[1400px] w-full mx-auto">
-        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">Our Plans</h1>
+        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">
+          Our Plans
+        </h1>
 
-        {/* ✅ Equal-height cards grid */}
+        {/* --- ADDED TOGGLE HERE --- */}
+        <BillingToggle billingCycle={billingCycle} setBillingCycle={setBillingCycle} />
+
+        {/* Desktop View (lg and up) - Centering by limiting container width and using mx-auto */}
         <div
-          className={`hidden lg:grid ${
-            plans.length === 5
-              ? "grid-cols-5"
-              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-5"
-          } justify-center items-stretch gap-4 p-4`}
+          className={`hidden lg:grid ${lgGridClass} justify-center items-stretch gap-4 p-4 mx-auto`}
+        // The mx-auto centers the grid *within* the max-w-[1400px] parent.
+        // For < 5 cards, lgGridClass gives a tighter max-width which centers the group.
         >
-          {plans.map((plan) => (
-            <div key={plan.id} className="flex flex-col h-full">
-              <PricingCard plan={plan} />
+          {filteredPlans.map((plan) => (
+            <div 
+              key={plan.id} 
+              className={`flex flex-col h-full ${plan.is_best_value ? "transform scale-[1.03] my-[-8px]" : ""}`}
+            >
+              <PricingCard plan={plan} maxFeatures={maxFeatures} />
             </div>
           ))}
         </div>
 
         <hr className="hidden lg:block my-4 border-white/20" />
 
+        {/* Mobile View (below lg) - Centering already happens via items-center on a full-width container */}
         <div className="lg:hidden flex flex-col gap-6 items-center">
-          {plans.map((plan) => (
-            <div key={plan.id} className="w-full max-w-sm">
-              <PricingCard plan={plan} />
+          {filteredPlans.map((plan) => (
+            <div 
+              key={plan.id} 
+              className={`w-full max-w-sm ${plan.is_best_value ? "transform scale-[1.03]" : ""}`}
+            >
+              <PricingCard plan={plan} maxFeatures={maxFeatures} />
             </div>
           ))}
         </div>

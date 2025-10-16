@@ -19,15 +19,16 @@ export default function Footer() {
           {/* Logo Section (25%) */}
           <div className="w-full lg:w-1/4 flex flex-col items-start mb-8 lg:mb-0">
             <div className="flex items-center">
-              <Image
-                src="/Robot/FooterLogo.svg"
-                alt="ChatSupplies Logo"
-                width={250}
-                height={250}
-                className="rounded-md transition-transform duration-300 hover:scale-105 hover:opacity-90 cursor-pointer"
-              />
+              <Link href="/">
+                <Image
+                  src="/Robot/FooterLogo.svg"
+                  alt="ChatSupplies Logo"
+                  width={250}
+                  height={250}
+                  className="rounded-md transition-transform duration-300 hover:scale-105 hover:opacity-90 cursor-pointer"
+                />
+              </Link>
             </div>
-
 
             {/* Paragraph under the logo */}
             <p className="text-white font-mont text-sm sm:text-base mt-3 max-w-xs">
@@ -42,7 +43,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2 lg:gap-4 md:gap-3">
               {[
                 { label: "Privacy Policy", href: "/PrivacyPolicy" },
-                { label: "Term and Conditions", href: "/Terms&Conditions" }, // match your page filename
+                { label: "Term and Conditions", href: "/Terms&Conditions" },
                 { label: "Contact us", href: "/packages" },
               ].map((item, idx) => (
                 <Link key={idx} href={item.href}>
@@ -53,34 +54,33 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Removed md:mt-3 to fix vertical misalignment on medium screens */}
+            {/* Second column */}
             <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
-              {["Documentation", "Help Center", "About us"].map(
-                (item, idx) => (
-                  <Link
-                    key={idx}
-                    href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
-                  >
-                    <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
-                      {item}
-                    </button>
-                  </Link>
-                )
-              )}
+              {["Documentation", "Help Center", "About us"].map((item, idx) => (
+                <Link
+                  key={idx}
+                  href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
+                >
+                  <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
+                    {item}
+                  </button>
+                </Link>
+              ))}
             </div>
-
-            {/* Third column - Removed as it was empty and wasn't displaying anything useful */}
           </div>
+
           {/* Social Icons Section (25%) */}
           <div className="w-full lg:w-1/4 flex flex-col items-start sm:items-start md:items-start -ml-4">
-            {/* Heading above social icons */}
             <h2 className="text-white font-mont font-bold text-lg mb-4 text-left ml-3">
               Follow us
             </h2>
 
             {/* Social Media Icons */}
             <div className="flex justify-start mb-6 -mt-5 w-auto">
-              <Link href="https://www.facebook.com/people/ChatSupplies/61580925337552/" target="_blank">
+              <Link
+                href="https://www.facebook.com/people/ChatSupplies/61580925337552/"
+                target="_blank"
+              >
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialMedia/facebook-f.svg"
@@ -98,7 +98,10 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://www.linkedin.com/company/108532655/admin/dashboard/" target="_blank">
+              <Link
+                href="https://www.linkedin.com/company/108532655/admin/dashboard/"
+                target="_blank"
+              >
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialIcons/linkedin-in.svg"
@@ -107,7 +110,10 @@ export default function Footer() {
                   />
                 </div>
               </Link>
-              <Link href="https://www.instagram.com/chat_supplies/?fbclid=IwY2xjawNQuGpleHRuA2FlbQIxMQBicmlkETFnaEk4YnQwdHJtdHhoa0xTAR4lC7_bFJEC2XqEec71Q0p2WRWQYAdUdpGEaNq3eXIOCrEGd66KNIvQTFGggg_aem_NooHTqRvWm0hRQR_iNVNEg" target="_blank">
+              <Link
+                href="https://www.instagram.com/chat_supplies/?fbclid=IwY2xjawNQuGpleHRuA2FlbQIxMQBicmlkETFnaEk4YnQwdHJtdHhoa0xTAR4lC7_bFJEC2XqEec71Q0p2WRWQYAdUdpGEaNq3eXIOCrEGd66KNIvQTFGggg_aem_NooHTqRvWm0hRQR_iNVNEg"
+                target="_blank"
+              >
                 <div className="flex items-center justify-center w-10 h-10 hover:bg-white/10 transition">
                   <img
                     src="/SocialIcons/instagram.svg"

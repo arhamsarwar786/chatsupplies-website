@@ -62,18 +62,16 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${scrolled ? "h-12 shadow-md backdrop-blur-md bg-blue-600/70" : "h-20"
-          }`}
+        className={`w-full fixed top-0 left-0 z-50 transition-all duration-300 ${
+          scrolled ? "h-12 shadow-md backdrop-blur-md bg-blue-600/70" : "h-20"
+        }`}
         style={{
-          background: scrolled
-            ? "rgba(0, 0, 0, 0.4)"
-            : "transparent",
+          background: scrolled ? "rgba(0, 0, 0, 0.4)" : "transparent",
         }}
       >
-
         <div className="max-w-[1440px] mx-auto flex items-center justify-between h-full px-6">
-          {/* Left Logo */}
-          <div className="flex items-center space-x-2 transition-all duration-300">
+          {/* Left Logo (now clickable to homepage) */}
+          <Link href="/" className="flex items-center space-x-2 transition-all duration-300">
             <Image
               src="/Robot/face.svg"
               alt="ChatSupplies Logo"
@@ -82,27 +80,26 @@ export default function Navbar() {
               className="rounded-md transition-all duration-300"
             />
             <span
-              className={`text-white font-mont font-bold transition-all duration-300 ${scrolled ? "text-base" : "text-lg"
-                }`}
+              className={`text-white font-mont font-bold transition-all duration-300 ${
+                scrolled ? "text-base" : "text-lg"
+              }`}
             >
               ChatSupplies
             </span>
-          </div>
+          </Link>
 
           {/* Center Navigation - Hidden on mobile */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item, idx) => (
               <Link key={idx} href={item.href}>
                 {item.label === "Login" ? (
-                  <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100  transition">
+                  <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition">
                     {item.label}
                   </button>
                 ) : (
                   <button className="cursor-pointer text-white font-bold px-3 py-2 hover:bg-white/10 rounded-md transition">
                     {item.label}
                   </button>
-
-
                 )}
               </Link>
             ))}
@@ -117,21 +114,20 @@ export default function Navbar() {
             >
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
-                    ? "rotate-45 translate-y-1"
-                    : "-translate-y-0.5"
+                  h-0.5 w-8 rounded-sm ${
+                    mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
                   }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm my-1 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
+                  h-0.5 w-8 rounded-sm my-1 ${
+                    mobileMenuOpen ? "opacity-0" : "opacity-100"
                   }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                          h-0.5 w-8 rounded-sm ${mobileMenuOpen
-                    ? "-rotate-45 -translate-y-1"
-                    : "translate-y-0.5"
+                  h-0.5 w-8 rounded-sm ${
+                    mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
                   }`}
               ></span>
             </button>
@@ -141,8 +137,9 @@ export default function Navbar() {
 
       {/* Mobile Menu Slider */}
       <div
-        className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`md:hidden fixed top-0 right-0 w-64 text-white transform transition-transform duration-300 ease-in-out ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
         style={{
           background: "linear-gradient(to bottom, #2648EF 0%, #252F8B 100%)",
           height: mobileMenuOpen ? "calc(100vh - 80px)" : "0",
@@ -184,7 +181,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Overlay - Only shown when mobile menu is open */}
+      {/* Overlay */}
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-30 md:hidden"

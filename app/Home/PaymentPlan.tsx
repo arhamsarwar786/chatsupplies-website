@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
+// --- Plan, PricingCardProps, BillingToggleProps, BillingToggle components remain unchanged ---
+
 interface Plan {
   id: number;
   name: string;
@@ -71,11 +73,14 @@ const BillingToggle: React.FC<BillingToggleProps> = ({ billingCycle, setBillingC
 
 
 const PricingTablePage: React.FC = () => {
-  const [plans, setPlans] = useState<Plan[]>([]);
+  // --- NEW STATES FOR SEPARATE PLAN STORAGE ---
+  const [monthlyPlans, setMonthlyPlans] = useState<Plan[]>([]);
+  const [yearlyPlans, setYearlyPlans] = useState<Plan[]>([]);
+  // --- EXISTING STATES ---
+  const [plans, setPlans] = useState<Plan[]>([]); // Current displayed plans
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [maxFeatures, setMaxFeatures] = useState(0);
-  // --- NEW STATE FOR TOGGLE ---
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
 
 
@@ -91,7 +96,7 @@ const PricingTablePage: React.FC = () => {
         { header: "", button: "hover:opacity-80" },
       ][index] || { header: "", button: "hover:opacity-80" };
 
-      const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise");
+      // const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise"); // Unused in this scope, but kept for context
 
       let parsedDescription: string[] = [];
       if (typeof apiPlan.description === "string") {
@@ -136,8 +141,8 @@ const PricingTablePage: React.FC = () => {
           normalizedCycle || (apiPlan.price === 0 ? "Always Free" : ""),
         created_at: apiPlan.created_at,
 
-        // is_best_value is set to false initially and recalculated on the filtered list
-        is_best_value: colors.bestValue || false,
+        // is_best_value is set to false initially
+        is_best_value: false,
         header_color: colors.header,
         button_color: `${colors.button} text-white`,
         text_color: "text-white",
@@ -154,19 +159,29 @@ const PricingTablePage: React.FC = () => {
         if (!res.ok) throw new Error("Failed to fetch plans");
 
         const data = await res.json();
-        let mappedPlans = mapPlanToCardData(data);
 
-        // Ensure plans are loaded without an initial 'best value' flag
-        setPlans(mappedPlans.map(plan => ({ ...plan, is_best_value: false })));
+        // 🟢 FIX 1: Store monthly and yearly plans separately
+        const monthlyApiPlans = Array.isArray(data.monthly) ? data.monthly : [];
+        const yearlyApiPlans = Array.isArray(data.yearly) ? data.yearly : [];
 
-        const max = mappedPlans.reduce(
+        const mappedMonthlyPlans = mapPlanToCardData(monthlyApiPlans);
+        const mappedYearlyPlans = mapPlanToCardData(yearlyApiPlans);
+
+        setMonthlyPlans(mappedMonthlyPlans);
+        setYearlyPlans(mappedYearlyPlans);
+
+        // Calculate maxFeatures across ALL fetched plans
+        const allMappedPlans = [...mappedMonthlyPlans, ...mappedYearlyPlans];
+        const max = allMappedPlans.reduce(
           (max, p) => Math.max(max, p.description.length),
           0
         );
         setMaxFeatures(max);
+
       } catch (err: any) {
         console.error("API failed:", err.message);
-        setPlans([]);
+        setMonthlyPlans([]);
+        setYearlyPlans([]);
         setError("Failed to load pricing plans from backend.");
       } finally {
         setLoading(false);
@@ -175,31 +190,26 @@ const PricingTablePage: React.FC = () => {
     fetchPlans();
   }, []);
 
-  // --- FILTER LOGIC ---
-  let filteredPlans = plans.filter(plan => {
-    const planBillingCycle = plan.billing_cycle.toLowerCase();
+  // 🟢 FIX 2: useEffect to update displayed plans when billingCycle or source plans change
+  useEffect(() => {
+    // Select the correct set of plans based on the billing cycle
+    let plansToDisplay = billingCycle === 'monthly' ? monthlyPlans : yearlyPlans;
 
-    if (billingCycle === 'monthly') {
-      return planBillingCycle.includes('monthly') || planBillingCycle.includes('month');
-    } else { // yearly
-      return planBillingCycle.includes('yearly') || planBillingCycle.includes('year') ||
-        planBillingCycle.includes('annual') || planBillingCycle.includes('always free');
+    // --- RECALCULATE BEST VALUE ON THE CURRENTLY DISPLAYED PLANS ARRAY ---
+    const displayPlansCount = plansToDisplay.length;
+    if (displayPlansCount > 0) {
+      const centerIndex = Math.ceil(displayPlansCount / 2) - 1;
+
+      // Re-map the plans to assign the best value flag to the middle plan
+      plansToDisplay = plansToDisplay.map((plan, index) => ({
+        ...plan,
+        is_best_value: index === centerIndex,
+      }));
     }
-  });
 
-  // ----------------------------------------------------------------------
-  // --- FIX 1: RECALCULATE BEST VALUE ON THE FILTERED PLANS ARRAY ---
-  // ----------------------------------------------------------------------
-  const displayPlansCount = filteredPlans.length;
-  if (displayPlansCount > 0) {
-    const centerIndex = Math.ceil(displayPlansCount / 2) - 1;
-
-    // Re-map the filtered plans to assign the best value flag to the middle plan
-    filteredPlans = filteredPlans.map((plan, index) => ({
-      ...plan,
-      is_best_value: index === centerIndex,
-    }));
-  }
+    // Update the main plans state, which is used for rendering
+    setPlans(plansToDisplay);
+  }, [billingCycle, monthlyPlans, yearlyPlans]);
   // ----------------------------------------------------------------------
 
 
@@ -320,6 +330,10 @@ const PricingTablePage: React.FC = () => {
     );
   };
 
+
+  // Use the 'plans' state for rendering, which is updated in the useEffect hook
+  const displayPlans = plans;
+
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen text-white text-lg">
@@ -334,7 +348,7 @@ const PricingTablePage: React.FC = () => {
       </div>
     );
 
-  if (!plans.length)
+  if (!monthlyPlans.length && !yearlyPlans.length) // Check both source arrays
     return (
       <div className="flex justify-center items-center min-h-screen text-white text-lg">
         No plans available.
@@ -343,13 +357,13 @@ const PricingTablePage: React.FC = () => {
 
   // Determine grid template for centering on large screens when plans < 5
   let lgGridClass = "";
-  if (displayPlansCount === 1) {
+  if (displayPlans.length === 1) {
     lgGridClass = "grid-cols-1 max-w-sm";
-  } else if (displayPlansCount === 2) {
+  } else if (displayPlans.length === 2) {
     lgGridClass = "grid-cols-2 max-w-2xl";
-  } else if (displayPlansCount === 3) {
+  } else if (displayPlans.length === 3) {
     lgGridClass = "grid-cols-3 max-w-3xl";
-  } else if (displayPlansCount === 4) {
+  } else if (displayPlans.length === 4) {
     lgGridClass = "grid-cols-4 max-w-6xl";
   } else {
     lgGridClass = "grid-cols-5";
@@ -368,10 +382,9 @@ const PricingTablePage: React.FC = () => {
         <div
           className={`hidden lg:grid ${lgGridClass} justify-center items-stretch gap-4 p-4 mx-auto`}
         >
-          {filteredPlans.map((plan) => (
+          {displayPlans.map((plan) => (
             <div
               key={plan.id}
-              // FIX 3: Removed my-[-8px] to align the card containers correctly
               className={`flex flex-col h-full ${plan.is_best_value ? "transform scale-[1.03]" : ""}`}
             >
               <PricingCard plan={plan} maxFeatures={maxFeatures} />
@@ -383,7 +396,7 @@ const PricingTablePage: React.FC = () => {
 
         {/* Mobile View (below lg) */}
         <div className="lg:hidden flex flex-col gap-6 items-center">
-          {filteredPlans.map((plan) => (
+          {displayPlans.map((plan) => (
             <div
               key={plan.id}
               className={`w-full max-w-sm ${plan.is_best_value ? "transform scale-[1.03]" : ""}`}

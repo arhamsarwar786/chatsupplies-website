@@ -10,8 +10,7 @@ import Navbar from './Components/navbar';
 import Footer from './Components/Footer';
 export default function Home() {
   return (
-    <>
-    
+    <>   
     <Navbar/>
       <Animated/>
       <KeyFeature/>

@@ -94,29 +94,31 @@ const PricingTablePage: React.FC = () => {
         { header: "", button: "hover:opacity-80", bestValue: false }, // Explicitly set to false here for dynamic assignment
         { header: "", button: "hover:opacity-80" },
         { header: "", button: "hover:opacity-80" },
-      ][index] || { header: "", button: "hover:opacity-80" };
+       ][index] || { header: "", button: "hover:opacity-80" };
 
       // const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise"); // Unused in this scope, but kept for context
 
       let parsedDescription: string[] = [];
       if (typeof apiPlan.description === "string") {
-        const descString = apiPlan.description
-          .replace(/^[{\[\"]+|[}\]\"]+$/g, "")
-          .replace(/\\+/g, "")
-          .trim();
-
-        parsedDescription = descString
-          .split(",")
-          .map((item: string) =>
-            item
-              .trim()
-              .replace(/^"+|"+$/g, "")
-              .replace(/[\u00A0]/g, " ")
-          )
-          .filter(
-            (item: string) =>
-              item.length > 0 && !/[{}\\]/.test(item)
-          );
+        // FIX: Properly handle pipe-separated and newline-separated descriptions
+        const descString = apiPlan.description.trim();
+        
+        // Split by newlines first, then handle pipe-separated values within each line
+        const lines = descString.split('\n');
+        parsedDescription = lines.flatMap((line: string) => {
+          const trimmedLine = line.trim();
+          if (trimmedLine.includes('|')) {
+            // For pipe-separated lines like "Limited Form|5 Form", keep them as single items
+            // This preserves the format for the PricingCard component to handle
+            return [trimmedLine];
+          } else if (trimmedLine) {
+            // For regular lines without pipes
+            return [trimmedLine];
+          }
+          return [];
+        });
+        
+        console.log(`Plan ${apiPlan.name} parsed description:`, parsedDescription);
       } else if (Array.isArray(apiPlan.description)) {
         parsedDescription = apiPlan.description.map(String);
       }
@@ -159,6 +161,7 @@ const PricingTablePage: React.FC = () => {
         if (!res.ok) throw new Error("Failed to fetch plans");
 
         const data = await res.json();
+        console.log("Raw API response:", data);
 
         // 🟢 FIX 1: Store monthly and yearly plans separately
         const monthlyApiPlans = Array.isArray(data.monthly) ? data.monthly : [];
@@ -166,6 +169,9 @@ const PricingTablePage: React.FC = () => {
 
         const mappedMonthlyPlans = mapPlanToCardData(monthlyApiPlans);
         const mappedYearlyPlans = mapPlanToCardData(yearlyApiPlans);
+
+        console.log("Mapped monthly plans:", mappedMonthlyPlans);
+        console.log("Mapped yearly plans:", mappedYearlyPlans);
 
         setMonthlyPlans(mappedMonthlyPlans);
         setYearlyPlans(mappedYearlyPlans);
@@ -177,6 +183,7 @@ const PricingTablePage: React.FC = () => {
           0
         );
         setMaxFeatures(max);
+        console.log("Max features:", max);
 
       } catch (err: any) {
         console.error("API failed:", err.message);
@@ -209,6 +216,7 @@ const PricingTablePage: React.FC = () => {
 
     // Update the main plans state, which is used for rendering
     setPlans(plansToDisplay);
+    console.log("Display plans updated:", plansToDisplay);
   }, [billingCycle, monthlyPlans, yearlyPlans]);
   // ----------------------------------------------------------------------
 
@@ -391,8 +399,6 @@ const PricingTablePage: React.FC = () => {
             </div>
           ))}
         </div>
-
-        <hr className="hidden lg:block my-4 border-white/20" />
 
         {/* Mobile View (below lg) */}
         <div className="lg:hidden flex flex-col gap-6 items-center">

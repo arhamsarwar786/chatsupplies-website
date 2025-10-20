@@ -41,23 +41,20 @@ const KeyFeatures = () => {
                     {/* Image fills top area */}
                     <div className="w-full">
                         <img
-                            src="https://cdn.dribbble.com/userupload/44542704/file/13ca425ba0da1ca177540c8b92ba0ebf.jpg?resize=1024x768&vertical=center"
+                            src="KeyFeatureCards/History.png"
                             alt="Chatbot Instant Responses"
-                            className="w-full h-48 md:h-88 object-cover rounded-t-2xl"
+                            className="w-full h-48 md:h-88 object-contain rounded-t-2xl"
                         />
                     </div>
 
                     {/* Text section */}
                     <div className="p-4 md:p-6 flex flex-col flex-grow">
                         <h2 className="text-xl md:text-2xl font-bold text-white">
-                            Instant responses
+                            Chat History
                         </h2>
                         <p className="text-white text-xs sm:text-sm md:text-[13px] lg:text-sm leading-relaxed">
-                            Provide quick, accurate answers to frequently asked questions, keeping
-                            visitors informed and engaged without delay. Whether it's business
-                            hours, product information, or policies, the advanced AI Chatbot can
-                            instantly get the information they need immediately, improving
-                            satisfaction and reducing the load on your support team.
+                            Easily access and review your chatbot’s past conversations in one place. Use chat history to analyze customer interactions and improve responses. Gain valuable insights that help you train smarter, more effective chatbots.
+
                         </p>
                     </div>
                 </div>
@@ -67,20 +64,23 @@ const KeyFeatures = () => {
                     {/* Image fills top area */}
                     <div className="w-full">
                         <img
-                            src="KeyFeatureCards/Chat Historys.PNG"
+                            src="KeyFeatureCards/Instant Responses.png"
                             alt="Form Assistance Interface"
-                            className="w-full h-48 md:h-88 object-cover rounded-t-2xl"
+                            className="w-full h-48 md:h-88 object-contain rounded-t-2xl"
                         />
                     </div>
 
                     {/* Text section */}
                     <div className="p-4 md:p-6 flex flex-col flex-grow">
                         <h2 className="text-xl md:text-2xl font-bold text-white">
-                            Chat History
+                            Instant responses
                         </h2>
                         <p className="text-white text-xs sm:text-sm md:text-[13.5px] lg:text-sm xl:text-base leading-relaxed md:leading-snug">
-                            Easily access and review your chatbot’s past conversations in one place. Use chat history to analyze customer interactions and improve responses. Gain valuable insights that help you train smarter, more effective chatbots.
-                        </p>
+                            Provide quick, accurate answers to frequently asked questions, keeping
+                            visitors informed and engaged without delay. Whether it's business
+                            hours, product information, or policies, the advanced AI Chatbot can
+                            instantly get the information they need immediately, improving
+                            satisfaction and reducing the load on your support team.                        </p>
                     </div>
                 </div>
 

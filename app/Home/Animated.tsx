@@ -47,7 +47,7 @@ export default function Animated() {
               onClick={togglePopup}
               className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer " style={{ fontFamily: 'Mont', fontWeight: 900 }}
             >
-              Book a demo
+              Let's try it
             </button>
           </div>
 
@@ -85,7 +85,7 @@ export default function Animated() {
             >
               ✕
             </button>
-            <h2 className="text-2xl mb-4 font-bold">Book a Demo</h2>
+            <h2 className="text-2xl mb-4 font-bold">Let's Try it</h2>
             <p className="mb-6 font-normal">
               Fill out this form and we'll get back to you shortly to schedule a demo.
             </p>

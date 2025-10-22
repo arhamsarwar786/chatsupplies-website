@@ -35,6 +35,8 @@ interface BillingToggleProps {
   setBillingCycle: (cycle: 'monthly' | 'yearly') => void;
 }
 
+
+
 const BillingToggle: React.FC<BillingToggleProps> = ({ billingCycle, setBillingCycle }) => {
   return (
     <div className="flex justify-center mb-8 md:mb-12">
@@ -94,7 +96,7 @@ const PricingTablePage: React.FC = () => {
         { header: "", button: "hover:opacity-80", bestValue: false }, // Explicitly set to false here for dynamic assignment
         { header: "", button: "hover:opacity-80" },
         { header: "", button: "hover:opacity-80" },
-       ][index] || { header: "", button: "hover:opacity-80" };
+      ][index] || { header: "", button: "hover:opacity-80" };
 
       // const isEnterprise = apiPlan.name.toLowerCase().includes("enterprise"); // Unused in this scope, but kept for context
 
@@ -378,7 +380,7 @@ const PricingTablePage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
+    <div id="payment-plans" className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
       <div className="max-w-[1400px] w-full mx-auto">
         <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">
           Our Plans

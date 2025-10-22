@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CONTACT_INFO } from "@/app/lib/Constant";
 
 export default function Footer() {
   return (
@@ -44,7 +45,7 @@ export default function Footer() {
               {[
                 { label: "Privacy Policy", href: "/PrivacyPolicy" },
                 { label: "Term and Conditions", href: "/Terms&Conditions" },
-                { label: "Contact us", href: "/packages" },
+                { label: "Contact us", href: "Contacts" },
               ].map((item, idx) => (
                 <Link key={idx} href={item.href}>
                   <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
@@ -138,9 +139,27 @@ export default function Footer() {
               <h2 className="text-white font-mont font-bold text-lg mb-2 -mt-6 ml-3">
                 Contact us
               </h2>
-              <p className="text-white font-mont text-base -mt-1 ml-4">
-                1-945-217-8349
+              <p className="text-white font-mont text-base -mt-1 ml-4 space-y-1">
+                {/* Phone (clickable to open dialer) */}
+                <a
+                  href={`tel:${CONTACT_INFO.PHONE}`}
+                  className="block hover:underline"
+                >
+                  {CONTACT_INFO.PHONE}
+                </a>
+
+                {/* Email (clickable to open mail app) */}
+                <a
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_INFO.EMAIL}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-white break-all hover:text-gray-300"
+                >
+                  {CONTACT_INFO.EMAIL}
+                </a>
               </p>
+
+
             </div>
           </div>
         </div>

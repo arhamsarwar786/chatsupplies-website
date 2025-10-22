@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from '../Components/navbar';
 import Form from '../Components/Form';
 import Footer from '../Components/Footer';
+import { CONTACT_INFO } from '@/app/lib/Constant';
 
 const App: React.FC = () => {
     return (
@@ -27,19 +28,28 @@ const App: React.FC = () => {
                         {/* Email */}
                         <div className="flex items-center space-x-2">
                             <Mail size={20} className="text-white min-w-[20px]" />
-                            <a href="mailto:info@snappy.io" className="text-white text-shadow-amber-200 font-mont break-words">info@ChatSupplies.io</a>
+                            <a
+                                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_INFO.EMAIL}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline text-white break-all hover:text-gray-300"
+                            >
+                                {CONTACT_INFO.EMAIL}
+                            </a>
+
+
                         </div>
 
                         {/* Phone */}
                         <div className="flex items-center space-x-2">
                             <Phone size={20} className="text-white min-w-[20px]" />
-                            <a href="tel:321-221-231" className="text-white font-mont text-sm">321-221-231</a>
-                        </div>
-
-                        {/* Customer Support Link */}
-                        <div className="flex items-center space-x-2">
-                            <a href="#" className="text-black-500 underline text-white font-mont font-semibold text-sm sm:text-base">Customer Support</a>
-                        </div>
+                            <a
+                                href={`tel:${CONTACT_INFO.PHONE}`}
+                                className="text-white font-mont text-sm hover:underline"
+                            >
+                                {CONTACT_INFO.PHONE}
+                            </a>
+                        </div>                       
                     </div>
 
                     {/* Extra Info Sections */}
@@ -66,9 +76,17 @@ const App: React.FC = () => {
                             <h2 className="text-base sm:text-lg text-white font-bold mb-3 md:mb-4">Media Inquiries</h2>
                             <p className="text-white font-mont text-xs sm:text-sm leading-relaxed">
                                 For media-related questions or press inquiries, please contact us at{" "}
-                                <a href="mailto:media@snappyapp.com" className="underline break-all">
-                                    media@ChatSupplies.com
-                                </a>.
+                                <a
+                                    href={`https://mail.google.com/mail/?view=cm&fs=1&to=${CONTACT_INFO.EMAIL}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="underline text-white break-all hover:text-gray-300"
+                                >
+                                    {CONTACT_INFO.EMAIL}
+                                </a>
+
+
+
                             </p>
                         </div>
                     </div>
@@ -84,18 +102,18 @@ const App: React.FC = () => {
                         <Form />
                         <p className="text-center text-xs text-gray-500 leading-relaxed mt-2">
                             By contacting us, you agree to our{" "}
-                            <a href="#" className="font-mont text-black font-semibold">
-                                Terms of service
+                            <a href="/Terms&Conditions" className="font-mont text-black font-semibold">
+                                Terms and Conditions
                             </a>{" "}
                             and{" "}
-                            <a href="#" className="text-black font-mont font-semibold">
+                            <a href="/PrivacyPolicy" className="text-black font-mont font-semibold">
                                 Privacy Policy
                             </a>
                         </p>
                     </div>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </div>
     );
 };

@@ -50,9 +50,27 @@ export default function Navbar() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  // Function to handle Plans navigation
+  const handlePlansClick = (e: React.MouseEvent, isMobile = false) => {
+    if (isMobile) {
+      setMobileMenuOpen(false);
+    }
+
+    // If we're already on the home page, scroll to plans section
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      const plansSection = document.getElementById('payment-plans');
+      if (plansSection) {
+        plansSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // If we're on a different page, let the Link handle navigation to "/Plans"
+    // The Plans page should have the payment-plans section at the top
+  };
+
   const navItems = [
     { label: "Services", href: "/Services" },
-    { label: "Plans", href: "/Plans" },
+    { label: "Plans", href: "/Plans" }, // Changed from id to label for consistency
     { label: "Documentation", href: "/Documentation" },
     { label: "Contact Us", href: "/Contacts" },
     { label: "About", href: "/About" },
@@ -97,7 +115,10 @@ export default function Navbar() {
                     {item.label}
                   </button>
                 ) : (
-                  <button className="cursor-pointer text-white font-bold px-3 py-2 hover:bg-white/10 rounded-md transition">
+                  <button 
+                    className="cursor-pointer text-white font-bold px-3 py-2 hover:bg-white/10 rounded-md transition"
+                    onClick={(e) => item.label === "Plans" ? handlePlansClick(e) : undefined}
+                  >
                     {item.label}
                   </button>
                 )}
@@ -171,7 +192,13 @@ export default function Navbar() {
               <Link
                 key={idx}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.label === "Plans") {
+                    handlePlansClick(e, true);
+                  } else {
+                    setMobileMenuOpen(false);
+                  }
+                }}
               >
                 <button className="text-white cursor-pointer text-lg font-mont font-bold hover:text-gray-200 transition w-full text-left">
                   {item.label}

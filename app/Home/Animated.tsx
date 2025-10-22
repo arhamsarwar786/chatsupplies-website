@@ -3,7 +3,6 @@
 import Head from "next/head";
 import { useState } from "react";
 import { User, Mail, ChevronDown, MessageSquare } from "lucide-react";
-import Form from "../Components/Form";
 
 export default function Animated() {
   const [showPopup, setShowPopup] = useState(false);
@@ -43,12 +42,14 @@ export default function Animated() {
               and boost business efficiency?
             </p>
 
-            <button
-              onClick={togglePopup}
-              className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer " style={{ fontFamily: 'Mont', fontWeight: 900 }}
-            >
-              Let's try it
-            </button>
+           <button
+  onClick={() => window.open("https://admin.chatsupplies.com/auth/signup", "_blank")}
+  className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer"
+  style={{ fontFamily: 'Mont', fontWeight: 900 }}
+>
+  Let's try it
+</button>
+
           </div>
 
           {/* Right content: Robot with background (desktop only) */}
@@ -65,31 +66,6 @@ export default function Animated() {
                 className="w-64 md:w-80 lg:w-[24rem] max-w-full h-auto relative z-10 -translate-x-4"
               />
             </div>
-          </div>
-        </div>
-
-        {/* Popup overlay */}
-        <div
-          className={`fixed inset-0 bg-black/60 flex items-center justify-center z-50 transition-opacity duration-300 ${showPopup ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
-        >
-          <div
-            className={`bg-white text-[#0E1F4F] p-8 rounded-lg max-w-md w-full mx-4 relative font-mont transform transition-all duration-300 ease-out ${showPopup
-                ? "scale-100 opacity-100 translate-y-0"
-                : "scale-95 opacity-0 -translate-y-4"
-              }`}
-          >
-            <button
-              onClick={togglePopup}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 cursor-pointer"
-            >
-              ✕
-            </button>
-            <h2 className="text-2xl mb-4 font-bold">Let's Try it</h2>
-            <p className="mb-6 font-normal">
-              Fill out this form and we'll get back to you shortly to schedule a demo.
-            </p>
-          <Form/>
           </div>
         </div>
 

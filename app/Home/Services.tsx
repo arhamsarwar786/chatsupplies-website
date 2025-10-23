@@ -84,7 +84,7 @@ const Services = () => {
                     {/* Image takes full top area */}
                     <div className="flex-grow flex justify-center p-0">
                         <img
-                            src="./KeyFeatureCards/Customizable Branding.png"
+                            src="./KeyFeatureCards/Customization.png"
                             alt="Customizable Branding Interface"
                             // Set the image width to 99.8% of the parent container
                             // and use 'mx-auto' to center it, creating 0.1% space on each side.

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const KeyFeatures = () => {
+const Services = () => {
     return (
-        <div className="py-8 md:py-16">
+        <div id="services-section" className="py-8 md:py-16">
             <div className="container mx-auto px-4">
-                <h1 className="text-center text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-white">
-                    Key features
+                <h1 className="text-center text-3xl md:text-6xl font-bold mb-8 md:mb-12 text-white">
+                    Services
                 </h1>
             </div>
 
@@ -53,8 +53,7 @@ const KeyFeatures = () => {
                             Chat History
                         </h2>
                         <p className="text-white text-xs sm:text-sm md:text-[13px] lg:text-sm leading-relaxed">
-                            Easily access and review your chatbot’s past conversations in one place. Use chat history to analyze customer interactions and improve responses. Gain valuable insights that help you train smarter, more effective chatbots.
-
+                            Easily access and review all your chatbot’s past conversations in one organized place. Explore detailed chat histories to understand customer behavior, identify common questions, and evaluate chatbot performance. Use these insights to refine your chatbot’s responses, enhance user satisfaction, and continuously train smarter, more effective AI assistants.
                         </p>
                     </div>
                 </div>
@@ -76,11 +75,7 @@ const KeyFeatures = () => {
                             Instant responses
                         </h2>
                         <p className="text-white text-xs sm:text-sm md:text-[13.5px] lg:text-sm xl:text-base leading-relaxed md:leading-snug">
-                            Provide quick, accurate answers to frequently asked questions, keeping
-                            visitors informed and engaged without delay. Whether it's business
-                            hours, product information, or policies, the advanced AI Chatbot can
-                            instantly get the information they need immediately, improving
-                            satisfaction and reducing the load on your support team.                        </p>
+                            Provide instant, accurate answers to FAQs like business hours, product details, or policies. Keep visitors informed and satisfied while reducing your support team’s workload.                        </p>
                     </div>
                 </div>
 
@@ -115,9 +110,9 @@ const KeyFeatures = () => {
                 <div className="md:col-span-3 bg-gradient-to-t from-[#252F8B]/80 via-black/20 to-[#2648EF]/0 rounded-xl flex flex-col flex-grow">
                     {/* Image fills whole top area */}
                     <img
-                        src="./KeyFeatureCards/Embed Everywhere.PNG"
+                        src="./KeyFeatureCards/embed.png"
                         alt="Embed Code Interface"
-                        className="w-full h-48 md:h-[400px] object-cover rounded-t-xl"
+                        className="w-full h-48 md:h-[400px] object-contain rounded-t-xl"
                     />
 
                     {/* Text section */}
@@ -170,11 +165,16 @@ const KeyFeatures = () => {
                         <p className="text-white text-xs md:text-sm mb-4">
                             Easily create, train, and embed AI-powered chatbots into your website!                        </p>
                         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                            <a href="https://admin.chatsupplies.com/auth/login">
+                            <a
+                                href="https://admin.chatsupplies.com/auth/login"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <button className="bg-[#2648EF] hover:bg-[#2648EF]/30 text-white font-mont font-bold py-2 px-4 md:px-6 transition duration-300 cursor-pointer text-sm md:text-base">
                                     Start Using ChatSupplies!
                                 </button>
                             </a>
+
 
                             <button className="bg-transparent border border-white text-white hover:bg-white/20 font-mont font-bold py-2 px-4 md:px-6 cursor-pointer transition duration-300 text-sm md:text-base">
                                 Learn More
@@ -197,4 +197,4 @@ const KeyFeatures = () => {
     );
 };
 
-export default KeyFeatures;
+export default Services;

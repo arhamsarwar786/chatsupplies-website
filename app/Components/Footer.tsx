@@ -57,7 +57,7 @@ export default function Footer() {
 
             {/* Second column */}
             <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
-              {["Documentation", "Help Center", "About us"].map((item, idx) => (
+              {["Documentation", "About us", ""].map((item, idx) => (
                 <Link
                   key={idx}
                   href={`/${item.toLowerCase().replace(/\s+/g, "")}`}

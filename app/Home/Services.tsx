@@ -174,11 +174,6 @@ const Services = () => {
                                     Start Using ChatSupplies!
                                 </button>
                             </a>
-
-
-                            <button className="bg-transparent border border-white text-white hover:bg-white/20 font-mont font-bold py-2 px-4 md:px-6 cursor-pointer transition duration-300 text-sm md:text-base">
-                                Learn More
-                            </button>
                         </div>
                     </div>
 

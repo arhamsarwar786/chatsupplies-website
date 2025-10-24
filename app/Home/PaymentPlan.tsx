@@ -255,10 +255,9 @@ const PricingTablePage: React.FC = () => {
           }`}
         style={{ backgroundColor: "rgba(255, 255, 255, 0.1)" }}
       >
-        {/* Header */}
+        {/* Header - Increased height to accommodate wrapped text */}
         <div
-          // FIX 2: Added conditional pt-[25px] to align header content across all cards
-          className={`p-4 relative flex flex-col items-center justify-center h-[70px] ${isEnterprise ? "pt-8" : ""
+          className={`p-4 relative flex flex-col items-center justify-center min-h-[90px] ${isEnterprise ? "pt-8" : ""
             } ${plan.is_best_value ? "" : "pt-[25px]"}`
           }
           style={{
@@ -272,24 +271,26 @@ const PricingTablePage: React.FC = () => {
               Best Value
             </div>
           )}
-          <h2 className="text-3xl font-extrabold text-white uppercase text-center">
+          <h2 className="text-3xl font-extrabold text-white uppercase text-center break-words whitespace-normal px-2 w-full leading-tight">
             {plan.name}
           </h2>
         </div>
 
         {/* Price (Fixed height h-[120px] ensures alignment) */}
         <div className="p-6 pb-4 border-b border-white/20 flex flex-col items-center justify-center text-white h-[120px]">
-          <div className="text-4xl font-extrabold leading-none text-white">
+          <div className="text-4xl font-extrabold leading-none text-white break-words whitespace-normal text-center w-full px-2">
             {priceDisplay}
           </div>
           {currencySuffix && (
-            <p className="text-sm text-white/80 mt-1">{currencySuffix}</p>
+            <p className="text-sm text-white/80 mt-1 break-words whitespace-normal text-center w-full px-2">
+              {currencySuffix}
+            </p>
           )}
         </div>
 
         {/* Button (Fixed height h-[100px] ensures alignment) */}
         <div className="p-6 pt-6 border-b border-white/20 flex justify-center h-[100px]">
-          <button className="w-full py-2.5 text-base font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md">
+          <button className="w-full py-2.5 text-base font-semibold text-[#00FFFF] border border-white rounded-full bg-transparent hover:bg-white/10 hover:shadow-[0_0_10px_#00FFFF] transition-all duration-300 shadow-md break-words whitespace-normal">
             {buttonText}
           </button>
         </div>
@@ -310,11 +311,11 @@ const PricingTablePage: React.FC = () => {
                     const [title, value] = item.split("|", 2);
                     return (
                       <div key={index} className={rowClass}>
-                        <div className="text-sm text-white/90">
-                          <div className="font-bold text-white leading-tight">
+                        <div className="text-sm w-full px-2">
+                          <div className="font-bold text-white leading-tight break-words whitespace-normal">
                             {title.trim()}
                           </div>
-                          <div className="text-white/70 mt-0.5 text-xs leading-tight">
+                          <div className="text-white/70 mt-0.5 text-xs leading-tight break-words whitespace-normal">
                             {value.trim()}
                           </div>
                         </div>
@@ -323,8 +324,10 @@ const PricingTablePage: React.FC = () => {
                   } else {
                     return (
                       <div key={index} className={rowClass}>
-                        <div className="flex flex-col items-center text-sm text-white/90">
-                          <span>{item.trim()}</span>
+                        <div className="flex flex-col items-center text-sm text-white/90 w-full px-2">
+                          <span className="break-words whitespace-normal text-center w-full">
+                            {item.trim()}
+                          </span>
                         </div>
                       </div>
                     );
@@ -382,7 +385,7 @@ const PricingTablePage: React.FC = () => {
   return (
     <div id="payment-plans" className="min-h-screen p-4 sm:p-8 text-white font-sans flex items-center justify-center">
       <div className="max-w-[1400px] w-full mx-auto">
-        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold">
+        <h1 className="text-3xl md:text-5xl text-center mb-8 md:mb-12 font-bold break-words whitespace-normal">
           Our Plans
         </h1>
 

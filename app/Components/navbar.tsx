@@ -86,13 +86,16 @@ export default function Navbar() {
   };
 
   const navItems = [
-    { label: "Services", href: "/Services" },
-    { label: "Plans", href: "/Plans" },
-    { label: "Integration", href: "/Documentation" },
+    { label: "Services", href: "/" },
+    { label: "Plans", href: "/" },
+    { label: "Integration", href: "https://developer.chatsupplies.com/" }, // Changed href to just the external URL
     { label: "Contact Us", href: "/Contacts" },
-    { label: "About", href: "/About" },
+    { label: "About us", href: "/About" },
     { label: "Login", href: "https://admin.chatsupplies.com/auth/login" },
   ];
+  
+  // Helper to determine if a link should open in a new tab
+  const opensInNewTab = (label: string) => label === "Login" || label === "Integration";
 
   return (
     <>
@@ -127,8 +130,10 @@ export default function Navbar() {
               <Link
                 key={idx}
                 href={item.href}
-                target={item.label === "Login" ? "_blank" : undefined}
-                rel={item.label === "Login" ? "noopener noreferrer" : undefined}
+                // --- Start of desktop changes ---
+                target={opensInNewTab(item.label) ? "_blank" : undefined}
+                rel={opensInNewTab(item.label) ? "noopener noreferrer" : undefined}
+                // --- End of desktop changes ---
               >
                 {item.label === "Login" ? (
                   <button className="cursor-pointer rounded-lg bg-white px-4 py-2 text-blue-600 font-bold shadow hover:bg-gray-100 transition">
@@ -143,6 +148,7 @@ export default function Navbar() {
                       } else if (item.label === "Services") {
                         handleServicesClick(e);
                       }
+                      // For Integration, we don't prevent default, as it's an external link handled by the Link component
                     }}
                   >
                     {item.label}
@@ -161,17 +167,17 @@ export default function Navbar() {
             >
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                  h-0.5 w-8 rounded-sm ${mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
+                h-0.5 w-8 rounded-sm ${mobileMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
                   }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                  h-0.5 w-8 rounded-sm my-1 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
+                h-0.5 w-8 rounded-sm my-1 ${mobileMenuOpen ? "opacity-0" : "opacity-100"
                   }`}
               ></span>
               <span
                 className={`bg-white block transition-all duration-300 ease-out 
-                  h-0.5 w-8 rounded-sm ${mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
+                h-0.5 w-8 rounded-sm ${mobileMenuOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
                   }`}
               ></span>
             </button>
@@ -217,6 +223,10 @@ export default function Navbar() {
               <Link
                 key={idx}
                 href={item.href}
+                // --- Start of mobile changes ---
+                target={opensInNewTab(item.label) ? "_blank" : undefined}
+                rel={opensInNewTab(item.label) ? "noopener noreferrer" : undefined}
+                // --- End of mobile changes ---
                 onClick={(e) => {
                   if (item.label === "Plans") {
                     handlePlansClick(e, true);

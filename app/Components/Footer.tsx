@@ -56,18 +56,33 @@ export default function Footer() {
             </div>
 
             {/* Second column */}
-            <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
-              {["Integration", "About us", ""].map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={`/${item.toLowerCase().replace(/\s+/g, "")}`}
-                >
-                  <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
-                    {item}
-                  </button>
-                </Link>
-              ))}
-            </div>
+           <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
+  {[
+    { name: "Integration", link: "https://developer.chatsupplies.com/" },
+    { name: "About us", link: "/About" },
+  ].map((item, idx) => (
+    item.name === "Integration" ? (
+      <a
+        key={idx}
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
+          {item.name}
+        </button>
+      </a>
+    ) : (
+      <Link key={idx} href={item.link}>
+        <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
+          {item.name}
+        </button>
+      </Link>
+    )
+  ))}
+</div>
+
+
           </div>
 
           {/* Social Icons Section (25%) */}

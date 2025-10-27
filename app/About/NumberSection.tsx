@@ -58,5 +58,4 @@ const NumberSection: FC = () => {
     </div>
   );
 };
-
 export default NumberSection;

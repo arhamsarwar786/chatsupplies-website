@@ -3,6 +3,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import { User, Mail, ChevronDown, MessageSquare } from "lucide-react";
+import NewForm from "../Components/NewForm";
 
 export default function Animated() {
   const [showPopup, setShowPopup] = useState(false);
@@ -13,7 +14,6 @@ export default function Animated() {
 
   return (
     <>
-
       <div className="min-h-screen text-white flex flex-col justify-center items-center relative overflow-hidden font-mont">
 
         {/* Main content area */}
@@ -42,13 +42,23 @@ export default function Animated() {
               and boost business efficiency?
             </p>
 
-           <button
-  onClick={() => window.open("https://admin.chatsupplies.com/auth/signup", "_blank")}
-  className="mt-24 border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer"
-  style={{ fontFamily: 'Mont', fontWeight: 900 }}
->
-  Let's try it
-</button>
+            <div className="mt-24 flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={() => window.open("https://admin.chatsupplies.com/auth/signup", "_blank")}
+                className="border-4 border-[#FFFFFF] bg-transparent text-[#FFFFFF] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer"
+                style={{ fontFamily: 'Mont', fontWeight: 900 }}
+              >
+                Let's try it
+              </button>
+              
+              <button
+                onClick={togglePopup}
+                className="border-4 border-[#FFFFFF] bg-white text-[#0E1B4F] py-3 px-8 rounded-full hover:bg-white hover:text-[#0E1B4F] transition cursor-pointer"
+                style={{ fontFamily: 'Mont', fontWeight: 900 }}
+              >
+                Hire me
+              </button>
+            </div>
 
           </div>
 
@@ -81,6 +91,21 @@ export default function Animated() {
             <image href="/Lines/VectorLine.svg" width="100%" height="100%" />
           </svg>
         </div>
+
+        {/* Popup */}
+        {showPopup && (
+          <div className="fixed inset-0 bg-black/30 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-lg p-6 max-w-md w-full relative">
+              <button
+                onClick={togglePopup}
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+              >
+                ✕
+              </button>
+              <NewForm />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

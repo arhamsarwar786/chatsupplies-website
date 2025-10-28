@@ -187,9 +187,10 @@ const ContactForm: React.FC = () => {
             defaultCountry="PK"
             value={form.phone_number}
             onChange={handlePhoneChange}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-gray-700 placeholder-gray-400 text-sm"
+            className="phone-input-fix w-full border border-gray-200 rounded-xl px-3 py-2 text-gray-700 placeholder-gray-400 text-sm focus-within:ring-2 focus-within:ring-black-500 focus-within:border-transparent transition"
             placeholder="Enter phone number"
           />
+
           <ChevronDown
             size={16}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"

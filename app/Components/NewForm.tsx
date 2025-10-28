@@ -6,7 +6,6 @@ import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { toast } from "sonner";
 
-// Google Calendar URL
 const CALENDAR_URL =
   "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2rHh8wWbK63YzdsCt1sqMjhGGDhoUGq_t2jworrQuGyHABuYkoId8F7PKaeRDMnpAdQXXMX7rx?gv=true";
 
@@ -20,13 +19,11 @@ const NewForm: React.FC = () => {
     setForm({ ...form, phone_number: value || "" });
   };
 
-  // Open popup with animation
   const openModal = useCallback(() => {
     setIsModalOpen(true);
     setTimeout(() => setModalAnimationClass("scale-100 opacity-100"), 20);
   }, []);
 
-  // Close popup with reverse animation
   const closeModal = useCallback(() => {
     setModalAnimationClass("scale-95 opacity-0");
     setTimeout(() => setIsModalOpen(false), 300);
@@ -40,15 +37,16 @@ const NewForm: React.FC = () => {
     const firstName = (formData.get("firstName") as string)?.trim();
     const lastName = (formData.get("lastName") as string)?.trim();
     const email = (formData.get("email") as string)?.trim();
+    const websiteUrl = (formData.get("websiteUrl") as string)?.trim();
+    const companyName = (formData.get("companyName") as string)?.trim();
     const phone_number = form.phone_number?.trim();
 
-    if (!firstName || !lastName || !email || !phone_number) {
+    if (!firstName || !lastName || !email || !phone_number || !websiteUrl || !companyName) {
       toast.error("Please fill all required fields");
       setLoading(false);
       return;
     }
 
-    // Simulate small delay
     await new Promise((resolve) => setTimeout(resolve, 800));
 
     toast.success("Form submitted successfully! Opening calendar...");
@@ -61,6 +59,12 @@ const NewForm: React.FC = () => {
 
   return (
     <>
+      {/* --- Header --- */}
+      <div className="text-center mb-5">
+        <h2 className="text-2xl font-bold text-start text-gray-900">Hire us</h2>
+        <p className="text-gray-500 text-start text-sm mt-1">You can reach us anytime</p>
+      </div>
+
       {/* --- Contact Form --- */}
       <form
         onSubmit={handleSubmit}
@@ -79,7 +83,7 @@ const NewForm: React.FC = () => {
                 name="firstName"
                 placeholder="First name"
                 pattern="[A-Za-z]+"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 required
               />
             </div>
@@ -97,7 +101,7 @@ const NewForm: React.FC = () => {
                 name="lastName"
                 placeholder="Last name"
                 pattern="[A-Za-z]+"
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
                 required
               />
             </div>
@@ -114,7 +118,7 @@ const NewForm: React.FC = () => {
             id="email"
             name="email"
             placeholder="Your email"
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
             required
           />
         </div>
@@ -126,7 +130,7 @@ const NewForm: React.FC = () => {
             defaultCountry="PK"
             value={form.phone_number}
             onChange={handlePhoneChange}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-gray-700 placeholder-gray-400 text-sm"
+            className="phone-input-fix w-full border border-gray-200 rounded-xl px-3 py-2 text-gray-700 placeholder-gray-400 text-sm focus-within:ring-2 focus-within:ring-black-500 focus-within:border-transparent transition"
             placeholder="Enter phone number"
           />
           <ChevronDown
@@ -144,8 +148,9 @@ const NewForm: React.FC = () => {
             type="url"
             id="websiteUrl"
             name="websiteUrl"
-            placeholder="Your website URL (Optional)"
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+            placeholder="Your website URL"
+            required
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           />
         </div>
 
@@ -158,41 +163,40 @@ const NewForm: React.FC = () => {
             type="text"
             id="companyName"
             name="companyName"
-            placeholder="Company Name (Optional)"
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm"
+            placeholder="Company Name"
+            required
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl text-gray-700 placeholder-gray-400 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
           />
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full text-white font-semibold cursor-pointer py-2 rounded-xl transition-all duration-300 shadow-lg bg-[linear-gradient(to_right,#2648EF_0%,#252F8B_100%)] hover:brightness-110 text-sm"
+          className="w-full text-white font-semibold cursor-pointer py-2 rounded-xl transition-all duration-300 shadow-md bg-[linear-gradient(to_right,#2648EF_0%,#252F8B_100%)] hover:brightness-110 text-sm"
         >
           {loading ? "Submitting..." : "Submit"}
         </button>
+       
       </form>
 
       {/* --- Calendar Modal --- */}
       {isModalOpen && (
         <div
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-opacity duration-500 ${
-            isModalOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm transition-opacity duration-500 ${isModalOpen ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div
             className={`relative w-full h-full max-w-[95vw] max-h-[95vh] bg-white rounded-lg shadow-2xl transform transition-all duration-500 ${modalAnimationClass}`}
           >
-            {/* Header + Close Button */}
-            <div className="absolute top-4 right-4 z-10">
+            <div className="absolute right-2 z-10">
               <button
                 onClick={closeModal}
-                className="p-2 bg-white rounded-full shadow-lg text-gray-600 hover:text-gray-900 transition-colors"
+                className="p-2 bg-white cursor-pointer rounded-full shadow-lg text-gray-600 hover:text-gray-900 transition-colors"
               >
                 <X size={22} />
               </button>
             </div>
 
-            {/* Iframe Calendar */}
             <iframe
               src={CALENDAR_URL}
               title="Google Calendar Appointment Scheduler"
@@ -208,5 +212,4 @@ const NewForm: React.FC = () => {
     </>
   );
 };
-
 export default NewForm;

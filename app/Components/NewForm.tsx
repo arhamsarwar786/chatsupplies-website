@@ -176,7 +176,6 @@ const NewForm: React.FC = () => {
         >
           {loading ? "Submitting..." : "Submit"}
         </button>
-       
       </form>
 
       {/* --- Calendar Modal --- */}

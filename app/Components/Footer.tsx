@@ -60,6 +60,7 @@ export default function Footer() {
               {[
                 { name: "Integration", link: "https://developer.chatsupplies.com/" },
                 { name: "About us", link: "/About" },
+                 { name: "Blogs", link: "/Blogs" },
               ].map((item, idx) => (
                 item.name === "Integration" ? (
                   <a

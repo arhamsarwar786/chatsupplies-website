@@ -1,3 +1,4 @@
+// app/layout.tsx
 import "./globals.css"; 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -19,6 +20,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
 // ✅ Added favicon reference
 export const metadata: Metadata = {
   title: "ChatSupplies - Smart Chat Solutions",

@@ -3,11 +3,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Eye, EyeOff, X } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import app from "@/app/lib/firebase";
-import {BASE_URL} from "@/app/lib/Constant";
+import { logAnalyticsEvent } from "@/app/lib/firebase"; // Import analytics
+import { useAdminAnalytics } from "@/app/Hooks/useAdminAnalytics"; // Import admin analytics hook
 
 // Import the renamed component
 import SignupForm from "./Signup";
@@ -25,12 +25,17 @@ export default function AuthPopup() {
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
-    const router = useRouter();
 
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
+    const { trackAdminActivity, trackAdminPageView, trackAdminError } = useAdminAnalytics();
 
     useEffect(() => {
+        // Track popup view
+        logAnalyticsEvent('auth_popup_view', {
+            view_type: isLoginView ? 'login' : 'signup'
+        });
+        
         // Reset form fields and error when the pop-up opens or view changes
         setUsername("");
         setPassword("");
@@ -38,14 +43,48 @@ export default function AuthPopup() {
     }, [isLoginView]);
 
     // Helper functions for switching views
-    const switchToLogin = () => setIsLoginView(true);
-    const switchToSignup = () => setIsLoginView(false);
+    const switchToLogin = () => {
+        logAnalyticsEvent('auth_view_switch', {
+            from: 'signup',
+            to: 'login'
+        });
+        setIsLoginView(true);
+    };
+    
+    const switchToSignup = () => {
+        logAnalyticsEvent('auth_view_switch', {
+            from: 'login',
+            to: 'signup'
+        });
+        setIsLoginView(false);
+    };
+    
     const closePopupAndLogin = () => {
+        logAnalyticsEvent('auth_popup_closed', {
+            view_type: isLoginView ? 'login' : 'signup'
+        });
         setShowPopup(false);
     }
+
     const handleSignupSuccess = () => {
+        logAnalyticsEvent('signup_success_switch_to_login');
         switchToLogin();
     }
+
+    // Function to update login state across components
+    const updateLoginState = () => {
+        // Dispatch a custom event to notify other components about login state change
+        window.dispatchEvent(new Event('authStateChange'));
+    }
+
+    // Track user interactions
+    const trackUserInteraction = (interactionType: string, additionalParams = {}) => {
+        logAnalyticsEvent('auth_user_interaction', {
+            interaction_type: interactionType,
+            view_type: isLoginView ? 'login' : 'signup',
+            ...additionalParams
+        });
+    };
 
     // --- Login Function with direct API call (No RTK Query) ---
     const handleLogin = async (e: React.FormEvent) => {
@@ -54,15 +93,29 @@ export default function AuthPopup() {
         if (!username || !password) {
             setError("Please fill in all fields.");
             toast.error("Please fill in all fields");
+            
+            // Track validation error
+            logAnalyticsEvent('login_validation_error', {
+                error_type: 'empty_fields',
+                username_provided: !!username,
+                password_provided: !!password
+            });
+            
             return;
         }
 
         setIsLoading(true);
         setError("");
 
+        // Track login attempt
+        logAnalyticsEvent('login_attempt', {
+            method: 'email_password',
+            username: username
+        });
+
         try {
             // Use the same BASE_URL from your auth API configuration
-            const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3001';
+            const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://api.chatsupplies.com';
             const loginUrl = `${BASE_URL}/auth/login`;
             
             console.log("🔍 Attempting login to:", loginUrl);
@@ -89,6 +142,15 @@ export default function AuthPopup() {
                     // If JSON parsing fails, use status text
                     errorMessage = response.statusText || errorMessage;
                 }
+                
+                // Track login failure
+                logAnalyticsEvent('login_failed', {
+                    method: 'email_password',
+                    error_message: errorMessage,
+                    status_code: response.status,
+                    username: username
+                });
+                
                 throw new Error(errorMessage);
             }
 
@@ -109,39 +171,48 @@ export default function AuthPopup() {
                 localStorage.setItem("userid", user.id);
                 localStorage.setItem("userObject", JSON.stringify(user));
                 localStorage.setItem("role", user.role);
+                localStorage.setItem("isLoggedIn", "true"); // 👈 Add login state
 
                 console.log("💾 Data stored in localStorage");
+
+                // Track successful login
+                logAnalyticsEvent('login_success', {
+                    method: 'email_password',
+                    user_id: user.id,
+                    user_role: user.role,
+                    username: username,
+                    email: email
+                });
+
+                // Track admin-specific login
+                if (user.role === 'admin') {
+                    trackAdminActivity('admin_login', {
+                        login_method: 'email_password',
+                        username: username,
+                        email: email,
+                        login_timestamp: new Date().toISOString()
+                    });
+                }
 
                 toast.success("Login successful!");
                 
                 setIsLoading(false);
                 closePopupAndLogin();
 
-                // Prepare data for admin dashboard
-                const dashboardData = {
-                    token: token,
-                    email: email,
-                    userid: user.id,
-                    username: username,
-                    userObject: JSON.stringify(user),
-                    apikey: apikey,
-                    role: user.role,
-                    login_time: new Date().toISOString(),
-                };
+                // Update login state across components
+                updateLoginState(); // 👈 Notify other components
 
-                // Open admin dashboard with all required data
-                const queryParams = new URLSearchParams();
-                Object.entries(dashboardData).forEach(([key, value]) => {
-                    if (value) queryParams.append(key, value.toString());
-                });
-
-                const dashboardUrl = `https://admin.chatsupplies.com/dashboard?${queryParams.toString()}`;
-                console.log("🚀 Opening dashboard:", dashboardUrl);
-
-                window.open(dashboardUrl, "_blank");
+                console.log("✅ Login completed successfully - user data stored in localStorage");
             } else {
                 setError("Invalid response from server");
                 toast.error("Invalid response from server");
+                
+                // Track server error
+                logAnalyticsEvent('login_server_error', {
+                    error_type: 'invalid_response',
+                    has_token: !!token,
+                    has_role: !!user?.role
+                });
             }
         } catch (err: any) {
             console.error("❌ Login failed:", err);
@@ -158,13 +229,23 @@ export default function AuthPopup() {
             
             setError(message);
             toast.error(message);
+            
+            // Track login error
+            trackAdminError('login_error', {
+                error_type: err.name || 'unknown',
+                error_message: message,
+                login_method: 'email_password'
+            });
         }
     };
 
-    // --- Google Login Function (Keep existing) ---
+    // --- Google Login Function with Analytics ---
     const handleGoogleLogin = async () => {
         setIsLoading(true);
         setError("");
+
+        // Track Google sign-in attempt
+        logAnalyticsEvent('google_signin_attempt');
 
         try {
             console.log("🔐 Firebase Google authentication");
@@ -201,38 +282,51 @@ export default function AuthPopup() {
             localStorage.setItem("userid", userId);
             localStorage.setItem("userObject", JSON.stringify(userObject));
             localStorage.setItem("loginSource", "firebase-google");
+            localStorage.setItem("isLoggedIn", "true"); // 👈 Add login state
 
             console.log("💾 Data stored in localStorage");
 
-            // 5. Prepare data for admin dashboard
-            const dashboardData = {
-                token: token,
-                email: email || "",
-                userid: userId,
-                username: displayName,
-                userObject: JSON.stringify(userObject),
-                apikey: "", // Leave empty if not available
-                role: "user",
-                login_time: new Date().toISOString(),
-            };
+            // 5. Track successful Google sign-in
+            logAnalyticsEvent('google_signin_success', {
+                user_id: userId,
+                email: email,
+                display_name: displayName
+            });
 
-            // 6. Open admin dashboard with all required data
+            // Track admin-specific Google login (if applicable)
+            // Note: You might need to check with your backend if this user is admin
+            if (email && email.includes('admin')) { // Simple check, adjust as needed
+                trackAdminActivity('admin_google_login', {
+                    user_id: userId,
+                    email: email,
+                    login_timestamp: new Date().toISOString()
+                });
+            }
+
+            // 6. Success flow without navigation
             setIsLoading(false);
             closePopupAndLogin();
 
-            const queryParams = new URLSearchParams();
-            Object.entries(dashboardData).forEach(([key, value]) => {
-                if (value) queryParams.append(key, value.toString());
-            });
+            // Update login state across components
+            updateLoginState(); // 👈 Notify other components
 
-            const dashboardUrl = `https://admin.chatsupplies.com/dashboard?${queryParams.toString()}`;
-            console.log("🚀 Opening dashboard:", dashboardUrl);
-
-            window.open(dashboardUrl, "_blank");
+            console.log("✅ Google login completed successfully - user data stored in localStorage");
 
         } catch (error: any) {
             console.error("❌ Google login failed:", error);
             setIsLoading(false);
+            
+            // Track Google sign-in failure
+            logAnalyticsEvent('google_signin_failed', {
+                error_code: error.code || 'unknown',
+                error_message: error.message
+            });
+
+            trackAdminError('google_login_error', {
+                error_type: error.code || 'unknown',
+                error_message: error.message
+            });
+
             // Handle Google auth errors
             if (error.code === 'auth/popup-closed-by-user') {
                 // User closed the popup - reset loading state and don't show error
@@ -282,7 +376,11 @@ export default function AuthPopup() {
                         if (error && e.target.value.trim()) {
                             setError("");
                         }
+                        trackUserInteraction('username_input', {
+                            input_length: e.target.value.length
+                        });
                     }}
+                    onFocus={() => trackUserInteraction('username_focus')}
                     disabled={isLoading}
                     className={`w-full px-3 py-2 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 bg-[#f3f0ff] text-black placeholder-gray-500 ${error && !username ? "border-red-500" : "border-gray-300"
                         }`}
@@ -301,6 +399,7 @@ export default function AuthPopup() {
                                 setError("");
                             }
                         }}
+                        onFocus={() => trackUserInteraction('password_focus')}
                         disabled={isLoading}
                         className={`w-full px-3 py-2 rounded-md border text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 bg-[#f3f0ff] text-black placeholder-gray-500 ${error && !password ? "border-red-500" : "border-gray-300"
                             }`}
@@ -308,7 +407,12 @@ export default function AuthPopup() {
                     />
                     <button
                         type="button"
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => {
+                            setShowPassword(!showPassword);
+                            trackUserInteraction('toggle_password_visibility', {
+                                new_state: !showPassword ? 'visible' : 'hidden'
+                            });
+                        }}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-800 transition-colors"
                         disabled={isLoading}
                     >
@@ -320,6 +424,7 @@ export default function AuthPopup() {
                 <button
                     type="submit"
                     disabled={isLoading}
+                    onClick={() => trackUserInteraction('login_button_click')}
                     className="w-full py-2 text-white font-medium rounded-full bg-gradient-to-r from-[#2648EF] to-[#252F8B] hover:opacity-90 transition disabled:opacity-50 text-sm"
                 >
                     {isLoading ? "Logging in..." : "Login"}
@@ -352,7 +457,10 @@ export default function AuthPopup() {
                 <p className="text-center text-xs text-gray-600 mt-3">
                     Don't have an account?{" "}
                     <span
-                        onClick={switchToSignup}
+                        onClick={() => {
+                            trackUserInteraction('signup_link_click');
+                            switchToSignup();
+                        }}
                         className="text-blue-600 font-semibold cursor-pointer hover:underline"
                     >
                         Sign up
@@ -369,14 +477,20 @@ export default function AuthPopup() {
             {/* Overlay */}
             <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity animate-fade-in"
-                onClick={() => setShowPopup(false)}
+                onClick={() => {
+                    trackUserInteraction('overlay_click');
+                    setShowPopup(false);
+                }}
             ></div>
 
             {/* Popup */}
             <div className="relative z-10 w-full max-w-sm mx-auto bg-white rounded-xl shadow-lg p-4 animate-slide-up border border-gray-200">
                 {/* Close button */}
                 <button
-                    onClick={() => setShowPopup(false)}
+                    onClick={() => {
+                        trackUserInteraction('close_button_click');
+                        setShowPopup(false);
+                    }}
                     className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition"
                     aria-label="Close"
                 >

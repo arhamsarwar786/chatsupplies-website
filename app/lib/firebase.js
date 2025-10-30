@@ -1,6 +1,7 @@
-// Import the functions you need from the SDKs you need
+// lib/firebase.js
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,8 +18,29 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 auth.languageCode = 'en';
 
+// Initialize Analytics
+let analytics;
+if (typeof window !== 'undefined') {
+  analytics = getAnalytics(app);
+}
+
 const provider = new GoogleAuthProvider();
 
+// Analytics helper function
+export const logAnalyticsEvent = (eventName, eventParams = {}) => {
+  if (typeof window !== 'undefined' && analytics) {
+    logEvent(analytics, eventName, eventParams);
+  }
+};
+
 // Export everything you might need
-export { auth, provider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup };
+export { 
+  auth, 
+  provider, 
+  analytics,
+  logAnalyticsEvent,
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signInWithPopup 
+};
 export default app;

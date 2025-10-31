@@ -1,6 +1,12 @@
 // lib/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  GoogleAuthProvider, 
+  signInWithPopup 
+} from "firebase/auth";
 import { getAnalytics, logEvent } from "firebase/analytics";
 
 // Your web app's Firebase configuration
@@ -33,14 +39,14 @@ export const logAnalyticsEvent = (eventName, eventParams = {}) => {
   }
 };
 
-// Export everything you might need
+// ✅ Fixed export (no duplicate)
 export { 
   auth, 
   provider, 
   analytics,
-  logAnalyticsEvent,
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   signInWithPopup 
 };
+
 export default app;

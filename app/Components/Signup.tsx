@@ -239,12 +239,12 @@ export default function SignupForm({ onLoginClick, onSignupSuccess }: SignupForm
                 />
 
                 {/* Phone */}
-                <PhoneInput
-                    value={form.phone_number}
-                    onChange={handlePhoneChange}
-                    className={`w-full border rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-800 placeholder-gray-500 phone-input-style ${missing.includes("phone_number") ? "border-red-500" : "border-gray-300"
-                        }`}
-                />
+               <PhoneInput
+    value={form.phone_number}
+    onChange={handlePhoneChange}
+    className={`w-full border rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 text-gray-800 placeholder-gray-500 phone-input-fix ${missing.includes("phone_number") ? "border-red-500" : "border-gray-300"
+        }`}
+/>
 
                 {/* Website URL */}
                 <input
@@ -268,13 +268,16 @@ export default function SignupForm({ onLoginClick, onSignupSuccess }: SignupForm
                                 : "border-gray-300"
                                 }`}
                         >
-                            <SelectValue placeholder="Select Industry" />
+                            <SelectValue 
+                                placeholder="Select Industry" 
+                                className="text-gray-800 bg-transparent placeholder-gray-500"
+                            />
                         </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="tech">Technology</SelectItem>
-                            <SelectItem value="finance">Finance</SelectItem>
-                            <SelectItem value="health">Healthcare</SelectItem>
-                            <SelectItem value="education">Education</SelectItem>
+                        <SelectContent className="text-gray-800 bg-white">
+                            <SelectItem value="tech" className="text-gray-800 hover:bg-gray-100 focus:bg-gray-100">Technology</SelectItem>
+                            <SelectItem value="finance" className="text-gray-800 hover:bg-gray-100 focus:bg-gray-100">Finance</SelectItem>
+                            <SelectItem value="health" className="text-gray-800 hover:bg-gray-100 focus:bg-gray-100">Healthcare</SelectItem>
+                            <SelectItem value="education" className="text-gray-800 hover:bg-gray-100 focus:bg-gray-100">Education</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>

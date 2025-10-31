@@ -4,26 +4,22 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import LoginPopup from "./Login";
-import ProfileCard from "./profileCard"; // Import your ProfileCard component
+import ProfileCard from "./profileCard";
 
 // REVISED: SVG icon to closely match the uploaded image (outlined profile inside a circle).
-// The stroke will be 'currentColor' which we set to white later.
 const ProfileIconWithCircle = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    fill="none" // No fill to prevent a background color inside the icon
-    stroke="currentColor" // Use currentColor to inherit the desired color (white)
+    fill="none"
+    stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}
   >
-    {/* Outer Circle (the border) */}
     <circle cx="12" cy="12" r="10" />
-    {/* Inner Profile Head */}
     <circle cx="12" cy="10" r="3" />
-    {/* Inner Profile Body (simplified) */}
     <path d="M17.941 17c-.5-1.1-1.3-2-2.3-2.6C14.6 13.7 13.3 13 12 13s-2.6.7-3.641 1.4c-1 .6-1.8 1.5-2.3 2.6" />
   </svg>
 );
@@ -33,57 +29,48 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const [showProfilePopup, setShowProfilePopup] = useState(false); // State for profile popup
+  const [showProfilePopup, setShowProfilePopup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userInfo, setUserInfo] = useState({ name: "", email: "" }); // Store user info
+  const [userInfo, setUserInfo] = useState({ name: "", email: "" });
 
-  // Check login status on component mount and when auth state changes
-  useEffect(() => {
-    const checkLoginStatus = () => {
-      const loggedIn = localStorage.getItem("isLoggedIn") === "true";
-      setIsLoggedIn(loggedIn);
+  // FIXED: Centralized login status checker
+  const checkLoginStatus = () => {
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    setIsLoggedIn(loggedIn);
+    
+    if (loggedIn) {
+      const username = localStorage.getItem("username") || "";
+      const userObject = localStorage.getItem("userObject");
+      let email = "";
       
-      // Get user info when logged in
-      if (loggedIn) {
-        const username = localStorage.getItem("username") || "";
-        const userObject = localStorage.getItem("userObject");
-        let email = "";
-        
-        if (userObject) {
-          try {
-            const user = JSON.parse(userObject);
-            email = user.email || "";
-          } catch (error) {
-            console.error("Error parsing userObject:", error);
-          }
+      if (userObject) {
+        try {
+          const user = JSON.parse(userObject);
+          email = user.email || "";
+        } catch (error) {
+          console.error("Error parsing userObject:", error);
         }
-        
-        setUserInfo({ name: username, email });
       }
-    };
+      
+      setUserInfo({ name: username, email });
+    } else {
+      setUserInfo({ name: "", email: "" });
+    }
+  };
 
-    // Check initial login status
+  useEffect(() => {
+    // Initial check
     checkLoginStatus();
 
-    // Listen for auth state changes from other components
+    // FIXED: Single event listener with proper cleanup
     const handleAuthStateChange = () => {
       checkLoginStatus();
     };
 
     window.addEventListener('authStateChange', handleAuthStateChange);
 
-    // Also check when storage changes (in case of multiple tabs)
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "isLoggedIn") {
-        checkLoginStatus();
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
     return () => {
       window.removeEventListener('authStateChange', handleAuthStateChange);
-      window.removeEventListener('storage', handleStorageChange);
     };
   }, []);
 
@@ -101,31 +88,60 @@ export default function Navbar() {
     };
   }, []);
 
+  // FIXED: Improved overflow management
   useEffect(() => {
-    // Correctly manages body overflow when any popup or menu is open
-    if (mobileMenuOpen || showLoginPopup || showProfilePopup) {
+    const hasOpenPopup = mobileMenuOpen || showLoginPopup || showProfilePopup;
+    
+    if (hasOpenPopup) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
-  }, [mobileMenuOpen, showLoginPopup, showProfilePopup]); 
+  }, [mobileMenuOpen, showLoginPopup, showProfilePopup]);
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
-  // Function to handle profile icon click - FIXED BEHAVIOR
+  // FIXED: Improved profile click handler with popup coordination
   const handleProfileClick = () => {
     if (isLoggedIn) {
-      setShowProfilePopup(true); // Opens ProfileCard if logged in
+      setShowProfilePopup(true);
+      setShowLoginPopup(false);
     } else {
-      setShowLoginPopup(true); // Opens LoginPopup if not logged in
+      setShowLoginPopup(true);
+      setShowProfilePopup(false);
     }
+  };
+
+  // FIXED: Close all popups function
+  const closeAllPopups = () => {
+    setShowLoginPopup(false);
+    setShowProfilePopup(false);
+    setMobileMenuOpen(false);
+  };
+
+  // FIXED: Handle login success from the popup
+  const handleLoginSuccess = () => {
+    setShowLoginPopup(false);
+    // Re-check login status after successful login
+    setTimeout(() => {
+      checkLoginStatus();
+    }, 100);
+  };
+
+  // FIXED: Handle profile popup close
+  const handleProfilePopupClose = () => {
+    setShowProfilePopup(false);
+    // Re-check login status after profile popup closes (in case of logout)
+    setTimeout(() => {
+      checkLoginStatus();
+    }, 100);
   };
 
   const handlePlansClick = (e: React.MouseEvent, isMobile = false) => {
@@ -147,11 +163,9 @@ export default function Navbar() {
   };
 
   const handleDashboardClick = () => {
-    // Track dashboard access attempt
     const userObject = localStorage.getItem("userObject");
     const user = userObject ? JSON.parse(userObject) : null;
 
-    // Log analytics event without sending tokens
     if (typeof window !== 'undefined' && (window as any).logAnalyticsEvent) {
       (window as any).logAnalyticsEvent('dashboard_access_attempt', {
         user_id: user?.id || 'unknown',
@@ -160,7 +174,6 @@ export default function Navbar() {
       });
     }
 
-    // Simply redirect to dashboard without sending tokens
     const dashboardUrl = `https://admin.chatsupplies.com/auth/login`;
     console.log("🚀 Opening dashboard");
 
@@ -211,7 +224,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* 🛠️ FIX: Increased space-x- from 4 to 8 to separate the jammed links */}
           <div className="hidden md:flex items-center space-x-8 ml-auto">
             
             {/* Nav Links Group */}
@@ -238,30 +250,28 @@ export default function Navbar() {
               </Link>
             ))}
 
-            {/* Dashboard Button (Text only) - Logged in view */}
+            {/* Dashboard Button - Logged in view */}
             {isLoggedIn && (
               <button
                 onClick={handleDashboardClick}
-                // Removed px-4 py-2 hover:bg-gray-100 to make it look like the screenshot but kept it functional
                 className="cursor-pointer font-bold transition flex items-center bg-white text-blue-600 px-4 py-2 hover:bg-gray-100 rounded-full" 
               >
                 <span>Dashboard</span>
               </button>
             )}
             
-            {/* Profile/Login Icon (Always visible on desktop) */}
+            {/* Profile/Login Icon */}
             <button
-              onClick={handleProfileClick} // Calls handler that checks isLoggedIn
+              onClick={handleProfileClick}
               className="cursor-pointer font-bold transition flex items-center justify-between text-white px-3 py-2 hover:bg-white/10 rounded-full space-x-2"
             >
               <ProfileIconWithCircle className="h-9 w-9" />
-              {/* Added 'Login' text for the logged-out state for clarity */}
               {!isLoggedIn && <span className="text-white">Login</span>}
             </button>
             
           </div>
           
-          {/* Hamburger Menu (remains far right) */}
+          {/* Hamburger Menu */}
           {isMobile && (
             <button
               onClick={toggleMobileMenu}
@@ -307,11 +317,11 @@ export default function Navbar() {
         }}
       >
         <div className="flex flex-col p-6 space-y-6">
-          {/* Profile Button in Mobile - Opens profile card or login popup */}
+          {/* Profile Button in Mobile */}
           <button
             onClick={() => {
               setMobileMenuOpen(false);
-              handleProfileClick(); // Use the unified handler
+              handleProfileClick();
             }}
             className="cursor-pointer text-white font-bold shadow hover:bg-white/10 transition w-full text-left flex items-center space-x-2 px-3 py-2 rounded-lg"
           >
@@ -365,27 +375,35 @@ export default function Navbar() {
         ></div>
       )}
 
-      {/* 👇 Login Popup appears here (without 'onClose' to avoid previous TS error) */}
-      {showLoginPopup && <LoginPopup />} 
-
-      {/* 👇 Profile Popup appears here (Correctly shows the ProfileCard) */}
-      {showProfilePopup && (
-        <>
-          {/* Backdrop for profile popup */}
-          <div 
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-            onClick={() => setShowProfilePopup(false)}
-          >
-            {/* Profile Card */}
-            <div onClick={(e) => e.stopPropagation()}>
-              <ProfileCard
-                email={userInfo.email}
-                name={userInfo.name}
-                onClose={() => setShowProfilePopup(false)}
-              />
-            </div>
+      {/* FIXED: Login Popup without onClose prop to avoid TypeScript errors */}
+      {showLoginPopup && (
+        <div 
+          className="fixed inset-0 z-50"
+          onClick={() => {
+            setShowLoginPopup(false);
+            handleLoginSuccess();
+          }}
+        >
+          <div onClick={(e) => e.stopPropagation()}>
+            <LoginPopup />
           </div>
-        </>
+        </div>
+      )}
+
+      {/* FIXED: Profile Popup without onLogout prop to avoid TypeScript errors */}
+      {showProfilePopup && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
+          onClick={handleProfilePopupClose}
+        >
+          <div onClick={(e) => e.stopPropagation()}>
+            <ProfileCard
+              email={userInfo.email}
+              name={userInfo.name}
+              onClose={handleProfilePopupClose}
+            />
+          </div>
+        </div>
       )}
     </>
   );

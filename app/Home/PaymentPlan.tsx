@@ -249,6 +249,11 @@ const PricingTablePage: React.FC = () => {
 
     const FEATURE_ROW_HEIGHT_CLASS = "h-[56px]";
 
+    // FIX: Filter out empty description items and only show actual features
+    const validFeatures = plan.description.filter(item => 
+      item && item.trim().length > 0
+    );
+
     return (
       <div
         className={`flex flex-col h-full rounded-lg shadow-xl transition-all duration-300 border border-white/20 text-center ${plan.is_best_value ? "relative z-10" : ""
@@ -295,45 +300,38 @@ const PricingTablePage: React.FC = () => {
           </button>
         </div>
 
-        {/* Features */}
+        {/* Features - FIXED: Only show actual features, no empty rows */}
         <div className="flex flex-col flex-grow justify-start text-center">
           <div className="p-6 pt-0 flex-grow flex flex-col justify-between">
             <div className="space-y-0 flex-grow">
-              {Array.from({ length: maxFeatures }).map((_, index) => {
-                const item = plan.description[index];
-                const hasItem = item && item.length > 0;
-                const hasPipe = hasItem && item.includes("|");
-
+              {validFeatures.map((item, index) => {
+                const hasPipe = item.includes("|");
                 const rowClass = `border-b border-white/20 last:border-b-0 ${FEATURE_ROW_HEIGHT_CLASS} flex items-center justify-center`;
 
-                if (hasItem) {
-                  if (hasPipe) {
-                    const [title, value] = item.split("|", 2);
-                    return (
-                      <div key={index} className={rowClass}>
-                        <div className="text-sm w-full px-2">
-                          <div className="font-bold text-white leading-tight break-words whitespace-normal">
-                            {title.trim()}
-                          </div>
-                          <div className="text-white/70 mt-0.5 text-xs leading-tight break-words whitespace-normal">
-                            {value.trim()}
-                          </div>
+                if (hasPipe) {
+                  const [title, value] = item.split("|", 2);
+                  return (
+                    <div key={index} className={rowClass}>
+                      <div className="text-sm w-full px-2">
+                        <div className="font-bold text-white leading-tight break-words whitespace-normal">
+                          {title.trim()}
+                        </div>
+                        <div className="text-white/70 mt-0.5 text-xs leading-tight break-words whitespace-normal">
+                          {value.trim()}
                         </div>
                       </div>
-                    );
-                  } else {
-                    return (
-                      <div key={index} className={rowClass}>
-                        <div className="flex flex-col items-center text-sm text-white/90 w-full px-2">
-                          <span className="break-words whitespace-normal text-center w-full">
-                            {item.trim()}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  }
+                    </div>
+                  );
                 } else {
-                  return <div key={index} className={rowClass}></div>;
+                  return (
+                    <div key={index} className={rowClass}>
+                      <div className="flex flex-col items-center text-sm text-white/90 w-full px-2">
+                        <span className="break-words whitespace-normal text-center w-full">
+                          {item.trim()}
+                        </span>
+                      </div>
+                    </div>
+                  );
                 }
               })}
             </div>

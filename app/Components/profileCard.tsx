@@ -310,9 +310,10 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="Enter current password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
               disabled={isLoading}
             />
+
             <button
               type="button"
               onClick={toggleCurrentPasswordVisibility}
@@ -371,9 +372,10 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter new password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
               disabled={isLoading}
             />
+
             <button
               type="button"
               onClick={toggleNewPasswordVisibility}
@@ -396,9 +398,10 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Confirm new password"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-10 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150"
               disabled={isLoading}
             />
+
             <button
               type="button"
               onClick={toggleConfirmPasswordVisibility}
@@ -609,7 +612,8 @@ const ManageChatsForm: React.FC<ManageChatsFormProps> = ({ handleClose, isLoadin
             type="text"
             value={form.firstName}
             onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-            className={`mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 ${missing.includes("firstName") ? "border-red-500" : "border-gray-300"}`}
+            className={`mt-1 w-full border rounded-lg px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 ${missing.includes("firstName") ? "border-red-500" : "border-gray-300"
+              }`}
             placeholder="Enter your first name"
             disabled={isLoading}
           />
@@ -623,7 +627,7 @@ const ManageChatsForm: React.FC<ManageChatsFormProps> = ({ handleClose, isLoadin
             type="text"
             value={form.lastName}
             onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-            className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="mt-1 w-full border border-gray-300 rounded-lg px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter your last name"
             disabled={isLoading}
           />
@@ -634,12 +638,12 @@ const ManageChatsForm: React.FC<ManageChatsFormProps> = ({ handleClose, isLoadin
             Phone Number
           </label>
           <PhoneInput
-            // @ts-ignore: Assuming PhoneInput accepts string | undefined for value
             value={form.phone_number}
             onChange={handlePhoneChange}
-            className={`mt-1 w-full border rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 ${missing.includes("phone_number") ? "border-red-500" : "border-gray-300"}`}
+            className="mt-1 w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900 placeholder-gray-400"
             disabled={isLoading}
           />
+
         </div>
 
         {error && (

@@ -88,7 +88,7 @@ export default function Navbar() {
     };
   }, []);
 
-  // FIXED: Improved overflow management
+  // FIXED: Improved overflow management with better cleanup
   useEffect(() => {
     const hasOpenPopup = mobileMenuOpen || showLoginPopup || showProfilePopup;
     
@@ -96,13 +96,19 @@ export default function Navbar() {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
+      // Restore scrolling immediately when popups close
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+      document.body.style.pointerEvents = "auto";
+      document.documentElement.style.pointerEvents = "auto";
     }
 
     return () => {
+      // Cleanup function to ensure scrolling is restored
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+      document.body.style.pointerEvents = "auto";
+      document.documentElement.style.pointerEvents = "auto";
     };
   }, [mobileMenuOpen, showLoginPopup, showProfilePopup]);
 
@@ -119,16 +125,24 @@ export default function Navbar() {
     }
   };
 
-  // FIXED: Close all popups function
+  // FIXED: Enhanced close all popups function that properly restores page interaction
   const closeAllPopups = () => {
     setShowLoginPopup(false);
     setShowProfilePopup(false);
     setMobileMenuOpen(false);
+    
+    // Force restore scrolling and interaction
+    setTimeout(() => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.pointerEvents = "auto";
+      document.documentElement.style.pointerEvents = "auto";
+    }, 10);
   };
 
   // FIXED: Handle login success from the popup
   const handleLoginSuccess = () => {
-    setShowLoginPopup(false);
+    closeAllPopups();
     // Re-check login status after successful login
     setTimeout(() => {
       checkLoginStatus();
@@ -137,11 +151,16 @@ export default function Navbar() {
 
   // FIXED: Handle profile popup close
   const handleProfilePopupClose = () => {
-    setShowProfilePopup(false);
+    closeAllPopups();
     // Re-check login status after profile popup closes (in case of logout)
     setTimeout(() => {
       checkLoginStatus();
     }, 100);
+  };
+
+  // NEW: Single click handler for overlay that properly closes popups and restores page
+  const handleOverlayClick = () => {
+    closeAllPopups();
   };
 
   const handlePlansClick = (e: React.MouseEvent, isMobile = false) => {
@@ -371,18 +390,15 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-30 md:hidden"
-          onClick={() => setMobileMenuOpen(false)}
+          onClick={handleOverlayClick}
         ></div>
       )}
 
-      {/* FIXED: Login Popup without onClose prop to avoid TypeScript errors */}
+      {/* FIXED: Login Popup with improved overlay handling */}
       {showLoginPopup && (
         <div 
           className="fixed inset-0 z-50"
-          onClick={() => {
-            setShowLoginPopup(false);
-            handleLoginSuccess();
-          }}
+          onClick={handleOverlayClick}
         >
           <div onClick={(e) => e.stopPropagation()}>
             <LoginPopup />
@@ -390,11 +406,11 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* FIXED: Profile Popup without onLogout prop to avoid TypeScript errors */}
+      {/* FIXED: Profile Popup with improved overlay handling */}
       {showProfilePopup && (
         <div 
           className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center"
-          onClick={handleProfilePopupClose}
+          onClick={handleOverlayClick}
         >
           <div onClick={(e) => e.stopPropagation()}>
             <ProfileCard

@@ -130,8 +130,8 @@ const PrivacyPolicy = () => {
                       <button
                         onClick={() => scrollToSection(section.id)}
                         className={`w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-all duration-200 flex items-center text-sm sm:text-base ${activeSection === section.id
-                            ? "bg-indigo-100 text-indigo-700 font-medium"
-                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                          ? "bg-indigo-100 text-indigo-700 font-medium"
+                          : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                           }`}
                       >
                         {activeSection === section.id && (
@@ -475,15 +475,37 @@ const PrivacyPolicy = () => {
                       <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-gray-600 text-sm sm:text-base">
                         <li className="flex items-start">
                           <span className="text-indigo-600 mr-2 mt-1 flex-shrink-0">•</span>
-                          <span>By email: <span className="text-indigo-600 font-medium">privacy@chatsupplies.com</span></span>
+                          <span>By email: <span className="text-indigo-600 font-medium">
+
+                            <a
+                              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@chatsupplies.com"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-indigo-600 font-medium hover:underline"
+                            >
+                              hello@chatsupplies.com
+                            </a>.
+                          </span>
+
+                          </span>
                         </li>
                         <li className="flex items-start">
                           <span className="text-indigo-600 mr-2 mt-1 flex-shrink-0">•</span>
-                          <span>Through our website: <span className="text-indigo-600 font-medium">chatsupplies.com/contact</span></span>
+                          <span>
+                            Through our website:{" "}
+                            <a
+                              href="https://chatsupplies.com/contacts"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-indigo-600 font-medium hover:underline"
+                            >
+                              chatsupplies.com/Contact
+                            </a>
+                          </span>
                         </li>
                         <li className="flex items-start">
                           <span className="text-indigo-600 mr-2 mt-1 flex-shrink-0">•</span>
-                          <span>By mail: <span className="text-indigo-600 font-medium">ChatSupplies Inc., Butt Street, Rustam Park, Lahore</span></span>
+                          <span>By mail: <span className="text-indigo-600 font-medium">Address: 11455 Glen rose dr. STE 100, Frisco, TX, 75035</span></span>
                         </li>
                       </ul>
                     </section>

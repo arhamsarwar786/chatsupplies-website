@@ -21,7 +21,7 @@ const Different: FC = () => {
                     <div className="w-full lg:w-1/2 flex justify-center">
                         <div>
                             <img
-                                src="/Icons/Bot.svg"
+                                src="/about-us/makes-us-different.png"
                                 alt="A team of people working in an office"
                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                 onError={(e) => {

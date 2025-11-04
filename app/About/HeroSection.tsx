@@ -33,7 +33,7 @@ const HeroSection: FC = () => {
                     <div className="w-full lg:w-1/2 flex justify-center">
                         <div>
                             <img
-                                src="Icons/Bot.svg"
+                                src="about-us/our-mission.png"
                                 alt="A team of people working in an office"
                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                 onError={(e) => {
@@ -78,7 +78,7 @@ const HeroSection: FC = () => {
                     <div className="w-full lg:w-1/2 flex justify-center">
                         <div>
                             <img
-                                src="Icons/Bot.svg"
+                                src="about-us/our-vision.png"
                                 alt="Chatbot illustration"
                                 className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                 onError={(e) => {

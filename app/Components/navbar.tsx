@@ -203,8 +203,8 @@ export default function Navbar() {
     { label: "Services", href: "/" },
     { label: "Plans", href: "/" },
     { label: "Integration", href: "https://developer.chatsupplies.com/" },
-    { label: "Contact Us", href: "/Contacts" },
-    { label: "About us", href: "/About" },
+    { label: "Contact Us", href: "/contacts" },
+    { label: "About us", href: "/about" },
   ];
 
   const opensInNewTab = (label: string) =>

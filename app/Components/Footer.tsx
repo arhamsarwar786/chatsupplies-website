@@ -43,9 +43,9 @@ export default function Footer() {
             {/* First column - 3 buttons */}
             <div className="flex flex-col gap-2 lg:gap-4 md:gap-3">
               {[
-                { label: "Privacy Policy", href: "/PrivacyPolicy" },
-                { label: "Term and Conditions", href: "/Terms&Conditions" },
-                { label: "Contact us", href: "Contacts" },
+                { label: "Privacy Policy", href: "/privacy-policy" },
+                { label: "Term and Conditions", href: "/terms-and-conditions" },
+                { label: "Contact us", href: "contacts" },
               ].map((item, idx) => (
                 <Link key={idx} href={item.href}>
                   <button className="cursor-pointer text-white text-sm sm:text-base font-mont font-semibold hover:text-gray-200 transition text-left">
@@ -59,7 +59,7 @@ export default function Footer() {
             <div className="flex flex-col gap-2 lg:gap-4 md:gap-3 mt-1">
               {[
                 { name: "Integration", link: "https://developer.chatsupplies.com/" },
-                { name: "About us", link: "/About" },
+                { name: "About us", link: "/about" },
                  { name: "Blogs", link: "/Blogs" },
               ].map((item, idx) => (
                 item.name === "Integration" ? (

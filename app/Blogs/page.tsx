@@ -20,8 +20,8 @@ interface Article {
 const ARTICLES: Article[] = [
   {
     id: 1,
-    category: 'CUSTOMER STORIES',
-    title: 'Global Medical Response streamlines operations for over 40,000 employees with...',
+    category: 'Advice',
+    title: 'The 20 best looking chatbot UIs in 2025',
     author: 'Kendall Freeze',
     date: 'October 24, 2025',
     imageUrl: 'https://placehold.co/600x400/FFF3DA/303030?text=Medical+Response',
@@ -29,8 +29,8 @@ const ARTICLES: Article[] = [
   },
   {
     id: 2,
-    category: 'PRODUCT',
-    title: 'How ChatSupplies Sign Mobile solves contract hassles for digital nomads',
+    category: 'Advice',
+    title: 'How to build a chatbot with a knowledge base',
     author: 'Chris Bass',
     date: 'October 21, 2025',
     imageUrl: 'https://placehold.co/600x400/ADD8E6/303030?text=Digital+Signature',
@@ -74,12 +74,27 @@ const ARTICLES: Article[] = [
   },
 ];
 
+// --- Route mapping for each article ---
+const getArticleRoute = (articleId: number): string => {
+  const routeMap: { [key: number]: string } = {
+    1: '/Blogs/chatbot',
+    2: '/Blogs/knowledge-base',
+    3: '/Blogs/sign-mobile',
+    4: '/Blogs/bowls-nsw',
+    5: '/Blogs/education-ai',
+    6: '/Blogs/vision-e-leads',
+  };
+  
+  return routeMap[articleId] || '/Blogs/default';
+};
+
 // --- Article Card Component ---
 const ArticleCard: React.FC<{ article: Article }> = ({ article }) => {
   const router = useRouter();
 
   const handleCardClick = () => {
-    router.push('/BlogsData');
+    const route = getArticleRoute(article.id);
+    router.push(route);
   };
 
   return (
@@ -102,16 +117,10 @@ const ArticleCard: React.FC<{ article: Article }> = ({ article }) => {
     >
       {/* Image Section */}
       <div className="h-48 w-full">
-        {/*
-          Note: In a real Next.js app, you would use the <Image> component
-          for optimized images. Here we use a standard <img> tag with a
-          placeholder for simplicity in a single file component.
-        */}
         <img
           src={article.imageUrl}
           alt={article.imageAlt}
           className="w-full h-full object-cover"
-          // Fallback in case the placeholder fails to load
           onError={(e) => {
             const target = e.target as HTMLImageElement;
             target.onerror = null;

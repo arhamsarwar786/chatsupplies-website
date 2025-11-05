@@ -21,13 +21,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// ✅ Added favicon reference
+// ✅ Metadata (kept same)
 export const metadata: Metadata = {
   title: "ChatSupplies - Smart Chat Solutions",
   description:
     "Premium chatbot tools and AI-powered customer support solutions",
   icons: {
-    icon: "/Robot/face.svg", // <-- your logo file in /public
+    icon: "/logo/Group-1.png", // your favicon file
   },
 };
 

@@ -38,7 +38,7 @@ const OurCustomer: FC = () => {
     }, []);
 
     return (
-        <div ref={sectionRef} className="relative bg-blue-600 text-white py-10 overflow-hidden font-sans">
+        <div ref={sectionRef} className="relative bg-blue-900 text-white py-10 overflow-hidden font-sans">
             {/* Background waves */}
             <div className="absolute top-0 left-0 w-full h-full bg-blue-500 transform -skew-y-3 origin-top-left -translate-y-1/4 opacity-20 z-0"></div>
             <div className="absolute bottom-0 right-0 w-full h-full bg-blue-700 transform skew-y-3 origin-bottom-right translate-y-1/4 opacity-20 z-0"></div>

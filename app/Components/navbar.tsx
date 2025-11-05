@@ -228,15 +228,15 @@ export default function Navbar() {
             className="flex items-center space-x-2 transition-all duration-300 mr-8"
           >
             <Image
-              src="/Robot/face.svg"
+              src="/logo/Group-1.png"
               alt="ChatSupplies Logo"
-              width={scrolled ? 26 : 32}
-              height={scrolled ? 26 : 32}
+              width={scrolled ? 26 : 26}
+              height={scrolled ? 26 : 26}
               className="rounded-md transition-all duration-300"
             />
             <span
               className={`text-white font-mont font-bold transition-all duration-300 ${
-                scrolled ? "text-base" : "text-lg"
+                scrolled ? "text-base" : "text-xl"
               }`}
             >
               ChatSupplies

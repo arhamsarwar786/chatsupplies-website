@@ -15,8 +15,9 @@ const statsData: Stat[] = [
 
 const NumberSection: FC = () => {
   return (
-    <div className="bg-green-600 text-white py-16 font-sans">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      className="text-white py-16 font-mont"
+    >      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <h2 className="text-4xl sm:text-5xl text-center font-bold mb-16 sm:mb-20">
           Our Analytics

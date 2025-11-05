@@ -77,8 +77,8 @@ const ARTICLES: Article[] = [
 // --- Route mapping for each article ---
 const getArticleRoute = (articleId: number): string => {
   const routeMap: { [key: number]: string } = {
-    1: '/Blogs/chatbot',
-    2: '/Blogs/knowledge-base',
+    1: '/blogs/chatbot',
+    2: '/blogs/knowledge-base',
     3: '/Blogs/sign-mobile',
     4: '/Blogs/bowls-nsw',
     5: '/Blogs/education-ai',

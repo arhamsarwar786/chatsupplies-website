@@ -102,11 +102,11 @@ const App: React.FC = () => {
                         <Form />
                         <p className="text-center text-xs text-gray-500 leading-relaxed mt-2">
                             By contacting us, you agree to our{" "}
-                            <a href="/Terms&Conditions" className="font-mont text-black font-semibold">
+                            <a href="/terms-and-conditions" className="font-mont text-black font-semibold">
                                 Terms and Conditions
                             </a>{" "}
                             and{" "}
-                            <a href="/PrivacyPolicy" className="text-black font-mont font-semibold">
+                            <a href="/privacy-policy" className="text-black font-mont font-semibold">
                                 Privacy Policy
                             </a>
                         </p>

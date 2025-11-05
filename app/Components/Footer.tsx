@@ -19,15 +19,18 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row w-full justify-between">
           {/* Logo Section (25%) */}
           <div className="w-full lg:w-1/4 flex flex-col items-start mb-8 lg:mb-0">
-            <div className="flex items-center">
-              <Link href="/">
+            <div className="w-full lg:w-1/4 flex flex-col items-start mb-8 lg:mb-0">
+              <Link href="/" className="flex items-center space-x-3 group">
                 <Image
-                  src="/Robot/FooterLogo.svg"
+                  src="/logo/Group-1.png"
                   alt="ChatSupplies Logo"
-                  width={250}
-                  height={250}
-                  className="rounded-md transition-transform duration-300 hover:scale-105 hover:opacity-90 cursor-pointer"
+                  width={50}
+                  height={50}
+                  className="rounded-md transition-transform duration-300 group-hover:scale-110 group-hover:opacity-90"
                 />
+                <span className="text-white font-bold text-4xl font-mont transition-all duration-300 group-hover:opacity-90 group-hover:scale-105">
+                  ChatSupplies
+                </span>
               </Link>
             </div>
 
@@ -60,7 +63,7 @@ export default function Footer() {
               {[
                 { name: "Integration", link: "https://developer.chatsupplies.com/" },
                 { name: "About us", link: "/about" },
-                 { name: "Blogs", link: "/Blogs" },
+                { name: "Blogs", link: "/blogs" },
               ].map((item, idx) => (
                 item.name === "Integration" ? (
                   <a

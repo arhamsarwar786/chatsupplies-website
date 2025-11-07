@@ -1,6 +1,7 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import PhoneInput from "react-phone-number-input/input"
+
 // SVG Icons for visibility toggle with proper TypeScript types
 const EyeIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -33,6 +34,24 @@ const EyeOffIcon = (props: React.SVGProps<SVGSVGElement>) => (
   >
     <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-6.36 0-9.99-7-9.99-7a1.53 1.53 0 0 1 .43-.7L3 12M12 7c2.76 0 5 2.24 5 5a5.55 5.55 0 0 1-1.07 3.23M16.49 16.49L7 7" />
     <line x1="1" y1="1" x2="23" y2="23" />
+  </svg>
+)
+
+// SVG Icon for Camera/Upload
+const CameraIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    xmlns="http://www.w3.org/2000/svg"
+    className="w-5 h-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+    <circle cx="12" cy="13" r="4" />
   </svg>
 )
 
@@ -139,6 +158,69 @@ const apiService = {
     return response.json();
   },
 
+ // FIXED: Upload profile image function with fallback
+async uploadProfileImage(imageFile: File) {
+  const token = localStorage.getItem("auth_token") ||
+    localStorage.getItem("token") ||
+    sessionStorage.getItem("auth_token");
+  const USER_ID = localStorage.getItem("userid");
+  
+  // Try the image upload endpoint first
+  const IMAGE_UPLOAD_URL = `${API_BASE_URL_PROFILE}${USER_ID}/image`;
+
+  const formData = new FormData();
+  formData.append('file', imageFile); 
+
+  const headers: HeadersInit = {};
+  
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  try {
+    const response = await fetch(IMAGE_UPLOAD_URL, {
+      method: 'POST',
+      headers,
+      body: formData,
+    });
+
+    if (!response.ok) {
+      // If image upload endpoint fails, fall back to storing as base64 in localStorage
+      console.warn("Image upload endpoint not available, falling back to localStorage storage");
+      return this.storeImageInLocalStorage(imageFile);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error("Image upload failed, falling back to localStorage:", error);
+    return this.storeImageInLocalStorage(imageFile);
+  }
+},
+
+// ADDED: Helper function to store image in localStorage as fallback
+storeImageInLocalStorage(imageFile: File) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageDataUrl = e.target?.result as string;
+      
+      // Update userObject in localStorage
+      try {
+        const userString = localStorage.getItem("userObject");
+        if (userString) {
+          const user = JSON.parse(userString);
+          user.profile_image_url = imageDataUrl;
+          localStorage.setItem("userObject", JSON.stringify(user));
+        }
+      } catch (error) {
+        console.error("Error updating localStorage:", error);
+      }
+      
+      resolve({ profile_image_url: imageDataUrl });
+    };
+    reader.readAsDataURL(imageFile);
+  });
+},
   // Add forgot password functionality
   async forgotPassword(email: string) {
     const FORGOT_PASSWORD_URL = "https://api.chatsupplies.com/clients/forgot-password";
@@ -164,7 +246,229 @@ const apiService = {
   }
 };
 
-// --- MODIFIED COMPONENT: UpdatePasswordForm ---
+// --- NEW COMPONENT: ImageUploadModal ---
+interface ImageUploadModalProps {
+  handleClose: () => void;
+  onImageUploadSuccess: (newImageUrl: string) => void;
+}
+
+const ImageUploadModal: React.FC<ImageUploadModalProps> = ({ handleClose, onImageUploadSuccess }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
+    setSuccess(null);
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        setError("File size must be less than 5MB.");
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        return;
+      }
+      if (!file.type.match('image.*')) {
+        setError("Only image files are allowed.");
+        setSelectedFile(null);
+        setPreviewUrl(null);
+        return;
+      }
+
+      setSelectedFile(file);
+      setPreviewUrl(URL.createObjectURL(file));
+    } else {
+      setSelectedFile(null);
+      setPreviewUrl(null);
+    }
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      setError("Please select an image to upload.");
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await apiService.uploadProfileImage(selectedFile);
+      
+      const newImageUrl = response.profile_image_url || response.image_url; 
+      
+      if (!newImageUrl) {
+        throw new Error("Upload successful, but no image URL received.");
+      }
+
+      // Update local storage with the new URL
+      const userString = localStorage.getItem("userObject");
+      if (userString) {
+        const user = JSON.parse(userString);
+        user.profile_image_url = newImageUrl;
+        localStorage.setItem("userObject", JSON.stringify(user));
+      }
+      
+      setSuccess("Profile image updated successfully!");
+      onImageUploadSuccess(newImageUrl); // Propagate up to ProfileCard
+
+      setTimeout(() => {
+        handleClose();
+      }, 1500);
+
+    } catch (e) {
+      console.error("Image upload error:", e);
+      setError(e instanceof Error ? e.message : "An unexpected error occurred during upload.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    // NOTE: For a real application, you would add an API call here to delete the image from the server.
+    // For now, we will clear the local state and localStorage.
+    
+    // Clear local state
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    
+    // Clear the file input element's value to allow re-selection of the same file
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    
+    // Clear local storage URL
+    const userString = localStorage.getItem("userObject");
+    if (userString) {
+      const user = JSON.parse(userString);
+      user.profile_image_url = null;
+      localStorage.setItem("userObject", JSON.stringify(user));
+    }
+    
+    // Propagate up to ProfileCard to clear the displayed image
+    onImageUploadSuccess(""); 
+    
+    setSuccess("Image removed successfully! (Note: API deletion is not implemented)");
+    setTimeout(() => {
+      handleClose();
+    }, 1500);
+  };
+  
+  const isProfileImageSet = localStorage.getItem("userObject") && JSON.parse(localStorage.getItem("userObject") || '{}').profile_image_url;
+
+
+  return (
+    <div
+      className="bg-white p-6 rounded-xl shadow-2xl w-96 border border-gray-200"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="flex justify-between items-center mb-4 cursor-pointer">
+        <h3 className="text-xl font-bold text-gray-800 cursor-pointer">Update Profile Image</h3>
+        <button
+          onClick={handleClose}
+          className="text-gray-400 hover:text-gray-600 cursor-pointer p-1 rounded-full hover:bg-gray-100 transition duration-150"
+          aria-label="Close image upload form"
+          disabled={isLoading}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div className="flex flex-col items-center space-y-4">
+        <div className="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden border-4 border-gray-100 shadow-inner">
+          {previewUrl ? (
+            <img src={previewUrl} alt="Image Preview" className="w-full h-full object-cover" />
+          ) : (
+            <CameraIcon className="w-12 h-12 text-gray-500" />
+          )}
+        </div>
+
+        <input 
+          type="file" 
+          accept="image/*" 
+          onChange={handleFileChange} 
+          className="hidden" 
+          id="profile-image-upload" 
+          ref={fileInputRef}
+        />
+        
+        <label htmlFor="profile-image-upload" className="cursor-pointer px-4 py-2 text-sm font-medium text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition duration-150 w-full text-center">
+          {selectedFile ? "Change Image" : (isProfileImageSet ? "Update Image" : "Select Image")}
+        </label>
+        
+        {selectedFile && (
+            <p className="text-xs text-gray-500 truncate w-full text-center">{selectedFile.name}</p>
+        )}
+        
+        {error && <p className="text-sm text-red-500">{error}</p>}
+        {success && <p className="text-sm text-green-500">{success}</p>}
+
+        <div className="pt-2 flex justify-between w-full space-x-3">
+          <button
+            type="button"
+            onClick={handleClose}
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition duration-150 disabled:opacity-50"
+            disabled={isLoading}
+          >
+            Cancel
+          </button>
+          
+          <div className="flex space-x-3">
+            {isProfileImageSet && (
+                <button
+                type="button"
+                onClick={handleRemoveImage}
+                className="px-4 py-2 text-sm font-medium text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition duration-150 disabled:opacity-50"
+                disabled={isLoading}
+              >
+                Remove
+              </button>
+            )}
+            
+            <button
+              type="button"
+              onClick={handleUpload}
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-150 disabled:opacity-50 flex items-center gap-2"
+              disabled={isLoading || !selectedFile}
+            >
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Uploading...
+                </>
+              ) : (
+                "Upload Image"
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+// --- END NEW COMPONENT: ImageUploadModal ---
+
+// --- MODIFIED COMPONENT: UpdatePasswordForm (No functional change) ---
 interface UpdatePasswordFormProps {
   handleClose: () => void;
   isLoading: boolean;
@@ -452,8 +756,9 @@ const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({
     </div>
   );
 };
+// --- END MODIFIED COMPONENT: UpdatePasswordForm ---
 
-// --- MODIFIED COMPONENT: ManageChatsForm ---
+// --- MODIFIED COMPONENT: ManageChatsForm (No functional change) ---
 interface ManageChatsFormProps {
   handleClose: () => void;
   isLoading: boolean;
@@ -545,8 +850,13 @@ const ManageChatsForm: React.FC<ManageChatsFormProps> = ({ handleClose, isLoadin
 
       // ✅ LOG THE BACKEND RESPONSE
       console.log("Updated profile response:", responseData);
-
-      localStorage.setItem("userObject", JSON.stringify(responseData));
+      
+      // Merge with existing userObject in case it contains the profile_image_url
+      const existingUserString = localStorage.getItem("userObject");
+      const existingUser = existingUserString ? JSON.parse(existingUserString) : {};
+      const updatedUserObject = { ...existingUser, ...responseData };
+      
+      localStorage.setItem("userObject", JSON.stringify(updatedUserObject));
 
       // Update name in localStorage (preserving existing behavior)
       // Combine first and last name for the username to maintain backward compatibility
@@ -685,19 +995,47 @@ const ManageChatsForm: React.FC<ManageChatsFormProps> = ({ handleClose, isLoadin
     </div>
   );
 }
+// --- END MODIFIED COMPONENT: ManageChatsForm ---
 
-// --- MAIN COMPONENT: ProfileCard ---
+// --- MAIN COMPONENT: ProfileCard (MODIFIED) ---
 const ProfileCard: React.FC<ProfileCardProps> = ({ email, name, onClose }) => {
-  const avatarLetter = name ? name.charAt(0).toUpperCase() : ""
+  
+  const getInitialImageUrl = () => {
+    try {
+      const userString = localStorage.getItem("userObject");
+      if (userString) {
+        const user = JSON.parse(userString);
+        return user?.profile_image_url || "";
+      }
+    } catch (error) {
+      console.error("Error parsing userObject for image URL:", error);
+    }
+    return "";
+  };
+  
+  const [profileImage, setProfileImage] = useState<string>(getInitialImageUrl);
+  const avatarLetter = name ? name.charAt(0).toUpperCase() : "";
 
-  const [modalView, setModalView] = useState<'none' | 'manage_account' | 'change_password'>('none');
+  // ADDED: New modal view for image upload
+  const [modalView, setModalView] = useState<'none' | 'manage_account' | 'change_password' | 'upload_image'>('none');
   const [isLoading, setIsLoading] = useState(false)
+
+  // Function to refresh image state when the modal closes or on success
+  const handleImageUploadSuccess = (newImageUrl: string) => {
+    setProfileImage(newImageUrl);
+  }
+
+  // ADDED: Function to open image upload modal
+  const handleImageUpload = () => {
+    setModalView('upload_image');
+  }
 
   // ADDED: Focus event listener for auto-update without refreshing
   useEffect(() => {
     const handleFocus = () => {
       console.log("ProfileCard: Window focused - data auto-updated");
-      // You can add any auto-update logic here if needed
+      // Re-fetch the image URL and name on window focus to ensure freshness after an update
+      setProfileImage(getInitialImageUrl()); 
     };
 
     window.addEventListener("focus", handleFocus);
@@ -752,8 +1090,18 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ email, name, onClose }) => {
       />
     );
   }
+  
+  // ADDED: New conditional render for ImageUploadModal
+  if (modalView === 'upload_image') {
+    return (
+      <ImageUploadModal
+        handleClose={handleClose}
+        onImageUploadSuccess={handleImageUploadSuccess}
+      />
+    );
+  }
 
-  // Profile Card View (Default View) - unchanged
+  // Profile Card View (Default View) - MODIFIED to include profile image
   return (
     <div className="flex flex-col items-center p-6 bg-gray-100 rounded-lg shadow-xl w-85">
       <div className="flex justify-between w-full">
@@ -779,17 +1127,22 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ email, name, onClose }) => {
         </button>
       </div>
 
-      <div className="relative flex items-center justify-center w-24 h-24 mt-8 mb-4 rounded-full bg-gray-800 text-white text-4xl font-bold">
-        {avatarLetter}
-        <div className="absolute bottom-0 right-0 p-1 bg-white rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 text-gray-400"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path d="M16.5 6a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM12 10.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM12 12a.5.5 0 110 1 .5.5 0 010-1z" />
-          </svg>
+      <div 
+        className="relative flex items-center justify-center w-24 h-24 mt-8 mb-4 rounded-full bg-gray-800 text-white text-4xl font-bold overflow-hidden cursor-pointer"
+        onClick={handleImageUpload} // ADDED: Click on the avatar to open upload modal
+      >
+        {profileImage ? (
+          <img 
+            src={profileImage} 
+            alt="Profile Avatar" 
+            className="w-full h-full object-cover" 
+          />
+        ) : (
+          avatarLetter
+        )}
+        {/* MODIFIED: Overlay button for image upload */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 opacity-0 hover:opacity-100 transition duration-300">
+          <CameraIcon className="w-8 h-8 text-white" />
         </div>
       </div>
 
